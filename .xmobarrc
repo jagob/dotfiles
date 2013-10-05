@@ -1,0 +1,37 @@
+Config { font = "xft:droid:size=12,xft:Monospace"
+    , bgColor = "#101010"
+    , fgColor = "#87875f"
+    , position = Top
+           -- , position = Static { xpos = 0, ypos = 0, width = 1920, height = 16} 
+    , lowerOnStart = True
+    -- , overrideRedirect = False
+    , persistent = True
+    , commands = [ Run Date "%a %d %b %R" "date" 10
+    		 -- , Run GMail "gmail.jacobvdueholm" "lillebror" ["-t", "Mail: <count>"] 100
+		 -- , Run Mail [("inbox", "~/mail/mailboxes/uni/INBOX")] "mail"
+		 -- template : %mail%
+
+	         , Run BatteryP ["BAT0"]
+		                ["-t", "Charge: <acstatus> <left>%"
+				, "-L", "20", "-H", "80"
+				, "-l", "#df0000"
+				] 600
+		 -- , Run Com "/home/jacob/documents/getvolume.sh" [] "myVolume" 10
+		 , Run CommandReader "/home/jacob/.xmonad/getvolume2.sh" "vol"
+		 , Run CommandReader "/home/jacob/.xmonad/mailcount.sh" "mail"
+                 , Run StdinReader
+                 -- , Run AlsaVolume "default" "Master" ["--template", "vol:<vol>"] 10
+		 -- , Run Volume "default" "Master" ["-t", ,"vol: <volume>% <status>"] 10 
+		 -- , Volume "default" "Master" [] 10
+-- 		   Run Network "eth0" ["-t", "<fc=#556B2F><rx> ↓</fc> <fc=#B22222><tx> ↑</fc>","-S","True"] 10
+--                  , Run Network "wlan0" ["-t", "<fc=#556B2F><rx> ↓</fc> <fc=#B22222><tx> ↑</fc>","-S","True"] 10
+--                  , Run MultiCpu ["-t", "multCpu: <total>%", "-H","50","--high","#B22222"] 10
+--                  , Run Memory ["-t","mem: <usedratio>%","-H","80","--high","#B22222"] 10
+                 ]
+    , sepChar = "%"
+    , alignSep = "}{"
+--     , template = "%StdinReader% }{ | %battery% %multicpu% %memory% | %wlan0%%eth0% | %date% "
+    , template = "%StdinReader% }{| mail: %mail% | %battery% | Vol: %vol% | %date% "
+}
+
+-- vim: ft=haskell
