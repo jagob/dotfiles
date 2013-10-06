@@ -33,7 +33,7 @@ if [ -x /usr/bin/xfce4-power-manager ] ; then
    xfce4-power-manager &
 fi
 
-sleep 10 && dropboxd &
+sleep 15 && dropboxd &
 
 
 # exec gnome-session

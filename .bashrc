@@ -41,6 +41,8 @@ alias win='sudo mount /dev/sda2 /mnt/windows'
 alias gitlog='cd ~/documents/darwinduck/ && git log --graph --abbrev-commit'
 alias bell='sleep 3; echo -e '\a''
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
+alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
+alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
 
 # Enable gcc colors, in gcc 4.8 -->
 #export GCC:COLORS=1
