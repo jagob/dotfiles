@@ -31,13 +31,14 @@ alias lx='ls -lXB'         #  Sort by extension
 alias svns='svn status'											  # gets svn status
 alias svnu='svn update'						  # updates from svn
 alias svna='svn add . --force'
-alias svnc='svn commit'						  # commits to svn
+alias svnc='svn commit -m ""'						  # commits to svn
 alias svnf='cd ~/documents/svn/p5/report'
-alias svnl='svn log'							  # gets log from svn
+alias svnl='svn log -v -l 5'							  # gets log from svn
 
 alias matlaber='matlab -nodesktop -nosplash'
 alias xres='xrdb -load ~/.Xresources'
 alias win='sudo mount /dev/sda2 /mnt/windows'
+alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
 alias gitlog='cd ~/documents/darwinduck/ && git log --graph --abbrev-commit'
 alias bell='sleep 3; echo -e '\a''
 alias todo='vim ~/dropbox/faldkasse/todo.txt'

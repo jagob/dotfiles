@@ -72,7 +72,7 @@ myConfig = defaultConfig {
                          , manageHook = manageHook'
  			 , startupHook = setWMName "LG3D"
 			 , focusFollowsMouse = False
-			 , clickJustFocuses = True
+			 , clickJustFocuses = False
                          }
 			 `additionalKeysP` myKeys
 
