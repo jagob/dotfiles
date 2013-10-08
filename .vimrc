@@ -199,14 +199,13 @@ autocmd BufRead,BufNewFile *.tex set iskeyword+=:,-
 " ----------------------------------------------------------------------------
 " MATLAB
 " integration of mlint code checker with :make command
-autocmd BufEnter *.m  compiler mlint
+" autocmd BufEnter *.m  compiler mlint
 " use F5 to run .m file
-au FileType matlab map <buffer> <silent> <F5> :w<CR>:!matlab -nodesktop -nosplash -r "try, run(which('%')), pause, end, quit" <CR>\\|<ESC><ESC>
+" au FileType matlab map <buffer> <silent> <F5> :w<CR>:!matlab -nodesktop -nosplash -r "try, run(which('%')), pause, end, quit" <CR>\\|<ESC><ESC>
 " .m file folding
 " au FileType matlab set foldmethod=syntax foldcolumn=2 foldlevel=33
-
-
-map <leader>r :w<CR>:!/usr/local/MATLAB/R2013a/bin/matlab -nodesktop -nosplash -r "try, run %:p, pause, catch, end, quit" <CR> <CR>
+" 
+" map <leader>r :w<CR>:!/usr/local/MATLAB/R2013a/bin/matlab -nodesktop -nosplash -r "try, run %:p, pause, catch, end, quit" <CR> <CR>
 
 
 " ----------------------------------------------------------------------------
@@ -306,7 +305,10 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 " let g:SuperTabDefaultCompletionType = "context"
 " set completeopt=menuone,longest,preview
-"
+
+" FuzzyFinder
+map <C-o> :FufCoverageFile<CR> 
+
 " OmniCppComplete ================
 "
 "autocmd FileType c set omnifunc=ccomplete#Complete
