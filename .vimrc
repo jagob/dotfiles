@@ -173,6 +173,8 @@ let g:Tex_MultipleCompileFormats='pdf, aux'
 " spellcheck ikke i kommentarer
 let g:tex_comment_nospell=1 "latex
 
+let g:Tex_GotoError=0
+
 " Set the warning messages to ignore.
 let g:Tex_IgnoredWarnings =
 \"Underfull\n".
