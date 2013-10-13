@@ -116,14 +116,14 @@ elseif &t_Co == 88 || &t_Co == 256
     " new Vim 7.0 items
     if v:version >= 700
        hi SignColumn   ctermfg=229 ctermbg=30
-       hi TabLine      ctermfg=69  ctermbg=238
+       hi TabLine      ctermfg=69  ctermbg=237
        hi TabLineSel   ctermfg=69
-       hi TabLineFill  ctermfg=69  ctermbg=236
-       hi Pmenu        ctermfg=231 ctermbg=97
-       hi PmenuSel     ctermfg=223 ctermbg=60
-       hi PmenuSbar    ctermfg=180 ctermbg=245
-       hi PmenuThumb   ctermfg=167 ctermbg=245
-       hi MatchParen   ctermfg=172 ctermbg=30
+       hi TabLineFill  ctermfg=69  ctermbg=237
+       hi Pmenu        ctermfg=151 ctermbg=237
+       hi PmenuSel     ctermfg=41 ctermbg=237
+       hi PmenuSbar    ctermfg=151 ctermbg=237
+       hi PmenuThumb   ctermfg=151 ctermbg=237
+       hi MatchParen   ctermfg=255 ctermbg=203
     endif
 
     hi Normal       ctermfg=101 
@@ -189,6 +189,11 @@ elseif &t_Co == 88 || &t_Co == 256
     hi StatusLine   ctermfg=41   ctermbg=60
     hi StatusLineNC ctermfg=41   ctermbg=238
 
+" tab bar
+	 hi TabLine 		ctermfg=101 ctermbg=235
+	 hi TabLineSel 	ctermfg=41 	ctermbg=235
+	 hi TabLineFill 					ctermfg=235 
+
     hi Error        ctermfg=203
     hi ErrorMsg     ctermfg=203
     hi WarningMsg   ctermfg=203
@@ -196,6 +201,13 @@ elseif &t_Co == 88 || &t_Co == 256
     hi SpellCap     ctermfg=203 ctermbg=none
     hi SpellLocal   ctermfg=203 ctermbg=none
     hi SpellRare    ctermfg=203 ctermbg=none
+
+" LanguageTool
+	 hi LanguageToolGrammarError 	ctermfg=203 ctermbg=none
+	 hi LanguageToolSpellingError ctermfg=203 ctermbg=none
+  	 hi LanguageToolCmd          	ctermfg=203 ctermbg=none
+  	 hi LanguageToolLabel        	ctermfg=203 ctermbg=none
+  	 hi LanguageToolErrorCount   	ctermfg=203 ctermbg=none
 
     hi DiffAdd      ctermfg=215   ctermbg=107
     hi DiffChange   ctermbg=60

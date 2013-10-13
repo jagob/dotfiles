@@ -137,15 +137,13 @@ autocmd FileType tex setlocal spell spelllang=en_gb
 "let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 
 " ret hvis du staver forkert
-":iabbrev teh the
+:iabbrev teh the
 
 "Wildmenu tab completion
 set wildmode=longest,list " like bash
-
 "Wildmenu aoutcompletion like zsh 
-"set wildmenu
+set wildmenu
 "set wildmode = full
-
 set wildignore=*.log,*.aux,*.dvi,*.aut,*.aux,*.bbl,*.blg,*.dvi,*.fff,*.log,*.out,*.pdf,*.ps,*.toc,*.ttt 
 
 
@@ -197,6 +195,14 @@ autocmd BufRead,BufNewFile *.tex set iskeyword+=:,-
 " If you want to automatically compile and refresh xdvi whenever you write the current buffer, you can add the following code into your tex.vim ftplugin
 " au BufWritePost *.tex silent call Tex_RunLaTeX()
 " au BufWritePost *.tex silent !pkill -USR1 xdvi.bin
+"
+" grammar languagetool
+let g:languagetool_jar='/home/jacob/downloads/languagetool/languagetool-standalone/target/LanguageTool-2.4-SNAPSHOT/LanguageTool-2.4-SNAPSHOT/languagetool-commandline.jar'
+let g:languagetool_winheight=16
+let g:languagetool_disable_rules="MORFOLOGIK_RULE_EN_GB,WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE"
+" let g:languagetool_disable_rules="EN_QUOTES,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,ARTICLE_MISSING,COMMA_PARENTHESIS_WHITESPACE,UPPERCASE_SENTENCE_START,WORD_REPEAT_RULE,DOUBLE_PUNCTUATION,EN_A_VS_AN,THREE_NN,PHRASE_REPETITION,THIS_NNS,MORFOLOGIK_RULE_EN_GB"
+map :g :LanguageToolCheck<CR>
+
 
 " ----------------------------------------------------------------------------
 " MATLAB
@@ -212,9 +218,10 @@ autocmd BufRead,BufNewFile *.tex set iskeyword+=:,-
 
 " ----------------------------------------------------------------------------
 " Mappings
-map :Q :q <CR>
-inoremap <C-s> <esc>:w<cr>
-nnoremap <C-s> :w<cr>
+map :Q :q<CR>
+map <C-q> :q<CR>
+nmap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>
 
 " map cut & paste to what they bloody should be
 vnoremap <C-c> "+y " copy
@@ -232,6 +239,8 @@ nnoremap j gj
 nnoremap gj j
 
 " Smart way to move between windows
+" let g:BASH_Ctrl_j = 'off' " to map j
+nnoremap <SID>I_won’t_ever_type_this <Plug>IMAP_JumpForward "latexsuite wont override j map
 map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
@@ -258,6 +267,10 @@ nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
+
+" This mapping allows to stay in visual mode when indenting with < and >
+vnoremap > >gv
+vnoremap < <gv
 
 " ----------------------------------------------------------------------------
 " Plugins
@@ -289,7 +302,6 @@ map <localleader>] :vsplit <cr>:exec("tag ".expand("<cword>"))<cr>
 " TComment
 map <leader>c <c-_><c-_>
 
-
 " ctags  ================
 map <f12> :!ctags -R .<cr> 
 " generate a .tags file, which vim can use to scan for keywords
@@ -311,6 +323,15 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " FuzzyFinder
 map <C-o> :FufCoverageFile<CR> 
 
+" mru
+let MRU_Max_Entries = 10
+"let MRU_Include_Files = '^/Users/ok/Dropbox/StageM2/report/.*'
+" let g:MRU_File=expand("$HOME/.mru")
+map :mru :MRU <CR>
+" nmap :MRU :mru <CR>
+let MRU_Auto_Close = 1
+
+
 " OmniCppComplete ================
 "
 "autocmd FileType c set omnifunc=ccomplete#Complete
@@ -321,5 +342,5 @@ map <C-o> :FufCoverageFile<CR>
 "set omnifunc=syntaxcomplete#Complete
 
 " =========== Compile ================================
-" If the " 'expandtab' " option is set, when you type a tab, " Vim " inserts spaces.This is not " good if you are editing a Makefile.To insert " a real tab, no matter " what the options are, " type in " CTRL-V<Tab> " in insert mode.The " CTRL-V " tells " Vim " not to mess with the fol- " lowing character
+" If the " 'expandtab' " option is set, when you type a tab, " Vim " inserts spaces.This is not " good if you are editing a Makefile.To insert " a real tab, no matter " what the options are, " type in " CTRL-V<Tab> " in insert mode.The " CTRL-V " tells " Vim " not to mess with the fol- " lowing characte
 "map <F9> : !gcc % && ./a.out <CR>
