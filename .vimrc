@@ -151,6 +151,10 @@ set wildignore=*.log,*.aux,*.dvi,*.aut,*.aux,*.bbl,*.blg,*.dvi,*.fff,*.log,*.out
 
 " ----------------------------------------------------------------------------
 "  latex
+" :Tabularize /&
+" :'<,'>Tabularize /&
+"
+"
 "syntax enable
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
@@ -308,6 +312,26 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " FuzzyFinder
 map <C-o> :FufCoverageFile<CR> 
+
+" Rainbow Parentheses
+" Left column is for terminal environment.
+" Right column is for GUI environment."
+let g:rbpt_colorpairs = [
+    \ ['lightgreen', 'firebrick3'],
+    \ ['green',      'DarkOrchid3'],
+    \ ['darkgreen',  'SeaGreen3'],
+    \ ['cyan',       'RoyalBlue3'],
+    \ ['lightblue',       'RoyalBlue3'],
+    \ ['yellow',       'RoyalBlue3'],
+    \ ['red',       'RoyalBlue3'],
+    \ ] 	 
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+au Syntax * RainbowParenthesesLoadChevrons " for < > 
+
+
 
 " OmniCppComplete ================
 "
