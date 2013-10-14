@@ -10,6 +10,9 @@ else # normal
   # PS1=" \[\e[0;92m\][\w] \$\[\e[0m\] "
 fi
 
+# Bind Ctrl-s in vim to save
+bind -r '\C-s'
+stty -ixon
 
 alias ..='cd ..'
 alias cd..='cd ..'

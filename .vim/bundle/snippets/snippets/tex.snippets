@@ -183,7 +183,7 @@ snippet fcite
 snippet it
 	\textit{${0:text}}
 snippet bf
-	\textbf{${0:text}}
+	\textbf{${1:text}} ${0}
 snippet under
 	\underline{${0:text}}
 snippet emp
@@ -202,11 +202,10 @@ snippet ft
 	\footnote{${0:text}}
 snippet fig
 	\begin{figure}
-	\begin{center}
-	    \includegraphics[scale=${1}]{Figures/${2}}
-	\end{center}
-	\caption{${3}}
-	\label{fig:${4}}
+	\centering
+	    \includegraphics[scale=0.9\textwidth]{figures/${1}}
+	% \caption{${2}}
+	% \label{fig:${3}}
 	\end{figure}
 	${0}
 snippet tikz

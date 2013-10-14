@@ -3,7 +3,8 @@
 # Prints volume changes to stdout.  
 # Depends on inotify-tools package
 
-SOUND_DEV="/dev/snd/controlC0"
+# SOUND_DEV="/dev/snd/controlC0" # desktop
+SOUND_DEV="/dev/snd/controlC1" # laptop
 
 # this should grab the field with the percentage.  maybe break on " " and grep line with %?
 volume() {

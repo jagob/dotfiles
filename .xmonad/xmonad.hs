@@ -72,7 +72,7 @@ myConfig = defaultConfig {
                          , manageHook = manageHook'
  			 , startupHook = setWMName "LG3D"
 			 , focusFollowsMouse = False
-			 , clickJustFocuses = False
+			 , clickJustFocuses = True
                          }
 			 `additionalKeysP` myKeys
 
@@ -125,8 +125,8 @@ manageHook' = composeAll [ isFullscreen             --> doFullFloat
 -- , className =? "Gimp"                      --> doShift "8 grphx" <+> doFloat
 -- , resource	=? "firefox-bin"    --> doF (W.shift "2-web")
 
-                         -- , insertPosition Below Newer
-                         , insertPosition Above Newer
+                         , insertPosition Below Newer
+                         -- , insertPosition Above Newer
                          , transience'
                          ]
 
@@ -153,8 +153,10 @@ myKeys = [
          -- , ("C-M-h"      , spawn "sudo /usr/sbin/pm-hibernate") -- hibernate                                  
          -- , ("C-M-r"      , spawn "sudo /sbin/shutdown -r now" ) -- reboot
          -- , ("C-M-s"      , spawn "sudo /sbin/shutdown -h now" ) -- halt
-         , ("<XF86AudioRaiseVolume>" , spawn "amixer -c 0 set Master 1+") -- raise volume
-         , ("<XF86AudioLowerVolume>" , spawn "amixer -c 0 set Master 1-") -- raise volume
+         -- , ("<XF86AudioRaiseVolume>" , spawn "amixer -c 0 set Master 1+") -- desktop
+         -- , ("<XF86AudioLowerVolume>" , spawn "amixer -c 0 set Master 1-") -- desktop
+         , ("<XF86AudioRaiseVolume>" , spawn "amixer -c 1 set Master 1+") -- laptop
+         , ("<XF86AudioLowerVolume>" , spawn "amixer -c 1 set Master 1-") -- laptop
          , ("<XF86AudioMute>" , spawn "amixer set Master toggle") -- raise volume
 
     -- -- Resize viewed windows to the correct size
