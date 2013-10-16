@@ -29,7 +29,9 @@ Xft.lcdfilter: lcddefault
 URxvt*loginShell: true
 URxvt.depth: 32
 URxvt.geometry: 80x32
-
+XTerm*BellIsUrgent: true
+UXTerm*BellIsUrgent: true
+URxvt*BellIsUrgent: true
 URxvt.urgentOnBell: true
 ! URxvt.visualBell: true
 URxvt.saveLines: 200

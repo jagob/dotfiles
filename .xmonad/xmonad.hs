@@ -48,7 +48,7 @@ import XMonad.Layout.Spacing
 
 ------------------------------------------------------------------------------
 -- Main --
-main = xmonad =<< statusBar myBar pp toggleStrutsKey myConfig
+main = xmonad =<< statusBar myBar pp toggleStrutsKey conf
   where
 -- -- Command to launch the bar.
     myBar = "xmobar"
@@ -88,10 +88,13 @@ customPP = defaultPP {
 		     -- , ppHiddenNoWindows = const ""
                      -- , ppLayout = xmobarColor "#aaaaaa" ""
                      -- , ppTitle =  xmobarColor "#aaaaaa" "" . shorten 80
-                     , ppUrgent = xmobarColor "#df0000" "" . wrap "[" "]"
+                     , ppUrgent = xmobarColor "#df0000" ""
                      -- , ppUrgent = xmobarColor "#df0000" ""
                      , ppSep = xmobarColor "#87875f" "" " | "
                      }
+
+-- urgent notification
+urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
 -- layouts -------------------------------------------------------------------
 layoutHook' = tile ||| mtile ||| full
@@ -101,8 +104,6 @@ layoutHook' = tile ||| mtile ||| full
     mtile = renamed [Replace "mtile"] $ smartBorders $ Mirror rt
     full = renamed [Replace "full"] $ noBorders Full
 
--- urgent notification
-urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
 ------------------------------------------------------------------------------
 -- Window Management --
@@ -169,3 +170,13 @@ myKeys = [
     -- [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
     --     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
     --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+	 --
+	 --
+  -- Multimedia
+  -- , ((0, xF86XK_AudioRaiseVolume ), safeSpawn "amixer" ["-q", "set", "Master", "2+"])
+  -- , ((0, xF86XK_AudioLowerVolume ), safeSpawn "amixer" ["-q", "set", "Master", "2-"])
+  -- , ((0, xF86XK_AudioMute ), safeSpawn "amixer" ["-q", "set", "Master", "toggle"])
+  -- , ((0, xF86XK_AudioPlay ), safeSpawn "ncmpcpp" ["play"])
+  -- , ((0, xF86XK_AudioNext ), safeSpawn "ncmpcpp" ["next"])
+  -- , ((0, xF86XK_AudioPrev ), safeSpawn "ncmpcpp" ["prev"])
+  -- , ((0, xF86XK_AudioStop ), safeSpawn "ncmpcpp" ["stop"])
