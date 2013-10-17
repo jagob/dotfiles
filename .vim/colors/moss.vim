@@ -176,8 +176,8 @@ elseif &t_Co == 88 || &t_Co == 256
     hi MoreMsg      ctermfg=47
     hi ModeMsg      ctermfg=47 "-insert
     hi WildMenu     ctermfg=151
-    hi Question     ctermfg=203
-    hi VertSplit    ctermfg=236   ctermbg=238
+    hi Question     ctermfg=203	ctermbg=none
+    hi VertSplit    ctermfg=236   ctermbg=none
     hi Title        ctermfg=68
 
     hi Search       ctermfg=203	ctermbg=237

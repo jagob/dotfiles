@@ -201,9 +201,9 @@ snippet tt
 snippet ft
 	\footnote{${0:text}}
 snippet fig
-	\begin{figure}
-	\centering
-	    \includegraphics[scale=0.9\textwidth]{figures/${1}}
+	\begin{figure} [H]
+		\centering
+		\includegraphics[width=0.9\textwidth]{${1}}
 	% \caption{${2}}
 	% \label{fig:${3}}
 	\end{figure}

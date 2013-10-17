@@ -49,134 +49,111 @@ import XMonad.Layout.Spacing
 ------------------------------------------------------------------------------
 -- Main --
 main = xmonad =<< statusBar myBar pp toggleStrutsKey conf
-  where
--- -- Command to launch the bar.
-    myBar = "xmobar"
-    pp = customPP
--- Key binding to toggle the gap for the bar.
-    toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-    uhook = withUrgencyHookC NoUrgencyHook urgentConfig
-    conf = uhook myConfig
+	where
+		myBar = "xmobar"
+		pp = customPP
+		toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+		uhook = withUrgencyHookC NoUrgencyHook urgentConfig
+		conf = uhook myConfig
 
 ------------------------------------------------------------------------------
 -- Configs --
 myConfig = defaultConfig { 
-			 workspaces = ["1:web", "2:main", "3:dev", "4:misc", "5:mail", "6:chat"] ++ map show [7..9]
-                         , borderWidth = 3
-                         , normalBorderColor = "#080808"
-                         , focusedBorderColor = "#00df5f"
-                         , terminal = "urxvt"
-                         -- , keys = myKeys
---                          , mouseBindings = mouseBindings'
-                         , layoutHook = layoutHook'
-                         , manageHook = manageHook'
- 			 , startupHook = setWMName "LG3D"
-			 , focusFollowsMouse = False
-			 , clickJustFocuses = True
-                         }
-			 `additionalKeysP` myKeys
+	workspaces = ["1:web", "2:main", "3:dev", "4:misc", "5:mail", "6:chat"] ++ map show [7..9]
+	, borderWidth = 3
+	, normalBorderColor = "#080808"
+	, focusedBorderColor = "#00df5f"
+	, terminal = "urxvt"
+	, layoutHook = layoutHook'
+	, manageHook = manageHook'
+	, startupHook = setWMName "LG3D"
+	, focusFollowsMouse = False
+	, clickJustFocuses = True
+	}
+	`additionalKeysP` myKeys
 
 ------------------------------------------------------------------------------
 -- Looks --
--- bar
---customPP = defaultPP { ppCurrent = xmobarColor "#B8860B" "" . wrap "<" ">"
 customPP = defaultPP { 
-   		       -- ppOrder = \(ws:l:t) -> [ws,l,t]
-		     ppCurrent = xmobarColor "#00df5f" ""
-                     , ppHidden = xmobarColor "#87875f" ""
-                     , ppHiddenNoWindows = xmobarColor "#606060" ""
-		     -- , ppHiddenNoWindows = const ""
-                     -- , ppLayout = xmobarColor "#aaaaaa" ""
-                     -- , ppTitle =  xmobarColor "#aaaaaa" "" . shorten 80
-                     , ppUrgent = xmobarColor "#df0000" ""
-                     -- , ppUrgent = xmobarColor "#df0000" ""
-                     , ppSep = xmobarColor "#87875f" "" " | "
-                     }
+	ppCurrent = xmobarColor "#00df5f" ""
+	, ppHidden = xmobarColor "#87875f" ""
+	, ppHiddenNoWindows = xmobarColor "#606060" ""
+	-- , ppTitle =  xmobarColor "#aaaaaa" "" . shorten 80
+	, ppUrgent = xmobarColor "#ff005f" ""
+	, ppSep = xmobarColor "#87875f" "" " | "
+	}
 
--- urgent notification
+-- Urgent Notification
 urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
 -- layouts -------------------------------------------------------------------
 layoutHook' = tile ||| mtile ||| full
-  where
-    rt = ResizableTall 1 (2/100) (1/2) []
-    tile = renamed [Replace "tile"] $ spacing 2 $ smartBorders rt
-    mtile = renamed [Replace "mtile"] $ smartBorders $ Mirror rt
-    full = renamed [Replace "full"] $ noBorders Full
+	where
+		rt = ResizableTall 1 (2/100) (1/2) []
+		tile = renamed [Replace "tile"] $ spacing 2 $ smartBorders rt
+		mtile = renamed [Replace "mtile"] $ smartBorders $ Mirror rt
+		full = renamed [Replace "full"] $ noBorders Full
 
 
 ------------------------------------------------------------------------------
 -- Window Management --
--- To show application name:
--- xprop | grep WM_CLASS
-manageHook' = composeAll [ isFullscreen             --> doFullFloat
-                         , className =? "Google-chrome"  --> doShift "1:web"
-                         , className =? "Thunderbird"  --> doShift "5:mail"
-    			 , className =? "Skype"        --> doShift "6:chat" <+> doFloat
-			 , className =? "hl2_linux" --> doFullFloat
-			 , className =? "dota_linux" --> doFullFloat
-			 , className =? "war3.exe" --> doFullFloat
-
-                         , className =? "Gimp"      --> doFloat
-                         , className =? "Inkscape"  --> doFloat
-                         , className =? "Vlc"       --> doFloat
-                         , className =? "feh"       --> doFloat
-
-			 , title     =? "Copying Files"   --> doFloat
--- , className =? "Gimp"                      --> doShift "8 grphx" <+> doFloat
--- , resource	=? "firefox-bin"    --> doF (W.shift "2-web")
-
-                         , insertPosition Below Newer
-                         -- , insertPosition Above Newer
-                         , transience'
-                         ]
+-- To show application name: xprop | grep WM_CLASS
+manageHook' = composeAll [ 
+	isFullscreen             --> doFullFloat
+	, className =? "Google-chrome"  --> doShift "1:web"
+	, className =? "Thunderbird"  --> doShift "5:mail"
+	, className =? "Skype"        --> doShift "6:chat" <+> doFloat
+	, className =? "hl2_linux" --> doFullFloat
+	, className =? "dota_linux" --> doFullFloat
+	, className =? "war3.exe" --> doFullFloat
+	, className =? "Gimp"      --> doFloat
+	, className =? "Inkscape"  --> doFloat
+	, className =? "Vlc"       --> doFloat
+	, className =? "feh"       --> doFloat
+	, title     =? "Copying Files"   --> doFloat
+	-- , resource	=? "firefox-bin"    --> doF (W.shift "2-web")
+	, insertPosition Below Newer
+	, transience'
+	]
 
 
 ------------------------------------------------------------------------------
 -- Keybinding-- 
-
-    --
-    --
-
--- myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 myKeys = [ 
-           ("M-<Right>"  , nextWS                             ) -- go to next workspace
-         , ("M-<Left>"   , prevWS                             ) -- go to prev workspace
-         , ("M-p" , spawn "exe=`dmenu_run -fn 'Droid Sans Mono-13'`")
-         , ("M-g"        , spawn "google-chrome"              ) -- launch chrome
-         , ("M-e"        , spawn "thunderbird"                ) -- launch thunderbird
-         , ("M-f"        , spawn "thunar"                ) 
-         -- , ("M-x"        , spawn "xchat"                      ) -- launch xchat
-         -- , ("M-o"        , spawn "opera"                      ) -- launch opera
-         -- , ("C-M-x"      , spawn "xlock"                      ) -- lockdown                                                               
-         -- , ("C-l"      , spawn "xlock"                      ) -- lockdown                                                               
-         -- , ("M-s"        , spawn "sudo /usr/sbin/pm-suspend"  ) -- suspend
-         -- , ("C-M-h"      , spawn "sudo /usr/sbin/pm-hibernate") -- hibernate                                  
-         -- , ("C-M-r"      , spawn "sudo /sbin/shutdown -r now" ) -- reboot
-         -- , ("C-M-s"      , spawn "sudo /sbin/shutdown -h now" ) -- halt
-         -- , ("<XF86AudioRaiseVolume>" , spawn "amixer -c 0 set Master 1+") -- desktop
-         -- , ("<XF86AudioLowerVolume>" , spawn "amixer -c 0 set Master 1-") -- desktop
-         , ("<XF86AudioRaiseVolume>" , spawn "amixer -c 1 set Master 1+") -- laptop
-         , ("<XF86AudioLowerVolume>" , spawn "amixer -c 1 set Master 1-") -- laptop
-         , ("<XF86AudioMute>" , spawn "amixer set Master toggle") -- raise volume
-
-    -- -- Resize viewed windows to the correct size
-	 -- , ("M-n" , refresh)
-    -- , ((modm,               xK_n     ), refresh)
-         ]
+	  ("M-<Right>"  , nextWS                             ) -- go to next workspace
+	, ("M-<Left>"   , prevWS                             ) -- go to prev workspace
+	, ("M-p" , spawn "exe=`dmenu_run -fn 'Droid Sans Mono-13'`")
+	, ("M-g"        , spawn "google-chrome"              ) -- launch chrome
+	, ("M-e"        , spawn "thunderbird"                ) -- launch thunderbird
+	, ("M-f"        , spawn "thunar"                ) 
+	-- , ("M-x"        , spawn "xchat"                      ) -- launch xchat
+	-- , ("C-M-x"      , spawn "xlock"                      ) -- lockdown                                                               
+	-- , ("C-l"        , spawn "xlock"                      ) -- lockdown                                                               
+	-- , ("M-s"        , spawn "sudo /usr/sbin/pm-suspend"  ) -- suspend
+	-- , ("C-M-h"      , spawn "sudo /usr/sbin/pm-hibernate") -- hibernate                                  
+	-- , ("C-M-r"      , spawn "sudo /sbin/shutdown -r now" ) -- reboot
+	-- , ("C-M-s"      , spawn "sudo /sbin/shutdown -h now" ) -- halt
+	--
+	-- , ("<XF86AudioRaiseVolume>" , spawn "amixer -c 0 set Master 1+") -- desktop
+	-- , ("<XF86AudioLowerVolume>" , spawn "amixer -c 0 set Master 1-") -- desktop
+	, ("<XF86AudioRaiseVolume>" , spawn "amixer -c 1 set Master 1+") -- laptop
+	, ("<XF86AudioLowerVolume>" , spawn "amixer -c 1 set Master 1-") -- laptop
+	, ("<XF86AudioMute>" , spawn "amixer set Master toggle") -- raise volume
+	]
  
-    -- -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-    -- -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-    -- [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-    --     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-    --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
-	 --
-	 --
-  -- Multimedia
-  -- , ((0, xF86XK_AudioRaiseVolume ), safeSpawn "amixer" ["-q", "set", "Master", "2+"])
-  -- , ((0, xF86XK_AudioLowerVolume ), safeSpawn "amixer" ["-q", "set", "Master", "2-"])
-  -- , ((0, xF86XK_AudioMute ), safeSpawn "amixer" ["-q", "set", "Master", "toggle"])
-  -- , ((0, xF86XK_AudioPlay ), safeSpawn "ncmpcpp" ["play"])
-  -- , ((0, xF86XK_AudioNext ), safeSpawn "ncmpcpp" ["next"])
-  -- , ((0, xF86XK_AudioPrev ), safeSpawn "ncmpcpp" ["prev"])
-  -- , ((0, xF86XK_AudioStop ), safeSpawn "ncmpcpp" ["stop"])
+-- -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
+-- -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
+-- [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+--     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+--     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+
+
+
+-- Multimedia
+-- , ((0, xF86XK_AudioRaiseVolume ), safeSpawn "amixer" ["-q", "set", "Master", "2+"])
+-- , ((0, xF86XK_AudioLowerVolume ), safeSpawn "amixer" ["-q", "set", "Master", "2-"])
+-- , ((0, xF86XK_AudioMute ), safeSpawn "amixer" ["-q", "set", "Master", "toggle"])
+-- , ((0, xF86XK_AudioPlay ), safeSpawn "ncmpcpp" ["play"])
+-- , ((0, xF86XK_AudioNext ), safeSpawn "ncmpcpp" ["next"])
+-- , ((0, xF86XK_AudioPrev ), safeSpawn "ncmpcpp" ["prev"])
+-- , ((0, xF86XK_AudioStop ), safeSpawn "ncmpcpp" ["stop"])

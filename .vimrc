@@ -185,6 +185,7 @@ let g:Tex_IgnoredWarnings =
 \"You have requested\n".
 \"Missing number, treated as zero.\n".
 \"There were undefined references\n".
+\"Package pgfkeys Error: I do not\n".
 \"Citation %.%# undefined\n".
 \'LaTeX Font Warning:'"
 " This number N says that latex-suite should ignore the first N of the above.
