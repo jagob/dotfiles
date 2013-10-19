@@ -11,11 +11,14 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
+export EDITOR=vim
+
 xrdb -merge ~/.Xresources
 
 setxkbmap -layout dk
 setxkbmap -option caps:escape
 xsetroot -cursor_name left_ptr
+# xmodmap -e "keysym Alt_L = Meta_L Alt_L"
 
 # sh ~/.fehbg &
 feh  --bg-scale 'pictures/80058-hardy_darkgreen.png' &

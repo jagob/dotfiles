@@ -48,6 +48,9 @@ URxvt.shading: 25
 !!!! URxvt.fading: 0 !Fade the text by the given percentage when focus is lost; option -fade. 
 
 
+! IRC
+rxvt*modifier: Windows
+
 
 ! Fonts
 URxvt.allow_bold: false

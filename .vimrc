@@ -24,6 +24,7 @@ set mouse=a
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 
+au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 70 to cause wrapping
 set wrap
 set linebreak	" wrap at 'breakat' instead of last char

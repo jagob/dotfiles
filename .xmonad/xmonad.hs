@@ -104,7 +104,8 @@ manageHook' = composeAll [
 	, className =? "Thunderbird"  --> doShift "5:mail"
 	, className =? "Skype"        --> doShift "6:chat" <+> doFloat
 	, className =? "hl2_linux" --> doFullFloat
-	, className =? "dota_linux" --> doFullFloat
+	, className =? "dota_linux" --> dofullFloat
+	-- -novid -w 1680 -h 1020 -window
 	, className =? "war3.exe" --> doFullFloat
 	, className =? "Gimp"      --> doFloat
 	, className =? "Inkscape"  --> doFloat
