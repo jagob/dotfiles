@@ -1,0 +1,23 @@
+## Receive options.
+set imap_user=jdueho11@student.
+set my_pw1 = `gnome-keyring-query get mutt_jdueho11` 
+set imap_pass = my_pw1
+set from=jdueho11@student.aau.dk
+set hostname="mail.aau.dk"
+
+set folder = imaps://mail.aau.dk:993/
+set spoolfile = +INBOX
+set postponed = +Drafts
+set record = +Sent
+
+## Send options.
+set smtp_url=smtps://jdueho11:$my_pw1@smtp.aau.dk:587
+set realname='Jacob Dueholm'
+
+# Connection options
+set ssl_force_tls = yes
+unset ssl_starttls
+
+## Hook -- IMPORTANT!
+# account-hook $folder "set imap_user=user@gmail.com imap_pass=****"
+account-hook mail.aau.dk 'set imap_user=jdueho11 imap_pass=$my_pw1'

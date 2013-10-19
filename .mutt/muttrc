@@ -1,0 +1,68 @@
+# Set paswords with gnome-keyring-query
+# gnome-keyring-query set mutt_jacobvdueholmATgmailcom
+# gnome-keyring-query set mutt_jdueho11
+
+set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
+
+set my_name = "Jacob Dueholm"
+set realname = "Jacob Dueholm"
+
+# set folder      = imaps://imap.gmail.com/
+# set imap_user=jacobvdueholm@gmail.com
+# set from = jacobvdueholm@gmail.com
+# set spoolfile   = +INBOX
+# mailboxes       = +INBOX
+#
+set header_cache = ~/.cache/mutt
+set imap_check_subscribed
+set message_cachedir = "~/.cache/mutt"
+set postponed = +[Gmail]/Drafts
+unset imap_passive
+# Keep IMAP connection alive by polling intermittently (time in seconds).
+set imap_keepalive = 300
+set timeout = 5
+# How often to check for new mail (time in seconds).
+set mail_check = 10
+set beep_new
+set mbox_type = Maildir
+
+# Account: jdueho11@student.aau.dk
+folder-hook 'mail.aau.dk' 'source ~/.mutt/jdueho11'
+source "~/.mutt/jdueho11"
+
+# Account: jacobvdueholm@gmail.com
+# folder-hook $folder 'source ~/.mutt/jacobvdueholmATgmailcom'
+folder-hook 'gmail.com' 'source ~/.mutt/jacobvdueholmATgmailcom'
+source "~/.mutt/jacobvdueholmATgmailcom"
+
+
+
+# mutiple accounts keybinds
+macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt/jacobvdueholmATgmailcom<enter><change-folder>!<enter>'
+macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.mutt/jdueho11<enter><change-folder>!<enter>'
+macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
+
+# mutt-sidebar
+set sidebar_visible = yes
+macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
+macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
+# Ctrl-n, Ctrl-p to select next, previous folder.
+# Ctrl-o to open selected folder.
+bind index,pager \CP sidebar-prev
+bind index,pager \CN sidebar-next
+bind index,pager \CO sidebar-open
+
+# Contact management
+# to add new contact:
+# From Mutt, press a when an e-mail of the targetted person if selected
+# or edit the alias_file manually: alias nickname Long Name <my-friend@domain.tld> 
+set alias_file = "~/.mutt/aliases"
+set sort_alias = alias
+set reverse_alias = yes
+source $alias_file
+
+# colors
+source ~/.mutt/colors.zenburn
+
+set date_format="%y-%m-%d %T"
+set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
