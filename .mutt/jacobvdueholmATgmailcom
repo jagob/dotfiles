@@ -12,7 +12,6 @@ set record = +Sent
 
 ## Send options.
 set smtp_url=smtps://jacobvdueholm:$my_pw2@smtp.gmail.com
-set realname='Jacob Dueholm'
 
 # Connection options
 set ssl_force_tls = yes
