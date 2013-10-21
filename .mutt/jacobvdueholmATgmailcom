@@ -17,6 +17,8 @@ set smtp_url=smtps://jacobvdueholm:$my_pw2@smtp.gmail.com
 set ssl_force_tls = yes
 unset ssl_starttls
 
+mailboxes =INBOX =Drafts =Sent =Trash
+
 ## Hook -- IMPORTANT!
 # account-hook $folder "set imap_user=user@gmail.com imap_pass=****"
 account-hook gmail.com 'set imap_user=jacobvdueholm imap_pass=$my_pw2'
