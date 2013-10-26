@@ -14,8 +14,8 @@ set record = +Sent
 set smtp_url=smtps://jacobvdueholm:$my_pw2@smtp.gmail.com
 
 # Connection options
-set ssl_force_tls = yes
 unset ssl_starttls
+set ssl_force_tls = yes
 
 mailboxes =INBOX =Drafts =Sent =Trash
 

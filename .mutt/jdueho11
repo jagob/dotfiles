@@ -11,11 +11,13 @@ set postponed = +Drafts
 set record = +Sent
 
 ## Send options.
-set smtp_url=smtps://jdueho11:$my_pw1@smtp.aau.dk:587
-
 # Connection options
 set ssl_force_tls = yes
-unset ssl_starttls
+set ssl_starttls = yes
+set smtp_authenticators="LOGIN"
+set use_from=yes
+set smtp_url=smtp://jdueho11@student.aau.dk@smtp.aau.dk:587
+set smtp_pass=`gnome-keyring-query get mutt_jdueho11` 
 
 ## Hook -- IMPORTANT!
 # account-hook $folder "set imap_user=user@gmail.com imap_pass=****"
