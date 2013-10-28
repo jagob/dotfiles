@@ -99,20 +99,20 @@ layoutHook' = tile ||| mtile ||| full
 -- Window Management --
 -- To show application name: xprop | grep WM_CLASS
 manageHook' = composeAll [ 
-	isFullscreen             --> doFullFloat
-	, className =? "Google-chrome"  --> doShift "1:web"
-	, className =? "Thunderbird"  --> doShift "5:mail"
-	, className =? "Skype"        --> doShift "6:chat" <+> doFloat
-	, className =? "hl2_linux" --> doFullFloat
-	, className =? "dota_linux" --> dofullFloat
+	isFullscreen             			--> doFullFloat
+	-- , className =? "Google-chrome"  	--> doShift "1:web"
+	, className =? "Thunderbird"  	--> doShift "5:mail"
+	, title 		=? "mutt"  				--> doShift "5:mail"
+	, className =? "Skype"        	--> doShift "6:chat" <+> doFloat
+	, className =? "hl2_linux" 		--> doFullFloat
+	, className =? "dota_linux" 		--> doFullFloat
 	-- -novid -w 1680 -h 1020 -window
-	, className =? "war3.exe" --> doFullFloat
-	, className =? "Gimp"      --> doFloat
-	, className =? "Inkscape"  --> doFloat
-	, className =? "Vlc"       --> doFloat
-	, className =? "feh"       --> doFloat
+	, className =? "war3.exe" 			--> doFullFloat
+	, className =? "Gimp"      		--> doFloat
+	, className =? "Inkscape"  		--> doFloat
+	, className =? "Vlc"       		--> doFloat
+	, className =? "feh"       		--> doFloat
 	, title     =? "Copying Files"   --> doFloat
-	-- , resource	=? "firefox-bin"    --> doF (W.shift "2-web")
 	, insertPosition Below Newer
 	, transience'
 	]
@@ -125,7 +125,7 @@ myKeys = [
 	, ("M-<Left>"   , prevWS                             ) -- go to prev workspace
 	, ("M-p" , spawn "exe=`dmenu_run -fn 'Droid Sans Mono-13'`")
 	, ("M-g"        , spawn "google-chrome"              ) -- launch chrome
-	, ("M-e"        , spawn "thunderbird"                ) -- launch thunderbird
+	, ("M-e"        , spawn "/usr/bin/urxvt -e /usr/bin/mutt") -- launch thunderbird
 	, ("M-f"        , spawn "thunar"                ) 
 	-- , ("M-x"        , spawn "xchat"                      ) -- launch xchat
 	-- , ("C-M-x"      , spawn "xlock"                      ) -- lockdown                                                               
@@ -142,11 +142,6 @@ myKeys = [
 	, ("<XF86AudioMute>" , spawn "amixer set Master toggle") -- raise volume
 	]
  
--- -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
--- -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
--- [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
---     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
---     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
 
 
 

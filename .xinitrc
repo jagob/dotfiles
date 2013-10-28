@@ -46,7 +46,8 @@ if [ -x /usr/bin/xfce4-power-manager ] ; then
    xfce4-power-manager &
 fi
 
-sleep 15 && dropboxd &
+sleep 15 && dropboxd & 
+sleep 15 && /usr/bin/urxvt -e /usr/bin/mutt &
 
 
 # exec gnome-session
