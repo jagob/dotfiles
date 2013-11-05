@@ -23,12 +23,10 @@ alias rs='sudo shutdown -r now'                                   # restart
 alias rb='sudo shutdown -r now'                                   # restart
 alias :q='logout'
 # alias pl='sudo /etc/cron.daily/prelink'                           # prelink
-alias ls='ls -h --color'
-alias ll="ls -lv --group-directories-first"
-alias lh='ls -lh'                                                 # list files w/ attributes ( human-readable sizes )
-alias l.='ls -d'	# list hidden files
-alias la='ls -lA'                                                 # list all files w/o attributes
-alias lah='ls -lah'                                               # list all files w/ attributes ( human-readable sizes )
+alias ls='ls -h --color --group-directories-first'
+alias ll="ls -lvgG"
+alias la='ls -A'                 # list all files w/o attributes
+alias lt='ls -ltgG' 		# sort by last modified
 alias lx='ls -lXB'         #  Sort by extension
 
 alias svns='svn status'											  # gets svn status

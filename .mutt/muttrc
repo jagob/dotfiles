@@ -46,14 +46,14 @@ mailboxes "=inbox"
 
 
 
+# Account: jacobvdueholm@gmail.com
+folder-hook 'gmail.com' 'source ~/.mutt/jacobvdueholmATgmailcom'
+source "~/.mutt/jacobvdueholmATgmailcom"
 
 # Account: jdueho11@student.aau.dk
 folder-hook 'mail.aau.dk' 'source ~/.mutt/jdueho11'
 source "~/.mutt/jdueho11"
 
-# Account: jacobvdueholm@gmail.com
-folder-hook 'gmail.com' 'source ~/.mutt/jacobvdueholmATgmailcom'
-source "~/.mutt/jacobvdueholmATgmailcom"
 
 # mutiple accounts keybinds
 macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt/jacobvdueholmATgmailcom<enter><change-folder>!<enter>'
