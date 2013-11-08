@@ -23,7 +23,7 @@ alias rs='sudo shutdown -r now'                                   # restart
 alias rb='sudo shutdown -r now'                                   # restart
 alias :q='logout'
 # alias pl='sudo /etc/cron.daily/prelink'                           # prelink
-alias ls='ls -h --color --group-directories-first'
+alias ls='ls -h1 --color --group-directories-first'
 alias ll="ls -lvgG"
 alias la='ls -A'                 # list all files w/o attributes
 alias lt='ls -ltgG' 		# sort by last modified
@@ -45,6 +45,7 @@ alias bell='sleep 3; echo -e "\a"' # only works when typed in terminal
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
+alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
 
 # Enable gcc colors, in gcc 4.8 -->
 #export GCC:COLORS=1
