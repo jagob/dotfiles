@@ -45,7 +45,7 @@ alias bell='sleep 3; echo -e "\a"' # only works when typed in terminal
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
-
+alias rescaleove='for i in $( ls *.jpg); do convert -resize 30% $i $i; done'
 # Enable gcc colors, in gcc 4.8 -->
 #export GCC:COLORS=1
 

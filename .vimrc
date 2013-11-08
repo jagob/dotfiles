@@ -229,6 +229,12 @@ map <C-q> :q<CR>
 nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>
 
+"open new terminal
+map  <F3> :! urxvt &<CR>
+nmap <F3> :! urxvt &<CR>
+imap <F3> :! urxvt &<CR>
+
+
 " map cut & paste to what they bloody should be
 vnoremap <C-c> "+y " copy
 map <S-b> "+gP     " paste
