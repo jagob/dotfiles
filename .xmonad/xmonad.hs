@@ -59,10 +59,11 @@ main = xmonad =<< statusBar myBar pp toggleStrutsKey conf
 ------------------------------------------------------------------------------
 -- Configs --
 myConfig = defaultConfig { 
-	workspaces = ["1:web", "2:main", "3:dev", "4:misc", "5:mail", "6:chat"] ++ map show [7..9]
+	-- workspaces = ["1:web", "2:main", "3:dev", "4:misc", "5:mail", "6:chat"] ++ map show [7..9]
+	workspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
 	, borderWidth = 3
-	, normalBorderColor = "#080808"
-	, focusedBorderColor = "#00df5f"
+	, normalBorderColor = "#000000"
+	, focusedBorderColor = "#4a914a"
 	, terminal = "urxvt"
 	, layoutHook = layoutHook'
 	, manageHook = manageHook'
@@ -75,11 +76,11 @@ myConfig = defaultConfig {
 ------------------------------------------------------------------------------
 -- Looks --
 customPP = defaultPP { 
-	ppCurrent = xmobarColor "#00df5f" ""
+	ppCurrent = xmobarColor "#e4e4e4" "#5e5e42" 
 	, ppHidden = xmobarColor "#87875f" ""
 	, ppHiddenNoWindows = xmobarColor "#606060" ""
 	-- , ppTitle =  xmobarColor "#aaaaaa" "" . shorten 80
-	, ppUrgent = xmobarColor "#ff005f" ""
+	, ppUrgent = xmobarColor "#df0000" ""
 	, ppSep = xmobarColor "#87875f" "" " | "
 	}
 

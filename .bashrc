@@ -16,6 +16,7 @@ stty -ixon
 
 alias ..='cd ..'
 alias cd..='cd ..'
+alias cd...='cd ../..'
 alias sl='ls'
 alias bc='bc -l'						# bash calculator with floating point
 alias sd='sudo shutdown -h now'                                   # shutdown
@@ -26,6 +27,7 @@ alias :q='logout'
 alias ls='ls -h --color --group-directories-first'
 alias ll="ls -lvgG"
 alias la='ls -A'                 # list all files w/o attributes
+alias lla="ls -AlvgG"
 alias lt='ls -ltgG' 		# sort by last modified
 alias lx='ls -lXB'         #  Sort by extension
 
@@ -46,6 +48,9 @@ alias todo='vim ~/dropbox/faldkasse/todo.txt'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
 alias rescaleove='for i in $( ls *.jpg); do convert -resize 30% $i $i; done'
+alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
+alias vimmer='cd documents/vimmer/ && vim -o3 c.c matlab.m latex.tex'
+
 # Enable gcc colors, in gcc 4.8 -->
 #export GCC:COLORS=1
 

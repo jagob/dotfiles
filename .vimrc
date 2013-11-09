@@ -102,7 +102,7 @@ set noexpandtab
 " Colors
 set t_Co=256 "set t_Co=16
 set background=dark
-colorscheme moss
+colorscheme jagob
 
 " mark line 80
 "set colorcolumn=80
@@ -345,13 +345,12 @@ let g:rbpt_colorpairs = [
     \ ['cyan',       'RoyalBlue3'],
     \ ['lightblue',       'RoyalBlue3'],
     \ ['yellow',       'RoyalBlue3'],
-    \ ['red',       'RoyalBlue3'],
     \ ] 	 
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
-au Syntax * RainbowParenthesesLoadChevrons " for < > 
+" au Syntax * RainbowParenthesesLoadChevrons " for < > 
 
 " mru
 let MRU_Max_Entries = 10
