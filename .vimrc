@@ -38,6 +38,8 @@ set ignorecase "Autocompletion try all words regardless of case
 set smartcase " if capital letters become case sensitive
 set showmatch     " set show matching parenthesis
 
+
+
 set foldenable
 " set foldmethod=manual
 set foldmethod=syntax
@@ -221,6 +223,11 @@ map :g :LanguageToolCheck<CR>
 " 
 " map <leader>r :w<CR>:!/usr/local/MATLAB/R2013a/bin/matlab -nodesktop -nosplash -r "try, run %:p, pause, catch, end, quit" <CR> <CR>
 
+" matlab 2
+" prefences -> editor ->
+" /usr/bin/urxvt -e /usr/bin/mutt
+
+
 
 " ----------------------------------------------------------------------------
 " Mappings
@@ -339,12 +346,8 @@ map <C-o> :FufCoverageFile<CR>
 " Left column is for terminal environment.
 " Right column is for GUI environment."
 let g:rbpt_colorpairs = [
-    \ ['lightgreen', 'firebrick3'],
-    \ ['green',      'DarkOrchid3'],
-    \ ['darkgreen',  'SeaGreen3'],
-    \ ['cyan',       'RoyalBlue3'],
-    \ ['lightblue',       'RoyalBlue3'],
-    \ ['yellow',       'RoyalBlue3'],
+    \ ['yellow'		,	'DarkOrchid3'],
+    \ ['lightyellow'	,	'DarkOrchid3'],
     \ ] 	 
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound

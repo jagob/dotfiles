@@ -16,7 +16,8 @@ stty -ixon
 
 alias ..='cd ..'
 alias cd..='cd ..'
-alias cd...='cd ../..'
+alias ...='cd ../..'
+alias ....='cd ../../..'
 alias sl='ls'
 alias bc='bc -l'						# bash calculator with floating point
 alias sd='sudo shutdown -h now'                                   # shutdown

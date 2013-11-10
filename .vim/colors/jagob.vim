@@ -31,7 +31,7 @@ if &t_Co == 88 || &t_Co == 256
        hi PmenuSel     ctermfg=7 ctermbg=241
        hi PmenuSbar    ctermfg=7 ctermbg=0
        hi PmenuThumb   ctermfg=7 ctermbg=0
-       hi MatchParen   ctermfg=none ctermbg=250
+       hi MatchParen   ctermfg=0 ctermbg=250
     endif
 
     hi Normal       ctermfg=7 

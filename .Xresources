@@ -6,10 +6,15 @@ URxvt.depth: 32
 URxvt.geometry: 80x32
 ! URxvt*BellIsUrgent: true
 URxvt.urgentOnBell: true
-URxvt.saveLines: 500
+URxvt.saveLines: 1000
 URxvt.internalBorder: 3
 URxvt.lineSpace: 0
 URxvt.iso14755: False 
+
+URxvt*scrollTtyOutput:      false
+URxvt*scrollWithBuffer:     true
+URxvt*scrollTtyKeypress:    true
+
 
 URxvt.transparent: false
 ! URxvt.background: rgba:1111/1111/1111/dddd
@@ -126,8 +131,8 @@ URxvt*color2  : #4E9A06
 ! executable, PS1
 URxvt*color10 : #00df5f 
 ! yellow
-URxvt*color3  : #e4e4e4
-URxvt*color11 : #FCE94F
+URxvt*color3  : #ffaf00
+URxvt*color11 : #ff9a00
 ! blue
 !! irssi cmus 
 URxvt*color4  : #4a914a 
@@ -137,9 +142,9 @@ URxvt*color12 : #5faf5f
 URxvt*color5  : #75507B
 URxvt*color13 : #AD7FA8
 ! cyan
-URxvt*color6  : #06989A
+URxvt*color6  : #00afdf
 ! symbolic links
-URxvt*color14 : #00afaf 
+URxvt*color14 : #00ff5f
 ! white
 URxvt*color7  : #D3D7CF
 URxvt*color15 : #EEEEEC

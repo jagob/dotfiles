@@ -20,6 +20,7 @@ import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.UrgencyHook
 import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.SetWMName
+import XMonad.Hooks.EwmhDesktops
  
 -- layouts
 import XMonad.Layout.NoBorders
@@ -68,6 +69,8 @@ myConfig = defaultConfig {
 	, layoutHook = layoutHook'
 	, manageHook = manageHook'
 	, startupHook = setWMName "LG3D"
+	, handleEventHook = ewmhDesktopsEventHook
+	, logHook =  ewmhDesktopsLogHook <+> dynamicLogXinerama
 	, focusFollowsMouse = False
 	, clickJustFocuses = True
 	}
@@ -102,9 +105,9 @@ layoutHook' = tile ||| mtile ||| full
 manageHook' = composeAll [ 
 	isFullscreen             			--> doFullFloat
 	-- , className =? "Google-chrome"  	--> doShift "1:web"
-	, className =? "Thunderbird"  	--> doShift "5:mail"
-	, title 		=? "mutt"  				--> doShift "5:mail"
-	, className =? "Skype"        	--> doShift "6:chat" <+> doFloat
+	, className =? "Thunderbird"  	--> doShift " 5 "
+	, title 		=? "mutt"  				--> doShift " 5 "
+	, className =? "Skype"        	--> doShift " 6 " <+> doFloat
 	, className =? "hl2_linux" 		--> doFullFloat
 	, className =? "dota_linux" 		--> doFullFloat
 	-- -novid -w 1680 -h 1020 -window
@@ -114,7 +117,7 @@ manageHook' = composeAll [
 	, className =? "Vlc"       		--> doFloat
 	, className =? "feh"       		--> doFloat
 	, title     =? "Copying Files"   --> doFloat
-	, insertPosition Below Newer
+	, insertPosition Above Newer
 	, transience'
 	]
 
