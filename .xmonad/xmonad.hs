@@ -107,6 +107,7 @@ manageHook' = composeAll [
 	-- , className =? "Google-chrome"  	--> doShift "1:web"
 	, className =? "Thunderbird"  	--> doShift " 5 "
 	, title 		=? "mutt"  				--> doShift " 5 "
+	, title 		=? "Unlock Keyring"  --> doShift " 5 "
 	, className =? "Skype"        	--> doShift " 6 " <+> doFloat
 	, className =? "hl2_linux" 		--> doFullFloat
 	, className =? "dota_linux" 		--> doFullFloat
@@ -130,7 +131,7 @@ myKeys = [
 	, ("M-p" , spawn "exe=`dmenu_run -fn 'Droid Sans Mono-13'`")
 	, ("M-g"        , spawn "google-chrome"              ) -- launch chrome
 	, ("M-e"        , spawn "/usr/bin/urxvt -e /usr/bin/mutt") -- launch thunderbird
-	, ("M-f"        , spawn "thunar"                ) 
+	-- , ("M-f"        , spawn "thunar"                ) 
 	-- , ("M-x"        , spawn "xchat"                      ) -- launch xchat
 	-- , ("C-M-x"      , spawn "xlock"                      ) -- lockdown                                                               
 	-- , ("C-l"        , spawn "xlock"                      ) -- lockdown                                                               
@@ -139,15 +140,22 @@ myKeys = [
 	-- , ("C-M-r"      , spawn "sudo /sbin/shutdown -r now" ) -- reboot
 	-- , ("C-M-s"      , spawn "sudo /sbin/shutdown -h now" ) -- halt
 	--
-	-- , ("<XF86AudioRaiseVolume>" , spawn "amixer -c 0 set Master 1+") -- desktop
-	-- , ("<XF86AudioLowerVolume>" , spawn "amixer -c 0 set Master 1-") -- desktop
-	, ("<XF86AudioRaiseVolume>" , spawn "amixer -c 1 set Master 1+") -- laptop
-	, ("<XF86AudioLowerVolume>" , spawn "amixer -c 1 set Master 1-") -- laptop
-	, ("<XF86AudioMute>" , spawn "amixer set Master toggle") -- raise volume
+	, ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1+") -- desktop
+	, ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1-") -- desktop
+	-- , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1+") -- laptop
+	-- , ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1-") -- laptop
+	, ("<XF86AudioMute>" , spawn "amixer set Master toggle && amixer set Headphone toggle") -- raise volume
+
+    -- -- screens
+    , (("M-o"     ), nextScreen)
+    , (("M-S-o"     ), shiftNextScreen >> nextScreen)
+
+    , (("M-h"), sendMessage Shrink)
+    , (("M-l"), sendMessage Expand)
+    , (("M-S-h"), sendMessage MirrorShrink)
+    , (("M-S-l"), sendMessage MirrorExpand)
 	]
  
-
-
 
 -- Multimedia
 -- , ((0, xF86XK_AudioRaiseVolume ), safeSpawn "amixer" ["-q", "set", "Master", "2+"])

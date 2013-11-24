@@ -66,3 +66,13 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 
 
 bind '"\e[11~": "urxvt &\n"'
+
+# # set dual monitors
+# dual () {
+#     xrandr --output VGA-0 --primary --left-of HDMI-0 --output HDMI-0 --auto
+# }
+# 
+# # set single monitor
+# single () {
+#     xrandr --output HDMI-0 --off
+# }
