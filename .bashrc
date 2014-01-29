@@ -23,6 +23,10 @@ alias bc='bc -l'						# bash calculator with floating point
 alias sd='sudo shutdown -h now'                                   # shutdown
 alias rs='sudo shutdown -r now'                                   # restart
 alias rb='sudo shutdown -r now'                                   # restart
+# sudo shutdown -hP now #shutdown and power off the system now
+# export RUNLEVEL=0 && halt
+
+
 alias :q='logout'
 # alias pl='sudo /etc/cron.daily/prelink'                           # prelink
 alias ls='ls -h --color --group-directories-first'

@@ -140,10 +140,10 @@ myKeys = [
 	-- , ("C-M-r"      , spawn "sudo /sbin/shutdown -r now" ) -- reboot
 	-- , ("C-M-s"      , spawn "sudo /sbin/shutdown -h now" ) -- halt
 	--
-	, ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1+") -- desktop
-	, ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1-") -- desktop
-	-- , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1+") -- laptop
-	-- , ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1-") -- laptop
+	-- , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1+") -- desktop
+	-- , ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1-") -- desktop
+	, ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1+") -- laptop
+	, ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1-") -- laptop
 	, ("<XF86AudioMute>" , spawn "amixer set Master toggle && amixer set Headphone toggle") -- raise volume
 
     -- -- screens
