@@ -1,3 +1,4 @@
+" github.com/jagob
 filetype off
 
 " Pathogen
@@ -25,20 +26,18 @@ set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 
 au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
-" set textwidth=80 " set textwidth to 70 to cause wrapping
+" set textwidth=80 " set textwidth to 80 to cause wrapping
 set wrap
 set linebreak	" wrap at 'breakat' instead of last char
-set history=200 " command lines history
+set history=100 " command lines history
 set nojoinspaces " only put one space after periods
-set noesckeys " Get rid of the delay when hitting esc!
+" set noesckeys " Get rid of the delay when hitting esc!
 
 set hlsearch " hightlight search
 set incsearch " seach as you tyoe
 set ignorecase "Autocompletion try all words regardless of case
 set smartcase " if capital letters become case sensitive
 set showmatch     " set show matching parenthesis
-
-
 
 set foldenable
 " set foldmethod=manual
@@ -49,8 +48,8 @@ set foldmethod=syntax
 " set foldclose=all
 
 " to keep fold history
-au BufWinLeave * silent! mkview	" save buffer view on exit
-au BufWinEnter * silent! loadview " restore buffer view on enter
+" au BufWinLeave * silent! mkview	" save buffer view on exit
+" au BufWinEnter * silent! loadview " restore buffer view on enter
 
 " Turn Off Swap Files
 set noswapfile
@@ -66,10 +65,18 @@ set sidescroll=1
 "highlight StatusLine ctermfg=blue ctermbg=yellow " Highlight the status line
 set laststatus=2 " for powerline
 
+" Soeren tabs
+set tabstop=4                     " tab width
+set shiftwidth=4                  " indention
+set softtabstop=4                 " backspace deletes indents
+set expandtab                     " use spaces
+set autoindent                    " autoindent
+
+
 " set autoindent    " indent same as last line
-set smartindent " good for coding
-set noexpandtab
-:set tabstop=3
+" set smartindent " good for coding
+" set noexpandtab
+" :set tabstop=3
 " set softtabstop=4 "specifies how many columns Vim uses when Tab Tab is hit in Insert mode
 " set smarttab      " insert tabs on the start of a line according to shiftwidth, not ta
 " set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
@@ -150,12 +157,11 @@ set wildmenu
 set wildignore=*.log,*.aux,*.dvi,*.aut,*.aux,*.bbl,*.blg,*.dvi,*.fff,*.log,*.out,*.pdf,*.ps,*.toc,*.ttt 
 
 
-" ----------------------------------------------------------------------------
+" latex -----------------------------------------------------------------------
 "  latex
 " :Tabularize /&
 " :'<,'>Tabularize /&
-"
-"
+
 "syntax enable
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
@@ -166,17 +172,16 @@ set shellslash
 "let g:Tex_CompileRule_pdf = 'dvipdf $*.dvi; xpdf -remote 127.0.0.1 -reload -raise'
 "let g:Tex_ViewRule_pdf = 'xpdf -remote 127.0.0.1'
 let g:Tex_DefaultTargetFormat = 'pdf'	" Set the target format to pdf.
-
-
 " latex:
 let g:Tex_CompileRule_dvi = 'pdflatex -interaction=nonstopmode -file-line-error-style $*' "ikke helt lovligt heh
 let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode -file-line-error-style $*'
-let g:Tex_ViewRule_pdf = 'evince'
+let g:Tex_ViewRule_pdf = 'zathura'
 let g:Tex_MultipleCompileFormats='pdf, aux'
-
 
 " spellcheck ikke i kommentarer
 let g:tex_comment_nospell=1 "latex
+
+let g:Tex_UseMakefile=1
 
 let g:Tex_GotoError=0
 
@@ -227,10 +232,7 @@ map :g :LanguageToolCheck<CR>
 " prefences -> editor ->
 " /usr/bin/urxvt -e /usr/bin/mutt
 
-
-
-" ----------------------------------------------------------------------------
-" Mappings
+" Mappings -------------------------------------------------------------------
 map :Q :q<CR>
 map <C-q> :q<CR>
 nmap <c-s> :w<CR>
@@ -240,7 +242,6 @@ imap <c-s> <Esc>:w<CR>
 map  <F3> :! urxvt &<CR>
 nmap <F3> :! urxvt &<CR>
 imap <F3> :! urxvt &<CR>
-
 
 " map cut & paste to what they bloody should be
 vnoremap <C-c> "+y " copy
@@ -291,10 +292,10 @@ nnoremap <silent> ]B :blast<CR>
 vnoremap > >gv
 vnoremap < <gv
 
-" ----------------------------------------------------------------------------
-" Plugins
+nnoremap <leader>cc :!gcc % -o %<
 
-" NERDTree--------------------
+" Plugins ---------------------------------------------------------------------
+" NERDTree
 " git clone https://github.com/scrooloose/nerdtree
 "autocmd vimenter * NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -355,21 +356,26 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 " au Syntax * RainbowParenthesesLoadChevrons " for < > 
 
-" mru
+" Smooth scrolling
+" 3 parameters: distance, duration[ms], #lines
+noremap <silent> <c-u> :call smooth_scroll#up	(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down	(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up	(&scroll, 15, 1)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 15, 1)<CR>
+
+" mru - most recently used
 let MRU_Max_Entries = 10
 "let MRU_Include_Files = '^/Users/ok/Dropbox/StageM2/report/.*'
 " let g:MRU_File=expand("$HOME/.mru")
 map :mru :MRU <CR>
+nnoremap <Leader>mru :MRU<CR>
 " nmap :MRU :mru <CR>
 let MRU_Auto_Close = 1
-
 
 " hi under cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
-
-
 
 " OmniCppComplete ================
 "

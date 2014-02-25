@@ -211,9 +211,65 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_3 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_3 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
-
-
-
-
+windows = {
+  1 = {
+    immortal = "yes";
+    name = "(status)";
+    level = "CRAP PUBLICS NOTICES SNOTES CTCPS JOINS PARTS QUITS KICKS MODES TOPICS WALLOPS INVITES NICKS DCC CLIENTNOTICES CLIENTCRAP CLIENTERRORS HILIGHTS";
+  };
+  2 = { 
+    immortal = "yes";
+    name = "(msgs)";
+    level = "MSGS ACTIONS DCCMSGS";
+  };
+  3 = {
+    items = (
+      {
+        type = "QUERY";
+        chat_type = "IRC";
+        name = "NickServ";
+        tag = "freenode";
+      }
+    );
+  };
+  4 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#xmonad";
+        tag = "freenode";
+      }
+    );
+  };
+  5 = {
+    items = (
+      {
+        type = "CHANNEL";
+        chat_type = "IRC";
+        name = "#abe";
+        tag = "QuakeNet";
+      }
+    );
+  };
+  6 = {
+    items = (
+      {
+        type = "QUERY";
+        chat_type = "IRC";
+        name = "jagob";
+        tag = "QuakeNet";
+      }
+    );
+  };
+  7 = { name = "hilight"; sticky = "yes"; };
+};

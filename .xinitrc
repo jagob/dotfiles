@@ -49,6 +49,7 @@ fi
 
 sleep 15 && dropboxd & 
 sleep 15 && /usr/bin/urxvt -e /usr/bin/mutt &
+sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
 
 
 # exec gnome-session
