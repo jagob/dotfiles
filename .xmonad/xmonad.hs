@@ -118,7 +118,7 @@ manageHook' = composeAll [
 	, className =? "Vlc"       		--> doFloat
 	, className =? "feh"       		--> doFloat
 	, title     =? "Copying Files"   --> doFloat
-	, insertPosition Above Newer
+	, insertPosition Below Newer
 	, transience'
 	]
 

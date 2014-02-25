@@ -43,6 +43,8 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
 
+XTerm*faceName: Ubuntu Mono
+XTerm*faceSize: 14
 
 ! Fonts
 URxvt.allow_bold: false

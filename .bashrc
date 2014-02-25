@@ -40,7 +40,7 @@ alias svns='svn status'											  # gets svn status
 alias svnu='svn update'						  # updates from svn
 alias svna='svn add . --force'
 alias svnc='svn commit -m ""'						  # commits to svn
-alias svnf='cd ~/documents/svn/p5/report'
+alias svnf='cd ~/documents/svn/p6/rep/'
 alias svnl='svn log -v -l 5'							  # gets log from svn
 
 alias matlaber='matlab -nodesktop -nosplash'
@@ -50,6 +50,7 @@ alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl 
 alias gitlog='cd ~/documents/darwinduck/ && git log --graph --abbrev-commit'
 alias bell='sleep 3; echo -e "\a"' # only works when typed in terminal
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
+alias dropperen='cd ~/dropbox/uni/P6'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
 alias rescaleove='for i in $( ls *.jpg); do convert -resize 30% $i $i; done'
