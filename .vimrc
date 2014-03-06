@@ -216,6 +216,22 @@ let g:languagetool_disable_rules="MORFOLOGIK_RULE_EN_GB,WHITESPACE_RULE,COMMA_PA
 " let g:languagetool_disable_rules="EN_QUOTES,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,ARTICLE_MISSING,COMMA_PARENTHESIS_WHITESPACE,UPPERCASE_SENTENCE_START,WORD_REPEAT_RULE,DOUBLE_PUNCTUATION,EN_A_VS_AN,THREE_NN,PHRASE_REPETITION,THIS_NNS,MORFOLOGIK_RULE_EN_GB"
 map :g :LanguageToolCheck<CR>
 
+"   Compile LaTeX for the current file only
+function! LatexCurrent()
+    let a:localLatexCommand = 'echo '
+    let a:localLatexCommand .= '\\input{set/preamble}'
+    let a:localLatexCommand .= '\\input{set/listings}'
+    let a:localLatexCommand .= '\\input{set/macros}'
+    let a:localLatexCommand .= '\\begin{document}\\input{'
+    let a:curfile = expand('%:p')
+    let a:localLatexCommand .= a:curfile
+    let a:localLatexCommand .= '}\\end{document}'
+    let a:localLatexCommand .= '> /home/jacob/documents/svn/p6/rep/masterlocal.tex'
+    echom system(a:localLatexCommand)
+    execute "!cd /home/jacob/documents/svn/p6/rep/ && pdflatex masterlocal.tex"
+endf
+autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
+autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
 
 " ----------------------------------------------------------------------------
 " MATLAB
@@ -248,6 +264,7 @@ vnoremap <C-c> "+y " copy
 map <S-b> "+gP     " paste
 vnoremap <C-x> "+x " cut
 " clipboard=unnamed
+" clipboard^=unnamed " for arch linux, see :h clipboard-exclude 
 
 " save read-only files
 cmap w!! %!sudo tee > /dev/null %
