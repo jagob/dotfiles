@@ -62,8 +62,8 @@ main = xmonad =<< statusBar myBar pp toggleStrutsKey conf
 myConfig = defaultConfig { 
 	-- workspaces = ["1:web", "2:main", "3:dev", "4:misc", "5:mail", "6:chat"] ++ map show [7..9]
 	workspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
-	, borderWidth = 3
-	, normalBorderColor = "#000000"
+	, borderWidth = 6
+	, normalBorderColor = "#1a1a1a"
 	, focusedBorderColor = "#4a914a"
 	, terminal = "urxvt"
 	, layoutHook = layoutHook'
@@ -94,30 +94,30 @@ urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 layoutHook' = tile ||| mtile ||| full
 	where
 		rt = ResizableTall 1 (2/100) (1/2) []
-		tile = renamed [Replace "tile"] $ spacing 2 $ smartBorders rt
+		tile = renamed [Replace "tile "] $ spacing 3 $ smartBorders rt
 		mtile = renamed [Replace "mtile"] $ smartBorders $ Mirror rt
-		full = renamed [Replace "full"] $ noBorders Full
+		full = renamed [Replace "full "] $ noBorders Full
 
 
 ------------------------------------------------------------------------------
 -- Window Management --
 -- To show application name: xprop | grep WM_CLASS
 manageHook' = composeAll [ 
-	isFullscreen             			--> doFullFloat
-	-- , className =? "Google-chrome"  	--> doShift "1:web"
+	isFullscreen             		--> doFullFloat
+	-- , className =? "Google-chrome-stable"  	--> doShift "1:web"
 	, className =? "Thunderbird"  	--> doShift " 5 "
-	, title 		=? "mutt"  				--> doShift " 5 "
-	, title 		=? "Unlock Keyring"  --> doShift " 5 "
-	, className =? "Skype"        	--> doShift " 6 " <+> doFloat
+	, title 	=? "mutt"  			--> doShift " 5 "
+	, title 	=? "irssi"  		--> doShift " 6 "
+	-- , className =? "Skype"       --> doShift " 6 " <+> doFloat
 	, className =? "hl2_linux" 		--> doFullFloat
-	, className =? "dota_linux" 		--> doFullFloat
+	, className =? "dota_linux" 	--> doFullFloat
 	-- -novid -w 1680 -h 1020 -window
-	, className =? "war3.exe" 			--> doFullFloat
+	, className =? "war3.exe" 		--> doFullFloat
 	, className =? "Gimp"      		--> doFloat
 	, className =? "Inkscape"  		--> doFloat
 	, className =? "Vlc"       		--> doFloat
 	, className =? "feh"       		--> doFloat
-	, title     =? "Copying Files"   --> doFloat
+	, title     =? "Copying Files"  --> doFloat
 	, insertPosition Below Newer
 	, transience'
 	]
@@ -129,7 +129,7 @@ myKeys = [
 	  ("M-<Right>"  , nextWS                             ) -- go to next workspace
 	, ("M-<Left>"   , prevWS                             ) -- go to prev workspace
 	, ("M-p" , spawn "exe=`dmenu_run -fn 'Droid Sans Mono-13'`")
-	, ("M-g"        , spawn "google-chrome"              ) -- launch chrome
+	, ("M-g"        , spawn "google-chrome-stable"              ) -- launch chrome
 	, ("M-e"        , spawn "/usr/bin/urxvt -e /usr/bin/mutt") -- launch thunderbird
 	-- , ("M-f"        , spawn "thunar"                ) 
 	-- , ("M-x"        , spawn "xchat"                      ) -- launch xchat

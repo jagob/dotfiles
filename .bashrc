@@ -56,6 +56,9 @@ alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
 alias rescaleove='for i in $( ls *.jpg); do convert -resize 30% $i $i; done'
 alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
 alias vimmer='cd documents/vimmer/ && vim -o3 c.c matlab.m latex.tex'
+alias random='python ~/dropbox/uni/P6/bras/randomgenerator'
+alias byg='latexmk -pdf -pvc masterlocal.tex'
+
 
 # Enable gcc colors, in gcc 4.8 -->
 #export GCC:COLORS=1
