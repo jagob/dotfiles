@@ -222,7 +222,8 @@ function! LatexCurrent()
     let a:localLatexCommand .= '\\input{set/preamble}'
     let a:localLatexCommand .= '\\input{set/listings}'
     let a:localLatexCommand .= '\\input{set/macros}'
-    let a:localLatexCommand .= '\\begin{document}\\input{'
+    let a:localLatexCommand .= '\\begin{document}'
+    let a:localLatexCommand .= '\\pagenumbering{arabic}\\input{'
     let a:curfile = expand('%:p')
     let a:localLatexCommand .= a:curfile
     let a:localLatexCommand .= '}\\end{document}'
@@ -310,7 +311,7 @@ vnoremap > >gv
 vnoremap < <gv
 
 nnoremap <leader>cc :!gcc % -o %<
-
+nnoremap <leader>win :%s/M]//g
 " Plugins ---------------------------------------------------------------------
 " NERDTree
 " git clone https://github.com/scrooloose/nerdtree

@@ -18,9 +18,7 @@
 # ga 	to view All Mail
 # / 	lets you search the current folder
 
-
 set sort='reverse-threads'
-# set sort = threads
 set sort_aux='last-date-received'
 set date_format="%d-%m-%y %T"
 set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
@@ -36,6 +34,11 @@ set message_cachedir = "~/.cache/mutt"
 set postponed = +[Gmail]/Drafts
 unset imap_passive
 set copy=yes ## save copies of sent mail to $record
+# HTML
+set mailcap_path 	= ~/.mutt/mailcap 
+auto_view text/html
+# alternative_order text/plain text/html
+# macro attach 'V' "<pipe-entry>cat >~/.cache/mutt/mail.html && $BROWSER ~/.cache/mutt/mail.html && rm ~/.cache/mutt/mail.html<enter>"
 
 set imap_keepalive = 300
 set timeout = 5
@@ -44,7 +47,9 @@ set beep_new
 set mbox_type = Maildir
 mailboxes "=inbox" 
 
-
+# Status Bar -----------------------------------------
+set status_chars  = " *%A"
+set status_format = "───[ Folder: %f ]───[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]───%>─%?p?( %p postponed )?───"
 
 # Account: jacobvdueholm@gmail.com
 folder-hook 'gmail.com' 'source ~/.mutt/jacobvdueholmATgmailcom'
@@ -54,11 +59,15 @@ source "~/.mutt/jacobvdueholmATgmailcom"
 folder-hook 'mail.aau.dk' 'source ~/.mutt/jdueho11'
 source "~/.mutt/jdueho11"
 
-
 # mutiple accounts keybinds
 macro index,pager <f2> '<sync-mailbox><enter-command>source ~/.mutt/jacobvdueholmATgmailcom<enter><change-folder>!<enter>'
 macro index,pager <f3> '<sync-mailbox><enter-command>source ~/.mutt/jdueho11<enter><change-folder>!<enter>'
 macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
+ macro pager \cb <pipe-entry>'urlview'<enter> 'Follow links with urlview'
+
+# Speed up folders switch
+set sleep_time = 0
+
 
 # mutt-sidebar
 set sidebar_visible = yes
@@ -68,6 +77,42 @@ macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 bind index,pager \CP sidebar-prev # Ctrl-n, Ctrl-p to select next, previous folder.
 bind index,pager \CN sidebar-next
 bind index,pager \CO sidebar-open # Ctrl-o to open selected folder.
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
+
+# Index Key Bindings ---------------------------------
+bind index gg       first-entry
+bind index G        last-entry
+bind index R        group-reply
+bind index <tab>    sync-mailbox
+# bind index <space>  collapse-thread
+
+# Pager View Options ---------------------------------
+set pager_index_lines = 10 # number of index lines to show
+set pager_context = 3      # number of context lines to show
+set pager_stop             # don't go to next message automatically
+set menu_scroll            # scroll in menus
+set tilde                  # show tildes like in vim
+unset markers              # no ugly plus signs
+bind pager gg top
+bind pager G  bottom
+bind pager R  group-reply
+# View attachments properly.
+# bind attach <return> view-mailcap
+
+# Ctrl-R to mark all as read
+macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "mark all messages as read"
+
+# Sync email
+# macro index o "<shell-escape>offlineimap -qf INBOX<enter>" "run offlineimap to sync inbox"
+# macro index O "<shell-escape>offlineimap<enter>"           "run offlineimap to sync all mail"
+
+# Saner copy/move dialogs
+# macro index C "<copy-message>?<toggle-mailboxes>" "copy a message to a mailbox"
+# macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
+
+
 
 # Contact management
 # to add new contact:
@@ -80,8 +125,3 @@ source $alias_file
 
 # colors
 source ~/.mutt/colors
-
-# vim-ish keybindings for going to the bottom of things
-bind pager "G" bottom
-# bind index "G" bottom
-# bind browser "G" bottom

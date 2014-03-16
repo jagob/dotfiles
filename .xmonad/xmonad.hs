@@ -145,6 +145,7 @@ myKeys = [
 	, ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1+") -- laptop
 	, ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1-") -- laptop
 	, ("<XF86AudioMute>" , spawn "amixer set Master toggle && amixer set Headphone toggle") -- raise volume
+    , ("M-S-9"      ,  spawn "plaympeg ~/whatwhat.mp3" ) 
 
     -- -- screens
     , (("M-o"     ), nextScreen)
