@@ -25,6 +25,11 @@ set mouse=a
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 
+" timeoutlen defaults to 1000 and is the delay in milliseconds that vim uses when checking for map key sequences. It’s also used when checking keycodes if ttimeoutlen is disabled
+" Adjust keycode timeout length
+set ttimeoutlen=100
+
+
 au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
 set wrap
