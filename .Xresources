@@ -127,7 +127,8 @@ URxvt.keysym.C-Down:   perl:font-size:decrease
  
 ! !Jagob
 urxvt*foreground: #e4e4e4
-URxvt*background: [100]#1a1a1a
+! URxvt*background: [100]#1a1a1a
+URxvt*background: [100]#2a2a2a
 ! black
 URxvt*color0  : #2E3436
 URxvt*color8  : #abab78

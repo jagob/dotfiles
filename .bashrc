@@ -56,7 +56,7 @@ alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
 alias rescaleove='for i in $( ls *.jpg); do convert -resize 30% $i $i; done'
 alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
 alias vimmer='cd documents/vimmer/ && vim -o3 c.c matlab.m latex.tex'
-alias random='python ~/dropbox/uni/P6/bras/randomgenerator'
+alias random='cd ~/dropbox/uni/P6/bras/randomgenerator/ && python2 randomgenerator.py'
 alias byg='latexmk -pdf -pvc masterlocal.tex'
 
 
