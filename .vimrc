@@ -383,8 +383,8 @@ au Syntax * RainbowParenthesesLoadBraces
 " 3 parameters: distance, duration[ms], #lines
 noremap <silent> <c-u> :call smooth_scroll#up	(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down	(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up	(&scroll, 15, 1)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 15, 1)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up	(&scroll, 10, 1)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 10, 1)<CR>
 
 " mru - most recently used
 let MRU_Max_Entries = 10

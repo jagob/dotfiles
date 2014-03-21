@@ -1,3 +1,10 @@
+-- if [ $(hostname) == 'host1' ]; then
+--      # things to do differently on host1.
+-- elif [ $(hostname) == 'host2' ]; then
+--      # things to do differently on host2.
+-- fi
+
+
 import XMonad
 
 -- keybinding
@@ -105,6 +112,7 @@ layoutHook' = tile ||| mtile ||| full
 manageHook' = composeAll [ 
 	isFullscreen             		--> doFullFloat
 	-- , className =? "Google-chrome-stable"  	--> doShift "1:web"
+	, title 	=? "File Operation Proces" 			--> doFloat
 	, className =? "Thunderbird"  	--> doShift " 5 "
 	, title 	=? "mutt"  			--> doShift " 5 "
 	, title 	=? "irssi"  		--> doShift " 6 "
