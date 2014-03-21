@@ -6,7 +6,7 @@ if [ $(id -u) -eq 0 ];
 then # you are root, set red colour prompt
   PS1="\\[$(tput setaf 1)\\]\\u@\\h:\\w #\\[$(tput sgr0)\\]"
 else # normal
-  PS1="\[\033[0;92m\]\342\226\210\342\226\210 \[\e[0;92m\][\w] \$\[\e[0m\] "
+  PS1="\[\033[0;92m\]\342\226\210\342\226\210 \[\e[0;92m\][\W] \$\[\e[0m\] "
   # PS1=" \[\e[0;92m\][\w] \$\[\e[0m\] "
 fi
 
@@ -28,6 +28,7 @@ alias rb='sudo shutdown -r now'                                   # restart
 
 
 alias :q='logout'
+alias grep='grep --color=auto'
 # alias pl='sudo /etc/cron.daily/prelink'                           # prelink
 alias ls='ls -h --color --group-directories-first'
 alias ll="ls -lvgG"
@@ -50,6 +51,7 @@ alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl 
 alias gitlog='cd ~/documents/darwinduck/ && git log --graph --abbrev-commit'
 alias bell='sleep 3; echo -e "\a"' # only works when typed in terminal
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
+alias ønsker='vim ~/dropbox/faldkasse/Oenskeseddel.txt'
 alias dropperen='cd ~/dropbox/uni/P6'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'

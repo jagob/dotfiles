@@ -21,7 +21,8 @@ xsetroot -cursor_name left_ptr
 # xmodmap -e "keysym Alt_L = Meta_L Alt_L"
 
 # sh ~/.fehbg &
-feh  --bg-scale 'pictures/80058-hardy_darkgreen.png' &
+# feh  --bg-scale 'pictures/80058-hardy_darkgreen.png' &
+feh  --bg-scale 'dropbox/faldkasse/jagob.png' &
 
 
 # trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --heighttype pixel --height 23 --transparent true --alpha 0 --tint 0x101010 &
