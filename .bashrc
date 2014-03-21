@@ -60,8 +60,9 @@ alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
 alias vimmer='cd documents/vimmer/ && vim -o3 c.c matlab.m latex.tex'
 alias random='cd ~/dropbox/uni/P6/bras/randomgenerator/ && python2 randomgenerator.py'
 alias byg='latexmk -pdf -pvc masterlocal.tex'
+alias za='zathura'
 alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
-
+alias finder='find -name'
 
 # Enable gcc colors, in gcc 4.8 -->
 #export GCC:COLORS=1
