@@ -77,9 +77,9 @@ macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 bind index,pager \CP sidebar-prev # Ctrl-n, Ctrl-p to select next, previous folder.
 bind index,pager \CN sidebar-next
 bind index,pager \CO sidebar-open # Ctrl-o to open selected folder.
-# bind index,pager <down>   sidebar-next
-# bind index,pager <up>     sidebar-prev
-# bind index,pager <right>  sidebar-open
+bind index,pager <down>   sidebar-next
+bind index,pager <up>     sidebar-prev
+bind index,pager <right>  sidebar-open
 
 # Index Key Bindings ---------------------------------
 bind index gg       first-entry

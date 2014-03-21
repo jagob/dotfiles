@@ -212,6 +212,7 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+<<<<<<< HEAD
     awl_3 = {
       items = {
         barstart = { priority = "100"; };
@@ -221,6 +222,8 @@ statusbar = {
     };
 =======
 >>>>>>> 4daaeba5436ec5ec71391d1395f45bd1ca2a94e4
+=======
+>>>>>>> parent of 16f8a16... minor changes
   };
 };
 
