@@ -1,0 +1,24 @@
+# A POS tag dictionary that's used as an addition (or as a fix) to catalan.dict
+# These words are candidates to be added (or fixed) in catalan.dict in the future
+# File Encoding: UTF-8
+# Format: fullform baseform postags (tab separated)
+########## Dictionary fixes ##########
+vostè	vostè	PP3CS00P
+vostès	vostè	PP3CP00P
+vosté	vostè	PP3CS00P
+vostés	vostè	PP3CP00P
+Jo	jo	NCMS000
+Jo	jo	PP1CSN00
+vengut	venir	VMP00SMB
+venguts	venir	VMP00PMB
+vengut	venir	VMP00SMB
+venguts	venir	VMP00PMB
+novençana	novençà	NCFS000
+novençana	novençà	AQ0FS0
+novençanes	novençà	NCFP000
+novençanes	novençà	AQ0FP0
+########## Additions ##########
+viceprimer	viceprimer	AQ0MS0
+viceprimera	viceprimer	AQ0FS0
+viceprimeres	viceprimer	AQ0FP0
+viceprimers	viceprimer	AQ0MP0
