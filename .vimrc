@@ -27,8 +27,8 @@ set autoread                    "Reload files changed outside vim
 
 " timeoutlen defaults to 1000 and is the delay in milliseconds that vim uses when checking for map key sequences. It’s also used when checking keycodes if ttimeoutlen is disabled
 " Adjust keycode timeout length
-set ttimeoutlen=100
-
+set timeoutlen=100
+set ttimeoutlen=0
 
 au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
@@ -36,7 +36,6 @@ set wrap
 set linebreak	" wrap at 'breakat' instead of last char
 set history=100 " command lines history
 set nojoinspaces " only put one space after periods
-" set noesckeys " Get rid of the delay when hitting esc!
 
 set hlsearch " hightlight search
 set incsearch " seach as you tyoe
@@ -77,42 +76,6 @@ set softtabstop=4                 " backspace deletes indents
 set expandtab                     " use spaces
 set autoindent                    " autoindent
 
-
-" set autoindent    " indent same as last line
-" set smartindent " good for coding
-" set noexpandtab
-" :set tabstop=3
-" set softtabstop=4 "specifies how many columns Vim uses when Tab Tab is hit in Insert mode
-" set smarttab      " insert tabs on the start of a line according to shiftwidth, not ta
-" set shiftround    " use multiple of shiftwidth when indenting with '<' and '>'
-
-" set copyindent    " copy the previous indentation on autoindenting
-" set shiftwidth=3  " number of spaces to use for autoindenting
-
-" set autoindent "New lines are indented the same as thep revious line
-" set smartindent
-" set cindent "indents your program according to a “standard” C style
-
-" Tabs
-" http://www.jwz.org/doc/tabs-vs-spaces.html
-" set expandtab " Use spaces instead of tabs
-" When on, a <Tab> in front of a line inserts blanks according to 'shiftwidth'. 'tabstop' is used in other places. A <BS> will delete a 'shiftwidth' worth of space at the start of the line.
-" set noexpandtab "powerline
-" set smarttab
-" 1 tab == 3 spaces
-" set shiftwidth=3 " controls how many spaces are inserted when using the >> >> / << <<
-" set tabstop=4
-" :retab
-
-" set tabstop=4 "(the default), 
-" set softtabstop=4 "specifies how many columns Vim uses when Tab Tab is hit in Insert mode
-" set shiftwidth=4
-" set noexpandtab
-" 
-" :set tabstop=8
-" :set shiftwidth=4
-" :set expandtab
-
 " Colors
 set t_Co=256 "set t_Co=16
 set background=dark
@@ -124,15 +87,6 @@ colorscheme jagob
 
 " ----------------------------------------------------------------------------
 " Spell checking
-"When editing files their current encoding is maintained, so if you opened a file in ISO-8859-2 , your changes would be written in that encoding. To force UTF-8 for all files use 
-":set encoding=utf-8 fileencodings= 
-
-" Set utf8 as standard encoding and en_US as the standard language
-"set encoding=utf8
-
-" Use Unix as the standard file type
-"set ffs=unix,dos,mac
-"
 syn spell toplevel
 
 " Pressing ,ss will toggle and untoggle spell checking

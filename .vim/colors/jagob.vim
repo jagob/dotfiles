@@ -107,14 +107,15 @@ if &t_Co == 88 || &t_Co == 256
 
 " LanguageTool
 	 hi LanguageToolGrammarError 	ctermfg=9 ctermbg=none
-	 hi LanguageToolSpellingError ctermfg=9 ctermbg=none
+	 hi LanguageToolSpellingError   ctermfg=9 ctermbg=none
   	 hi LanguageToolCmd          	ctermfg=9 ctermbg=none
   	 hi LanguageToolLabel        	ctermfg=9 ctermbg=none
   	 hi LanguageToolErrorCount   	ctermfg=9 ctermbg=none
 
-    hi DiffAdd      ctermfg=4   ctermbg=2
-    hi DiffChange   ctermbg=4
-    hi DiffDelete   ctermfg=4   ctermbg=2
-    hi DiffText     ctermfg=4   ctermbg=2
+" vimdiff
+    hi DiffAdd      ctermfg=12  ctermbg=none
+    hi DiffDelete   ctermfg=9   ctermbg=none
+    hi DiffChange   ctermbg=255 ctermbg=0
+    hi DiffText     ctermfg=3   ctermbg=none
 
 endif

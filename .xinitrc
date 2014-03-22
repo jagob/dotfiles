@@ -20,14 +20,11 @@ setxkbmap -option caps:escape
 xsetroot -cursor_name left_ptr
 # xmodmap -e "keysym Alt_L = Meta_L Alt_L"
 
-# sh ~/.fehbg &
-feh  --bg-scale 'pictures/80058-hardy_darkgreen.png' &
-
+feh --bg-scale /home/jacob/dropbox/faldkasse/jagob.png &
 
 # trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --heighttype pixel --height 23 --transparent true --alpha 0 --tint 0x101010 &
 # trayer --edge top --align right --margin 500 --SetDockType true --SetPartialStrut true --expand true --widthtype request --heighttype pixel --height 23 --transparent true --alpha 0 --tint 0x101010 &
 trayer --edge top --align left --margin 1150 --SetDockType true --SetPartialStrut true --expand true --widthtype request --heighttype pixel --height 24 --transparent true --alpha 0 --tint 0x1a1a1a &
-
 
 # Gnome keyring
 # Start a D-Bus session
