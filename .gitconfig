@@ -1,0 +1,9 @@
+[user]
+	name = jagob
+	email = jacobvdueholm@hotmail.com
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
