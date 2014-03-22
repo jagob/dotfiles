@@ -163,7 +163,6 @@ set wildignore=*.log,*.aux,*.dvi,*.aut,*.aux,*.bbl,*.blg,*.dvi,*.fff,*.log,*.out
 
 
 " latex -----------------------------------------------------------------------
-"  latex
 " :Tabularize /&
 " :'<,'>Tabularize /&
 
@@ -395,7 +394,7 @@ nnoremap <Leader>mru :MRU<CR>
 " nmap :MRU :mru <CR>
 let MRU_Auto_Close = 1
 
-" hi under cursor
+" hi word type under cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
