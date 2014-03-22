@@ -215,7 +215,7 @@ autocmd BufRead,BufNewFile *.tex set iskeyword+=:,-
 " au BufWritePost *.tex silent !pkill -USR1 xdvi.bin
 "
 " grammar languagetool
-let g:languagetool_jar='/home/jacob/downloads/languagetool/languagetool-standalone/target/LanguageTool-2.4-SNAPSHOT/LanguageTool-2.4-SNAPSHOT/languagetool-commandline.jar'
+let g:languagetool_jar='/home/jacob/.vim/bundle/languagetool/LanguageTool-2.4-SNAPSHOT/languagetool-commandline.jar'
 let g:languagetool_winheight=16
 let g:languagetool_disable_rules="MORFOLOGIK_RULE_EN_GB,WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE"
 " let g:languagetool_disable_rules="EN_QUOTES,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,ARTICLE_MISSING,COMMA_PARENTHESIS_WHITESPACE,UPPERCASE_SENTENCE_START,WORD_REPEAT_RULE,DOUBLE_PUNCTUATION,EN_A_VS_AN,THREE_NN,PHRASE_REPETITION,THIS_NNS,MORFOLOGIK_RULE_EN_GB"
