@@ -1,0 +1,17 @@
+# Ukrainian multiwords file used for chunking
+# FR  frazeologism
+#
+до мажор	noun:m:nv
+до минор	noun:m:nv
+#
+до упаду	adv
+до впаду	adv
+да Вінчі	noun
+н. е.		noun
+для годиться	adv
+Пальма де Мальорка	noun:f:nv
+КП(б)У	noun:f:nv
+значною мірою	adv
+за дякую	adv
+на дурняк	adv
+значною мірою	adv

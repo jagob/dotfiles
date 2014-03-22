@@ -6,7 +6,7 @@ if [ $(id -u) -eq 0 ];
 then # you are root, set red colour prompt
   PS1="\\[$(tput setaf 1)\\]\\u@\\h:\\w #\\[$(tput sgr0)\\]"
 else # normal
-  PS1="\[\033[0;92m\]\342\226\210\342\226\210 \[\e[0;92m\][\W] \$\[\e[0m\] "
+  PS1="\[\033[0;92m\]\342\226\210\342\226\210 \[\e[0;92m\][\w] \$\[\e[0m\] "
   # PS1=" \[\e[0;92m\][\w] \$\[\e[0m\] "
 fi
 
