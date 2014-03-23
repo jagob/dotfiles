@@ -49,7 +49,7 @@ if &t_Co == 88 || &t_Co == 256
     hi Boolean      ctermfg=12
     hi Float        ctermfg=12
     hi MatchParen   ctermfg=12
-    hi NonText      ctermfg=12
+    hi NonText      ctermfg=12      "listchars eol,extends,precedes
     hi PreProc      ctermfg=12 
     hi Include      ctermfg=12
     hi Define       ctermfg=12
@@ -79,7 +79,7 @@ if &t_Co == 88 || &t_Co == 256
     hi Underlined   ctermfg=12    cterm=underline
     hi Ignore       ctermfg=12
     hi Todo         ctermfg=12
-    hi SpecialKey   ctermfg=12
+    hi SpecialKey   ctermfg=12      " listchars tab trail nbsp
     hi Directory    ctermfg=12
     hi MoreMsg      ctermfg=12
     hi ModeMsg      ctermfg=12

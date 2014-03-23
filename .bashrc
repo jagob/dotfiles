@@ -22,7 +22,7 @@ alias dropperen='cd ~/dropbox/uni/P6'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
 alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
-alias vimmer='cd documents/vimmer/ && vim -o3 c.c matlab.m latex.tex'
+alias vimmer='cd /home/jacob/documents/vimmer/ && vim -o3 c.c matlab.m latex.tex'
 alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
 alias finder='find -name'
 alias byg='latexmk -pdf -pvc masterlocal.tex'
@@ -74,6 +74,12 @@ export LESS_TERMCAP_us=$'\E[01;32m'
 # Enable gcc colors, in gcc 4.8 -->
 #export GCC:COLORS=1
 
+
+
+
+alias dis1='xrandr --output DVI-I-0 --mode 1680x1050 --primary --output DVI-I-1 --off --output  DVI-I-2 --off'
+alias dis2='xrandr --output DVI-I-0 --mode 1680x1050 --primary --output DVI-I-1 --right-of DVI-I-0 --auto --output  HDMI-0 --off'
+alias dis3='xrandr --output DVI-I-0 --mode 1680x1050 --primary --output DVI-I-1 --off --output  HDMI-0 --right-of DVI-I-0 --auto'
 # # set dual monitors
 # dual () {
 #     xrandr --output VGA-0 --primary --left-of HDMI-0 --output HDMI-0 --auto
