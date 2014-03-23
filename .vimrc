@@ -1,53 +1,44 @@
 " github.com/jagob
 filetype off
 
-" Pathogen
-" mkdir -p ~/.vim/autoload ~/.vim/bundle
-" cd ~/.vim/autoload
-" git clone https://github.com/tpope/vim-pathogen/
 execute pathogen#infect()
 
 filetype on
 filetype indent on
-filetype plugin on 
-syntax on		" Switch on syntax highlighting.
+filetype plugin on
+syntax on
 
-set nocompatible "no vi emulation
+set nocompatible                "no vi emulation
 let mapleader = ","
-set pastetoggle=<F2>
-
-" set comments=sl:/*,mb:\ *,elx:\ */
-
-set number                      "Line numbers are good
-set backspace=indent,eol,start  "Allow backspace in insert mode
-set gcr=a:blinkon0              "Disable cursor blink
-set mouse=a
-set visualbell                  "No sounds
-set autoread                    "Reload files changed outside vim
+set number                      " Line numbers are good
+set backspace=indent,eol,start  " Allow backspace in insert mode
+set gcr=a:blinkon0              " Disable cursor blink
+set mouse=a                     " Enable mouse
+set visualbell                  " No sounds
+set autoread                    " Reload files changed outside vim
 
 " timeoutlen defaults to 1000 and is the delay in milliseconds that vim uses when checking for map key sequences. It’s also used when checking keycodes if ttimeoutlen is disabled
 " Adjust keycode timeout length
 set timeoutlen=100
-set ttimeoutlen=0
+" set ttimeoutlen=100
 
 au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
 set wrap
-set linebreak	" wrap at 'breakat' instead of last char
-set history=100 " command lines history
-set nojoinspaces " only put one space after periods
+set linebreak       " wrap at 'breakat' instead of last char
+set wrapmargin=2    " wrap 2 characters from the edge of the window
+set history=1000    " command lines history
+set nojoinspaces    " only put one space after periods
 
-set hlsearch " hightlight search
-set incsearch " seach as you tyoe
-set ignorecase "Autocompletion try all words regardless of case
-set smartcase " if capital letters become case sensitive
-set showmatch     " set show matching parenthesis
+set hlsearch        " hilight all words
+set incsearch       " seach as you type
+set ignorecase      " Autocompletion try all words regardless of case
+set smartcase       " if capital letters become case sensitive
+set showmatch       " show matching parenthesis
 
 set foldenable
-" set foldmethod=manual
-set foldmethod=syntax
-" set foldmethod=indent
-:set foldcolumn=2
+set foldmethod=syntax   " syntax,manual,indent
+set foldcolumn=2
 " set foldlevel=1
 " set foldclose=all
 
@@ -55,13 +46,13 @@ set foldmethod=syntax
 " au BufWinLeave * silent! mkview	" save buffer view on exit
 " au BufWinEnter * silent! loadview " restore buffer view on enter
 
-" Turn Off Swap Files
+" Turn off Swap Files
 set noswapfile
 set nobackup
 set nowb
 
 " Scrolling
-set scrolloff=7         "Start scrolling when we're 8 lines away from margins
+set scrolloff=7         "Start scrolling when we're 7 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
@@ -70,11 +61,18 @@ set sidescroll=1
 set laststatus=2 " for powerline
 
 " Soeren tabs
-set tabstop=4                     " tab width
-set shiftwidth=4                  " indention
-set softtabstop=4                 " backspace deletes indents
-set expandtab                     " use spaces
-set autoindent                    " autoindent
+set tabstop=4       " tab width
+set shiftwidth=4    " indention
+set softtabstop=4   " backspace deletes indents
+set expandtab       " use spaces
+set autoindent      " autoindent
+
+" listchar tab wont work with expandtab
+set list
+" set encoding=utf-8
+" set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\
+" exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+exec "set list lcs=tab:»~,trail:¬,nbsp:▸"
 
 " Colors
 set t_Co=256 "set t_Co=16
@@ -84,6 +82,9 @@ colorscheme jagob
 " mark line 80
 "set colorcolumn=80
 "highlight ColorColumn ctermbg=233
+
+" set comments-=s1:/*,mb:*,ex:*/" "Don't recognize C comments
+" set comments=sl:/*,mb:\ *,elx:\ */
 
 " ----------------------------------------------------------------------------
 " Spell checking
@@ -100,27 +101,23 @@ map <leader>s? z=  " lookup word
 
 "au BufRead *.tex setlocal spell
 autocmd FileType tex setlocal spell spelllang=en_gb
-"autocmd FileType tex setlocal spell spelllang=en,dk
+" autocmd FileType tex setlocal spell spelllang=en_gb,dk
 
 " where it should get the dictionary files
-"let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
+" let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 
 " ret hvis du staver forkert
 :iabbrev teh the
 
-"Wildmenu tab completion
+set wildmenu
 set wildmode=longest,list " like bash
 "Wildmenu aoutcompletion like zsh 
-set wildmenu
 "set wildmode = full
 set wildignore=*.log,*.aux,*.dvi,*.aut,*.aux,*.bbl,*.blg,*.dvi,*.fff,*.log,*.out,*.pdf,*.ps,*.toc,*.ttt 
 
 
-" latex -----------------------------------------------------------------------
-" :Tabularize /&
-" :'<,'>Tabularize /&
-
-"syntax enable
+" Latex------------------------------------------------------------
+" Syntax enable
 set grepprg=grep\ -nH\ $*
 let g:tex_flavor = "latex"
 set shellslash
@@ -137,11 +134,7 @@ let g:Tex_ViewRule_pdf = 'zathura'
 let g:Tex_MultipleCompileFormats='pdf, aux'
 
 " spellcheck ikke i kommentarer
-let g:tex_comment_nospell=1 "latex
-
-let g:Tex_UseMakefile=1
-
-let g:Tex_GotoError=0
+let g:tex_comment_nospell=1 
 
 " Set the warning messages to ignore.
 let g:Tex_IgnoredWarnings =
@@ -156,24 +149,13 @@ let g:Tex_IgnoredWarnings =
 " \"Package pgfkeys Error: I do not\n".
 " This number N says that latex-suite should ignore the first N of the above.
 let g:Tex_IgnoreLevel = 8
+let g:Tex_GotoError=0
 
-" TIP: if you write your \label's as \label{fig:something}, then if you
-" type in \ref{fig:} and press Ctrl-N you will automatically cycle through
-" all the figure labels. Very useful!
-autocmd BufRead,BufNewFile *.tex set iskeyword+=:,-
-" set iskeyword+=:-,
+" When at \ref{fig:}, press Ctrl-N to cycle through your labels
+" \label{fig:something}
+autocmd BufRead,BufNewFile *.tex set iskeyword+=:-_
 
-" If you want to automatically compile and refresh xdvi whenever you write the current buffer, you can add the following code into your tex.vim ftplugin
-" au BufWritePost *.tex silent call Tex_RunLaTeX()
-" au BufWritePost *.tex silent !pkill -USR1 xdvi.bin
-"
-" grammar languagetool
-let g:languagetool_jar='/home/jacob/.vim/bundle/languagetool/LanguageTool-2.5-SNAPSHOT/languagetool-commandline.jar'
-let g:languagetool_winheight=16
-let g:languagetool_disable_rules="MORFOLOGIK_RULE_EN_GB,WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE"
-" let g:languagetool_disable_rules="EN_QUOTES,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,ARTICLE_MISSING,COMMA_PARENTHESIS_WHITESPACE,UPPERCASE_SENTENCE_START,WORD_REPEAT_RULE,DOUBLE_PUNCTUATION,EN_A_VS_AN,THREE_NN,PHRASE_REPETITION,THIS_NNS,MORFOLOGIK_RULE_EN_GB"
-map :g :LanguageToolCheck<CR>
-
+let g:Tex_UseMakefile=1
 "   Compile LaTeX for the current file only
 function! LatexCurrent()
     let a:localLatexCommand = 'echo '
@@ -191,6 +173,13 @@ function! LatexCurrent()
 endf
 autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
 autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
+
+" grammar languagetool
+let g:languagetool_jar='/home/jacob/.vim/bundle/languagetool/LanguageTool-2.5-SNAPSHOT/languagetool-commandline.jar'
+let g:languagetool_winheight=16
+let g:languagetool_disable_rules="MORFOLOGIK_RULE_EN_GB,WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE"
+" let g:languagetool_disable_rules="EN_QUOTES,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,ARTICLE_MISSING,COMMA_PARENTHESIS_WHITESPACE,UPPERCASE_SENTENCE_START,WORD_REPEAT_RULE,DOUBLE_PUNCTUATION,EN_A_VS_AN,THREE_NN,PHRASE_REPETITION,THIS_NNS,MORFOLOGIK_RULE_EN_GB"
+map :g :LanguageToolCheck<CR>
 
 " ----------------------------------------------------------------------------
 " MATLAB
@@ -221,12 +210,11 @@ imap <F3> :! urxvt &<CR>
 " map cut & paste to what they bloody should be
 vnoremap <C-c> "+y " copy
 map <S-b> "+gP     " paste
+map <C-v> "+gP     " paste
 vnoremap <C-x> "+x " cut
 " clipboard=unnamed
 " clipboard^=unnamed " for arch linux, see :h clipboard-exclude 
-
-" save read-only files
-cmap w!! %!sudo tee > /dev/null %
+set pastetoggle=<F2>
 
 " Remap line motion Practical vim page 111
 nnoremap k gk
@@ -264,28 +252,44 @@ nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-" This mapping allows to stay in visual mode when indenting with < and >
+" Only use Block Visual mode
+nnoremap v      <C-V>
+vnoremap v      <C-V>
+" nnoremap <C-V>  v
+" vnoremap <C-V>  v
+
+" Stay in visual mode when indenting with < >
 vnoremap > >gv
 vnoremap < <gv
 
-nnoremap <leader>cc :!gcc % -o %<
+" save read-only files
+cmap w!! %!sudo tee > /dev/null %
+
 nnoremap <leader>win :%s/M]//g
-" Plugins ---------------------------------------------------------------------
-" NERDTree
-" git clone https://github.com/scrooloose/nerdtree
-"autocmd vimenter * NERDTree
+
+nnoremap <leader>cc :!gcc % -o %<
+
+" Plugins ----------------------------------------------------------
+" NERDTree "autocmd vimenter * NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
 
-" ========== C.vim ==================
-" git clone https://github.com/vim-scripts/c.vim
+" vmath.vim sum average min max
+" Fix this
+vmap <expr> ++ VMATH_YankAndAnalyse()
+nmap        ++ vip++
 
+" dragvisuals.vim
+vmap <expr> <LEFT>  DVB_Drag('left')
+vmap <expr> <RIGHT> DVB_Drag('right')
+vmap <expr> <DOWN>  DVB_Drag('down')
+vmap <expr> <UP>    DVB_Drag('up')
+vmap <expr> D       DVB_Duplicate()
 
-" ========== snipmate.vim ==================
-" vnoremap <C-x> "+x " cut
-" git clone https://github.com/msanders/snipmate.vim
+" vis.vim
+" When block is selected
+":B apply to block only
 
-" ---------------------------------------------------------------------------
-" config for easytags
+" config for easytags ----------------------------------------------
 let g:easytags_file = '~/.vtags'
 " tag-related keybinds:
 " open tag in new tab
@@ -308,9 +312,6 @@ map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 " A-] - Open the definition in a vertical split
 
-" thesaurus synonym ordbog ======================
-"C-x C-t
-
 " SUPERTAB
 " let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 " let g:SuperTabDefaultCompletionType = "context"
@@ -320,8 +321,8 @@ map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map <C-o> :FufCoverageFile<CR> 
 
 " Rainbow Parentheses
-" Left column is for terminal environment.
-" Right column is for GUI environment."
+" Left column is for terminal environment
+" Right column is for GUI environment
 let g:rbpt_colorpairs = [
     \ ['yellow'		,	'DarkOrchid3'],
     \ ['lightyellow'	,	'DarkOrchid3'],
@@ -353,7 +354,7 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" OmniCppComplete ================
+" OmniCppComplete ================   
 "
 "autocmd FileType c set omnifunc=ccomplete#Complete
 "autocmd FileType cpp set omnifunc=cppcomplete#CompleteCPP
