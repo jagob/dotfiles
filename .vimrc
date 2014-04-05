@@ -18,9 +18,8 @@ set visualbell                  " No sounds
 set autoread                    " Reload files changed outside vim
 
 " timeoutlen defaults to 1000 and is the delay in milliseconds that vim uses when checking for map key sequences. It’s also used when checking keycodes if ttimeoutlen is disabled
-" Adjust keycode timeout length
-set timeoutlen=100
-" set ttimeoutlen=100
+" set timeoutlen =1000
+set ttimeoutlen=0
 
 au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
@@ -68,11 +67,11 @@ set expandtab       " use spaces
 set autoindent      " autoindent
 
 " listchar tab wont work with expandtab
-set list
+" set list
 " set encoding=utf-8
 " set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\
 " exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-exec "set list lcs=tab:»~,trail:¬,nbsp:▸"
+" exec "set list lcs=tab:»~,trail:¬,nbsp:▸"
 
 " Colors
 set t_Co=256 "set t_Co=16
@@ -169,7 +168,7 @@ function! LatexCurrent()
     let a:localLatexCommand .= '}\\end{document}'
     let a:localLatexCommand .= '> /home/jacob/documents/svn/p6/rep/masterlocal.tex'
     echom system(a:localLatexCommand)
-    execute "!cd /home/jacob/documents/svn/p6/rep/ && pdflatex masterlocal.tex"
+    execute "!cd /home/jacob/documents/svn/p6/rep/ && pdflatex -shell-escape masterlocal.tex"
 endf
 autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
 autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
@@ -209,7 +208,6 @@ imap <F3> :! urxvt &<CR>
 
 " map cut & paste to what they bloody should be
 vnoremap <C-c> "+y " copy
-map <S-b> "+gP     " paste
 map <C-v> "+gP     " paste
 vnoremap <C-x> "+x " cut
 " clipboard=unnamed
@@ -230,27 +228,27 @@ map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
-map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
-map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
-map <C-t> <esc>:tabnew<CR>
-"map <C-w> <esc>:tabclose<cr>
+" tabs
+" map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
+" map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
+map <C-t> <esc>:tabnew<cr>
 map <C-n> <esc>:tabnext<cr>
 map <C-p> <esc>:tabprevious<cr>
-
-" tabs
-map <Leader>tc :tabnew %<cr> " create a new tab
-map <Leader>td :tabclose<cr> " close a tab
-map <Leader>tn :tabnext<cr> " next tab
-map <silent><m-Right> :tabnext<cr> " next tab
-map <Leader>tp :tabprev<cr>" previous tab
-map <silent><m-Left> :tabprev<cr> " previous tab
-map <Leader>tm :tabmove " move a tab to a new location
+map <C-m> <esc>:tabmove +1 <cr>
+" map <Leader>tc :tabnew %<cr> " create a new tab
+" map <Leader>tt :tabnew %<cr> " create a new tab
+" map <Leader>td :tabclose<cr> " close a tab
+" map <Leader>tn :tabnext<cr> " next tab
+" map <Leader>tp :tabprev<cr>" previous tab
+" map <Leader>tm :tabmove " move a tab to a new location
 
 " Buffer taken from Practical Vim page 78
+nnoremap <leader>p :bprevious<CR>
+nnoremap <leader>n :bnext<CR>
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
+" nnoremap <silent> [B :bfirst<CR>
+" nnoremap <silent> ]B :blast<CR>
 
 " Only use Block Visual mode
 nnoremap v      <C-V>
@@ -265,60 +263,42 @@ vnoremap < <gv
 " save read-only files
 cmap w!! %!sudo tee > /dev/null %
 
-nnoremap <leader>win :%s/M]//g
-
+" nnoremap <leader>win :%s/M]//g
+nnoremap <leader>win :%s/
 nnoremap <leader>cc :!gcc % -o %<
+"map <F9> : !gcc % && ./a.out <CR>
 
 " Plugins ----------------------------------------------------------
+"
+" FuzzyFinder
+map <C-o> :FufCoverageFile<CR> 
+
 " NERDTree "autocmd vimenter * NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
 
-" vmath.vim sum average min max
-" Fix this
-vmap <expr> ++ VMATH_YankAndAnalyse()
-nmap        ++ vip++
-
-" dragvisuals.vim
-vmap <expr> <LEFT>  DVB_Drag('left')
-vmap <expr> <RIGHT> DVB_Drag('right')
-vmap <expr> <DOWN>  DVB_Drag('down')
-vmap <expr> <UP>    DVB_Drag('up')
-vmap <expr> D       DVB_Duplicate()
-
-" vis.vim
-" When block is selected
-":B apply to block only
-
-" config for easytags ----------------------------------------------
-let g:easytags_file = '~/.vtags'
-" tag-related keybinds:
-" open tag in new tab
-map <c-\> :tab split<cr>:exec("tag ".expand("<cword>"))<cr>
-" open tag in split with ,\
-map <localleader>\ :split <cr>:exec("tag ".expand("<cword>"))<cr>
-" open tag in vsplit with ,]
-map <localleader>] :vsplit <cr>:exec("tag ".expand("<cword>"))<cr>
-
 " TComment
-map <leader>c <c-_><c-_>
+" see .vim/plugin/autoload/tcomment.vim to change comment style
+" map <leader>c <c-_><c-_>
+map <leader>c :TComment<cr>
 
-" ctags  ================
+" Smooth scrolling
+" 3 parameters: distance, duration[ms], #lines
+noremap <silent> <c-u> :call smooth_scroll#up	(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down	(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up	(&scroll, 10, 1)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 10, 1)<CR>
+
+" ctags ----------------------------------------------------------
+" use ctrl+] to jump to definition, in a new tab
+map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" Generate a .tags file, which vim can use to scan for keywords
 map <f12> :!ctags -R .<cr> 
-" generate a .tags file, which vim can use to scan for keywords
-" use ctrl+] to jump to definition
-" C-T - Jump back from the definition
-map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-" C-\ - Open the definition in a new tab
-map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-" A-] - Open the definition in a vertical split
-
-" SUPERTAB
-" let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
-" let g:SuperTabDefaultCompletionType = "context"
-" set completeopt=menuone,longest,preview
-
-" FuzzyFinder
-map <C-o> :FufCoverageFile<CR> 
+" Taglist --------------------------------------------------------
+map <leader>tl :TlistToggle <cr>
+let Tlist_WinWidth = 30
+let Tlist_File_Fold_Auto_Close = 1
+" use space to see arguments
+" :help taglist
 
 " Rainbow Parentheses
 " Left column is for terminal environment
@@ -333,36 +313,50 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 " au Syntax * RainbowParenthesesLoadChevrons " for < > 
 
-" Smooth scrolling
-" 3 parameters: distance, duration[ms], #lines
-noremap <silent> <c-u> :call smooth_scroll#up	(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down	(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up	(&scroll, 10, 1)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 10, 1)<CR>
+" dragvisuals.vim
+vmap <expr> <LEFT>  DVB_Drag('left')
+vmap <expr> <RIGHT> DVB_Drag('right')
+vmap <expr> <DOWN>  DVB_Drag('down')
+vmap <expr> <UP>    DVB_Drag('up')
+vmap <expr> D       DVB_Duplicate()
+
+" vmath.vim sum average min max
+" Fix this
+vmap <expr> ++ VMATH_YankAndAnalyse()
+vmap <C-æ> VMATH_YankAndAnalyse()
+nmap        ++ vip++
+
+" config for easytags
+" let g:easytags_file = '~/.vtags'
 
 " mru - most recently used
-let MRU_Max_Entries = 10
-"let MRU_Include_Files = '^/Users/ok/Dropbox/StageM2/report/.*'
-" let g:MRU_File=expand("$HOME/.mru")
+let MRU_Window_Height = 15 
+let MRU_Max_Entries = 15
+let MRU_Auto_Close = 1
 map :mru :MRU <CR>
+" map <C-m> :MRU <CR>
 nnoremap <Leader>mru :MRU<CR>
 " nmap :MRU :mru <CR>
-let MRU_Auto_Close = 1
+" let MRU_Include_Files = '^/Users/ok/Dropbox/StageM2/report/.*'
+" let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'
 
-" hi word type under cursor
+" hilight word type under cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
-" OmniCppComplete ================   
-"
-"autocmd FileType c set omnifunc=ccomplete#Complete
-"autocmd FileType cpp set omnifunc=cppcomplete#CompleteCPP
-"autocmd filetype python set omnifunc=pythoncomplete#complete
+" vis.vim
+" When block is selected
+":B apply to block only
+
+" SUPERTAB
+" let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
+" let g:SuperTabDefaultCompletionType = "context"
+" set completeopt=menuone,longest,preview
+
+" OmniCppComplete -----------------------------------------------------------
+" autocmd FileType c set omnifunc=ccomplete#Complete
+" autocmd FileType cpp set omnifunc=cppcomplete#CompleteCPP
+" autocmd filetype python set omnifunc=pythoncomplete#complete
 " autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-
 "set omnifunc=syntaxcomplete#Complete
-
-" =========== Compile ================================
-" If the " 'expandtab' " option is set, when you type a tab, " Vim " inserts spaces.This is not " good if you are editing a Makefile.To insert " a real tab, no matter " what the options are, " type in " CTRL-V<Tab> " in insert mode.The " CTRL-V " tells " Vim " not to mess with the fol- " lowing characte
-"map <F9> : !gcc % && ./a.out <CR>

@@ -10,7 +10,7 @@
 
 if !exists("g:tcommentBlankLines")
     " If true, comment blank lines too
-    let g:tcommentBlankLines = 1    "{{{2
+    let g:tcommentBlankLines = 0    "{{{2
 endif
 
 if !exists("g:tcommentModeExtra")
@@ -262,7 +262,7 @@ call tcomment#DefineType('aap',              '# %s'             )
 call tcomment#DefineType('ada',              '-- %s'            )
 call tcomment#DefineType('apache',           '# %s'             )
 call tcomment#DefineType('autoit',           '; %s'             )
-call tcomment#DefineType('asm',              '; %s'             )
+call tcomment#DefineType('asm',              '// %s'            )
 call tcomment#DefineType('awk',              '# %s'             )
 call tcomment#DefineType('catalog',          '-- %s --'         )
 call tcomment#DefineType('catalog_block',    "--%s--\n  "       )

@@ -85,7 +85,7 @@ bind index,pager <right>  sidebar-open
 bind index gg       first-entry
 bind index G        last-entry
 bind index R        group-reply
-bind index <tab>    sync-mailbox
+# bind index <tab>    sync-mailbox
 # bind index <space>  collapse-thread
 
 # Pager View Options ---------------------------------
