@@ -57,102 +57,102 @@ import XMonad.Layout.Spacing
 ------------------------------------------------------------------------------
 -- Main --
 main = xmonad =<< statusBar myBar pp toggleStrutsKey conf
-	where
-		myBar = "xmobar"
-		pp = customPP
-		toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-		uhook = withUrgencyHookC NoUrgencyHook urgentConfig
-		conf = uhook myConfig
+    where
+        myBar = "xmobar"
+        pp = customPP
+        toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
+        uhook = withUrgencyHookC NoUrgencyHook urgentConfig
+        conf = uhook myConfig
 
 ------------------------------------------------------------------------------
 -- Configs --
 myConfig = defaultConfig { 
-	-- workspaces = ["1:web", "2:main", "3:dev", "4:misc", "5:mail", "6:chat"] ++ map show [7..9]
-	workspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
-	, borderWidth = 6
-	, normalBorderColor = "#1a1a1a"
-	, focusedBorderColor = "#4a914a"
-	, terminal = "urxvt"
-	, layoutHook = layoutHook'
-	, manageHook = manageHook'
-	, startupHook = setWMName "LG3D"
-	, handleEventHook = ewmhDesktopsEventHook
-	, logHook =  ewmhDesktopsLogHook <+> dynamicLogXinerama
-	, focusFollowsMouse = False
-	, clickJustFocuses = True
-	}
-	`additionalKeysP` myKeys
+    -- workspaces = ["1:web", "2:main", "3:dev", "4:misc", "5:mail", "6:chat"] ++ map show [7..9]
+    workspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
+    , borderWidth = 6
+    -- , focusedBorderColor = "#4a914a"
+    , focusedBorderColor = "#5faf5f"
+    , normalBorderColor  = "#3a3a3a"
+    , terminal = "urxvt"
+    , layoutHook = layoutHook'
+    , manageHook = manageHook'
+    , startupHook = setWMName "LG3D"
+    , handleEventHook = ewmhDesktopsEventHook
+    , logHook =  ewmhDesktopsLogHook <+> dynamicLogXinerama
+    , focusFollowsMouse = False
+    , clickJustFocuses = True
+    }
+    `additionalKeysP` myKeys
 
 ------------------------------------------------------------------------------
 -- Looks --
 customPP = defaultPP { 
-	ppCurrent = xmobarColor "#e4e4e4" "#5e5e42" 
-	, ppHidden = xmobarColor "#87875f" ""
-	, ppHiddenNoWindows = xmobarColor "#606060" ""
-	-- , ppTitle =  xmobarColor "#aaaaaa" "" . shorten 80
-	, ppUrgent = xmobarColor "#df0000" ""
-	, ppSep = xmobarColor "#87875f" "" " | "
-	}
+    ppCurrent = xmobarColor "#e4e4e4" "#5e5e42" 
+    , ppHidden = xmobarColor "#87875f" ""
+    , ppHiddenNoWindows = xmobarColor "#606060" ""
+    -- , ppTitle =  xmobarColor "#aaaaaa" "" . shorten 80
+    , ppUrgent = xmobarColor "#606060" "#df0000"
+    , ppSep = xmobarColor "#87875f" "" " | "
+    }
 
 -- Urgent Notification
 urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
 -- layouts -------------------------------------------------------------------
 layoutHook' = tile ||| mtile ||| full
-	where
-		rt = ResizableTall 1 (2/100) (1/2) []
-		tile = renamed [Replace "tile "] $ spacing 3 $ smartBorders rt
-		mtile = renamed [Replace "mtile"] $ smartBorders $ Mirror rt
-		full = renamed [Replace "full "] $ noBorders Full
+    where
+        rt = ResizableTall 1 (2/100) (1/2) []
+        tile  = renamed [Replace "tile "] $ spacing 5 $ smartBorders rt
+        mtile = renamed [Replace "mtile"] $ spacing 5 $ smartBorders $ Mirror rt
+        full = renamed [Replace "full "] $ noBorders Full
 
 
 ------------------------------------------------------------------------------
 -- Window Management --
 -- To show application name: xprop | grep WM_CLASS
 manageHook' = composeAll [ 
-	isFullscreen             		--> doFullFloat
-	-- , className =? "Google-chrome-stable"  	--> doShift "1:web"
-	, title 	=? "File Operation Proces" 			--> doFloat
-	, className =? "Thunderbird"  	--> doShift " 5 "
-	, title 	=? "mutt"  			--> doShift " 5 "
-	, title 	=? "irssi"  		--> doShift " 6 "
-	-- , className =? "Skype"       --> doShift " 6 " <+> doFloat
-	, className =? "hl2_linux" 		--> doFullFloat
-	, className =? "dota_linux" 	--> doFullFloat
-	-- -novid -w 1680 -h 1020 -window
-	, className =? "war3.exe" 		--> doFullFloat
-	, className =? "Gimp"      		--> doFloat
-	, className =? "Inkscape"  		--> doFloat
-	, className =? "Vlc"       		--> doFloat
-	, className =? "feh"       		--> doFloat
-	, title     =? "Copying Files"  --> doFloat
-	, insertPosition Below Newer
-	, transience'
-	]
+    isFullscreen                    --> doFullFloat
+    , className =? "Thunderbird"    --> doShift " 6 "
+    , title     =? "mutt"           --> doShift " 6 "
+    , title     =? "irssi"          --> doShift " 7 "
+    -- , className =? "Skype"       --> doShift " 7 " <+> doFloat
+    , className =? "hl2_linux"      --> doFullFloat
+    , className =? "dota_linux"     --> doFullFloat
+    -- -novid -w 1680 -h 1020 -window
+    , className =? "war3.exe"       --> doFullFloat
+    , className =? "Gimp"           --> doFloat
+    , className =? "Inkscape"       --> doFloat
+    , className =? "Vlc"            --> doFloat
+    , className =? "feh"            --> doFloat
+    , title     =? "Copying Files"  --> doFloat
+    , title     =? "File Operation Proces"  --> doFloat
+    , insertPosition Below Newer
+    , transience'
+    ]
 
 
 ------------------------------------------------------------------------------
 -- Keybinding-- 
 myKeys = [ 
-	  ("M-<Right>"  , nextWS                             ) -- go to next workspace
-	, ("M-<Left>"   , prevWS                             ) -- go to prev workspace
-	, ("M-p" , spawn "exe=`dmenu_run -fn 'Droid Sans Mono-13'`")
-	, ("M-g"        , spawn "google-chrome-stable"              ) -- launch chrome
-	, ("M-e"        , spawn "/usr/bin/urxvt -e /usr/bin/mutt") -- launch thunderbird
-	-- , ("M-f"        , spawn "thunar"                ) 
-	-- , ("M-x"        , spawn "xchat"                      ) -- launch xchat
-	-- , ("C-M-x"      , spawn "xlock"                      ) -- lockdown                                                               
-	-- , ("C-l"        , spawn "xlock"                      ) -- lockdown                                                               
-	-- , ("M-s"        , spawn "sudo /usr/sbin/pm-suspend"  ) -- suspend
-	-- , ("C-M-h"      , spawn "sudo /usr/sbin/pm-hibernate") -- hibernate                                  
-	-- , ("C-M-r"      , spawn "sudo /sbin/shutdown -r now" ) -- reboot
-	-- , ("C-M-s"      , spawn "sudo /sbin/shutdown -h now" ) -- halt
-	--
-	-- , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1+") -- desktop
-	-- , ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1-") -- desktop
-	, ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1+") -- laptop
-	, ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1-") -- laptop
-	, ("<XF86AudioMute>" , spawn "amixer set Master toggle && amixer set Headphone toggle") -- raise volume
+      ("M-<Right>"  , nextWS                             ) -- go to next workspace
+    , ("M-<Left>"   , prevWS                             ) -- go to prev workspace
+    , ("M-p" , spawn "exe=`dmenu_run -fn 'Droid Sans Mono-13'`")
+    , ("M-g"        , spawn "google-chrome-stable"              ) -- launch chrome
+    , ("M-e"        , spawn "/usr/bin/urxvt -e /usr/bin/mutt") -- launch thunderbird
+    -- , ("M-f"        , spawn "thunar"                ) 
+    -- , ("M-x"        , spawn "xchat"                      ) -- launch xchat
+    -- , ("C-M-x"      , spawn "xlock"                      ) -- lockdown                                                               
+    -- , ("C-l"        , spawn "xlock"                      ) -- lockdown                                                               
+    -- , ("M-s"        , spawn "sudo /usr/sbin/pm-suspend"  ) -- suspend
+    -- , ("C-M-h"      , spawn "sudo /usr/sbin/pm-hibernate") -- hibernate                                  
+    -- , ("C-M-r"      , spawn "sudo /sbin/shutdown -r now" ) -- reboot
+    -- , ("C-M-s"      , spawn "sudo /sbin/shutdown -h now" ) -- halt
+    --
+    -- , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1+") -- desktop
+    -- , ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1-") -- desktop
+    , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1+") -- laptop
+    , ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1-") -- laptop
+    , ("<XF86AudioMute>" , spawn "amixer set Master toggle && amixer set Headphone toggle") -- raise volume
     , ("M-S-9"      ,  spawn "plaympeg ~/whatwhat.mp3" ) 
 
     -- -- screens
@@ -163,7 +163,7 @@ myKeys = [
     , (("M-l"), sendMessage Expand)
     , (("M-S-h"), sendMessage MirrorShrink)
     , (("M-S-l"), sendMessage MirrorExpand)
-	]
+    ]
  
 
 -- Multimedia
