@@ -5,7 +5,7 @@ if [ $(id -u) -eq 0 ];
 then # you are root, set red colour prompt
   PS1="\\[$(tput setaf 1)\\]\\u@\\h:\\w #\\[$(tput sgr0)\\]"
 else # normal
-  PS1="\[\033[0;92m\]\342\226\210\342\226\210 \[\e[0;92m\][\w] \$\[\e[0m\] "
+  PS1="\[\033[0;92m\]\342\226\210\342\226\210 \[\e[0;92m\][\W] \$\[\e[0m\] "
   # PS1=" \[\e[0;92m\][\w] \$\[\e[0m\] "
 fi
 
@@ -41,6 +41,7 @@ alias la='ls -A'                        # list all files w/o attributes
 alias lla="ls -AlvgG"
 alias lt='ls -ltgG' 		            # sort by last modified
 alias lx='ls -lXB'                      #  Sort by extension
+# folder size: du -sh <PATH>
 
 alias cd..='cd ..'
 alias ..='cd ..'
@@ -89,3 +90,7 @@ alias dis3='xrandr --output DVI-I-0 --mode 1680x1050 --primary --output DVI-I-1 
 # single () {
 #     xrandr --output HDMI-0 --off
 # }
+
+# export PATH=$PATH:/opt/uClinux/bfin-linux-uclibc/bin
+# export PATH=$PATH:/opt/uClinux/bfin-uclinux/bin/ 
+PATH=$PATH:/opt/uClinux/bfin-linux-uclibc/bin:/opt/uClinux/bfin-uclinux/bin/
