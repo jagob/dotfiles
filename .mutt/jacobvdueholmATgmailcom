@@ -10,14 +10,15 @@ set spoolfile = +INBOX
 set postponed = +Drafts
 set record = +Sent
 
+# mailboxes =INBOX =Drafts =Sent =Trash
+mailboxes imaps://imap.gmail.com/INBOX imaps://imap.gmail.com/Kvitteringer imaps://imap.gmail.com/Personlige imaps://imap.gmail.com/Uni 
+
 ## Send options.
 set smtp_url=smtps://jacobvdueholm:$my_pw2@smtp.gmail.com
 
 # Connection options
 unset ssl_starttls
 set ssl_force_tls = yes
-
-mailboxes =INBOX =Drafts =Sent =Trash
 
 ## Hook -- IMPORTANT!
 # account-hook $folder "set imap_user=user@gmail.com imap_pass=****"

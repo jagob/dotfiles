@@ -15,6 +15,7 @@ set backspace=indent,eol,start  " Allow backspace in insert mode
 set gcr=a:blinkon0              " Disable cursor blink
 set mouse=a                     " Enable mouse
 set visualbell                  " No sounds
+set t_vb=                       " No blink at first/last line
 set autoread                    " Reload files changed outside vim
 
 " timeoutlen defaults to 1000 and is the delay in milliseconds that vim uses when checking for map key sequences. It’s also used when checking keycodes if ttimeoutlen is disabled

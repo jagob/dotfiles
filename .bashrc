@@ -9,12 +9,21 @@ else # normal
   # PS1=" \[\e[0;92m\][\w] \$\[\e[0m\] "
 fi
 
+unset HISTFILESIZE
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+shopt -s histappend
+export PROMPT_COMMAND='history -a'
+export HISTCONTROL=ignoredups
+
 alias matlaber='matlab -nodesktop -nosplash'
 alias xres='xrdb -load ~/.Xresources'
 alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
 alias random='cd ~/dropbox/uni/P6/bras/randomgenerator/ && python2 randomgenerator.py'
 alias win='sudo mount /dev/sda2 /mnt/windows'
 alias za='zathura'
+alias vmi='vim'
+alias bc='bc -lq'						# bash calculator with floating point
 alias gitlog='cd ~/dotfiles/ && git log --graph --abbrev-commit'
 alias bell='sleep 3; echo -e "\a"' 
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
@@ -48,7 +57,6 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias sl='ls'
-alias bc='bc -l'						# bash calculator with floating point
 alias sd='sudo shutdown -h now'         # shutdown
 alias rs='sudo shutdown -r now'         # restart
 alias rb='sudo shutdown -r now'         # restart
@@ -90,6 +98,7 @@ alias dis3='xrandr --output DVI-I-0 --mode 1680x1050 --primary --output DVI-I-1 
 # single () {
 #     xrandr --output HDMI-0 --off
 # }
+
 
 # export PATH=$PATH:/opt/uClinux/bfin-linux-uclibc/bin
 # export PATH=$PATH:/opt/uClinux/bfin-uclinux/bin/ 
