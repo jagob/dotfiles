@@ -10,6 +10,8 @@ set spoolfile = +INBOX
 set postponed = +Drafts
 set record = +Sent
 
+mailboxes imaps://mail.aau.dk/INBOX imaps://mail.aau.dk/Sent imaps://mail.aau.dk/Trash
+
 ## Send options.
 # Connection options
 set ssl_force_tls = yes
