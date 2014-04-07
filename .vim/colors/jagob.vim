@@ -84,33 +84,33 @@ if &t_Co == 88 || &t_Co == 256
     hi MoreMsg      ctermfg=12
     hi ModeMsg      ctermfg=12
     hi WildMenu     ctermfg=12
-    hi Question     ctermfg=12	ctermbg=none
+    hi Question     ctermfg=12  ctermbg=none
     hi VertSplit    ctermfg=12   ctermbg=none
     hi Title        ctermfg=12
 
-    hi Search       ctermfg=255	ctermbg=0 
-    hi IncSearch    ctermfg=255
-    hi Visual       ctermfg=7 	ctermbg=0
-    hi VisualNOS    ctermfg=7
-    hi Folded       ctermfg=8 	ctermbg=0
-    hi FoldColumn   ctermfg=8 	ctermbg=none
-    hi StatusLine   ctermfg=7 	ctermbg=0
-    hi StatusLineNC ctermfg=7 	ctermbg=0
+    hi Search       ctermfg=232   ctermbg=8 
+    hi IncSearch    ctermfg=8   ctermbg=232 " opposite
+    hi Visual       ctermfg=232   ctermbg=8
+    hi VisualNOS    ctermfg=232   ctermbg=8
+    hi Folded       ctermfg=8   ctermbg=0
+    hi FoldColumn   ctermfg=8   ctermbg=none
+    hi StatusLine   ctermfg=7   ctermbg=0
+    hi StatusLineNC ctermfg=7   ctermbg=0
 
-    hi Error        ctermfg=9		ctermbg=none		
-    hi ErrorMsg     ctermfg=9		ctermbg=none
-    hi WarningMsg   ctermfg=9		ctermbg=none
-    hi SpellBad     ctermfg=9		ctermbg=none
-    hi SpellCap     ctermfg=9		ctermbg=none
-    hi SpellLocal   ctermfg=9		ctermbg=none
-    hi SpellRare    ctermfg=9		ctermbg=none
+    hi Error        ctermfg=9       ctermbg=none        
+    hi ErrorMsg     ctermfg=9       ctermbg=none
+    hi WarningMsg   ctermfg=9       ctermbg=none
+    hi SpellBad     ctermfg=9       ctermbg=none
+    hi SpellCap     ctermfg=9       ctermbg=none
+    hi SpellLocal   ctermfg=9       ctermbg=none
+    hi SpellRare    ctermfg=9       ctermbg=none
 
 " LanguageTool
-	 hi LanguageToolGrammarError 	ctermfg=9 ctermbg=none
-	 hi LanguageToolSpellingError   ctermfg=9 ctermbg=none
-  	 hi LanguageToolCmd          	ctermfg=9 ctermbg=none
-  	 hi LanguageToolLabel        	ctermfg=9 ctermbg=none
-  	 hi LanguageToolErrorCount   	ctermfg=9 ctermbg=none
+     hi LanguageToolGrammarError    ctermfg=9 ctermbg=none
+     hi LanguageToolSpellingError   ctermfg=9 ctermbg=none
+     hi LanguageToolCmd             ctermfg=9 ctermbg=none
+     hi LanguageToolLabel           ctermfg=9 ctermbg=none
+     hi LanguageToolErrorCount      ctermfg=9 ctermbg=none
 
 " vimdiff
     hi DiffAdd      ctermfg=12  ctermbg=none

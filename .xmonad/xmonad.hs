@@ -112,18 +112,17 @@ layoutHook' = tile ||| mtile ||| full
 -- To show application name: xprop | grep WM_CLASS
 manageHook' = composeAll [ 
     isFullscreen                    --> doFullFloat
-    , className =? "Thunderbird"    --> doShift " 6 "
     , title     =? "mutt"           --> doShift " 6 "
     , title     =? "irssi"          --> doShift " 7 "
-    -- , className =? "Skype"       --> doShift " 7 " <+> doFloat
-    , className =? "hl2_linux"      --> doFullFloat
-    , className =? "dota_linux"     --> doFullFloat
-    -- -novid -w 1680 -h 1020 -window
-    , className =? "war3.exe"       --> doFullFloat
     , className =? "Gimp"           --> doFloat
     , className =? "Inkscape"       --> doFloat
     , className =? "Vlc"            --> doFloat
     , className =? "feh"            --> doFloat
+
+    , className =? "hl2_linux"      --> doFullFloat
+    , className =? "dota_linux"     --> doFullFloat
+    -- -novid -w 1680 -h 1020 -window
+    , className =? "war3.exe"       --> doFullFloat
     , title     =? "Copying Files"  --> doFloat
     , title     =? "File Operation Proces"  --> doFloat
     , insertPosition Below Newer
@@ -153,7 +152,7 @@ myKeys = [
     , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1+") -- laptop
     , ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1-") -- laptop
     , ("<XF86AudioMute>" , spawn "amixer set Master toggle && amixer set Headphone toggle") -- raise volume
-    , ("M-S-9"      ,  spawn "plaympeg ~/whatwhat.mp3" ) 
+    -- , ("M-S-9"      ,  spawn "plaympeg ~/whatwhat.mp3" ) 
 
     -- -- screens
     , (("M-o"     ), nextScreen)

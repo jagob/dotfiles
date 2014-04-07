@@ -22,18 +22,22 @@ set sort='reverse-threads'
 set sort_aux='last-date-received'
 set date_format="%d-%m-%y %T"
 set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
+set smart_wrap       # Don't wrap mid-word
+set pager_context=5  # Retain 5 lines of previous page when scrolling.
 
 set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
 
 set my_name = "Jacob Dueholm"
 set realname = "Jacob Dueholm"
 
+
 set header_cache = ~/.cache/mutt
-set imap_check_subscribed
 set message_cachedir = "~/.cache/mutt"
-set postponed = +[Gmail]/Drafts
+# set postponed = +[Gmail]/Drafts
+# set trash = "imaps://imap.gmail.com/[Gmail]/Trash"
 unset imap_passive
 set copy=yes ## save copies of sent mail to $record
+
 # HTML
 set mailcap_path 	= ~/.mutt/mailcap 
 auto_view text/html
@@ -44,8 +48,6 @@ set imap_keepalive = 300
 set timeout = 5
 set mail_check = 60 # How often to check for new mail (time in seconds).
 set beep_new
-set mbox_type = Maildir
-mailboxes "=inbox" 
 
 # Status Bar -----------------------------------------
 set status_chars  = " *%A"
@@ -67,7 +69,6 @@ macro index 'c' '<change-folder>?<change-dir><home>^K=<enter>'
 
 # Speed up folders switch
 set sleep_time = 0
-
 
 # mutt-sidebar
 set sidebar_visible = yes
