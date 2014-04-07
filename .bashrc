@@ -94,3 +94,5 @@ alias dis3='xrandr --output DVI-I-0 --mode 1680x1050 --primary --output DVI-I-1 
 # export PATH=$PATH:/opt/uClinux/bfin-linux-uclibc/bin
 # export PATH=$PATH:/opt/uClinux/bfin-uclinux/bin/ 
 PATH=$PATH:/opt/uClinux/bfin-linux-uclibc/bin:/opt/uClinux/bfin-uclinux/bin/
+PATH=$PATH:/home/jacob/bin/
+
