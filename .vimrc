@@ -245,7 +245,7 @@ map <C-m> <esc>:tabmove +1 <cr>
 
 " Buffer taken from Practical Vim page 78
 nnoremap <leader>p :bprevious<CR>
-nnoremap <leader>n :bnext<CR>
+" nnoremap <leader>n :bnext<CR>
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 " nnoremap <silent> [B :bfirst<CR>

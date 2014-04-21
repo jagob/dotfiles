@@ -2,22 +2,6 @@
 # gnome-keyring-query set mutt_jacobvdueholmATgmailcom
 # gnome-keyring-query set mutt_jdueho11
 
-# q   Quit
-# d   Mark to delete
-# u   Undelete
-# m   Start a new message
-# @   Show reply-address
-# v   Show attachments
-# s   Save to another folder
-# c   Change folders
-# C   Copy to folder
-# h   Show/hide full headers
-# $   Sync mailbox
-# ;   Apply to all marked messages
-# gi 	to view your Inbox
-# ga 	to view All Mail
-# / 	lets you search the current folder
-
 set sort='reverse-threads'
 set sort_aux='last-date-received'
 set date_format="%d-%m-%y %T"

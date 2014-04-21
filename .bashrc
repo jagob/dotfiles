@@ -27,7 +27,7 @@ alias bc='bc -lq'						# bash calculator with floating point
 alias gitlog='cd ~/dotfiles/ && git log --graph --abbrev-commit'
 alias bell='sleep 3; echo -e "\a"' 
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
-alias dropperen='cd ~/dropbox/uni/P6'
+alias p6='cd ~/dropbox/uni/P6'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
 alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
@@ -36,7 +36,7 @@ alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl 
 alias finder='find -name'
 alias byg='latexmk -pdf -pvc masterlocal.tex'
 
-alias svns='svn status'				    # gets svn status
+alias svns='svn status -u'				    # gets svn status
 alias svnu='svn update'				    # updates from svn
 alias svna='svn add . --force'
 alias svnc='svn commit -m ""'		    # commits to svn
