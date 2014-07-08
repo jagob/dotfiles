@@ -40,7 +40,7 @@ alias svns='svn status -u'				    # gets svn status
 alias svnu='svn update'				    # updates from svn
 alias svna='svn add . --force'
 alias svnc='svn commit -m ""'		    # commits to svn
-alias svnf='cd ~/documents/svn/p6/rep/'
+alias svnf='cd ~/documents/svn/p6_2'
 alias svnl='svn log -v -l 5'		    # gets log from svn
 
 alias :q='logout'
