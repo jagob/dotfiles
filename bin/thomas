@@ -1,0 +1,6 @@
+#!/bin/bash
+username="jdueho11"
+file_ext=$(echo $1 |awk -F . '{if (NF>1) {print $NF}}')
+timestamp=$(date +"%m-%d")
+scp $1 $username@js1.es.aau.dk:/afs/ies.auc.dk/group/14gr627/public_html/thomas/gmsk_dsp_$timestamp.$file_ext
+echo "http://kom.aau.dk/group/14gr627/thomas/gmsk_dsp_$timestamp.$file_ext"

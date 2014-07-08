@@ -1,0 +1,42 @@
+#!/bin/bash
+
+## Help
+# Plots a tab-seperated file.
+#
+## Arguments
+if [ $# == 1 ]; then
+    plottitle="Frequency response";
+elif [ $# == 2 ]; then
+    plottitle=$2
+else
+    echo "Usage:"
+    echo "    $0"
+    echo "    plotfile TSVFILE"
+    echo "    plotfile TSVFILE LEGEND=TITLE"
+    exit $E_BADARGS
+fi
+infile=$1
+outfile_amp=`echo $infile | cut -d\. -f1`".pdf"
+outfile_pha=`echo $infile | cut -d\. -f1`".pdf"
+
+## Init
+tmpfile=/tmp/tmpgnuplot.gpi
+
+## Gnuplot Code
+echo 'set term "pdf"'                                                               >  $tmpfile
+echo 'set samples 100000'                                                           >> $tmpfile
+echo 'set grid;'                                                                    >> $tmpfile
+echo 'set logscale x'                                                               >> $tmpfile
+echo 'set xlabel "Frequency [Hz]";'                                                 >> $tmpfile
+echo 'set yrange [-100:0.5];'                                                       >> $tmpfile
+
+echo 'set title "'$plottitle' (Amplitude)";'                                        >> $tmpfile
+echo 'set output "'$outfile_amp'";'                                                 >> $tmpfile
+echo 'set ylabel "Amplitude [dB]";'                                                 >> $tmpfile
+echo 'plot "'$infile'" using 1:2 title "'$plottitle'" w lines linecolor rgb "blue";' >> $tmpfile
+# 
+# echo 'set title "'$plottitle' (Phase)";'                                            >> $tmpfile
+# echo 'set output "'$outfile_pha'";'                                                 >> $tmpfile
+# echo 'set ylabel "Phase [deg]";'                                                    >> $tmpfile
+# echo 'plot "'$infile'" using 1:3 title "'$plottitle'" w lines linecolor rgb "red";' >> $tmpfile
+gnuplot $tmpfile
