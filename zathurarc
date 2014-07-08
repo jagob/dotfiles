@@ -14,7 +14,7 @@ set page-padding 5
 
 # set page-store-interval 30
 # set page-store-threshold 30
-set render-loading false
+# set render-loading false
 
 
 

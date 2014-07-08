@@ -26,7 +26,6 @@ au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
 set wrap
 set linebreak       " wrap at 'breakat' instead of last char
-set wrapmargin=2    " wrap 2 characters from the edge of the window
 set history=1000    " command lines history
 set nojoinspaces    " only put one space after periods
 
@@ -167,9 +166,9 @@ function! LatexCurrent()
     let a:curfile = expand('%:p')
     let a:localLatexCommand .= a:curfile
     let a:localLatexCommand .= '}\\end{document}'
-    let a:localLatexCommand .= '> /home/jacob/documents/svn/p6/rep/masterlocal.tex'
+    let a:localLatexCommand .= '> /home/jacob/documents/svn/p6_2/rep/masterlocal.tex'
     echom system(a:localLatexCommand)
-    execute "!cd /home/jacob/documents/svn/p6/rep/ && pdflatex -shell-escape masterlocal.tex"
+    execute "!cd /home/jacob/documents/svn/p6_2/rep/ && pdflatex -shell-escape masterlocal.tex"
 endf
 autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
 autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
@@ -273,6 +272,7 @@ nnoremap <leader>cc :!gcc % -o %<
 "
 " FuzzyFinder
 map <C-o> :FufCoverageFile<CR> 
+let g:fuf_coveragefile_exclude = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\.class$'
 
 " NERDTree "autocmd vimenter * NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
