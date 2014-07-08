@@ -1,0 +1,39 @@
+#!/bin/bash
+
+## Help
+# Plots a tab-seperated file.
+#
+## Arguments
+if [ $# == 1 ]; then
+    plottitle="Filtering of File";
+elif [ $# == 2 ]; then
+    plottitle="Filtering of File"
+else
+    echo "Usage:"
+    echo "    $0"
+    echo "    plotfile TSVFILE1 TSVFILE2"
+    exit $E_BADARGS
+fi
+infile1=$1
+infile2=$2
+outfile=`echo $infile1 | cut -d\. -f1`".pdf"
+
+## Init
+tmpfile=/tmp/tmpgnuplot.gpi
+
+## Gnuplot Code
+echo 'set term "pdf"'                                                               >  $tmpfile
+echo 'set samples 100000'                                                           >> $tmpfile
+echo 'set grid;'                                                                    >> $tmpfile
+echo 'set xlabel "# samples";'                                                      >> $tmpfile
+echo 'set ylabel "Amplitude [?]";'                                                  >> $tmpfile
+
+echo 'set title "'$plottitle'";'                                        >> $tmpfile
+echo 'set output "'$outfile'";'                                               >> $tmpfile
+echo 'plot "'$infile1'" w lines linecolor rgb "blue";'         >> $tmpfile
+# 
+echo 'replot "'$infile2'" w lines linecolor rgb "red";'              >> $tmpfile
+gnuplot $tmpfile
+zathura "$outfile"
+# say "Der er et nyt plot til dig, hilsen din PC"
+# speak 'il ya un nouveau terrain pour vous. remoulade' fr
