@@ -11,28 +11,20 @@ if [ -d /etc/X11/xinit/xinitrc.d ]; then
   unset f
 fi
 
-export EDITOR=vim
-
 xrdb -merge ~/.Xresources
-
 setxkbmap -layout dk
 setxkbmap -option caps:escape
 xsetroot -cursor_name left_ptr
 # xmodmap -e "keysym Alt_L = Meta_L Alt_L"
-
-feh --bg-scale /home/jacob/dropbox/faldkasse/jagob.png &
-
-# trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --heighttype pixel --height 23 --transparent true --alpha 0 --tint 0x101010 &
-# trayer --edge top --align right --margin 500 --SetDockType true --SetPartialStrut true --expand true --widthtype request --heighttype pixel --height 23 --transparent true --alpha 0 --tint 0x101010 &
-trayer --edge top --align left --margin 1150 --SetDockType true --SetPartialStrut true --expand true --widthtype request --heighttype pixel --height 24 --transparent true --alpha 0 --tint 0x2a2a2a &
+export EDITOR=vim
 
 # Gnome keyring
 # Start a D-Bus session
-source /etc/X11/xinit/xinitrc.d/30-dbus
+# source /etc/X11/xinit/xinitrc.d/30-dbus
 # Start GNOME Keyring
-eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+# eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 # You probably need to do this too:
-export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+# export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
 
 if [ -x /usr/bin/nm-applet ] ; then
@@ -44,13 +36,12 @@ if [ -x /usr/bin/xfce4-power-manager ] ; then
    xfce4-power-manager &
 fi
 
+feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
 sleep 15 && dropboxd & 
 sleep 15 && /usr/bin/urxvt -e /usr/bin/mutt &
 sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
+/home/jacob/.xmonad/dzen2/start_apps &
+stalonetray &
 
-
-# exec gnome-session
-# exec startkde
 # exec startxfce4
 exec xmonad
-# ...or the Window Manager of your choice

@@ -14,7 +14,6 @@ set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
 set my_name = "Jacob Dueholm"
 set realname = "Jacob Dueholm"
 
-
 set header_cache = ~/.cache/mutt
 set message_cachedir = "~/.cache/mutt"
 # set postponed = +[Gmail]/Drafts
