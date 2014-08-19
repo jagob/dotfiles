@@ -1,3 +1,0 @@
-[submodule ".vim/bundle/dotfiles"]
-	path = .vim/bundle/dotfiles
-	url = https://github.com/jagob/dotfiles
