@@ -74,9 +74,10 @@ set autoindent      " autoindent
 " exec "set list lcs=tab:»~,trail:¬,nbsp:▸"
 
 " Colors
-set t_Co=256 "set t_Co=16
-set background=dark
-colorscheme jagob
+" let g:solarized_termcolors=256
+" set t_Co=256 "set t_Co=16
+set background=light
+colorscheme solarized
 
 " mark line 80
 "set colorcolumn=80

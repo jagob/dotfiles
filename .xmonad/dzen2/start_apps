@@ -1,0 +1,38 @@
+#!/bin/bash
+# 
+# Dzen2 App Launcher
+# -tw = Width of titlebar, -w = Width of slavewindow,
+# -l = length of slavewindow. Remember to adjust -l accordingly when adding apps.  
+#
+# Needed Applications:
+AP1=urxvt
+AP2=google-chrome-stable
+AP3=thunar
+AP4=pavucontrol
+AP5=nvidia-settings
+
+#FONT
+# FONT="-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*"
+FONT="-*-ubuntu-medium-r-*-*-20-*-*-*-*-*-*-*"
+
+# Colors:
+FG1=#5faf5f
+FG2=#5faf5f
+FG3=#5faf5f
+
+# Icons:
+ICM=~/.xmonad/dzen2/img/arch.xbm
+IC1=~/.xmonad/dzen2/img/term.xbm
+IC2=~/.xmonad/dzen2/img/fs_01.xbm
+IC3=~/.xmonad/dzen2/img/docs.xbm
+IC4=~/.xmonad/dzen2/img/phones.xbm
+IC5=~/.xmonad/dzen2/img/code.xbm
+
+# Text parsed to Dzen2
+(echo "^fg(${FG2})^i(${ICM})"; echo -e "^fg(${FG1})\
+  ^fg(${FG3})^i(${IC1})^fg(${FG1}) ${AP1}   \n\
+  ^fg(${FG3})^i(${IC2})^fg(${FG1}) ${AP2}   \n\
+  ^fg(${FG3})^i(${IC3})^fg(${FG1}) ${AP3}   \n\
+  ^fg(${FG3})^i(${IC4})^fg(${FG1}) ${AP4}   \n\
+  ^fg(${FG3})^i(${IC5})^fg(${FG1}) ${AP5} ")\
+| (dzen2 -h '20' -fn "$FONT" -bg '#fdf6e3' -fg '#5faf5f' -l 5 -tw 30 -w 250 -m -p -e 'entertitle=uncollapse;button1=menuexec;leaveslave=collapse;button1=menuexec')

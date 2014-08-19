@@ -1,175 +1,190 @@
--- if [ $(hostname) == 'host1' ]; then
---      # things to do differently on host1.
--- elif [ $(hostname) == 'host2' ]; then
---      # things to do differently on host2.
--- fi
-
-
 import XMonad
+import Dzen
+import System.IO                   -- hPutStrLn scope
+import Control.Monad (liftM2)
 
--- keybinding
-import qualified XMonad.StackSet as W
+import Data.Char (isSpace)
 import qualified Data.Map as M
-import XMonad.Util.EZConfig 
+import qualified XMonad.StackSet as W   -- manageHook rules
 
-import System.Exit
-import XMonad.Util.Run (safeSpawn)
-import Graphics.X11.ExtraTypes.XF86
-import Data.Monoid (mappend)
+-- import XMonad.Actions.CycleWindows -- classic alt-tab
+import XMonad.Actions.CycleWS      -- cycle thru WS', toggle last WS
+import XMonad.Actions.NoBorders
 
--- actions
-import XMonad.Actions.GridSelect
-import XMonad.Actions.CycleWS
- 
--- hooks
-import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks    -- dock/tray mgmt
 import XMonad.Hooks.ManageHelpers
-import XMonad.Hooks.UrgencyHook
-import XMonad.Hooks.InsertPosition
+import XMonad.Hooks.DynamicLog     -- statusbar 
+import XMonad.Hooks.UrgencyHook    -- window alert bells 
 import XMonad.Hooks.SetWMName
-import XMonad.Hooks.EwmhDesktops
- 
--- layouts
-import XMonad.Layout.NoBorders
-import XMonad.Layout.ResizableTile
-import XMonad.Layout.Renamed
-import XMonad.Layout.Tabbed
-import XMonad.Layout.Grid
+import XMonad.Hooks.InsertPosition
+import XMonad.Hooks.EwmhDesktops   -- fullscreenEventHook fixes chrome fullscreen
+
+import XMonad.Layout.NoBorders     -- smart borders on solo clients
+import XMonad.Layout.PerWorkspace (onWorkspace)
+import XMonad.Layout.SimplestFloat
 import XMonad.Layout.Spacing
+import XMonad.Layout.ResizableTile
+import XMonad.Layout.Grid
+import XMonad.Layout.Renamed
+import XMonad.Layout.Decoration
+import XMonad.Layout.NoFrillsDecoration
+import XMonad.Layout.Maximize
 
+import XMonad.Util.Run(spawnPipe)  -- spawnPipe and hPutStrLn
+import XMonad.Util.Font
+-- import XMonad.Util.EZConfig        -- append key/mouse bindings
+--
+import Graphics.X11.ExtraTypes.XF86
+ 
 
--- import XMonad.Hooks.DynamicLog
--- import XMonad.Hooks.ManageDocks (manageDocks, avoidStruts)
--- import XMonad.Hooks.ManageHelpers
--- import XMonad.Hooks.SetWMName
--- import XMonad.Layout.MultiToggle
--- import XMonad.Layout.MultiToggle.Instances
--- import XMonad.Layout.NoBorders
--- import XMonad.Layout.PerWorkspace
--- import XMonad.Layout.Spacing
--- import XMonad.Layout.Gaps
--- import XMonad.Util.Run (spawnPipe, hPutStrLn)
--- import qualified Data.Map                 as M
--- import qualified GHC.IO.Handle.Types      as H
--- import qualified XMonad.Layout.Fullscreen as FS
--- import qualified XMonad.StackSet          as W
+-- Main function that launches xmonad
+main =  do
+    dzen <- spawnPipe myStatusBar
+    conkytop <- spawnPipe myTopBar
+    conkybot <- spawnPipe myBotBar
 
-------------------------------------------------------------------------------
--- Main --
-main = xmonad =<< statusBar myBar pp toggleStrutsKey conf
-    where
-        myBar = "xmobar"
-        pp = customPP
-        toggleStrutsKey XConfig {XMonad.modMask = modMask} = (modMask, xK_b)
-        uhook = withUrgencyHookC NoUrgencyHook urgentConfig
-        conf = uhook myConfig
-
-------------------------------------------------------------------------------
--- Configs --
-myConfig = defaultConfig { 
-    -- workspaces = ["1:web", "2:main", "3:dev", "4:misc", "5:mail", "6:chat"] ++ map show [7..9]
-    workspaces = [" 1 ", " 2 ", " 3 ", " 4 ", " 5 ", " 6 ", " 7 ", " 8 ", " 9 "]
-    , borderWidth = 6
-    -- , focusedBorderColor = "#4a914a"
-    , focusedBorderColor = "#5faf5f"
-    , normalBorderColor  = "#3a3a3a"
-    , terminal = "urxvt"
-    , layoutHook = layoutHook'
-    , manageHook = manageHook'
-    , startupHook = setWMName "LG3D"
-    , handleEventHook = ewmhDesktopsEventHook
-    , logHook =  ewmhDesktopsLogHook <+> dynamicLogXinerama
-    , focusFollowsMouse = False
-    , clickJustFocuses = True
-    }
-    `additionalKeysP` myKeys
-
-------------------------------------------------------------------------------
--- Looks --
-customPP = defaultPP { 
-    ppCurrent = xmobarColor "#e4e4e4" "#5e5e42" 
-    , ppHidden = xmobarColor "#87875f" ""
-    , ppHiddenNoWindows = xmobarColor "#606060" ""
-    -- , ppTitle =  xmobarColor "#aaaaaa" "" . shorten 80
-    , ppUrgent = xmobarColor "#606060" "#df0000"
-    , ppSep = xmobarColor "#87875f" "" " | "
+    xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
+          terminal              = "urxvt"
+        , focusedBorderColor    = "#5faf5f"
+        , normalBorderColor     = "#fdf6e3"
+        , borderWidth           = 3
+        , workspaces            = myWorkspaces
+        , keys                  = myKeys
+        , layoutHook            = avoidStruts $ myLayouts
+        , logHook               = dynamicLogWithPP $ myPrettyPrinter dzen
+        , manageHook            = manageDocks <+> myManageHook 
+        -- , handleEventHook       = ewmhDesktopsEventHook
+        , startupHook           = setWMName "LG3D"
+        , focusFollowsMouse     = False
+        , clickJustFocuses      = True
     }
 
--- Urgent Notification
-urgentConfig = UrgencyConfig { suppressWhen = Focused, remindWhen = Dont }
 
--- layouts -------------------------------------------------------------------
-layoutHook' = tile ||| mtile ||| full
-    where
-        rt = ResizableTall 1 (2/100) (1/2) []
-        tile  = renamed [Replace "tile "] $ spacing 5 $ smartBorders rt
-        mtile = renamed [Replace "mtile"] $ spacing 5 $ smartBorders $ Mirror rt
-        full = renamed [Replace "full "] $ noBorders Full
+myWorkspaces            = clickable . (map dzenEscape) $ ["1","2","3","4","5","6","7","8","9"]
+  where clickable l     = [ "^ca(1,xdotool key alt+" ++ show (n) ++ ")" ++ ws ++ "^ca()" |
+                            (i,ws) <- zip [1..] l,
+                            let n = i ]
 
 
-------------------------------------------------------------------------------
--- Window Management --
--- To show application name: xprop | grep WM_CLASS
-manageHook' = composeAll [ 
-    isFullscreen                    --> doFullFloat
-    , title     =? "mutt"           --> doShift " 6 "
-    , title     =? "irssi"          --> doShift " 7 "
-    , className =? "Gimp"           --> doFloat
-    , className =? "Inkscape"       --> doFloat
+-- Define the workspace an application has to go to
+myManageHook = composeAll [ 
+      className =? "stalonetray"    --> doIgnore
+    , className =? "MPlayer"        --> doFloat
     , className =? "Vlc"            --> doFloat
-    , className =? "feh"            --> doFloat
-
-    , className =? "hl2_linux"      --> doFullFloat
-    , className =? "dota_linux"     --> doFullFloat
-    -- -novid -w 1680 -h 1020 -window
-    , className =? "war3.exe"       --> doFullFloat
+    , className =? "Gimp"           --> doFloat
+    , isFullscreen                  --> doFullFloat
+    , title     =? "mutt"           --> doShift "6"
+    , title     =? "irssi"          --> doShift "7"    
+    , className =? "XCalc"          --> doFloat
     , title     =? "Copying Files"  --> doFloat
+    , title     =? "File Operation Progress"  --> doFloat
     , title     =? "File Operation Proces"  --> doFloat
     , insertPosition Below Newer
     , transience'
     ]
 
+-- myLayouts = maximize (tile ||| mtile ||| full)
+myLayouts = (tile ||| mtile ||| full)
+    where
+        tile  = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ ResizableTall nmaster delta ratio []
+        mtile = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ Mirror $ ResizableTall nmaster delta ratio []
+        full  = noBorders Full
+        nmaster = 1     -- The default number of windows in the master pane
+        delta   = 3/100 -- Percent of screen to increment by when resizing panes
+        ratio   = 1/2   -- Default proportion of screen occupied by master pane
 
-------------------------------------------------------------------------------
--- Keybinding-- 
-myKeys = [ 
-      ("M-<Right>"  , nextWS                             ) -- go to next workspace
-    , ("M-<Left>"   , prevWS                             ) -- go to prev workspace
-    , ("M-p" , spawn "exe=`dmenu_run -fn 'Droid Sans Mono-13'`")
-    , ("M-g"        , spawn "google-chrome-stable"              ) -- launch chrome
-    , ("M-e"        , spawn "/usr/bin/urxvt -e /usr/bin/mutt") -- launch thunderbird
-    -- , ("M-f"        , spawn "thunar"                ) 
-    -- , ("M-x"        , spawn "xchat"                      ) -- launch xchat
-    -- , ("C-M-x"      , spawn "xlock"                      ) -- lockdown                                                               
-    -- , ("C-l"        , spawn "xlock"                      ) -- lockdown                                                               
-    -- , ("M-s"        , spawn "sudo /usr/sbin/pm-suspend"  ) -- suspend
-    -- , ("C-M-h"      , spawn "sudo /usr/sbin/pm-hibernate") -- hibernate                                  
-    -- , ("C-M-r"      , spawn "sudo /sbin/shutdown -r now" ) -- reboot
-    -- , ("C-M-s"      , spawn "sudo /sbin/shutdown -h now" ) -- halt
-    --
-    -- , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1+") -- desktop
-    -- , ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 0 set Master 1-") -- desktop
-    , ("<XF86AudioRaiseVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1+") -- laptop
-    , ("<XF86AudioLowerVolume>" , spawn "amixer set Master on && amixer -c 1 set Master 1-") -- laptop
-    , ("<XF86AudioMute>" , spawn "amixer set Master toggle && amixer set Headphone toggle") -- raise volume
-    -- , ("M-S-9"      ,  spawn "plaympeg ~/whatwhat.mp3" ) 
+myTheme = defaultTheme { 
+      decoHeight            = 22
+    , fontName              = "xft:Ubuntu:size=12"
+    , activeColor           = "#5faf5f"
+    , activeBorderColor     = "#5faf5f"
+    , activeTextColor       = "#fdf6e3"
+    , inactiveColor         = "#fdf6e3"
+    , inactiveBorderColor   = "#fdf6e3"
+    , inactiveTextColor     = "#5faf5f"
+    }
 
-    -- -- screens
-    , (("M-o"     ), nextScreen)
-    , (("M-S-o"     ), shiftNextScreen >> nextScreen)
+-- Pretty printer for dzen workspace bar
+myPrettyPrinter h = dzenPP {
+      ppOutput          = hPutStrLn h
+    , ppCurrent         = dzenColor myDzenBGColor myDzenFGColor . wrap " " " " 
+    , ppHidden          = dzenColor myDzenFGColor myDzenBGColor . wrap " " " " 
+    , ppHiddenNoWindows = dzenColor "#eee8d5"     myDzenBGColor . wrap " " " " 
+    , ppUrgent          = dzenColor "#ff0000"     myDzenBGColor . wrap " " " " 
+    , ppWsSep           = " "
+    , ppSep             = "  |  "
+    , ppTitle           = (" " ++) . dzenColor myDzenFGTextColor myDzenBGColor . shorten 50 . dzenEscape
+    , ppLayout          = wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor myDzenFGColor myDzenBGColor .
+      (\x -> case x of
+          "NoFrillsDeco Spacing 5 ResizableTall"         ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
+          "NoFrillsDeco Spacing 5 Mirror ResizableTall"  ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
+          "Full"                            ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
+          _                                 ->      x
+      )
+    }
+myDzenFGColor = "#5faf5f"
+myDzenFGTextColor = "#5faf5f"
+myDzenBGColor = "#fdf6e3"
+myFont = "Ubuntu regular:size=12:antialias=true"
+myDzenFont = "Bitstream Sans Vera:pixelsize=18"
 
-    , (("M-h"), sendMessage Shrink)
-    , (("M-l"), sendMessage Expand)
-    , (("M-S-h"), sendMessage MirrorShrink)
-    , (("M-S-l"), sendMessage MirrorExpand)
+myStatusBar = "dzen2 -x 30 -y 0  -w 1170 -ta l " ++ myDzenStyle
+myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
+myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1050 -w 1680 -ta c " ++ myDzenStyle
+myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
+-- bgconky = "conky -c ~/.xmonad/.conkyrc-todo" 
+
+
+-- Define new key combinations to be added
+myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
+      ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- launch a terminal
+    , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")          -- launch gmrun
+    , ((modm,               xK_p     ), spawn "dmenu_run")      -- launch dmenu
+    , ((modm .|. shiftMask, xK_c     ), kill)                   -- close focused window
+    , ((modm,               xK_space ), sendMessage NextLayout) -- Rotate through the available layout algorithms
+    , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) --  Reset the layouts on the current workspace to default
+    , ((modm,               xK_n     ), refresh)                -- Resize viewed windows to the correct size
+    , ((modm,               xK_Tab   ), windows W.focusDown)    -- Move focus to the next window
+    , ((modm,               xK_j     ), windows W.focusDown)    -- Move focus to the next window
+    , ((modm,               xK_k     ), windows W.focusUp  )    -- Move focus to the previous window
+    , ((modm,               xK_m     ), windows W.focusMaster  )
+    , ((modm,               xK_Return), windows W.swapMaster)   -- Swap the focused window and the master window
+    , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )   -- Swap the focused window with the next window
+    , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )   -- Swap the focused window with the previous window
+    , ((modm,               xK_h     ), sendMessage Shrink)     -- Shrink the master area
+    , ((modm,               xK_l     ), sendMessage Expand)     -- Expand the master area
+    , ((modm .|. shiftMask, xK_h     ), sendMessage MirrorShrink)
+    , ((modm .|. shiftMask, xK_l     ), sendMessage MirrorExpand) 
+    , ((modm,               xK_t     ), withFocused $ windows . W.sink) -- Push window back into tiling
+    , ((modm              , xK_comma ), sendMessage (IncMasterN 1)) -- Increment the number of windows in the master area
+    , ((modm              , xK_period), sendMessage (IncMasterN (-1))) -- Deincrement the number of windows in the master area
+    , ((modm              , xK_b     ), sendMessage ToggleStruts) -- Toggle the status bar gap
+    -- , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- Quit xmonad
+    -- , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
+    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart") -- Restart xmonad
+
+    , ((modm,               xK_o     ), nextScreen)
+    , ((modm .|. shiftMask, xK_o     ), shiftNextScreen >> nextScreen)
+    , ((modm              , xK_z ), withFocused toggleBorder) 
+
+    , ((0                 , xK_Print ), spawn "scrot -e 'mv $f ~/screenshots/'")
+    , ((0, xF86XK_AudioMute), spawn "amixer -D pulse sset Master toggle")
+    , ((0, xF86XK_AudioLowerVolume), spawn "amixer -D pulse sset Master 5%-")
+    , ((0, xF86XK_AudioRaiseVolume ), spawn "amixer -D pulse sset Master 5%+")
+    , ((0, xF86XK_AudioStop), spawn "mpc stop")
+    , ((0, xF86XK_AudioPrev), spawn "mpc prev")
+    , ((0, xF86XK_AudioNext), spawn "mpc next")
+    , ((0, xF86XK_AudioPlay), spawn "mpc toggle")
     ]
- 
-
--- Multimedia
--- , ((0, xF86XK_AudioRaiseVolume ), safeSpawn "amixer" ["-q", "set", "Master", "2+"])
--- , ((0, xF86XK_AudioLowerVolume ), safeSpawn "amixer" ["-q", "set", "Master", "2-"])
--- , ((0, xF86XK_AudioMute ), safeSpawn "amixer" ["-q", "set", "Master", "toggle"])
--- , ((0, xF86XK_AudioPlay ), safeSpawn "ncmpcpp" ["play"])
--- , ((0, xF86XK_AudioNext ), safeSpawn "ncmpcpp" ["next"])
--- , ((0, xF86XK_AudioPrev ), safeSpawn "ncmpcpp" ["prev"])
--- , ((0, xF86XK_AudioStop ), safeSpawn "ncmpcpp" ["stop"])
+    ++
+    -- mod-[1..9], Switch to workspace N
+    -- mod-shift-[1..9], Move client to workspace N
+    [((m .|. modm, k), windows $ f i)
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
+    ++
+    -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
+    -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
+    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]

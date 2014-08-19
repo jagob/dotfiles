@@ -1,33 +1,8 @@
 ! xrdb -load ~/.Xresources
-URxvt*termName: rxvt-unicode-256color
 
-URxvt*loginShell: true
-URxvt.depth: 32
-URxvt.geometry: 80x32
-! URxvt*BellIsUrgent: true
-URxvt.urgentOnBell: true
-URxvt.saveLines: 1000
-URxvt.internalBorder: 3
-URxvt.lineSpace: 0
-URxvt.iso14755: False 
-
-URxvt*scrollTtyOutput:      false
-URxvt*scrollWithBuffer:     true
-URxvt*scrollTtyKeypress:    true
-
-
-URxvt.transparent: false
-! URxvt.background: rgba:1111/1111/1111/dddd
-
-! [opacity] #bg color
-! URxvt.background: [100]#111111
-! URxvt.background: [95]#000000
-
-! ! URxvt*.shading: 0 to 99 darkens, 101 to 200 lightens
-! URxvt.shading: 25
-! Fade the text by the given percentage when focus is lost; option -fade. 
-! URxvt.fading: 5
-
+! Mouse settings
+Xcursor.theme: Human
+Xcursor.size:  32
 
 ! Xft settings
 Xft.dpi: 96
@@ -36,57 +11,39 @@ Xft.rgba: rgb
 Xft.hinting: true
 ! hintfull, hintmedium, hintslight and hintnone
 Xft.hintstyle: hintslight
-! lcddefault
-! lcdlight	: a lighter filter ideal for fonts that look too bold or fuzzy
-! lcdlegacy	: the original Cairo filter
-! lcdnone	: to disable it entirely
 Xft.lcdfilter: lcddefault
 
+! IRC
+URxvt*modifier: Windows
 
-XTerm*faceName: Ubuntu Mono
-XTerm*faceSize: 14
+! Terminal settings -----------------------------------------
+URxvt*termName: rxvt-unicode-256color
+URxvt.urgentOnBell: true
+URxvt.saveLines: 1500
+! URxvt*loginShell: true
 
 ! Fonts
 URxvt*font: xft:Ubuntu Mono:regular:size=14
-! URxvt*boldfont: xft:Ubuntu Mono:regular:size=14
+URxvt*boldfont: xft:Ubuntu Mono:regular:size=14
 URxvt.allow_bold: false
-! URxvt*font:     xft:Droid Sans Mono :size=12
-! URxvt*boldFont: xft:Droid Sans Mono :size=12
-! URxvt*font: xft:DejaVu Sans Mono:size=12
 ! URxvt*font:     xft:Inconsolata:size=14
 ! URxvt*font:     xft:Terminus:size=14
 
-! Fix font space
-!URxvt*letterSpace: -1
- 
-
-! Scrollbar
 URxvt.scrollBar: false
-! scrollbar style - rxvt (default), plain (most compact), next, or xterm
-URxvt.scrollStyle: rxvt
-URxvt.scrollBar_right: true
-URxvt.scrollColor:          #ffffff
-
-! mouse settings
-! Xcursor.theme: Neutral++
-Xcursor.theme: Human
-Xcursor.size:  32
 
 ! Cursor
 URxvt.cursorBlink: false
 URxvt.cursorUnderline: false
+URxvt.pointerBlank: true
 ! URxvt.cursorColor: #657b83
 
-! Pointer
-! True: blank the pointer when a key is pressed or after a set number of seconds of inactivity. False: the pointer is always visible [default]. 
-URxvt.pointerBlank: true
+URxvt.transparent: false
+! URxvt.background: [100]#111111
+! URxvt.background: [95]#000000
+! URxvt.shading: 25
+! URxvt.fading: 5
 
-
-! IRC
-rxvt*modifier: Windows
-
-
-! Perl extensions --------------------------------------------------------------
+! Perl extensions -------------------------
 URxvt.perl-lib:         /usr/lib/urxvt/perl/
 ! URxvt.perl-ext-common: default,matcher,tabbed,clipboard,confirm-paste,url-select,font,searchable-scrollback,selection-popup,keyboard-select,autocomplete-ALL-the-thin,matchergs, font-size
 URxvt.perl-ext-common: default,matcher,clipboard,font-size
@@ -107,171 +64,90 @@ URxvt.colorUL: #4682B4
 URxvt.keysym.C-Delete: perl:matcher:last
 URxvt.keysym.M-Delete: perl:matcher:list
 
-! URxvt.iconFile: /usr/share/icons/gnome-colors-common/scalable/apps/utilities-terminal.svg
-!URxvt.iconFile: /usr/share/icons/gnome-colors-common/16x16/apps/utilities-terminal.png
 
-! ! define colors
-! #define S_green         #859900
-
-
-
-
-
-
- 
+! Colors     -------------------------------------------------- 
 ! !Jagob
-urxvt*foreground: #e4e4e4
-! URxvt*background: [100]#1a1a1a
-URxvt*background: #2a2a2a
-! black
-URxvt*color0  : #2E3436
-URxvt*color8  : #abab78
-! red
-URxvt*color1  : #df0000
-URxvt*color9  : #ff0000
-! green
-URxvt*color2  : #4E9A06
-! executable, PS1
-URxvt*color10 : #00df5f 
-! yellow
-URxvt*color3  : #ffaf00
-URxvt*color11 : #ff9a00
-! blue
-!! irssi cmus 
-URxvt*color4  : #4a914a 
-!! folders
-URxvt*color12 : #5faf5f 
-! magenta
-URxvt*color5  : #75507B
-URxvt*color13 : #AD7FA8
-! cyan
-URxvt*color6  : #00afdf
-! symbolic links
-URxvt*color14 : #00ff5f
-! white
-URxvt*color7  : #D3D7CF
-URxvt*color15 : #EEEEEC
-  
-
-
-
- 
-! ! moss.vim
-! URxvt.background: [100]#111111
-! urxvt*foreground: #87875f
-! urxvt*color0:  #2E3436
-! urxvt*color8:  #555753
-! urxvt*color1:  #a40000
-! urxvt*color9:  #EF2929
-! urxvt*color2:  #4E9A06
-! ! exekverbar#8AE234
-! urxvt*color10: #00df5f
-! urxvt*color3:  #C4A000
-! urxvt*color11: #FCE94F
-! urxvt*color4:  #3465A4
-! ! mapper #fcaf3e
-! urxvt*color12: #00df5f
-! urxvt*color5:  #75507B
-! urxvt*color13: #AD7FA8
-! urxvt*color6:  #ce5c00
-! ! links #fcaf3e
-! urxvt*color14: #729FCF
-! urxvt*color7:  #babdb9
-! urxvt*color15: #EEEEEC
-! 
-
-
-! !Gnome
-! urxvt*foreground: #f8f8f2
+! urxvt*foreground: #e4e4e4
+! ! URxvt*background: [100]#1a1a1a
+! URxvt*background: #2a2a2a
 ! ! black
 ! URxvt*color0  : #2E3436
-! URxvt*color8  : #555753
+! URxvt*color8  : #abab78
 ! ! red
-! URxvt*color1  : #CC0000
-! URxvt*color9  : #EF2929
+! URxvt*color1  : #df0000
+! URxvt*color9  : #ff0000
 ! ! green
 ! URxvt*color2  : #4E9A06
-! URxvt*color10 : #8AE234
+! ! executable, PS1
+! URxvt*color10 : #00df5f 
 ! ! yellow
-! URxvt*color3  : #C4A000
-! URxvt*color11 : #FCE94F
+! URxvt*color3  : #ffaf00
+! URxvt*color11 : #ff9a00
 ! ! blue
-! URxvt*color4  : #3465A4
-! URxvt*color12 : #729FCF
+! !! irssi cmus 
+! URxvt*color4  : #4a914a 
+! !! folders
+! URxvt*color12 : #5faf5f 
 ! ! magenta
 ! URxvt*color5  : #75507B
 ! URxvt*color13 : #AD7FA8
 ! ! cyan
-! URxvt*color6  : #06989A
-! URxvt*color14 : #34E2E2
+! URxvt*color6  : #00afdf
+! ! symbolic links
+! URxvt*color14 : #00ff5f
 ! ! white
 ! URxvt*color7  : #D3D7CF
 ! URxvt*color15 : #EEEEEC
-! 
+  
 
 
+! Solarized
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
 
-! ! mikado colors 
-! urxvt*background:        #211708
-! urxvt*foreground:        #978f83
-! !black
-! urxvt*color0:    #322a2c
-! urxvt*color8:    #46423b
-! !red
-! urxvt*color1:    #a04363
-! urxvt*color9:    #ae837a
-! !green
-! urxvt*color2:    #9b9329
-! urxvt*color10:   #b4aa30
-! !yellow
-! !*color3:    #c77920
-! urxvt*color3:    #bf7a29
-! urxvt*color11:   #c7a551
-! !blue
-! urxvt*color4:    #6a8c8c
-! urxvt*color12:   #74999e
-! !magenta
-! urxvt*color5:    #856774
-! urxvt*color13:   #9c818e
-! !cyan
-! urxvt*color6:    #757978
-! urxvt*color14:   #9fa590
-! !white
-! urxvt*color7:    #bcbcaf
-! urxvt*color15:   #c1c4bc
- 
-
-! ! solareized colorshceme
-! !Source http://github.com/altercation/solarized
-! urxvt*background: #002b36
-! !*foreground: #657b83
-! urxvt*foreground: #839496
-! ! urxvt*fading: 40
-! ! urxvt*fadeColor: #002b36
-! urxvt*cursorColor: #93a1a1
-! urxvt*pointerColorBackground: #586e75
-! urxvt*pointerColorForeground: #93a1a1
-! ! black dark/light
-! urxvt*color0: #073642
-! urxvt*color8: #002b36
-! !! red dark/light
-! urxvt*color1: #dc322f
-! urxvt*color9: #cb4b16
-! !! green dark/lightexit
-! urxvt*color2: #859900
-! urxvt*color10: #586e75
-! !! yellow dark/light
-! urxvt*color3: #b58900
-! urxvt*color11: #657b83
-! !! blue dark/light
-! urxvt*color4: #268bd2
-! urxvt*color12: #839496
-! !! magenta dark/light
-! urxvt*color5: #d33682
-! urxvt*color13: #6c71c4
-! !! cyan dark/light
-! urxvt*color6: #2aa198
-! urxvt*color14: #93a1a1
-! !! white dark/light
-! urxvt*color7: #eee8d5
-! urxvt*color15: #fdf6e3
+! *background:            S_base3
+*background:            S_base2
+*foreground:            S_base00
+*fading:                5
+! *fadeColor:             S_base03
+! *cursorColor:           S_base1
+! *pointerColorBackground:S_base01
+! *pointerColorForeground:S_base1
+!! black dark/light
+*color0:                S_base02
+*color8:                S_base03
+!! red dark/light
+*color1:                S_red
+*color9:                S_orange
+!! green dark/light
+*color2:                S_green
+*color10:               S_base01
+!! yellow dark/light
+*color3:                S_yellow
+*color11:               S_base00
+!! blue dark/light
+*color4:                S_blue
+*color12:               S_base0
+!! magenta dark/light
+*color5:                S_magenta
+*color13:               S_violet
+!! cyan dark/light
+*color6:                S_cyan
+*color14:               S_base1
+!! white dark/light
+*color7:                S_base2
+*color15:               S_base3
