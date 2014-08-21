@@ -88,8 +88,9 @@ settings = {
     print_active_channel = "yes";
     use_status_window = "yes";
     use_msgs_window = "yes";
-    #    theme = "tlvince";
-    #    hilight_color = "= %R";
+    # theme = "tlvince";
+    theme = "solarized-universal";
+    hilight_color = "= %R";
     #    beep_msg_level = "NOTICE MSGS HILIGHT";
     #    bell_beeps = "no";
     activity_hide_level = "= JOINS QUITS";
@@ -229,34 +230,6 @@ statusbar = {
       items = {
         barstart = { priority = "100"; };
         awl_3 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_4 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_4 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_5 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_5 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_6 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_6 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_7 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_7 = { };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
