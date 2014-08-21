@@ -5,7 +5,9 @@ promptinit
 #Misc settings
 bindkey -e #use emacs keybindings
 # prompt bigfade
-prompt=$'%{\e[1;32m%}%~> %{\e[0m%}' # Custom Prompt settings
+PROMPT=$'%{\e[1;32m%}%~» %{\e[0m%}' # Custom Prompt settings
+RPROMPT='%*' 
+
 
 #### History options
 HISTFILESIZE=1000000000
@@ -68,14 +70,53 @@ alias -s asm=$EDITOR
 alias -s txt=$EDITOR
 
 #aliases
-alias ls='ls --color=auto'
-alias ll='ls -l --color=auto'
-alias la='ls -A'                        # list all files w/o attributes
-alias lt='ls -ltgG' 		            # sort by last modified
-alias sd='sudo shutdown -h now'         # shutdown
+
 alias xres='xrdb -load ~/.Xresources'
+alias matlaber='matlab -nodesktop -nosplash'
+alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
+alias random='cd ~/dropbox/uni/P6/bras/randomgenerator/ && python2 randomgenerator.py'
+alias win='sudo mount /dev/sda2 /mnt/windows'
+alias za='zathura'
+alias bc='bc -lq'						# bash calculator with floating point
+alias gitlog='cd ~/dotfiles/ && git log --graph --abbrev-commit'
+alias bell='sleep 3; echo -e "\a"' 
+alias todo='vim ~/dropbox/faldkasse/todo.txt'
+alias p6='cd ~/dropbox/uni/P6'
+alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
+alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
+alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
+alias vimmer='cd /home/jacob/documents/vimmer/ && vim -o3 c.c matlab.m latex.tex'
+alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
+alias finder='find -name'
+alias updates="pacman -Qqu"
+alias vmi='vim'
 
+alias ls='ls -h --color --group-directories-first'
+alias sl='ls'
+alias lt='ls -ltgG' 		            # sort by last modified
+alias ll="ls -lvgG"
+alias la='ls -A'                        # list all files w/o attributes
+alias lla="ls -AlvgG"
+alias lt='ls -ltgG' 		            # sort by last modified
+alias lx='ls -lXB'                      #  Sort by extension
 
+alias cd..='cd ..'
+alias ..='cd ../..'
+alias ...='cd ../../..'
+alias ....='cd ../../../..'
+alias :q='logout'
+alias sd='sudo shutdown -h now'         # shutdown
+alias rs='sudo shutdown -r now'         # restart
+alias rb='sudo shutdown -r now'         # restart
+
+alias svns='svn status -u'				    # gets svn status
+alias svnu='svn update'				    # updates from svn
+alias svna='svn add . --force'
+alias svnc='svn commit -m ""'		    # commits to svn
+alias svnf='cd ~/documents/svn/p6_2'
+alias svnl='svn log -v -l 5'		    # gets log from svn
+
+# Peter alias
 alias quakelive="LD_PRELOAD='/usr/lib/libpng12.so' /usr/bin/firefox www.quakelive.com"
 alias aaussh='ssh pejor@skoda.es.aau.dk -X'
 alias lundssh='ssh guest@lundgaard.dyndns.dk'

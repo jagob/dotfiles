@@ -83,8 +83,8 @@ myManageHook = composeAll [
     , transience'
     ]
 
--- myLayouts = maximize (tile ||| mtile ||| full)
-myLayouts = (tile ||| mtile ||| full)
+myLayouts = maximize (tile ||| mtile ||| full)
+-- myLayouts = (tile ||| mtile ||| full)
     where
         tile  = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ ResizableTall nmaster delta ratio []
         mtile = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ Mirror $ ResizableTall nmaster delta ratio []
@@ -116,9 +116,9 @@ myPrettyPrinter h = dzenPP {
     , ppTitle           = (" " ++) . dzenColor myDzenFGTextColor myDzenBGColor . shorten 50 . dzenEscape
     , ppLayout          = wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor myDzenFGColor myDzenBGColor .
       (\x -> case x of
-          "NoFrillsDeco Spacing 5 ResizableTall"         ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
-          "NoFrillsDeco Spacing 5 Mirror ResizableTall"  ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
-          "Full"                            ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
+          "Maximize NoFrillsDeco Spacing 5 ResizableTall"         ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
+          "Maximize NoFrillsDeco Spacing 5 Mirror ResizableTall"  ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
+          "Maximize Full"                            ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
           _                                 ->      x
       )
     }

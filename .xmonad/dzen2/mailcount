@@ -1,0 +1,17 @@
+#!/bin/bash
+# ------------------------------------------------------------------
+#     Scripts/mailcount
+#     Description: Script for checking the number of unread mails
+#     Author: Alex Sánchez <kniren@gmail.com>
+# ------------------------------------------------------------------
+
+MAILDIR="$HOME/.mail/jacobgmail/INBOX/new"
+NUMBER=`find $MAILDIR -type f | wc -l`
+ICON='^i(/home/jacob/.xmonad/dzen2/img/mail.xbm)'
+
+
+MAILDIR2="$HOME/.mail/aau/INBOX/new"
+NUMBER2=`find $MAILDIR2 -type f | wc -l`
+ICON2='^i(/home/jacob/.xmonad/dzen2/img/mail.xbm)'
+
+echo "$ICON $NUMBER $ICON2 $NUMBER2"

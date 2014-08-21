@@ -16,8 +16,6 @@ set realname = "Jacob Dueholm"
 
 set header_cache = ~/.cache/mutt
 set message_cachedir = "~/.cache/mutt"
-# set postponed = +[Gmail]/Drafts
-# set trash = "imaps://imap.gmail.com/[Gmail]/Trash"
 unset imap_passive
 set copy=yes ## save copies of sent mail to $record
 
@@ -55,7 +53,12 @@ set sleep_time = 0
 
 # mutt-sidebar
 set sidebar_visible = yes
-set sidebar_width      = 25
+set sidebar_width      = 40
+set sidebar_delim='|'
+# set sidebar_sort=yes
+# set sidebar_folderindent = true
+# set sidebar_format = "%10B"
+# set sidebar_shortpath = true
 macro index b '<enter-command>toggle sidebar_visible<enter><refresh>'
 macro pager b '<enter-command>toggle sidebar_visible<enter><redraw-screen>'
 bind index,pager \CP sidebar-prev # Ctrl-n, Ctrl-p to select next, previous folder.
@@ -64,6 +67,8 @@ bind index,pager \CO sidebar-open # Ctrl-o to open selected folder.
 bind index,pager <down>   sidebar-next
 bind index,pager <up>     sidebar-prev
 bind index,pager <right>  sidebar-open
+
+
 
 # Index Key Bindings ---------------------------------
 bind index gg       first-entry
@@ -97,15 +102,15 @@ macro index \Cr "T~U<enter><tag-prefix><clear-flag>N<untag-pattern>.<enter>" "ma
 # macro index M "<save-message>?<toggle-mailboxes>" "move a message to a mailbox"
 
 
-
 # Contact management
-# to add new contact:
-# From Mutt, press a when an e-mail of the targetted person if selected
-# or edit the alias_file manually: alias nickname Long Name <my-friend@domain.tld> 
+# To add new contact press a when an e-mail of the targetted person is selected, or edit the alias_file manually
 set alias_file = "~/.mutt/aliases"
 set sort_alias = alias
 set reverse_alias = yes
 source $alias_file
 
+
 # colors
-source ~/.mutt/colors
+# source ~/.mutt/colors
+# source ~/.mutt/mutt-colors-solarized-light-256
+source ~/.mutt/mutt-colors-solarized-light-16

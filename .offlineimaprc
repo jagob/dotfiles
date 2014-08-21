@@ -1,0 +1,68 @@
+[general]
+# ui = Blinkenlights
+ui = quiet
+accounts = aau,jacobgmail
+maxsyncaccounts = 3
+pythonfile = ~/.mutt/offlineimap.py
+
+
+[Account jacobgmail]
+localrepository = jacobgmail-local
+remoterepository = jacobgmail-remote
+autorefresh = 10
+
+[Account aau]
+localrepository = aau-local
+remoterepository = aau-remote
+autorefresh = 5
+
+
+[Repository jacobgmail-local]
+type = Maildir
+localfolders = ~/.mail/jacobgmail/
+
+[Repository aau-local]
+type = Maildir
+localfolders = ~/.mail/aau/
+
+[Repository jacobgmail-remote]
+type = Gmail
+remoteuser = jacobvdueholm@gmail.com
+remotepasseval = get_password("mutt_jacobvdueholmATgmailcom")
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+[Repository aau-remote]
+type = IMAP
+remotehost = mail.aau.dk
+remoteuser = jdueho11@student.aau.dk
+remotepasseval = get_password("mutt_jdueho11")
+# nametrans = lambda folder: {'[Gmail]/Sendte e-mails': 'sendinger',
+#                            } .get(folder, folder)
+#
+nametrans = lambda folder: {
+                           } .get(folder, folder)
+folderfilter = lambda folder: folder not in ['Drafts',
+                                             'Journal',
+                                             'Kalender',
+                                             'Kladder',
+                                             'Kontaktpersoner',
+                                             'Noter',
+                                             'Opgaver',
+                                             'Slettet post',
+                                             'Trash',
+                                             'Uønsket e-mail',
+                                             'Udbakke',
+                                             ]
+ssl = yes
+realdelete = no
+sslcacertfile = /etc/ssl/certs/ca-certificates.crt
+
+
+[mbnames]
+enabled = yes
+# filename = ~/.mail/jacobgmail/mailboxes
+filename = ~/.mail/aau/mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"

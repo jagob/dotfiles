@@ -1,3 +1,10 @@
+set mbox_type   = Maildir
+set folder      = ~/.mail/
+set spoolfile   = ~/.mail/aau/INBOX
+# mailboxes =/INBOX ="[Gmail].Sendte e-mails" =gemte 
+source ~/.mail/aau/mailboxes
+
+
 ## Receive options.
 set imap_user=jdueho11@student.aau.dk
 set my_pw1 = `gnome-keyring-query get mutt_jdueho11` 
@@ -5,12 +12,12 @@ set imap_pass = my_pw1
 set from=jdueho11@student.aau.dk
 set hostname="mail.aau.dk"
 
-set folder = imaps://mail.aau.dk:993/
-set spoolfile = +INBOX
-set postponed = +Drafts
-set record = +Sent
+# set folder = imaps://mail.aau.dk:993/
+# set spoolfile = +INBOX
+# set postponed = +Drafts
+# set record = +Sent
 
-mailboxes imaps://mail.aau.dk/INBOX imaps://mail.aau.dk/INBOX/p6 imaps://mail.aau.dk/INBOX/p5 imaps://mail.aau.dk/INBOX/studiejobs imaps://mail.aau.dk/Sent imaps://mail.aau.dk/Trash
+# mailboxes imaps://mail.aau.dk/INBOX imaps://mail.aau.dk/INBOX/p6 imaps://mail.aau.dk/INBOX/p5 imaps://mail.aau.dk/INBOX/studiejobs imaps://mail.aau.dk/Sent imaps://mail.aau.dk/Trash
 
 ## Send options.
 # Connection options
