@@ -117,7 +117,7 @@ URxvt.keysym.M-Delete: perl:matcher:list
 #define S_violet        #6c71c4
 #define S_blue          #268bd2
 #define S_cyan          #2aa198
-#define S_green         #859900
+#define S_green         #5faf5f
 
 ! *background:            S_base3
 URxvt*background:            S_base2

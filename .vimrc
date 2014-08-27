@@ -77,7 +77,8 @@ set autoindent      " autoindent
 " let g:solarized_termcolors=256
 " set t_Co=256 "set t_Co=16
 set background=light
-colorscheme solarized
+" colorscheme solarized
+colorscheme jagob-delight
 
 " mark line 80
 "set colorcolumn=80

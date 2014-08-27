@@ -85,7 +85,7 @@ alias p6='cd ~/dropbox/uni/P6'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
 alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
-alias vimmer='cd /home/jacob/documents/vimmer/ && vim -o3 c.c matlab.m latex.tex'
+alias vimmer='cd /home/jacob/dropbox/faldkasse/linux/vimmer/ && vim -o3 c.c matlab.m latex.tex'
 alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
 alias finder='find -name'
 alias updates="pacman -Qqu"
@@ -117,7 +117,7 @@ alias svnf='cd ~/documents/svn/p6_2'
 alias svnl='svn log -v -l 5'		    # gets log from svn
 
 # Peter alias
-alias quakelive="LD_PRELOAD='/usr/lib/libpng12.so' /usr/bin/firefox www.quakelive.com"
+# alias quakelive="LD_PRELOAD='/usr/lib/libpng12.so' /usr/bin/firefox www.quakelive.com"
 alias aaussh='ssh pejor@skoda.es.aau.dk -X'
 alias lundssh='ssh guest@lundgaard.dyndns.dk'
 alias latexmkrapport="ls *.latexmain | xargs latexmk -pdf -pvc -silent"

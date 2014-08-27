@@ -47,6 +47,7 @@ main =  do
           terminal              = "urxvt"
         , focusedBorderColor    = "#5faf5f"
         , normalBorderColor     = "#fdf6e3"
+        -- , modMask               = mod4Mask
         , borderWidth           = 3
         , workspaces            = myWorkspaces
         , keys                  = myKeys
@@ -147,7 +148,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     , ((modm,               xK_Tab   ), windows W.focusDown)    -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)    -- Move focus to the next window
     , ((modm,               xK_k     ), windows W.focusUp  )    -- Move focus to the previous window
-    , ((modm,               xK_m     ), windows W.focusMaster  )
+    -- , ((modm,               xK_m     ), windows W.focusMaster  )
     , ((modm,               xK_Return), windows W.swapMaster)   -- Swap the focused window and the master window
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )   -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )   -- Swap the focused window with the previous window
@@ -158,10 +159,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     , ((modm,               xK_t     ), withFocused $ windows . W.sink) -- Push window back into tiling
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1)) -- Increment the number of windows in the master area
     , ((modm              , xK_period), sendMessage (IncMasterN (-1))) -- Deincrement the number of windows in the master area
-    , ((modm              , xK_b     ), sendMessage ToggleStruts) -- Toggle the status bar gap
+    , ((modm              , xK_m     ), sendMessage ToggleStruts) -- Toggle the status bar gap
     -- , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- Quit xmonad
     -- , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
-    , ((modm              , xK_q     ), spawn "xmonad --recompile; xmonad --restart") -- Restart xmonad
+    , ((modm              , xK_q     ), spawn "killall dzen2; xmonad --recompile; xmonad --restart") -- Restart xmonad
 
     , ((modm,               xK_o     ), nextScreen)
     , ((modm .|. shiftMask, xK_o     ), shiftNextScreen >> nextScreen)
