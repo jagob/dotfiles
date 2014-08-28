@@ -14,14 +14,14 @@ maximum_width 246 5
  
 TEXT
 ${if_match "${acpiacadapter}" == "off-line"}\
-${if_match ${battery_percent} > 40}^fg(\#5faf5f) ^ca(1,~/.xmonad/Scripts/dzen2/img-battery.sh)^i(~/.xmonad/dzen2/img/xbm8x8/bat_full_01.xbm)^ca()${endif}\
-${if_match ${battery_percent} <= 40}${if_match ${battery_percent} > 15}^fg(\#ffff00) ^ca(1,~/.xmonad/Scripts/dzen2/img-battery.sh)^i(~/.xmonad/dzen2/img/xbm8x8/bat_low_01.xbm)^ca()${endif}${endif}\
-${if_match ${battery_percent} <= 15}^fg(red) ^ca(1,~/.xmonad/Scripts/dzen2/img-battery.sh)^i(~/.xmonad/dzen2/img/xbm8x8/bat_empty_01.xbm)^ca()${endif}\
-${if_match ${battery_percent} <= 14}${endif}\
-${else}^fg(\#5faf5f) ^ca(1,~/.xmonad/Scripts/dzen2/img-battery.sh)^i(~/.xmonad/dzen2/img/xbm8x8/ac_01.xbm)^ca()${endif} \
-^fg(\#5faf5f) ${battery_percent}% 
+${if_match ${battery_percent} > 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/bat_full_01.xbm)${endif}\
+${if_match ${battery_percent} <= 40}${if_match ${battery_percent} > 15}^fg(\#ffff00)^i(~/.xmonad/dzen2/img/bat_low_01.xbm)${endif}${endif}\
+${if_match ${battery_percent} <= 15}^fg(\#ff0000)^i(/home/jacob/.xmonad/dzen2/img/bat_empty_01.xbm)${endif}\
+${else}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/ac_01.xbm)\
+${endif}\
+ ^fg(\#5faf5f)${battery_percent}%    \
 \
-^fg(\#5faf5f)${execi 10 ~/.xmonad/dzen2/mailcount}^fg(\#5faf5f)   \
+^fg(\#5faf5f)${execi 10 /home/jacob/.xmonad/dzen2/mailcount}^fg(\#5faf5f)   \
 ^ca(1,amixer -D pulse sset Master toggle)\
 ^ca(3,pavucontrol)\
 ^ca(4,amixer -D pulse sset Master 5%+)\
@@ -36,4 +36,3 @@ ${endif} ^ca() ^ca() ^ca() ^ca()\
 \
 ^fg(\#5faf5f)  ^ca(1,~/.xmonad/dzen2/calender.sh)${time %a %e %b} \
 ^fg(\#5faf5f) ${time %R} ${color 303030}${color} ^ca()\
-

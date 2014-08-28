@@ -7,6 +7,8 @@
 .xmonad/xmonad.o
 .xmonad/xmonad.errors
 .xmonad/xmonad-x86_64-linux
+.xmonad/lib/Dzen.hi
+.xmonad/lib/Dzen.o
 
 .irssi/config.autosave
 .irssi/saved_colors
