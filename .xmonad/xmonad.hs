@@ -129,12 +129,17 @@ myDzenBGColor = "#fdf6e3"
 myFont = "Ubuntu regular:size=12:antialias=true"
 myDzenFont = "Bitstream Sans Vera:pixelsize=18"
 
-myStatusBar = "dzen2 -x 30 -y 0  -w 1170 -ta l " ++ myDzenStyle
-myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
-myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1050 -w 1680 -ta c " ++ myDzenStyle
-myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
--- bgconky = "conky -c ~/.xmonad/.conkyrc-todo" 
+-- -- Desktop
+-- myStatusBar = "dzen2 -x 30 -y 0 -w 1070 -ta l " ++ myDzenStyle
+-- myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
+-- myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1050 -w 1680 -ta c " ++ myDzenStyle
+-- myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
 
+-- Laptop
+myStatusBar = "dzen2 -x 30 -y 0 -w 1370 -ta l " ++ myDzenStyle
+myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1500 -y 0 -w 420 -ta r " ++myDzenStyle
+myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta c " ++ myDzenStyle
+myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
 
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
@@ -162,7 +167,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     , ((modm              , xK_m     ), sendMessage ToggleStruts) -- Toggle the status bar gap
     -- , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- Quit xmonad
     -- , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
-    , ((modm              , xK_q     ), spawn "killall dzen2; xmonad --recompile; xmonad --restart") -- Restart xmonad
+    , ((modm              , xK_q     ), spawn "killall conky dzen2; xmonad --recompile; xmonad --restart") -- Restart xmonad
 
     , ((modm,               xK_o     ), nextScreen)
     , ((modm .|. shiftMask, xK_o     ), shiftNextScreen >> nextScreen)
