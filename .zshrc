@@ -75,6 +75,7 @@ alias xres='xrdb -load ~/.Xresources'
 alias matlaber='matlab -nodesktop -nosplash'
 alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
 alias random='cd ~/dropbox/uni/P6/bras/randomgenerator/ && python2 randomgenerator.py'
+alias quakelive='cd /home/jacob/.wine-ql/drive_c/Program\ Files/Quake\ Live/ && wine Launcher.exe'
 alias win='sudo mount /dev/sda2 /mnt/windows'
 alias za='zathura'
 alias bc='bc -lq'						# bash calculator with floating point
