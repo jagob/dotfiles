@@ -54,6 +54,7 @@ main =  do
         , layoutHook            = avoidStruts $ myLayouts
         , logHook               = dynamicLogWithPP $ myPrettyPrinter dzen
         , manageHook            = manageDocks <+> myManageHook 
+        -- , manageHook            = myManageHook <+> manageHook defaultConfig -- uses default too
         -- , handleEventHook       = ewmhDesktopsEventHook
         , startupHook           = setWMName "LG3D"
         , focusFollowsMouse     = False
@@ -69,16 +70,15 @@ myWorkspaces            = clickable . (map dzenEscape) $ ["1","2","3","4","5","6
 
 -- Define the workspace an application has to go to
 myManageHook = composeAll [ 
-      className =? "stalonetray"    --> doIgnore
-    , className =? "MPlayer"        --> doFloat
-    , className =? "Vlc"            --> doFloat
-    , className =? "Gimp"           --> doFloat
-    , isFullscreen                  --> doFullFloat
-    , title     =? "mutt"           --> doShift "6"
-    , title     =? "irssi"          --> doShift "7"    
-    , className =? "XCalc"          --> doFloat
-    , title     =? "Copying Files"  --> doFloat
-    , title     =? "File Operation Progress"  --> doFloat
+      className =? "stalonetray"            --> doIgnore
+    , className =? "Vlc"                    --> doFloat
+    , className =? "Gimp"                   --> doFloat
+    , isFullscreen                          --> doFullFloat
+    , title     =? "mutt"                   --> doShift (myWorkspaces !! 5) -- send to ws 6
+    , title     =? "irssi"                  --> doShift (myWorkspaces !! 6) -- send to ws 7
+    , className =? "XCalc"                  --> doFloat
+    , title     =? "Copying Files"          --> doFloat
+    , title     =? "File Operation Progress"--> doFloat
     , title     =? "File Operation Proces"  --> doFloat
     , insertPosition Below Newer
     , transience'
@@ -114,13 +114,14 @@ myPrettyPrinter h = dzenPP {
     , ppUrgent          = dzenColor "#ff0000"     myDzenBGColor . wrap " " " " 
     , ppWsSep           = " "
     , ppSep             = "  |  "
-    , ppTitle           = (" " ++) . dzenColor myDzenFGTextColor myDzenBGColor . shorten 50 . dzenEscape
+    , ppTitle           = (" " ++) . dzenColor myDzenFGTextColor myDzenBGColor . wrap "^ca(1,xdotool key alt+j)^ca(3,xdotool key alt+shift+c)"
+                          "                          ^ca()^ca()" . shorten 80 . dzenEscape
     , ppLayout          = wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor myDzenFGColor myDzenBGColor .
       (\x -> case x of
-          "Maximize NoFrillsDeco Spacing 5 ResizableTall"         ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
-          "Maximize NoFrillsDeco Spacing 5 Mirror ResizableTall"  ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
-          "Maximize Full"                            ->      "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
-          _                                 ->      x
+          "Maximize NoFrillsDeco Spacing 5 ResizableTall"       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
+          "Maximize NoFrillsDeco Spacing 5 Mirror ResizableTall"-> "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
+          "Maximize Full"                                       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
+          _                                                     -> x
       )
     }
 myDzenFGColor = "#5faf5f"
@@ -132,11 +133,11 @@ myDzenFont = "Bitstream Sans Vera:pixelsize=18"
 -- -- Desktop
 -- myStatusBar = "dzen2 -x 30 -y 0 -w 1070 -ta l " ++ myDzenStyle
 -- myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
--- myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1050 -w 1680 -ta c " ++ myDzenStyle
+-- myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1050 -w 1680 -ta l " ++ myDzenStyle
 -- myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
 
 -- Laptop
-myStatusBar = "dzen2 -x 30 -y 0 -w 1370 -ta l " ++ myDzenStyle
+myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1370 -ta l " ++ myDzenStyle
 myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1500 -y 0 -w 420 -ta r " ++myDzenStyle
 myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta c " ++ myDzenStyle
 myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
