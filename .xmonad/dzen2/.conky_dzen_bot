@@ -8,25 +8,24 @@ update_interval 1
 update_interval_on_battery 3
 total_run_times 0
 double_buffer yes
+own_window yes
+own_window_transparent no
+own_window_type dock
 
 TEXT
-${if_gw}${if_existing /proc/net/route wlan0}\
-${if_match ${wireless_link_qual_perc wlan0} > 80}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless5.xbm)${endif}\
-${if_match ${wireless_link_qual_perc wlan0} <= 80}${if_match ${wireless_link_qual_perc wlan0} > 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless3.xbm) ${endif}${endif}\
-${if_match ${wireless_link_qual_perc wlan0} <= 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless1.xbm)${endif}\
-^fg(\#bbbbbb)${wireless_link_qual_perc wlan0}%  ${wireless_essid wlan0}^fg()  ^fg(\#d94c3d)${upspeedf wlan0}k^fg()  ^fg(\#a4bc51)${downspeedf wlan0}k^fg()\
+^pa(30)\
+^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e htop)^i(/home/jacob/.xmonad/dzen2/img/cpu.xbm)  \
+^fg(\#5faf5f)${cpu cpu1}% - ${cpu cpu2}%   ^ca() \
+^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e htop)^i(/home/jacob/.xmonad/dzen2/img/mem.xbm)  \
+^fg(\#5faf5f)${memperc}% ^ca() \
+^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/games.xbm)  \
+^fg(\#5faf5f)${top name 1}\
 \
- ^fg(\#5faf5f)${wireless_essid wlan0} ${endif}  \
+^pa(600)\
+^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e ncmpcpp)^i(/home/jacob/.xmonad/dzen2/img/xbm8x8/note.xbm)  \
+^fg(\#5faf5f)${mpd_artist} - ^fg(\#5faf5f)${mpd_title}  ^ca() \
 \
-${if_existing /proc/net/route eth0}\
-^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/net_wired.xbm)\
-^fg(\#5faf5f)Eth0\
-^fg(\#bbbbbb)eth0^fg()  ^fg(\#d94c3d)${upspeedf eth0}k^fg()  ^fg(\#a4bc51)${downspeedf eth0}k^fg()\
-${endif}\
-${else}\
-^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/net_down_03.xbm)\
-^fg(\#5faf5f)Non connesso${endif}\
-\
+^pa(600)\
 ${if_match "${acpiacadapter}" == "off-line"}\
 ${if_match ${battery_percent} > 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/bat_full_01.xbm)${endif}\
 ${if_match ${battery_percent} <= 40}${if_match ${battery_percent} > 15}^fg(\#ffff00)^i(~/.xmonad/dzen2/img/bat_low_01.xbm)${endif}${endif}\
@@ -38,11 +37,19 @@ ${if_match "${acpiacadapter}" == "on-line"}\
  ^fg(\#5faf5f)${battery_percent}%    \
 ${endif}\
 \
-^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e ncmpcpp)^i(/home/jacob/.xmonad/dzen2/img/xbm8x8/note.xbm)  \
-^fg(\#5faf5f)${mpd_artist} - ^fg(\#5faf5f)${mpd_title}  ^ca() \
-^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e htop)^i(/home/jacob/.xmonad/dzen2/img/cpu.xbm)  \
-^fg(\#5faf5f)${cpu cpu1}% - ${cpu cpu2}%   ^ca() \
-^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e htop)^i(/home/jacob/.xmonad/dzen2/img/mem.xbm)  \
-^fg(\#5faf5f)${memperc}% ^ca() \
-^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/games.xbm)  \
-^fg(\#5faf5f)${top name 1}\
+${if_gw}${if_existing /proc/net/route wlan0}\
+${if_match ${wireless_link_qual_perc wlan0} > 80}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless5.xbm)${endif}\
+${if_match ${wireless_link_qual_perc wlan0} <= 80}${if_match ${wireless_link_qual_perc wlan0} > 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless3.xbm) ${endif}${endif}\
+${if_match ${wireless_link_qual_perc wlan0} <= 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless1.xbm)${endif}\
+^fg(\#bbbbbb)${wireless_link_qual_perc wlan0}%  ${wireless_essid wlan0}^fg()  ^fg(\#d94c3d)${upspeedf wlan0}k^fg()  ^fg(\#a4bc51)${downspeedf wlan0}k^fg()\
+\
+ ^fg(\#5faf5f)${wireless_essid wlan0} ${endif}  \
+\
+${if_existing /proc/net/route eth0}\
+^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/net_wired.xbm)\
+^fg(\#5faf5f)Eth0\
+^fg(\#d94c3d)  ${upspeedf eth0}k^fg()  ^fg(\#a4bc51)${downspeedf eth0}k  ^fg()\
+${endif}\
+${else}\
+^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/net_down_03.xbm)\
+^fg(\#5faf5f)Non connesso${endif}\
