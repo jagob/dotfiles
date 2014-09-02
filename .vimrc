@@ -307,9 +307,10 @@ let Tlist_File_Fold_Auto_Close = 1
 " Left column is for terminal environment
 " Right column is for GUI environment
 let g:rbpt_colorpairs = [
-    \ ['yellow'		,	'DarkOrchid3'],
-    \ ['lightyellow'	,	'DarkOrchid3'],
-    \ ] 	 
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ]
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare

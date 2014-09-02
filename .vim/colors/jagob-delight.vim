@@ -25,9 +25,9 @@ if &t_Co == 88 || &t_Co == 256
        hi MatchParen   ctermfg=0 ctermbg=250
     endif
 
-    hi Normal       ctermfg=10     ctermbg=15 
+    hi Normal       ctermfg=0     ctermbg=15 
 
-    hi Comment      ctermfg=8
+    hi Comment      ctermfg=10
     hi Cursor       ctermfg=none    ctermbg=7
     hi CursorIM     ctermfg=none    ctermbg=7
     hi CursorLine   cterm=none
@@ -80,10 +80,10 @@ if &t_Co == 88 || &t_Co == 256
     hi VertSplit    ctermfg=12   ctermbg=none
     hi Title        ctermfg=12
 
-    hi Search       ctermfg=232   ctermbg=8 
-    hi IncSearch    ctermfg=8   ctermbg=232 " opposite
-    hi Visual       ctermfg=232   ctermbg=8
-    hi VisualNOS    ctermfg=232   ctermbg=8
+    hi Search       ctermfg=7   ctermbg=3 
+    hi IncSearch    ctermfg=3   ctermbg=7 " opposite
+    hi Visual       ctermfg=7   ctermbg=3
+    hi VisualNOS    ctermfg=7   ctermbg=3
     hi Folded       ctermfg=8   ctermbg=0
     hi FoldColumn   ctermfg=8   ctermbg=none
     hi StatusLine   ctermfg=2   ctermbg=0

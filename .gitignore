@@ -10,5 +10,8 @@
 .xmonad/lib/Dzen.hi
 .xmonad/lib/Dzen.o
 
+.mutt/offlineimap.pyc
+
 .irssi/config.autosave
 .irssi/saved_colors
+

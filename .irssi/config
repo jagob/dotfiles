@@ -247,5 +247,19 @@ statusbar = {
         barend = { priority = "100"; alignment = "right"; };
       };
     };
+    awl_6 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_6 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_7 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_7 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
   };
 };
