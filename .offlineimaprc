@@ -1,6 +1,6 @@
 [general]
-# ui = Blinkenlights
-ui = quiet
+ui = Blinkenlights
+# ui = quiet
 accounts = aau,jacobgmail
 maxsyncaccounts = 3
 pythonfile = ~/.mutt/offlineimap.py
