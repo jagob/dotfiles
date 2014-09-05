@@ -37,10 +37,10 @@ if [ -x /usr/bin/xfce4-power-manager ] ; then
 fi
 
 feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
-sleep 15 && dropboxd & 
-sleep 15 && /usr/bin/offlineimap &
-sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
-sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
+# sleep 15 && dropboxd & 
+# sleep 15 && /usr/bin/offlineimap &
+# sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
+# sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
 /home/jacob/.xmonad/dzen2/start_apps &
 stalonetray &
 
