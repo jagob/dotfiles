@@ -10,20 +10,19 @@ update_interval_on_battery 3
 total_run_times 0
 double_buffer yes
 
- 
 TEXT
-^fg(\#5faf5f)${execi 10 /home/jacob/.xmonad/dzen2/mailcount}^fg(\#5faf5f)   \
+^fg(\#00afdf)^i(/home/jacob/.xmonad/dzen2/img/mail.xbm) \
+^fg(\#5faf5f)${execi 5 /home/jacob/.xmonad/dzen2/mailcount}\
 ^ca(1,amixer -D pulse sset Master toggle)\
 ^ca(3,pavucontrol)\
 ^ca(4,amixer -D pulse sset Master 5%+)\
 ^ca(5,amixer -D pulse sset Master 5%-)\
-${if_match "${execi 1 amixer sget 'Master'| grep "Front Left:"| egrep -o '(\[(on|off)\])' | sed ':a;N;$!ba;s/\n/  /g' | tr -d "[]"}" == "on"} \
-^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/volume100.xbm)  \
-^fg(\#5faf5f)${execi 1 amixer sget 'Master'| grep "Front Left:" | egrep -o '([0-9]+%)'} \
+  ${if_match "${execi 1 amixer sget 'Master'| grep -m 1 "%"| egrep -o '(\[(on|off)\])' | sed ':a;N;$!ba;s/\n/  /g' | tr -d "[]"}" == "on"} \
+^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/volume100.xbm) \
+^fg(\#5faf5f)${execi 1 amixer sget 'Master'| grep -m 1 "%" | egrep -o '([0-9]+%)'} \
 ${endif}\
-${if_match "${execi 1 amixer sget 'Master'| grep "Front Left:"| egrep -o '(\[(on|off)\])' | sed ':a;N;$!ba;s/\n/  /g' | tr -d "[]"}" == "off"} \
+${if_match "${execi 1 amixer sget 'Master'| grep -m 1 "%"| egrep -o '(\[(on|off)\])' | sed ':a;N;$!ba;s/\n/  /g' | tr -d "[]"}" == "off"} \
 ^fg(\#ff0000)^i(/home/jacob/.xmonad/dzen2/img/volume0.xbm)  \
-${endif} ^ca() ^ca() ^ca() ^ca()\
+${endif}^ca()^ca()^ca()^ca()\
 \
-^fg(\#5faf5f)  ^ca(1,~/.xmonad/dzen2/calender.sh)${time %a %e %b} \
-^fg(\#5faf5f) ${time %R} ${color 303030}${color} ^ca()\
+^fg(\#5faf5f)  ^ca(1,~/.xmonad/dzen2/calender.sh)${time %a %e %b   %R  }

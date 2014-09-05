@@ -60,8 +60,8 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 [mbnames]
 enabled = yes
-filename = ~/.mail/jacobgmail/mailboxes
-# filename = ~/.mail/aau/mailboxes
+# filename = ~/.mail/jacobgmail/mailboxes
+filename = ~/.mail/aau/mailboxes
 header = "mailboxes "
 peritem = "+%(accountname)s/%(foldername)s"
 sep = " "

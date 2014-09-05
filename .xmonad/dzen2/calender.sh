@@ -2,10 +2,10 @@
 
  # A simple popup showing calender
 
-CALENDER=$(cal)
+CALENDER=$(cal -w)
 
 # FONT="-*-ubuntu-mono-regular-*-12-*-*-*-*-*-*-*-*"
-FONT="-*-terminus-medium-r-*-*-20-*-*-*-*-*-*-*"
+FONT="-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*"
 
  (
  echo "$CALENDER"
