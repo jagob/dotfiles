@@ -1,4 +1,4 @@
-# placed in ~/.config/zathura
+# cd ~/.config/zathura && ln -s ~/dotfiles/zathurarc .
 # settings
 # set window-height 1024
 # set window-width 768

@@ -15,7 +15,6 @@ xrdb -merge ~/.Xresources
 setxkbmap -layout dk
 setxkbmap -option caps:escape
 xsetroot -cursor_name left_ptr
-# xmodmap -e "keysym Alt_L = Meta_L Alt_L"
 export EDITOR=vim
 
 # Gnome keyring
@@ -32,15 +31,15 @@ if [ -x /usr/bin/nm-applet ] ; then
 fi
 
 if [ -x /usr/bin/xfce4-power-manager ] ; then
-   sleep 3
+   sleep 5
    xfce4-power-manager &
 fi
 
 feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
-# sleep 15 && dropboxd & 
+sleep 15 && dropboxd & 
 # sleep 15 && /usr/bin/offlineimap &
 # sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
-# sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
+sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
 /home/jacob/.xmonad/dzen2/start_apps &
 stalonetray &
 
