@@ -42,6 +42,7 @@ main =  do
     dzen <- spawnPipe myStatusBar
     conkytop <- spawnPipe myTopBar
     conkybot <- spawnPipe myBotBar
+    conkyapp <- spawnPipe myStartBar
 
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
           terminal              = "urxvt"
@@ -71,9 +72,10 @@ myWorkspaces            = clickable . (map dzenEscape) $ ["1","2","3","4","5","6
 -- Define the workspace an application has to go to
 myManageHook = composeAll [ 
       className =? "stalonetray"            --> doIgnore
+    , isFullscreen                          --> doFullFloat
     , className =? "Vlc"                    --> doFloat
     , className =? "Gimp"                   --> doFloat
-    , isFullscreen                          --> doFullFloat
+    , className =? "Steam"                  --> doShift (myWorkspaces !! 4) -- send to ws 6
     , title     =? "mutt"                   --> doShift (myWorkspaces !! 5) -- send to ws 6
     , title     =? "irssi"                  --> doShift (myWorkspaces !! 6) -- send to ws 7
     , className =? "XCalc"                  --> doFloat
@@ -132,21 +134,24 @@ myDzenFont = "Bitstream Sans Vera:pixelsize=18"
 
 -- Desktop
 myStatusBar = "dzen2 -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
-myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
-myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1030 -w 1680 -ta l " ++ myDzenStyle
+myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
+myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1030 -w 1680 -ta l " ++ myDzenStyle
+myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
 myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
+
 
 -- -- Laptop
 -- myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
 -- myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 620 -ta r " ++myDzenStyle
 -- myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta l " ++ myDzenStyle
+-- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
 -- myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
 
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
       ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- launch a terminal
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")          -- launch gmrun
-    , ((modm,               xK_p     ), spawn "dmenu_run")      -- launch dmenu
+    , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Ubuntu Mono-14'")
     , ((modm .|. shiftMask, xK_c     ), kill)                   -- close focused window
     , ((modm,               xK_space ), sendMessage NextLayout) -- Rotate through the available layout algorithms
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) --  Reset the layouts on the current workspace to default

@@ -2,20 +2,20 @@
 ui = Blinkenlights
 # ui = quiet
 accounts = aau,jacobgmail
-maxsyncaccounts = 3
+maxsyncaccounts = 2
 pythonfile = ~/.mutt/offlineimap.py
-
 
 [Account jacobgmail]
 localrepository = jacobgmail-local
 remoterepository = jacobgmail-remote
-autorefresh = 10
+autorefresh = 2
+quick = 10
 
 [Account aau]
 localrepository = aau-local
 remoterepository = aau-remote
-autorefresh = 5
-
+autorefresh = 1
+quick = 10
 
 [Repository jacobgmail-local]
 type = Maildir
@@ -29,6 +29,9 @@ localfolders = ~/.mail/aau/
 type = Gmail
 remoteuser = jacobvdueholm@gmail.com
 remotepasseval = get_password("mutt_jacobvdueholmATgmailcom")
+holdconnectionopen = yes
+keepalive = 60
+maxconnections = 1
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 [Repository aau-remote]
@@ -54,6 +57,9 @@ folderfilter = lambda folder: folder not in ['Drafts',
                                              'Udbakke',
                                              ]
 ssl = yes
+maxconnections = 1
+holdconnectionopen = yes
+keepalive = 60
 realdelete = no
 sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
