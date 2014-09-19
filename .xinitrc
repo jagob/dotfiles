@@ -26,20 +26,16 @@ export EDITOR=vim
 # export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
 
-if [ -x /usr/bin/nm-applet ] ; then
-   nm-applet --sm-disable &
-fi
-
 if [ -x /usr/bin/xfce4-power-manager ] ; then
    sleep 5
    xfce4-power-manager &
 fi
 
 feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
-sleep 15 && dropboxd & 
-# sleep 15 && /usr/bin/offlineimap &
-# sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
-sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
+sleep 10 && dropboxd & 
+sleep 20 && /usr/bin/urxvt -e /usr/bin/irssi &
+sleep 30 && /usr/bin/offlineimap -u quiet &
+sleep 30 && /usr/bin/urxvt -e /usr/bin/mutt &
 /home/jacob/.xmonad/dzen2/start_apps &
 stalonetray &
 
