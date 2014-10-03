@@ -19,10 +19,11 @@ TEXT
 ^ca(5,amixer -D pulse sset Master 5%-)\
   ${if_match "${execi 1 amixer sget 'Master'| grep -m 1 "%"| egrep -o '(\[(on|off)\])' | sed ':a;N;$!ba;s/\n/  /g' | tr -d "[]"}" == "on"} \
 ^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/volume100.xbm) \
-^fg(\#5faf5f)${execi 1 amixer sget 'Master'| grep -m 1 "%" | egrep -o '([0-9]+%)'} \
 ${endif}\
 ${if_match "${execi 1 amixer sget 'Master'| grep -m 1 "%"| egrep -o '(\[(on|off)\])' | sed ':a;N;$!ba;s/\n/  /g' | tr -d "[]"}" == "off"} \
-^fg(\#ff0000)^i(/home/jacob/.xmonad/dzen2/img/volume0.xbm)  \
-${endif}^ca()^ca()^ca()^ca()\
+^fg(\#ff0000)^i(/home/jacob/.xmonad/dzen2/img/volume0.xbm) \
+${endif}\
+${execi 1 amixer sget 'Master'| grep -m 1 "%" | egrep -o '([0-9]+%)'} \
+^ca()^ca()^ca()^ca()\
 \
 ^fg(\#5faf5f)  ^ca(1,~/.xmonad/dzen2/calender.sh)${time %a %e %b   %R  }^ca()
