@@ -57,10 +57,11 @@ esac
 #Environment variables
 # export OOO_FORCE_DESKTOP=gnome
 export EDITOR='vim'
-export WORDCHARS='' #Treat all special chars as word separators
-export MATLABPATH='/home/jacob/.matlab'
+# export WORDCHARS='' #Treat all special chars as word separators
+# export MATLABPATH='/home/jacob/.matlab'
 export MPD_HOST=/home/jacob/.mpd/socket
-export BROWSER=/usr/bin/google-chrome-stable
+export BROWSER=/usr/bin/firefox
+export TERMINFO=/usr/share/terminfo
 
 #suffix-alias
 alias -s tex=$EDITOR
@@ -116,6 +117,7 @@ alias svna='svn add . --force'
 alias svnc='svn commit -m ""'		    # commits to svn
 alias svnf='cd ~/documents/svn/p6_2'
 alias svnl='svn log -v -l 5'		    # gets log from svn
+
 
 # Peter alias
 # alias quakelive="LD_PRELOAD='/usr/lib/libpng12.so' /usr/bin/firefox www.quakelive.com"

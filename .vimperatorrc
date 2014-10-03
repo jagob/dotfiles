@@ -1,0 +1,9 @@
+"===[ Mappings ]========================================================
+ 
+" Press 'F10' to toggle Vimperator
+noremap <F10> :vimperatortoggle<CR>
+ 
+ 
+noremap K gt
+noremap J gT
+
