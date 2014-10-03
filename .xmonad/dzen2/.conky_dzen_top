@@ -25,4 +25,4 @@ ${if_match "${execi 1 amixer sget 'Master'| grep -m 1 "%"| egrep -o '(\[(on|off)
 ^fg(\#ff0000)^i(/home/jacob/.xmonad/dzen2/img/volume0.xbm)  \
 ${endif}^ca()^ca()^ca()^ca()\
 \
-^fg(\#5faf5f)  ^ca(1,~/.xmonad/dzen2/calender.sh)${time %a %e %b   %R  }
+^fg(\#5faf5f)  ^ca(1,~/.xmonad/dzen2/calender.sh)${time %a %e %b   %R  }^ca()

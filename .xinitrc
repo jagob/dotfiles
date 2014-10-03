@@ -19,11 +19,11 @@ export EDITOR=vim
 
 # Gnome keyring
 # Start a D-Bus session
-# source /etc/X11/xinit/xinitrc.d/30-dbus
+source /etc/X11/xinit/xinitrc.d/30-dbus
 # Start GNOME Keyring
-# eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 # You probably need to do this too:
-# export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
 
 if [ -x /usr/bin/nm-applet ] ; then
@@ -37,8 +37,8 @@ fi
 
 feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
 sleep 15 && dropboxd & 
-# sleep 15 && /usr/bin/offlineimap &
-# sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
+sleep 15 && /usr/bin/offlineimap -u quiet &
+sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
 sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
 /home/jacob/.xmonad/dzen2/start_apps &
 stalonetray &
