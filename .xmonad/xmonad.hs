@@ -132,20 +132,19 @@ myDzenBGColor = "#fdf6e3"
 myFont = "Ubuntu regular:size=12:antialias=true"
 myDzenFont = "Bitstream Sans Vera:pixelsize=18"
 
--- Desktop
-myStatusBar = "dzen2 -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
-myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
-myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1030 -w 1680 -ta l " ++ myDzenStyle
-myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
-myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
-
-
--- -- Laptop
--- myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
--- myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 620 -ta r " ++myDzenStyle
--- myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta l " ++ myDzenStyle
+-- -- Desktop
+-- myStatusBar = "dzen2 -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
+-- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
+-- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1030 -w 1680 -ta l " ++ myDzenStyle
 -- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
 -- myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
+
+-- Laptop
+myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
+myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 620 -ta r " ++myDzenStyle
+myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta l " ++ myDzenStyle
+myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
+myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
 
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
