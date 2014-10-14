@@ -6,11 +6,12 @@
 #
 # Needed Applications:
 AP1=urxvt
-AP2=google-chrome-stable
-AP3=thunar
-AP4=pavucontrol
+AP2=firefox
+AP3=google-chrome-stable
+AP4=thunar
 AP5=nvidia-settings
-AP6=gedit
+AP6=pavucontrol
+AP7=gedit
 
 #FONT
 # FONT="-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*"
@@ -24,11 +25,12 @@ FG3=#5faf5f
 # Icons:
 ICM=~/.xmonad/dzen2/img/arch.xbm
 IC1=~/.xmonad/dzen2/img/term.xbm
-IC2=~/.xmonad/dzen2/img/fs_01.xbm
-IC3=~/.xmonad/dzen2/img/docs.xbm
-IC4=~/.xmonad/dzen2/img/phones.xbm
+IC2=~/.xmonad/dzen2/img/fox.xbm
+IC3=~/.xmonad/dzen2/img/fs_01.xbm
+IC4=~/.xmonad/dzen2/img/docs.xbm
 IC5=~/.xmonad/dzen2/img/code.xbm
-IC6=~/.xmonad/dzen2/img/docs.xbm
+IC6=~/.xmonad/dzen2/img/phones.xbm
+IC7=~/.xmonad/dzen2/img/docs.xbm
 
 # Text parsed to Dzen2
 (echo "^fg(${FG2})^i(${ICM})"; echo -e "^fg(${FG1})\
@@ -37,5 +39,6 @@ IC6=~/.xmonad/dzen2/img/docs.xbm
   ^fg(${FG3})^i(${IC3})^fg(${FG1}) ${AP3}   \n\
   ^fg(${FG3})^i(${IC4})^fg(${FG1}) ${AP4}   \n\
   ^fg(${FG3})^i(${IC5})^fg(${FG1}) ${AP5}   \n\
-  ^fg(${FG3})^i(${IC6})^fg(${FG1}) ${AP6} ")\
-| (dzen2 -h '20' -fn "$FONT" -bg '#fdf6e3' -fg '#5faf5f' -l 6 -tw 30 -w 250 -m -p -e 'entertitle=uncollapse;button1=menuexec;leaveslave=collapse;button1=menuexec')
+  ^fg(${FG3})^i(${IC6})^fg(${FG1}) ${AP6}   \n\
+  ^fg(${FG3})^i(${IC7})^fg(${FG1}) ${AP7} ")\
+| (dzen2 -h '20' -fn "$FONT" -bg '#fdf6e3' -fg '#5faf5f' -l 7 -tw 30 -w 250 -m -p -e 'entertitle=uncollapse;button1=menuexec;leaveslave=collapse;button1=menuexec')

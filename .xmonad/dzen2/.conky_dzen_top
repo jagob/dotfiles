@@ -26,4 +26,4 @@ ${endif}\
 ${execi 1 amixer sget 'Master'| grep -m 1 "%" | egrep -o '([0-9]+%)'} \
 ^ca()^ca()^ca()^ca()\
 \
-^fg(\#5faf5f)  ^ca(1,~/.xmonad/dzen2/calender.sh)${time %a %e %b   %R  }
+^fg(\#5faf5f)  ^ca(1,~/.xmonad/dzen2/calender.sh)${time %a %e %b   %R  }^ca()
