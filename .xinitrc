@@ -19,16 +19,19 @@ export EDITOR=vim
 
 # Gnome keyring
 # Start a D-Bus session
-source /etc/X11/xinit/xinitrc.d/30-dbus
+# source /etc/X11/xinit/xinitrc.d/30-dbus
 # Start GNOME Keyring
-eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
+# eval $(/usr/bin/gnome-keyring-daemon --start --components=gpg,pkcs11,secrets,ssh)
 # You probably need to do this too:
-export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
+# export GNOME_KEYRING_CONTROL GNOME_KEYRING_PID GPG_AGENT_INFO SSH_AUTH_SOCK
 
 
 if [ -x /usr/bin/xfce4-power-manager ] ; then
-   sleep 5
    xfce4-power-manager &
+fi
+
+if [ -x /usr/bin/xfce4-power-manager ] ; then
+   nm-applet --sm-disable &
 fi
 
 feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
