@@ -222,6 +222,9 @@ nnoremap gk k
 nnoremap j gj
 nnoremap gj j
 
+nnoremap <C-l> :nohlsearch<CR><C-l>
+noremap <F4> :set hlsearch! hlsearch?<CR>
+
 " Smart way to move between windows
 " let g:BASH_Ctrl_j = 'off' " to map j
 nnoremap <SID>I_won’t_ever_type_this <Plug>IMAP_JumpForward "latexsuite wont override j map
@@ -307,15 +310,17 @@ let Tlist_File_Fold_Auto_Close = 1
 " Left column is for terminal environment
 " Right column is for GUI environment
 let g:rbpt_colorpairs = [
-    \ ['gray',        'RoyalBlue3'],
     \ ['darkmagenta', 'DarkOrchid3'],
     \ ['darkgreen',   'RoyalBlue3'],
     \ ]
+    " \ ['darkcyan',    'SeaGreen3'],
+    " \ ['darkred',     'DarkOrchid3'],
+    " \ ['red',         'firebrick3'],
 au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound
-au Syntax * RainbowParenthesesLoadSquare
-au Syntax * RainbowParenthesesLoadBraces
-" au Syntax * RainbowParenthesesLoadChevrons " for < > 
+au Syntax * RainbowParenthesesLoadRound     " ()
+au Syntax * RainbowParenthesesLoadSquare    " []
+au Syntax * RainbowParenthesesLoadBraces    " {}
+" au Syntax * RainbowParenthesesLoadChevrons " <> 
 
 " dragvisuals.vim
 vmap <expr> <LEFT>  DVB_Drag('left')

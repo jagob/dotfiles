@@ -14,15 +14,15 @@ if &t_Co == 88 || &t_Co == 256
     
     " new Vim 7.0 items
     if v:version >= 700
-       hi SignColumn   ctermfg=7 ctermbg=0
-       hi TabLine      ctermfg=8 ctermbg=0
-       hi TabLineSel   ctermfg=7 ctermbg=0
-       hi TabLineFill  ctermfg=0 ctermbg=241
-       hi Pmenu        ctermfg=7 ctermbg=0
-       hi PmenuSel     ctermfg=7 ctermbg=241
-       hi PmenuSbar    ctermfg=7 ctermbg=0
-       hi PmenuThumb   ctermfg=7 ctermbg=0
-       hi MatchParen   ctermfg=0 ctermbg=250
+       hi SignColumn   ctermfg=7    ctermbg=0
+       hi TabLineFill  ctermfg=7    ctermbg=none
+       hi TabLine      ctermfg=2    ctermbg=7
+       hi TabLineSel   ctermfg=7    ctermbg=2
+       hi Pmenu        ctermfg=7    ctermbg=0
+       hi PmenuSel     ctermfg=7    ctermbg=241
+       hi PmenuSbar    ctermfg=7    ctermbg=0
+       hi PmenuThumb   ctermfg=7    ctermbg=0
+       hi MatchParen   ctermfg=0    ctermbg=250
     endif
 
     hi Normal       ctermfg=0     ctermbg=15 
@@ -37,57 +37,57 @@ if &t_Co == 88 || &t_Co == 256
     hi Constant     ctermfg=2
     hi String       ctermfg=2
     hi Character    ctermfg=2
-    hi Number       ctermfg=12
-    hi Boolean      ctermfg=12
-    hi Float        ctermfg=12
-    hi MatchParen   ctermfg=12
-    hi NonText      ctermfg=12      "listchars eol,extends,precedes
-    hi PreProc      ctermfg=12 
-    hi Include      ctermfg=12
-    hi Define       ctermfg=12
-    hi Macro        ctermfg=12
-    hi PreCondit    ctermfg=12
+    hi Number       ctermfg=0
+    hi Boolean      ctermfg=0
+    hi Float        ctermfg=0
+    hi MatchParen   ctermfg=0
+    hi NonText      ctermfg=0      "listchars eol,extends,precedes
+    hi PreProc      ctermfg=0 
+    hi Include      ctermfg=0
+    hi Define       ctermfg=0
+    hi Macro        ctermfg=0
+    hi PreCondit    ctermfg=0
 
-    hi Identifier   ctermfg=12
-    hi Function     ctermfg=12
-    hi Statement    ctermfg=12 " latex equations, return
-    hi Conditional  ctermfg=12 " if
-    hi Repeat       ctermfg=12
-    hi Label        ctermfg=12
-    hi Operator     ctermfg=12
-    hi Keyword      ctermfg=12 " for
-    hi Exception    ctermfg=12
+    hi Identifier   ctermfg=0
+    hi Function     ctermfg=0
+    hi Statement    ctermfg=0 " latex equations, return
+    hi Conditional  ctermfg=0 " if
+    hi Repeat       ctermfg=0
+    hi Label        ctermfg=0
+    hi Operator     ctermfg=0
+    hi Keyword      ctermfg=0 " for
+    hi Exception    ctermfg=0
 
     hi Type         ctermfg=10 " void, int
     hi StorageClass ctermfg=9
-    hi Structure    ctermfg=12 " struct
+    hi Structure    ctermfg=0 " struct
     hi Typedef      ctermfg=9
-    hi Special      ctermfg=7 " environment, equation constants
+    hi Special      ctermfg=113 " environment, equation constants
     hi Specialchar  ctermfg=10 " \\ %f \n
     hi Tag          ctermfg=9
     hi Delimiter    ctermfg=2 " {} $ &
     hi Debug        ctermfg=9
                     
-    hi Underlined   ctermfg=12    cterm=underline
-    hi Ignore       ctermfg=12
-    hi Todo         ctermfg=12
-    hi SpecialKey   ctermfg=12      " listchars tab trail nbsp
-    hi Directory    ctermfg=12
-    hi MoreMsg      ctermfg=12
-    hi ModeMsg      ctermfg=12
-    hi WildMenu     ctermfg=12
-    hi Question     ctermfg=12  ctermbg=none
-    hi VertSplit    ctermfg=12   ctermbg=none
-    hi Title        ctermfg=12
+    hi Underlined   ctermfg=0    cterm=underline
+    hi Ignore       ctermfg=0
+    hi Todo         ctermfg=0
+    hi SpecialKey   ctermfg=0      " listchars tab trail nbsp
+    hi Directory    ctermfg=0
+    hi MoreMsg      ctermfg=0
+    hi ModeMsg      ctermfg=0
+    hi WildMenu     ctermfg=0
+    hi Question     ctermfg=0      ctermbg=none
+    hi VertSplit    ctermfg=0      ctermbg=none
+    hi Title        ctermfg=0
 
-    hi Search       ctermfg=7   ctermbg=3 
-    hi IncSearch    ctermfg=3   ctermbg=7 " opposite
-    hi Visual       ctermfg=7   ctermbg=3
-    hi VisualNOS    ctermfg=7   ctermbg=3
-    hi Folded       ctermfg=8   ctermbg=0
-    hi FoldColumn   ctermfg=8   ctermbg=none
-    hi StatusLine   ctermfg=2   ctermbg=0
-    hi StatusLineNC ctermfg=2   ctermbg=0
+    hi Search       ctermfg=7       ctermbg=113 
+    hi IncSearch    ctermfg=113     ctermbg=7 " opposite
+    hi Visual       ctermfg=7       ctermbg=2
+    hi VisualNOS    ctermfg=7       ctermbg=2
+    hi Folded       ctermfg=15      ctermbg=2
+    hi FoldColumn   ctermfg=15      ctermbg=none
+    hi StatusLine   ctermfg=0       ctermbg=0
+    hi StatusLineNC ctermfg=0       ctermbg=0
 
     hi Error        ctermfg=9       ctermbg=none        
     hi ErrorMsg     ctermfg=9       ctermbg=none
@@ -98,16 +98,18 @@ if &t_Co == 88 || &t_Co == 256
     hi SpellRare    ctermfg=9       ctermbg=none
 
 " LanguageTool
-     hi LanguageToolGrammarError    ctermfg=9 ctermbg=none
-     hi LanguageToolSpellingError   ctermfg=9 ctermbg=none
-     hi LanguageToolCmd             ctermfg=9 ctermbg=none
-     hi LanguageToolLabel           ctermfg=9 ctermbg=none
-     hi LanguageToolErrorCount      ctermfg=9 ctermbg=none
+    hi LanguageToolGrammarError    ctermfg=9 ctermbg=none
+    hi LanguageToolSpellingError   ctermfg=9 ctermbg=none
+    hi LanguageToolCmd             ctermfg=9 ctermbg=none
+    hi LanguageToolLabel           ctermfg=9 ctermbg=none
+    hi LanguageToolErrorCount      ctermfg=9 ctermbg=none
 
 " vimdiff
-    hi DiffAdd      ctermfg=12  ctermbg=none
-    hi DiffDelete   ctermfg=9   ctermbg=none
-    hi DiffChange   ctermbg=255 ctermbg=0
-    hi DiffText     ctermfg=3   ctermbg=none
+    hi DiffAdd      ctermfg=196     ctermbg=229
+    hi DiffDelete   ctermfg=196     ctermbg=229
+    hi DiffChange   ctermbg=2       ctermbg=194
+    hi DiffText     ctermfg=25       ctermbg=113
+
+
 
 endif
