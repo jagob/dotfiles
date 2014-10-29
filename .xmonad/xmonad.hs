@@ -91,7 +91,7 @@ myLayouts = maximize (tile ||| mtile ||| full)
     where
         tile  = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ ResizableTall nmaster delta ratio []
         mtile = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ Mirror $ ResizableTall nmaster delta ratio []
-        full  = noBorders Full
+        full  = noFrillsDeco shrinkText myTheme $ noBorders Full
         nmaster = 1     -- The default number of windows in the master pane
         delta   = 3/100 -- Percent of screen to increment by when resizing panes
         ratio   = 1/2   -- Default proportion of screen occupied by master pane
