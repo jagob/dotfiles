@@ -33,9 +33,9 @@ map <F2> set "pages-per-row 2"
 # map [index] c toggle_index
 
 # colors
-set default-bg "#1a1a1a" 
-set statusbar-bg "#1a1a1a"
-# set font Ubuntu regular 14
+set default-bg      "#fdf6e3" 
+set statusbar-bg    "#eee8d5"
+set statusbar-fg    "#000000"
 set font "Ubuntu Sans Mono 14"
 
 
