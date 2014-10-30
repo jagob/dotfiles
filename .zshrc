@@ -1,3 +1,5 @@
+source ~/dotfiles/.zshgit
+
 autoload -U promptinit compinit
 compinit        # autocompletion
 promptinit
@@ -6,7 +8,8 @@ promptinit
 bindkey -e #use emacs keybindings
 # prompt bigfade
 PROMPT=$'%{\e[1;32m%}%~» %{\e[0m%}' # Custom Prompt settings
-RPROMPT='%*' 
+# Right hand prompt
+RPROMPT='$(git_prompt_string) %*' 
 
 
 #### History options
@@ -20,12 +23,12 @@ setopt hist_ignore_all_dups # no duplicate
 setopt inc_append_history   # append instead of replace
 setopt share_history        # share hist between sessions
 setopt hist_no_functions
-setopt completealiases    # autocompletion of command line switches for aliases 
+setopt completealiases      # autocompletion of command line switches for aliases 
 setopt noflowcontrol        
 # setopt extendedGlob
-setopt correct          # try to correct spelling of commands
-setopt list_ambiguous           # complete as much of a completion until it gets ambiguous.
-setopt complete_in_word         # allow completion from within a word/phrase
+setopt correct              # try to correct spelling of commands
+setopt list_ambiguous       # complete as much of a completion until it gets ambiguous.
+setopt complete_in_word     # allow completion from within a word/phrase
 stty -ixon
 
 
@@ -75,7 +78,7 @@ alias -s txt=$EDITOR
 alias xres='xrdb -load ~/.Xresources'
 alias matlaber='matlab -nodesktop -nosplash'
 alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
-alias randomgenerator='cd ~/dropbox/uni/C4-205/bras/randomgenerator/ && python2 randomgenerator.py'
+alias randomgenerator='cd ~/code/randomgenerator && python2 randomgenerator.py'
 alias quakelive='cd /home/jacob/.wine-ql/drive_c/Program\ Files/Quake\ Live/ && wine Launcher.exe'
 alias win='sudo mount /dev/sda2 /mnt/windows'
 alias za='zathura'
@@ -122,18 +125,18 @@ alias svnl='svn log -v -l 5'		    # gets log from svn
 
 # Peter alias
 # alias quakelive="LD_PRELOAD='/usr/lib/libpng12.so' /usr/bin/firefox www.quakelive.com"
-alias aaussh='ssh pejor@skoda.es.aau.dk -X'
-alias lundssh='ssh guest@lundgaard.dyndns.dk'
-alias latexmkrapport="ls *.latexmain | xargs latexmk -pdf -pvc -silent"
-alias ise='LD_PRELOAD=/home/peter/Desktop/usb-driver/libusb-driver.so /opt/xilinx/11.1/ISE/bin/lin/ise'
-alias impact='LD_PRELOAD=/home/peter/Desktop/usb-driver/libusb-driver.so /opt/xilinx/11.1/ISE/bin/lin/impact'
-alias drp2='cvlc http://live-icy.gss.dr.dk:8000/A/A04H.mp3.m3u'
-alias drp3='cvlc http://live-icy.gss.dr.dk:8000/A/A05H.mp3.m3u'
-alias drp4nord='cvlc http://live-icy.gss.dr.dk:8000/A/A10H.mp3.m3u'
-alias drp6='cvlc http://live-icy.gss.dr.dk:8000/A/A29H.mp3.m3u'
-alias drp8='cvlc http://live-icy.gss.dr.dk:8000/A/A22H.mp3.m3u'
-alias drjazz='drp8'
-alias koqx='cvlc http://www.koqx.com/koqx.m3u'
+# alias aaussh='ssh pejor@skoda.es.aau.dk -X'
+# alias lundssh='ssh guest@lundgaard.dyndns.dk'
+# alias latexmkrapport="ls *.latexmain | xargs latexmk -pdf -pvc -silent"
+# alias ise='LD_PRELOAD=/home/peter/Desktop/usb-driver/libusb-driver.so /opt/xilinx/11.1/ISE/bin/lin/ise'
+# alias impact='LD_PRELOAD=/home/peter/Desktop/usb-driver/libusb-driver.so /opt/xilinx/11.1/ISE/bin/lin/impact'
+# alias drp2='cvlc http://live-icy.gss.dr.dk:8000/A/A04H.mp3.m3u'
+# alias drp3='cvlc http://live-icy.gss.dr.dk:8000/A/A05H.mp3.m3u'
+# alias drp4nord='cvlc http://live-icy.gss.dr.dk:8000/A/A10H.mp3.m3u'
+# alias drp6='cvlc http://live-icy.gss.dr.dk:8000/A/A29H.mp3.m3u'
+# alias drp8='cvlc http://live-icy.gss.dr.dk:8000/A/A22H.mp3.m3u'
+# alias drjazz='drp8'
+# alias koqx='cvlc http://www.koqx.com/koqx.m3u'
 
 ###COLORS
 export GREP_COLOR="1;33"
@@ -247,3 +250,6 @@ function spectrum_bls() {
     print -P -- "$BG[$code]$code: $ZSH_SPECTRUM_TEXT %{$reset_color%}"
   done
 }
+
+
+
