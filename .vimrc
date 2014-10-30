@@ -208,6 +208,10 @@ map  <F3> :! urxvt &<CR>
 nmap <F3> :! urxvt &<CR>
 imap <F3> :! urxvt &<CR>
 
+noremap <F4> :silent noh<CR>
+map     <F6>      :set list!<CR>:set list?<CR>
+imap    <F6> <C-O>:set list!<CR><C-O>:set list?<CR>
+
 " map cut & paste to what they bloody should be
 vnoremap <C-c> "+y " copy
 map <C-v> "+gP     " paste
@@ -222,8 +226,6 @@ nnoremap gk k
 nnoremap j gj
 nnoremap gj j
 
-nnoremap <C-l> :nohlsearch<CR><C-l>
-noremap <F4> :set hlsearch! hlsearch?<CR>
 
 " Smart way to move between windows
 " let g:BASH_Ctrl_j = 'off' " to map j
