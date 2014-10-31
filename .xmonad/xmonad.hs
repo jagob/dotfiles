@@ -122,10 +122,11 @@ myPrettyPrinter h = dzenPP {
       (\x -> case x of
           "Maximize NoFrillsDeco Spacing 5 ResizableTall"       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
           "Maximize NoFrillsDeco Spacing 5 Mirror ResizableTall"-> "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
-          "Maximize Full"                                       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
+          "Maximize NoFrillsDeco Full"                          -> "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
           _                                                     -> x
       )
     }
+
 myDzenFGColor = "#5faf5f"
 myDzenFGTextColor = "#5faf5f"
 myDzenBGColor = "#fdf6e3"
