@@ -17,7 +17,7 @@ if &t_Co == 88 || &t_Co == 256
        hi SignColumn   ctermfg=7    ctermbg=0
        hi TabLineFill  ctermfg=7    ctermbg=none
        hi TabLine      ctermfg=2    ctermbg=7
-       hi TabLineSel   ctermfg=7    ctermbg=2
+       hi TabLineSel   ctermfg=15   ctermbg=2
        hi Pmenu        ctermfg=7    ctermbg=0
        hi PmenuSel     ctermfg=7    ctermbg=241
        hi PmenuSbar    ctermfg=7    ctermbg=0
@@ -62,7 +62,7 @@ if &t_Co == 88 || &t_Co == 256
     hi StorageClass ctermfg=9
     hi Structure    ctermfg=0 " struct
     hi Typedef      ctermfg=9
-    hi Special      ctermfg=113 " environment, equation constants
+    hi Special      ctermfg=2 " environment, equation constants
     hi Specialchar  ctermfg=10 " \\ %f \n
     hi Tag          ctermfg=9
     hi Delimiter    ctermfg=2 " {} $ &
@@ -80,12 +80,12 @@ if &t_Co == 88 || &t_Co == 256
     hi VertSplit    ctermfg=0      ctermbg=none
     hi Title        ctermfg=0
 
-    hi Search       ctermfg=7       ctermbg=113 
-    hi IncSearch    ctermfg=113     ctermbg=7 " opposite
-    hi Visual       ctermfg=7       ctermbg=2
-    hi VisualNOS    ctermfg=7       ctermbg=2
+    hi Search       ctermfg=15      ctermbg=2
+    hi IncSearch    ctermfg=2       ctermbg=15 " opposite
+    hi Visual       ctermfg=15      ctermbg=2
+    hi VisualNOS    ctermfg=15      ctermbg=2
     hi Folded       ctermfg=15      ctermbg=2
-    hi FoldColumn   ctermfg=15      ctermbg=none
+    hi FoldColumn   ctermfg=0       ctermbg=none
     hi StatusLine   ctermfg=0       ctermbg=0
     hi StatusLineNC ctermfg=0       ctermbg=0
 
@@ -105,10 +105,10 @@ if &t_Co == 88 || &t_Co == 256
     hi LanguageToolErrorCount      ctermfg=9 ctermbg=none
 
 " vimdiff
-    hi DiffAdd      ctermfg=196     ctermbg=229
-    hi DiffDelete   ctermfg=196     ctermbg=229
-    hi DiffChange   ctermbg=2       ctermbg=194
-    hi DiffText     ctermfg=25       ctermbg=113
+    hi DiffAdd      ctermfg=none    ctermbg=193
+    hi DiffDelete   ctermfg=9       ctermbg=209
+    hi DiffChange   ctermbg=none    ctermbg=229
+    hi DiffText     ctermfg=9       ctermbg=229
 
 
 
