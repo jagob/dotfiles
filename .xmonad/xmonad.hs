@@ -39,7 +39,7 @@ import Graphics.X11.ExtraTypes.XF86
 
 -- Main function that launches xmonad
 main =  do
-    dzen <- spawnPipe myStatusBar
+    dzen     <- spawnPipe myStatusBar
     conkytop <- spawnPipe myTopBar
     conkybot <- spawnPipe myBotBar
     conkyapp <- spawnPipe myStartBar
@@ -86,12 +86,12 @@ myManageHook = composeAll [
     , transience'
     ]
 
-myLayouts = maximize (tile ||| mtile ||| full)
--- myLayouts = (tile ||| mtile ||| full)
+-- myLayouts = maximize (tile ||| mtile ||| full)
+myLayouts = (tile ||| mtile ||| full)
     where
         tile  = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ ResizableTall nmaster delta ratio []
         mtile = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ Mirror $ ResizableTall nmaster delta ratio []
-        full  = Maximize noFrillsDeco shrinkText myTheme $ noBorders Full
+        full  = noFrillsDeco shrinkText myTheme $ noBorders Full
         -- full  = noBorders Full
         nmaster = 1     -- The default number of windows in the master pane
         delta   = 3/100 -- Percent of screen to increment by when resizing panes
@@ -121,10 +121,10 @@ myPrettyPrinter h = dzenPP {
                           "                          ^ca()^ca()" . shorten 80 . dzenEscape
     , ppLayout          = wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor myDzenFGColor myDzenBGColor .
       (\x -> case x of
-          "Maximize NoFrillsDeco Spacing 5 ResizableTall"       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
-          "Maximize NoFrillsDeco Spacing 5 Mirror ResizableTall"-> "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
-          "Maximize Full"                                       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
-          _                                                     -> x
+          "NoFrillsDeco Spacing 5 ResizableTall"       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
+          "NoFrillsDeco Spacing 5 Mirror ResizableTall"-> "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
+          "NoFrillsDeco Full"                          -> "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
+          _                                            -> x
       )
     }
 myDzenFGColor = "#5faf5f"
@@ -132,20 +132,19 @@ myDzenFGTextColor = "#5faf5f"
 myDzenBGColor = "#fdf6e3"
 myFont = "Ubuntu regular:size=12:antialias=true"
 myDzenFont = "Bitstream Sans Vera:pixelsize=18"
+myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
 
 -- Desktop
-myStatusBar = "dzen2 -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
+myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
 myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
 myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1030 -w 1680 -ta l " ++ myDzenStyle
 myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
-myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
 
 -- -- Laptop
 -- myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
--- myTopBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 620 -ta r " ++myDzenStyle
--- myBotBar = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta l " ++ myDzenStyle
+-- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 620 -ta r " ++myDzenStyle
+-- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta l " ++ myDzenStyle
 -- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
--- myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
 
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [

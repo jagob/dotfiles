@@ -134,8 +134,8 @@ let g:Tex_CompileRule_pdf = 'pdflatex -interaction=nonstopmode -file-line-error-
 let g:Tex_ViewRule_pdf = 'zathura'
 let g:Tex_MultipleCompileFormats='pdf, aux'
 
-" spellcheck ikke i kommentarer
-let g:tex_comment_nospell=1 
+" spellcheck comments
+let g:tex_comment_nospell=0
 
 " Set the warning messages to ignore.
 let g:Tex_IgnoredWarnings =
