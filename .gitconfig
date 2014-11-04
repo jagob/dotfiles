@@ -1,10 +1,22 @@
+# comment
+; comment
+
 [user]
 	name = jagob
 	email = jacobvdueholm@hotmail.com
-[diff]
-    tool = vimdiff
-    # external = git_diff_wrapper
+
 [merge]
 	tool = vimdiff
+
+[diff]
+	; tool = vimdiff
+    external = ~/bin/git_diff_wrapper
+
 [difftool]
 	prompt = false
+
+[push]
+	default = simple
+
+[pager]
+  diff =
