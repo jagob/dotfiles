@@ -1,53 +1,34 @@
 # cd ~/.config/zathura && ln -s ~/dotfiles/zathurarc .
-# settings
-# set window-height 1024
-# set window-width 768
-# set adjust-open width
+
+
+# colors
+set default-bg      "#fdf6e3" 
+set statusbar-bg    "#eee8d5"
+set statusbar-fg    "#000000"
+set font "Ubuntu Sans Mono 14"
+
 set show-scrollbars true
-# set first-page-column 2
-set window-title-basename true
-# set database sqlite
-# set recolor-keephue
-set selection-clipboard clipboard
-
 set page-padding 5
-
-# set page-store-interval 30
-# set page-store-threshold 30
-# set render-loading false
-
-
-
+set selection-clipboard clipboard
 set scroll-step 40
 set zoom-step 10
-
 map <C-+> zoom in
 map <C--> zoom out
-
 map <F1> set "pages-per-row 1"
 map <F2> set "pages-per-row 2"
+
+
+
 
 # map z toggle_statusbar
 # map x toggle_inputbar
 # map c toggle_index
 # map [index] c toggle_index
 
-# colors
-set default-bg "#1a1a1a" 
-set statusbar-bg "#1a1a1a"
-# set font Ubuntu regular 14
-set font "Ubuntu Sans Mono 14"
-
-
-# set recolor-darkcolor  "#FFFFFF"
-# set recolor-lightcolor "#333333"
-# set statusbar-fg "#000000"
-# set statusbar-bg "#C2BFA5"
-# set inputbar-fg "#FFFFFF"
-# set inputbar-bg "#333333"
-# set completion-highlight-fg "#F0E68C"
-# set completion-highlight-bg "#6B8E23"
-# set highlight-color "#CD853F"
-# set highlight-active-color "#F0E68C"
-# set notification-fg "#FFFFFF"
-# set notification-bg "#333333"
+# set window-title-basename true
+# set first-page-column 2
+# set database sqlite
+# set recolor-keephue
+# set page-store-interval 30
+# set page-store-threshold 30
+# set render-loading false
