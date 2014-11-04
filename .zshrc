@@ -1,5 +1,4 @@
 source ~/dotfiles/.zshgit
-
 autoload -U promptinit compinit
 compinit        # autocompletion
 promptinit
@@ -65,6 +64,7 @@ export EDITOR='vim'
 export MPD_HOST=/home/jacob/.mpd/socket
 export BROWSER=/usr/bin/firefox
 export TERMINFO=/usr/share/terminfo
+export PATH=/home/jacob/bin:$PATH
 
 #suffix-alias
 alias -s tex=$EDITOR
