@@ -2,6 +2,9 @@
 # cd ~/.config/zathura && ln -s ~/dotfiles/zathurarc .
 
 
+# cd ~/.config/zathura && ln -s ~/dotfiles/zathurarc .
+
+
 # colors
 set default-bg      "#fdf6e3" 
 set statusbar-bg    "#eee8d5"
