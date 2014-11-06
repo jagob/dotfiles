@@ -115,6 +115,16 @@ alias sd='sudo shutdown -h now'         # shutdown
 alias rs='sudo shutdown -r now'         # restart
 alias rb='sudo shutdown -r now'         # restart
 
+alias gs='git status '
+alias ga='git add '
+alias gb='git branch '
+alias gc='git commit'
+alias gd='git diff'
+alias go='git checkout '
+alias gk='gitk --all&'
+alias gx='gitx --all'
+alias got='git '
+
 alias svns='svn status -u'				    # gets svn status
 alias svnu='svn update'				    # updates from svn
 alias svna='svn add . --force'
