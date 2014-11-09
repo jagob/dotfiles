@@ -83,7 +83,6 @@ alias quakelive='cd /home/jacob/.wine-ql/drive_c/Program\ Files/Quake\ Live/ && 
 alias win='sudo mount /dev/sda2 /mnt/windows'
 alias za='zathura'
 alias bc='bc -lq'						# bash calculator with floating point
-alias gitlog='cd ~/dotfiles/ && git log --graph --abbrev-commit'
 alias bell='sleep 3; echo -e "\a"' 
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
 alias p6='cd ~/dropbox/uni/P6'
@@ -124,6 +123,8 @@ alias go='git checkout '
 alias gk='gitk --all&'
 alias gx='gitx --all'
 alias got='git '
+alias gitlog='git log --graph --abbrev-commit --name-status'
+# alias gl  git log --graph --pretty=format:'%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --name-status
 
 alias svns='svn status -u'				    # gets svn status
 alias svnu='svn update'				    # updates from svn
