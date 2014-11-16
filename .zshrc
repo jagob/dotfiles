@@ -73,8 +73,7 @@ alias -s h=$EDITOR
 alias -s asm=$EDITOR
 alias -s txt=$EDITOR
 
-#aliases
-
+# aliases
 alias xres='xrdb -load ~/.Xresources'
 alias matlaber='matlab -nodesktop -nosplash'
 alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
@@ -95,6 +94,7 @@ alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl 
 alias finder='find -name'
 alias updates="pacman -Qqu"
 alias vmi='vim'
+alias vimfm='vifm'
 
 alias ls='ls -h --color --group-directories-first'
 alias sl='ls'
@@ -149,7 +149,7 @@ alias svnl='svn log -v -l 5'		    # gets log from svn
 # alias drjazz='drp8'
 # alias koqx='cvlc http://www.koqx.com/koqx.m3u'
 
-###COLORS
+### COLORS
 export GREP_COLOR="1;33"
 eval `dircolors -b`
 # Colored manpage
@@ -198,26 +198,27 @@ function history-search-end {
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
 
-########################
-
-#key bindings for compatibility with terminal emus
-# arrow up
-bindkey "\e[A" history-beginning-search-backward-end    #Up Arrow 
-bindkey "\e[B" history-beginning-search-forward-end     #Down Arrow
+# \e escape key
+# ^ control
 ####################### key bindings from archwiki
-bindkey "\e[1~" beginning-of-line
-bindkey "\e[4~" end-of-line
+bindkey "\e[1~" beginning-of-line   # control + a
+bindkey "\e[4~" end-of-line         # control + e
 bindkey "\e[5~" beginning-of-history
 bindkey "\e[6~" end-of-history
 bindkey "\e[3~" delete-char         # Del key 
 bindkey "\e[2~" quoted-insert
-bindkey "\e[5C" forward-word
-bindkey "\eOc" emacs-forward-word   # control + right arrow 
-bindkey "\e[5D" backward-word
-bindkey "\eOd" emacs-backward-word  # control + left arrow 
+bindkey "\e[5C" forward-word       # alt + f
+bindkey "\e[5D" backward-word      # alt + b
+bindkey "^j"    backward-word      # control j
 bindkey "\e\e[C" forward-word
 bindkey "\e\e[D" backward-word
+bindkey "\eOc" emacs-forward-word   # control + right arrow 
+bindkey "\eOd" emacs-backward-word  # control + left arrow 
 bindkey "^H" backward-delete-word   # control + backspace 
+
+#key bindings for compatibility with terminal emus
+bindkey "\e[A" history-beginning-search-backward-end    #Up Arrow 
+bindkey "\e[B" history-beginning-search-forward-end     #Down Arrow
 # for rxvt
 bindkey "\e[8~" end-of-line         # End key 
 bindkey "\e[7~" beginning-of-line   # Home key 
@@ -228,39 +229,3 @@ bindkey "\eOF" end-of-line
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 ##############################
-
-# Color Script
-typeset -Ag FX FG BG
-
-FX=(
-    reset     "%{[00m%}"
-    bold      "%{[01m%}" no-bold      "%{[22m%}"
-    italic    "%{[03m%}" no-italic    "%{[23m%}"
-    underline "%{[04m%}" no-underline "%{[24m%}"
-    blink     "%{[05m%}" no-blink     "%{[25m%}"
-    reverse   "%{[07m%}" no-reverse   "%{[27m%}"
-)
-
-for color in {000..255}; do
-    FG[$color]="%{[38;5;${color}m%}"
-    BG[$color]="%{[48;5;${color}m%}"
-done
-
-ZSH_SPECTRUM_TEXT=${ZSH_SPECTRUM_TEXT:-Arma virumque cano Troiae qui primus ab oris}
-
-# Show all 256 colors with color number
-function spectrum_ls() {
-  for code in {000..255}; do
-    print -P -- "$code: %F{$code}$ZSH_SPECTRUM_TEXT%f"
-  done
-}
-
-# Show all 256 colors where the background is set to specific color
-function spectrum_bls() {
-  for code in {000..255}; do
-    print -P -- "$BG[$code]$code: $ZSH_SPECTRUM_TEXT %{$reset_color%}"
-  done
-}
-
-
-
