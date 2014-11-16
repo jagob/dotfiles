@@ -12,12 +12,16 @@ own_window yes
 own_window_transparent no
 own_window_type dock
 
+lua_load ~/dotfiles/.xmonad/dzen2/conky_lua_scripts.lua
+# for formatting
+# ${lua_parse format %3.0f ${cpu cpu1}}%
+
 TEXT
 ^pa(30)\
 ^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e htop)^i(/home/jacob/.xmonad/dzen2/img/cpu.xbm)  \
-^fg(\#5faf5f)${cpu cpu1}% - ${cpu cpu2}%   ^ca() \
+^fg(\#5faf5f)${lua_parse format %3.0f ${cpu cpu1}}% - ${lua_parse format %3.0f ${cpu cpu2}}%   ^ca() \
 ^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e htop)^i(/home/jacob/.xmonad/dzen2/img/mem.xbm)  \
-^fg(\#5faf5f)${memperc}% ^ca() \
+^fg(\#5faf5f)${lua_parse format %3.0f ${memperc}}% ^ca() \
 ^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/games.xbm)  \
 ^fg(\#5faf5f)${top name 1}\
 \
@@ -30,11 +34,11 @@ ${if_match "${acpiacadapter}" == "off-line"}\
 ${if_match ${battery_percent} > 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/bat_full_01.xbm)${endif}\
 ${if_match ${battery_percent} <= 40}${if_match ${battery_percent} > 15}^fg(\#ffff00)^i(~/.xmonad/dzen2/img/bat_low_01.xbm)${endif}${endif}\
 ${if_match ${battery_percent} <= 15}^fg(\#ff0000)^i(/home/jacob/.xmonad/dzen2/img/bat_empty_01.xbm)${endif}\
-^fg(\#5faf5f)${battery_percent}%    \
+^fg(\#5faf5f)${lua_parse format %3.0f ${battery_percent}}%    \
 ${endif}\
 ${if_match "${acpiacadapter}" == "on-line"}\
 ^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/ac_01.xbm)\
- ^fg(\#5faf5f)${battery_percent}%     \
+ ^fg(\#5faf5f)${lua_parse format %3.0f ${battery_percent}}%     \
 ${endif}\
 \
 ${if_existing /proc/net/route eth0}\
@@ -46,7 +50,7 @@ ${else}${if_existing /proc/net/route wlan0}\
 ${if_match ${wireless_link_qual_perc wlan0} > 80}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless5.xbm)${endif}\
 ${if_match ${wireless_link_qual_perc wlan0} <= 80}${if_match ${wireless_link_qual_perc wlan0} > 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless3.xbm) ${endif}${endif}\
 ${if_match ${wireless_link_qual_perc wlan0} <= 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless1.xbm)${endif}\
- ^fg(\#5faf5f)${wireless_link_qual_perc wlan0}%  ${wireless_essid wlan0}^fg()\
+ ^fg(\#5faf5f)${lua_parse format %3.0f ${wireless_link_qual_perc wlan0}}%  ${wireless_essid wlan0}^fg()\
   ^i(/home/jacob/.xmonad/dzen2/img/net_down_03.xbm) ^fg(\#5faf5f)${downspeedf wlan0}k^fg()\
   ^i(/home/jacob/.xmonad/dzen2/img/net_up_03.xbm) ^fg(\#5faf5f)${upspeedf wlan0}k^fg()\
 \
