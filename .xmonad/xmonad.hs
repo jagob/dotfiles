@@ -75,7 +75,7 @@ myManageHook = composeAll [
     , isFullscreen                          --> doFullFloat
     , className =? "Vlc"                    --> doFloat
     , className =? "Gimp"                   --> doFloat
-    , className =? "Steam"                  --> doShift (myWorkspaces !! 4) -- send to ws 6
+    , className =? "Steam"                  --> doShift (myWorkspaces !! 4) -- send to ws 5
     , title     =? "mutt"                   --> doShift (myWorkspaces !! 5) -- send to ws 6
     , title     =? "irssi"                  --> doShift (myWorkspaces !! 6) -- send to ws 7
     , className =? "XCalc"                  --> doFloat
@@ -135,17 +135,17 @@ myFont = "Ubuntu regular:size=12:antialias=true"
 myDzenFont = "Bitstream Sans Vera:pixelsize=18"
 myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
 
--- Desktop
-myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
-myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
-myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1030 -w 1680 -ta l " ++ myDzenStyle
-myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
-
--- -- Laptop
+-- -- Desktop
 -- myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
--- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 620 -ta r " ++myDzenStyle
--- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta l " ++ myDzenStyle
+-- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
+-- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1030 -w 1680 -ta l " ++ myDzenStyle
 -- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
+
+-- Laptop
+myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
+myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 620 -ta r " ++myDzenStyle
+myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta l " ++ myDzenStyle
+myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
 
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
@@ -174,19 +174,29 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     -- , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- Quit xmonad
     -- , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
     , ((modm              , xK_q     ), spawn "killall conky dzen2; xmonad --recompile; xmonad --restart") -- Restart xmonad
-
     , ((modm,               xK_o     ), nextScreen)
     , ((modm .|. shiftMask, xK_o     ), shiftNextScreen >> nextScreen)
-    , ((modm              , xK_z ), withFocused toggleBorder) 
-
+    , ((modm              , xK_z     ), withFocused toggleBorder) 
     , ((0                 , xK_Print ), spawn "scrot -e 'mv $f ~/screenshots/'")
-    , ((0, xF86XK_AudioMute), spawn "amixer -D pulse sset Master toggle")
-    , ((0, xF86XK_AudioLowerVolume), spawn "amixer -D pulse sset Master 5%-")
-    , ((0, xF86XK_AudioRaiseVolume ), spawn "amixer -D pulse sset Master 5%+")
-    , ((0, xF86XK_AudioStop), spawn "mpc stop")
-    , ((0, xF86XK_AudioPrev), spawn "mpc prev")
-    , ((0, xF86XK_AudioNext), spawn "mpc next")
-    , ((0, xF86XK_AudioPlay), spawn "mpc toggle")
+    , ((0, xF86XK_AudioMute          ), spawn "amixer -D pulse sset Master toggle")
+    , ((0, xF86XK_AudioLowerVolume   ), spawn "amixer -D pulse sset Master 5%-")
+    , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer -D pulse sset Master 5%+")
+    , ((0, xF86XK_AudioStop ), spawn "mpc stop")
+    , ((0, xF86XK_AudioPrev ), spawn "mpc prev")
+    , ((0, xF86XK_AudioNext ), spawn "mpc next")
+    , ((0, xF86XK_AudioPlay ), spawn "mpc toggle")
+    -- , ((0, xF86XK_Standby   ), spawn "sudo systemctl suspend")
+    -- , ((0, xF86XK_Sleep     ), spawn "sudo systemctl suspend")
+    -- , ((0, xF86XK_MonBrightnessUp ), spawn "xbacklight -inc 40")
+    , ((0, xK_KP_End        ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 1
+    , ((0, xK_KP_Down       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/fight.mp3")    -- Keypad 2
+    , ((0, xK_KP_Page_Down  ), spawn "python2 ~/dropbox/faldkasse/soundboard/naehnej.py")  -- Keypad 3
+    , ((0, xK_KP_Left       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 4
+    , ((0, xK_KP_Begin      ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 5
+    , ((0, xK_KP_Right      ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 6
+    , ((0, xK_KP_Home       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 7
+    , ((0, xK_KP_Up         ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 8
+    , ((0, xK_KP_Page_Up    ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 9
     ]
     ++
     -- mod-[1..9], Switch to workspace N
