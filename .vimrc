@@ -24,7 +24,7 @@ set ttimeoutlen=0
 
 au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
-set wrap
+set nowrap          " set wrap
 set linebreak       " wrap at 'breakat' instead of last char
 set history=1000    " command lines history
 set nojoinspaces    " only put one space after periods
@@ -100,9 +100,7 @@ map <leader>sp [s  " previous mistake
 map <leader>sa zg  " add to dictionary
 map <leader>s? z=  " lookup word
 
-"au BufRead *.tex setlocal spell
-autocmd FileType tex setlocal spell spelllang=en_gb
-" autocmd FileType tex setlocal spell spelllang=en_gb,dk
+autocmd FileType tex setlocal spell spelllang=en_gb,da
 
 " where it should get the dictionary files
 " let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
