@@ -45,32 +45,32 @@ chatnets = {
 
 
 channels = (
-  { name = "#vim";         chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#latex";       chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#mutt";        chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#bash";        chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#archlinux";   chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#xmonad";      chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#i3";          chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#ubuntu";      chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#python";      chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#c++";         chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#git";         chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#github";      chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#android";     chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "##math";       chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#vim"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#latex"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#mutt"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#bash"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#archlinux"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#xmonad"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#i3"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#ubuntu"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#python"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#c++"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#git"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#github"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#android"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "##math"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#raspberrypi"; chatnet = "Freenode"; autojoin = "yes"; },
-  { name = "#linux";       chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#Clones-Inc";  chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#xplayn.com";  chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#dota2";       chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#dota2.cw";    chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#joindota";    chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#python";      chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#c";           chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#c++";         chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#java";        chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#javascript";  chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#linux"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#Clones-Inc"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#xplayn.com"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#dota2"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#dota2.cw"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#joindota"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#python"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#c"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#c++"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#java"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#javascript"; chatnet = "QuakeNet"; autojoin = "yes"; },
   { name = "#raspberrypi"; chatnet = "QuakeNet"; autojoin = "yes"; }
 );
 
@@ -105,14 +105,39 @@ settings = {
     # neat_left_messages = "yes";
     # neat_colorize = "no";
   };
+  "fe-text" = { actlist_sort = "refnum"; };
 };
 
 
 hilights = (
-  { text = "jagob";    nick = "no"; word = "yes"; fullword = "yes"; color = "%M"; },
-  { text = "jacob";    nick = "no"; word = "yes"; fullword = "no";  color = "%M"; },
-  { text = "hammy";    nick = "no"; word = "yes"; fullword = "no";  color = "%M"; },
-  { text = "hammylot"; nick = "no"; word = "yes"; fullword = "yes"; color = "%M"; }
+  {
+    text = "jagob";
+    nick = "no";
+    word = "yes";
+    fullword = "yes";
+    color = "%M";
+  },
+  {
+    text = "jacob";
+    nick = "no";
+    word = "yes";
+    fullword = "no";
+    color = "%M";
+  },
+  {
+    text = "hammy";
+    nick = "no";
+    word = "yes";
+    fullword = "no";
+    color = "%M";
+  },
+  {
+    text = "hammylot";
+    nick = "no";
+    word = "yes";
+    fullword = "yes";
+    color = "%M";
+  }
 );
 
 
@@ -200,6 +225,34 @@ statusbar = {
       items = {
         barstart = { priority = "100"; };
         awl_3 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_4 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_4 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_5 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_5 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_6 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_6 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_7 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_7 = { };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
