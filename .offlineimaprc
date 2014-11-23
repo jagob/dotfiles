@@ -1,5 +1,6 @@
 [general]
-ui = Blinkenlights
+ui = TTYUI
+# ui = Blinkenlights
 # ui = quiet
 accounts = aau,jacobgmail
 maxsyncaccounts = 2
