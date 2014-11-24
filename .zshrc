@@ -61,7 +61,7 @@ esac
 export EDITOR='vim'
 # export WORDCHARS='' #Treat all special chars as word separators
 # export MATLABPATH='/home/jacob/.matlab'
-export MPD_HOST=/home/jacob/.mpd/socket
+# export MPD_HOST=/home/jacob/.mpd/socket
 export BROWSER=/usr/bin/firefox
 export TERMINFO=/usr/share/terminfo
 export PATH=/home/jacob/bin:$PATH
