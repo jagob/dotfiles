@@ -16,3 +16,10 @@
 .irssi/saved_colors
 .irssi/config
 
+.mpd/database
+.mpd/log
+.mpd/pid
+.mpd/state
+.mpd/sticker.sql
+.mpd/errorlog
+.ncmpcpp/error.log
