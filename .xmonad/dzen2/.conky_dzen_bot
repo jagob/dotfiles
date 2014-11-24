@@ -11,6 +11,8 @@ double_buffer yes
 own_window yes
 own_window_transparent no
 own_window_type dock
+mpd_host localhost
+mpd_port 6600
 
 lua_load ~/dotfiles/.xmonad/dzen2/conky_lua_scripts.lua
 # for formatting
@@ -26,10 +28,12 @@ TEXT
 ^fg(\#5faf5f)${top name 1}\
 \
 ^pa(600)\
-^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e ncmpcpp)^i(/home/jacob/.xmonad/dzen2/img/xbm8x8/note.xbm)  \
-^fg(\#5faf5f)${mpd_artist} - ^fg(\#5faf5f)${mpd_title}  ^ca() \
+${if_running mpd} \
+^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e ncmpcpp)^i(/home/jacob/.xmonad/dzen2/img/note.xbm)  \
+^fg(\#5faf5f)${mpd_artist} - ${mpd_title}  ^ca() \
+$endif \
 \
-^pa(600)\
+^pa(1400)\
 ${if_match "${acpiacadapter}" == "off-line"}\
 ${if_match ${battery_percent} > 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/bat_full_01.xbm)${endif}\
 ${if_match ${battery_percent} <= 40}${if_match ${battery_percent} > 15}^fg(\#ffff00)^i(~/.xmonad/dzen2/img/bat_low_01.xbm)${endif}${endif}\
