@@ -1,3 +1,29 @@
 mpd_host = "localhost"
 mpd_port = "6600"
 # mpd_music_dir = "~/music"
+
+
+# 0 - black
+# 1 - red
+# 2 - green
+# 3 - yellow
+# 4 - blue
+# 5 - magenta
+# 6 - cyan
+# 7 - white
+
+colors_enabled = yes
+color1 = "green"
+color2 = "green"
+active_column_color = "green"
+active_window_border= "red"
+empty_tag_color     = "black"
+progressbar_color   = "blue"
+state_line_color    = "blue"
+state_flags_color   = "blue"
+statusbar_color     = "green"
+volume_color        = "green"
+
+header_window_color = "black"
+main_window_color   = "black"
+main_window_highlight_color = "green"

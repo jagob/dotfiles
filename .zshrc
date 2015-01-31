@@ -30,7 +30,6 @@ setopt list_ambiguous       # complete as much of a completion until it gets amb
 setopt complete_in_word     # allow completion from within a word/phrase
 stty -ixon
 
-
 #### Completion
 zstyle ':completion:*' rehash yes #always rehash external commands
 zstyle ':completion:*' menu select #arrow key-driven completion
@@ -96,6 +95,7 @@ alias finder='find -name'
 alias updates="pacman -Qqu"
 alias vmi='vim'
 alias vimfm='vifm'
+alias wordcount='pdftotext paper_IEEE.pdf - | wc -w'
 
 alias ls='ls -h --color --group-directories-first'
 alias sl='ls'
