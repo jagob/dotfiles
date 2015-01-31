@@ -17,6 +17,14 @@ servers = (
     use_ssl = "no";
     ssl_verify = "no";
     autoconnect = "yes";
+  },
+  {
+    address = "irc.rizon.net";
+    chatnet = "rizon";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
   }
 );
 
@@ -31,6 +39,11 @@ chatnets = {
     # autosendcmd = "/^MSG Q@CServe.quakenet.org auth username password;
   };
   Freenode = {
+    type = "IRC";
+    # nick = "jagob";
+    # autosendcmd = "MSG NickServ IDENTIFY password; /MODE nick -i";
+  };
+  Rizon = {
     type = "IRC";
     # nick = "jagob";
     # autosendcmd = "MSG NickServ IDENTIFY password; /MODE nick -i";
@@ -63,15 +76,14 @@ channels = (
   { name = "#linux"; chatnet = "QuakeNet"; autojoin = "yes"; },
   { name = "#Clones-Inc"; chatnet = "QuakeNet"; autojoin = "yes"; },
   { name = "#xplayn.com"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#dota2"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#dota2.cw"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#joindota"; chatnet = "QuakeNet"; autojoin = "yes"; },
   { name = "#python"; chatnet = "QuakeNet"; autojoin = "yes"; },
   { name = "#c"; chatnet = "QuakeNet"; autojoin = "yes"; },
   { name = "#c++"; chatnet = "QuakeNet"; autojoin = "yes"; },
   { name = "#java"; chatnet = "QuakeNet"; autojoin = "yes"; },
   { name = "#javascript"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  { name = "#raspberrypi"; chatnet = "QuakeNet"; autojoin = "yes"; }
+  { name = "#raspberrypi"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#dolphin-ssbm"; chatnet = "Rizon"; autojoin = "yes"; },
+  { name = "#dolphin-ProjectM"; chatnet = "Rizon"; autojoin = "yes"; }
 );
 
 
@@ -225,6 +237,27 @@ statusbar = {
       items = {
         barstart = { priority = "100"; };
         awl_3 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_4 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_4 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_5 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_5 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_6 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_6 = { };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
