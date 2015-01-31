@@ -230,3 +230,11 @@ bindkey "\eOF" end-of-line
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 ##############################
+
+
+echo '       \_\_    _/_/'
+echo '           \__/'
+echo '           (oo)\_______'
+echo '           (__)\       )\/\'
+echo '               ||----w |'
+echo '               ||     ||'
