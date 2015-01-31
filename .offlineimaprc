@@ -62,6 +62,7 @@ folderfilter = lambda folder: folder not in['Calendar',
                                             'Deleted Items/Slettet post/p6',
                                             'Deleted Items/Slettet post/studiejobs',
                                             'Deleted Items/U&APg-nsket e-mail',
+                                            'Deleted Items/studiejobs',
                                             'Deleted Items/p5',
                                             'Slettet post',
                                             'Slettet post/studiejobs'
