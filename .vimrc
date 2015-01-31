@@ -24,7 +24,7 @@ set ttimeoutlen=0
 
 au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
-set nowrap          " set wrap
+" set nowrap          " set wrap
 set linebreak       " wrap at 'breakat' instead of last char
 set history=1000    " command lines history
 set nojoinspaces    " only put one space after periods
@@ -158,17 +158,15 @@ let g:Tex_UseMakefile=1
 "   Compile LaTeX for the current file only
 function! LatexCurrent()
     let a:localLatexCommand = 'echo '
-    let a:localLatexCommand .= '\\input{set/preamble}'
-    let a:localLatexCommand .= '\\input{set/listings}'
-    let a:localLatexCommand .= '\\input{set/macros}'
-    let a:localLatexCommand .= '\\begin{document}'
+    let a:localLatexCommand .= '\\input{preamble/preamble_ida10}'
+    let a:localLatexCommand .= '\\\\begin{document}'
     let a:localLatexCommand .= '\\pagenumbering{arabic}\\input{'
     let a:curfile = expand('%:p')
     let a:localLatexCommand .= a:curfile
-    let a:localLatexCommand .= '}\\end{document}'
-    let a:localLatexCommand .= '> /home/jacob/documents/svn/p6_2/rep/masterlocal.tex'
+    let a:localLatexCommand .= '}\\\\end{document}'
+    let a:localLatexCommand .= '> /home/jacob/documents/svn/p7/work_sheets/masterlocal.tex'
     echom system(a:localLatexCommand)
-    execute "!cd /home/jacob/documents/svn/p6_2/rep/ && pdflatex -shell-escape masterlocal.tex"
+    execute "!cd /home/jacob/documents/svn/p7/work_sheets/ && pdflatex -shell-escape masterlocal.tex"
 endf
 autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
 autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
@@ -267,6 +265,9 @@ vnoremap < <gv
 
 " save read-only files
 cmap w!! %!sudo tee > /dev/null %
+
+" word count
+" g C-G
 
 " nnoremap <leader>win :%s/M]//g
 nnoremap <leader>win :%s/
