@@ -101,6 +101,7 @@ map <leader>sa zg  " add to dictionary
 map <leader>s? z=  " lookup word
 
 autocmd FileType tex setlocal spell spelllang=en_gb,da
+autocmd FileType mail set spell
 
 " where it should get the dictionary files
 " let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'

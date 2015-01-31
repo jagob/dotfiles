@@ -9,7 +9,7 @@ set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
 set smart_wrap       # Don't wrap mid-word
 set pager_context=5  # Retain 5 lines of previous page when scrolling.
 
-set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
+# set editor='vim + -c "set textwidth=72" -c "set wrap" -c "set nocp" -c "?^$"'
 
 set my_name = "Jacob Dueholm"
 set realname = "Jacob Dueholm"

@@ -30,6 +30,9 @@ localfolders = ~/.mail/aau/
 type = Gmail
 remoteuser = jacobvdueholm@gmail.com
 remotepasseval = get_password("mutt_jacobvdueholmATgmailcom")
+folderfilter = lambda folder: folder not in['Sent Items',
+                                            '[Gmail]/Sendte e-mails'
+                                            ]
 holdconnectionopen = yes
 keepalive = 60
 maxconnections = 1
@@ -45,18 +48,24 @@ remotepasseval = get_password("mutt_jdueho11")
 #
 nametrans = lambda folder: {
                            } .get(folder, folder)
-folderfilter = lambda folder: folder not in ['Drafts',
-                                             'Journal',
-                                             'Kalender',
-                                             'Kladder',
-                                             'Kontaktpersoner',
-                                             'Noter',
-                                             'Opgaver',
-                                             'Slettet post',
-                                             'Trash',
-                                             'Uønsket e-mail',
-                                             'Udbakke',
-                                             ]
+folderfilter = lambda folder: folder not in['Calendar',
+                                            'Contacts',
+                                            'Journal',
+                                            'Notes',
+                                            'Journal',
+                                            'Tasks',
+                                            'Outbox',
+                                            'Junk E-Mail',
+                                            'Deleted Items',
+                                            'Deleted Items/Slettet post',
+                                            'Deleted Items/Slettet post/p5',
+                                            'Deleted Items/Slettet post/p6',
+                                            'Deleted Items/Slettet post/studiejobs',
+                                            'Deleted Items/U&APg-nsket e-mail',
+                                            'Deleted Items/p5',
+                                            'Slettet post',
+                                            'Slettet post/studiejobs'
+                                            ]
 ssl = yes
 maxconnections = 1
 holdconnectionopen = yes
@@ -67,8 +76,8 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 [mbnames]
 enabled = yes
-# filename = ~/.mail/jacobgmail/mailboxes
-filename = ~/.mail/aau/mailboxes
+filename = ~/.mail/jacobgmail/mailboxes
+# filename = ~/.mail/aau/mailboxes
 header = "mailboxes "
 peritem = "+%(accountname)s/%(foldername)s"
 sep = " "
