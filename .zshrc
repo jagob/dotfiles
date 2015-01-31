@@ -91,7 +91,7 @@ alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
 alias vimmer='cd /home/jacob/dropbox/faldkasse/linux/vimmer/ && vim -o3 c.c matlab.m latex.tex'
 alias oensker='cd /home/jacob/dropbox/faldkasse/ && vim Oenskeseddel.txt'
 alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
-alias finder='find -name'
+alias finder='find -name' # "search"
 alias updates="pacman -Qqu"
 alias vmi='vim'
 alias vimfm='vifm'
@@ -127,7 +127,7 @@ alias got='git '
 alias gitlog='git log --graph --abbrev-commit --name-status'
 # alias gl  git log --graph --pretty=format:'%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --name-status
 
-alias svns='svn status -u'				    # gets svn status
+alias svns='svn status -u'				# gets svn status
 alias svnu='svn update'				    # updates from svn
 alias svna='svn add . --force'
 alias svnc='svn commit -m ""'		    # commits to svn

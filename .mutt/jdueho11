@@ -1,25 +1,20 @@
 set mbox_type   = Maildir
-set folder      = ~/.mail/
+set folder      = ~/.mail
 set spoolfile   = ~/.mail/aau/INBOX
-# mailboxes =/INBOX ="[Gmail].Sendte e-mails" =gemte 
+set record      = ~/.mail/aau/Sent\ Items
+set postponed   = ~/.mail/aau/Drafts
 source ~/.mail/aau/mailboxes
 
 
-## Receive options.
+## Receive options
 set imap_user=jdueho11@student.aau.dk
 set my_pw1 = `gnome-keyring-query get mutt_jdueho11` 
 set imap_pass = my_pw1
 set from=jdueho11@student.aau.dk
 set hostname="mail.aau.dk"
 
-# set folder = imaps://mail.aau.dk:993/
-# set spoolfile = +INBOX
-# set postponed = +Drafts
-# set record = +Sent
 
-# mailboxes imaps://mail.aau.dk/INBOX imaps://mail.aau.dk/INBOX/p6 imaps://mail.aau.dk/INBOX/p5 imaps://mail.aau.dk/INBOX/studiejobs imaps://mail.aau.dk/Sent imaps://mail.aau.dk/Trash
-
-## Send options.
+## Send options
 # Connection options
 set ssl_force_tls = yes
 set ssl_starttls = yes
@@ -28,6 +23,12 @@ set use_from=yes
 set smtp_url=smtp://jdueho11@student.aau.dk@smtp.aau.dk:587
 set smtp_pass=`gnome-keyring-query get mutt_jdueho11` 
 
-## Hook -- IMPORTANT!
-# account-hook $folder "set imap_user=user@gmail.com imap_pass=****"
 account-hook mail.aau.dk 'set imap_user=jdueho11@student.aau.dk imap_pass=$my_pw1'
+
+
+## Old stuff - before offlineIMAP
+# set folder = imaps://mail.aau.dk:993/
+# set spoolfile = +INBOX
+# set postponed = +Drafts
+# set record = +Sent
+# mailboxes imaps://mail.aau.dk/INBOX imaps://mail.aau.dk/INBOX/p6 imaps://mail.aau.dk/INBOX/p5 imaps://mail.aau.dk/INBOX/studiejobs imaps://mail.aau.dk/Sent imaps://mail.aau.dk/Trash

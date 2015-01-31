@@ -1,37 +1,28 @@
-## Using Offlineimap
-# set mbox_type         = Maildir
-# set folder           = ~/.mail/jacobgmail
-# set spoolfile         = "+INBOX"
-# mailboxes =INBOX ="[Gmail].Sendte e-mails" =+gemte 
-
 set mbox_type   = Maildir
-set folder      = ~/.mail/
+set folder      = ~/.mail
 set spoolfile   = ~/.mail/jacobgmail/INBOX
-# mailboxes =/INBOX ="[Gmail].Sendte e-mails" =gemte 
 source ~/.mail/jacobgmail/mailboxes
 
-## Imap without offline integration
-## Receive options.
+## Receive options
 set imap_user=jacobvdueholm@gmail.com
 set my_pw2 = `gnome-keyring-query get mutt_jacobvdueholmATgmailcom` 
-# set imap_pass = my_pw2
-# set from=jacobvdueholm@gmail.com
+set imap_pass = my_pw2
+set from=jacobvdueholm@gmail.com
 set hostname="gmail.com"
 
+
+## Send options
+set smtp_url=smtps://jacobvdueholm:$my_pw2@smtp.gmail.com
+# Connection options
+# unset ssl_starttls
+# set ssl_force_tls = yes
+
+account-hook gmail.com 'set imap_user=jacobvdueholm imap_pass=$my_pw2'
+
+
+## Old stuff - before offlineIMAP
 # set folder = imaps://imap.gmail.com/
 # set spoolfile = +INBOX
 # set postponed = +Drafts
 # set record = +Sent
 # mailboxes imaps://imap.gmail.com/INBOX imaps://imap.gmail.com/Kvitteringer imaps://imap.gmail.com/Personlige imaps://imap.gmail.com/Uni 
-
-
-## Send options.
-set smtp_url=smtps://jacobvdueholm:$my_pw2@smtp.gmail.com
-
-# Connection options
-# unset ssl_starttls
-# set ssl_force_tls = yes
-
-## Hook -- IMPORTANT!
-# account-hook $folder "set imap_user=user@gmail.com imap_pass=****"
-account-hook gmail.com 'set imap_user=jacobvdueholm imap_pass=$my_pw2'
