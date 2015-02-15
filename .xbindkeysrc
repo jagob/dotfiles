@@ -1,0 +1,11 @@
+/*/home/jacob/.xbindkeysrc*/
+/*to reset type*/
+/*killall xbindkeys*/
+
+/*bind MWU to k*/
+"xte 'key k'"
+    b:4
+
+/*bind MWD to j*/
+"xte 'key j'"
+    b:5
