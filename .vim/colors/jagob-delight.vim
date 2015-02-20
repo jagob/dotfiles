@@ -33,6 +33,7 @@ if &t_Co == 88 || &t_Co == 256
     hi CursorLine   cterm=none
     hi LineNr       ctermfg=8
     hi CursorLineNr ctermfg=8
+    hi SignColumn   ctermbg=15
 
     hi Constant     ctermfg=2
     hi String       ctermfg=2
