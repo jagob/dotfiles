@@ -13,7 +13,7 @@ map <C-+> zoom in
 map <C--> zoom out
 map <F1> set "pages-per-row 1"
 map <F2> set "pages-per-row 2"
-# set scroll-step 40
+set scroll-step 150
 # set zoom-step 10
 # set window-title-basename true
 # set first-page-column 2
