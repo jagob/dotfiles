@@ -74,7 +74,9 @@ alias -s asm=$EDITOR
 alias -s txt=$EDITOR
 
 # aliases
+alias report='cd ~/documents/vgis8/report'
 alias xres='xrdb -load ~/.Xresources'
+alias keyboard='setxkbmap -layout dk; setxkbmap -option caps:escape'
 alias matlaber='matlab -nodesktop -nosplash'
 alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
 alias randomgenerator='cd ~/code/randomgenerator && python2 randomgenerator.py'
@@ -84,10 +86,8 @@ alias za='zathura'
 alias bc='bc -lq'						# bash calculator with floating point
 alias bell='sleep 3; echo -e "\a"' 
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
-alias p6='cd ~/dropbox/uni/P6'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
-alias ubuntu='vim ~/dropbox/faldkasse/linux/ubuntu.txt'
 alias vimmer='cd /home/jacob/dropbox/faldkasse/linux/vimmer/ && vim -o3 c.c matlab.m latex.tex'
 alias oensker='cd /home/jacob/dropbox/faldkasse/ && vim Oenskeseddel.txt'
 alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
