@@ -160,15 +160,15 @@ let g:Tex_UseMakefile=1
 "   Compile LaTeX for the current file only
 function! LatexCurrent()
     let a:localLatexCommand = 'echo '
-    let a:localLatexCommand .= '\\input{preamble/preamble_ida10}'
+    let a:localLatexCommand .= '\\input{set/preamble}'
     let a:localLatexCommand .= '\\\\begin{document}'
     let a:localLatexCommand .= '\\pagenumbering{arabic}\\input{'
     let a:curfile = expand('%:p')
     let a:localLatexCommand .= a:curfile
     let a:localLatexCommand .= '}\\\\end{document}'
-    let a:localLatexCommand .= '> /home/jacob/documents/svn/p7/work_sheets/masterlocal.tex'
+    let a:localLatexCommand .= '> /home/jacob/documents/vgis8/report/masterlocal.tex'
     echom system(a:localLatexCommand)
-    execute "!cd /home/jacob/documents/svn/p7/work_sheets/ && pdflatex -shell-escape masterlocal.tex"
+    execute "!cd /home/jacob/documents/vgis8/report/ && pdflatex -shell-escape masterlocal.tex"
 endf
 autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
 autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
@@ -180,20 +180,6 @@ let g:languagetool_disable_rules="MORFOLOGIK_RULE_EN_GB,WHITESPACE_RULE,COMMA_PA
 " let g:languagetool_disable_rules="EN_QUOTES,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,ARTICLE_MISSING,COMMA_PARENTHESIS_WHITESPACE,UPPERCASE_SENTENCE_START,WORD_REPEAT_RULE,DOUBLE_PUNCTUATION,EN_A_VS_AN,THREE_NN,PHRASE_REPETITION,THIS_NNS,MORFOLOGIK_RULE_EN_GB"
 map :g :LanguageToolCheck<CR>
 
-" ----------------------------------------------------------------------------
-" MATLAB
-" integration of mlint code checker with :make command
-" autocmd BufEnter *.m  compiler mlint
-" use F5 to run .m file
-" au FileType matlab map <buffer> <silent> <F5> :w<CR>:!matlab -nodesktop -nosplash -r "try, run(which('%')), pause, end, quit" <CR>\\|<ESC><ESC>
-" .m file folding
-" au FileType matlab set foldmethod=syntax foldcolumn=2 foldlevel=33
-" 
-" map <leader>r :w<CR>:!/usr/local/MATLAB/R2013a/bin/matlab -nodesktop -nosplash -r "try, run %:p, pause, catch, end, quit" <CR> <CR>
-
-" matlab 2
-" prefences -> editor ->
-" /usr/bin/urxvt -e /usr/bin/mutt
 
 " Mappings -------------------------------------------------------------------
 map :Q :q<CR>
@@ -202,9 +188,7 @@ nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>
 
 "open new terminal
-map  <F3> :! urxvt &<CR>
-nmap <F3> :! urxvt &<CR>
-imap <F3> :! urxvt &<CR>
+nnoremap <buffer> <F3> :exec '!urxvt &' shellescape(@%, 1)<cr>"
 
 noremap <F4> :silent noh<CR>
 map     <F6>      :set list!<CR>:set list?<CR>
@@ -223,7 +207,6 @@ nnoremap k gk
 nnoremap gk k
 nnoremap j gj
 nnoremap gj j
-
 
 " Smart way to move between windows
 " let g:BASH_Ctrl_j = 'off' " to map j
@@ -274,6 +257,9 @@ cmap w!! %!sudo tee > /dev/null %
 " nnoremap <leader>win :%s/M]//g
 nnoremap <leader>win :%s/
 nnoremap <leader>cc :!gcc % -o %<
+" nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>"
+" nnoremap <buffer> <F9> :!python % <cr>"
+autocmd BufRead *.py nmap <F5> :!python2 %<CR>
 "map <F9> : !gcc % && ./a.out <CR>
 nnoremap <F5> :make!<cr>
 
@@ -354,7 +340,7 @@ nnoremap <Leader>mru :MRU<CR>
 " let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'
 
 " hilight word type under cursor
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
@@ -362,18 +348,22 @@ map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 " When block is selected
 ":B apply to block only
 
+" Tasklist
+map T :TaskList<CR>
+" map P :TlistToggle<CR>"
+
 " SUPERTAB
 " let g:SuperTabDefaultCompletionType = "<C-X><C-O>"
 " let g:SuperTabDefaultCompletionType = "context"
 " set completeopt=menuone,longest,preview
 
 " OmniCppComplete -----------------------------------------------------------
+" let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
+set omnifunc=syntaxcomplete#Complete
 " autocmd FileType c set omnifunc=ccomplete#Complete
 " autocmd FileType cpp set omnifunc=cppcomplete#CompleteCPP
 " autocmd filetype python set omnifunc=pythoncomplete#complete
 " autocmd FileType javascript set omnifunc=javascriptcomplete#CompleteJS
-"set omnifunc=syntaxcomplete#Complete
-"
 
 " Syntastic --------------------------------------------------------
 set statusline+=%#warningmsg#
