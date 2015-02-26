@@ -25,6 +25,7 @@ set ttimeoutlen=0
 au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
 " set nowrap          " set wrap
+set wrap
 set linebreak       " wrap at 'breakat' instead of last char
 set history=1000    " command lines history
 set nojoinspaces    " only put one space after periods
@@ -274,6 +275,7 @@ cmap w!! %!sudo tee > /dev/null %
 nnoremap <leader>win :%s/
 nnoremap <leader>cc :!gcc % -o %<
 "map <F9> : !gcc % && ./a.out <CR>
+nnoremap <F5> :make!<cr>
 
 " Plugins ----------------------------------------------------------
 "
@@ -387,3 +389,5 @@ let g:syntastic_python_checkers = ['flake8']  " flake8, pyflakes, pylint, python
 let g:syntastic_quiet_messages = { "type": "style" }    " Disable style messages
 let g:syntastic_python_flake8_args = '--ignore="E901"'
 " let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,W801,E303,E211,E901"'
+" map <silent> <Leader>e :Errors<CR>
+" map <Leader>s :SyntasticToggleMode<CR>
