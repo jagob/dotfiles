@@ -2,6 +2,24 @@ mpd_host = "localhost"
 mpd_port = "6600"
 # mpd_music_dir = "~/music"
 
+# %l - length
+# %f - filename
+# %D - directory
+# %a - artist
+# %A - album artist
+# %t - title
+# %b - album
+# %y - year
+# %n - track number (01/12 -> 01)
+# %N - full track info (01/12 -> 01/12)
+# $R - begin right alignment
+
+song_window_title_format = "{%t - }{%a}|{%f}"
+song_columns_list_format = "(7)[default]{l} (40)[default]{t|f} (25)[default]{a} (30)[default]{b}"
+#--Left Align Title | Right Align Artist
+song_list_format = "{%l %t $R %a}|{%l <untitled> $R %a}|{%t $R <unknown>}|{%l %f}"
+song_status_format = "{%t - }{%a }|{%f}"
+
 
 # 0 - black
 # 1 - red
