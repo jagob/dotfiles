@@ -369,11 +369,13 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 2
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_loc_list_height = 5
 
 let g:syntastic_python_checkers = ['flake8']  " flake8, pyflakes, pylint, python
 let g:syntastic_quiet_messages = { "type": "style" }    " Disable style messages
 let g:syntastic_python_flake8_args = '--ignore="E901"'
 " let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,W801,E303,E211,E901"'
+
