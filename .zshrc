@@ -83,6 +83,7 @@ alias randomgenerator='cd ~/code/randomgenerator && python2 randomgenerator.py'
 alias quakelive='cd /home/jacob/.wine-ql/drive_c/Program\ Files/Quake\ Live/ && wine Launcher.exe'
 alias win='sudo mount /dev/sda2 /mnt/windows'
 alias za='zathura'
+alias eog='eog --fullscreen'
 alias bc='bc -lq'						# bash calculator with floating point
 alias bell='sleep 3; echo -e "\a"' 
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
