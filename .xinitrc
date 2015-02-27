@@ -41,6 +41,7 @@ sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
 sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
 /home/jacob/.xmonad/dzen2/start_apps &
 stalonetray &
+amixer set "Speaker" unmute 100% > /dev/null
 
 # exec startxfce4
 exec xmonad
