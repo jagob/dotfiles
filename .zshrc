@@ -10,7 +10,6 @@ PROMPT=$'%{\e[1;32m%}%~» %{\e[0m%}' # Custom Prompt settings
 # Right hand prompt
 RPROMPT='$(git_prompt_string) %*' 
 
-
 #### History options
 HISTFILESIZE=1000000000
 HISTSIZE=10000000
@@ -56,6 +55,7 @@ case $TERM in
 esac
 
 #Environment variables
+# export LC_CTYPE=da_DK
 # export OOO_FORCE_DESKTOP=gnome
 export EDITOR='vim'
 # export WORDCHARS='' #Treat all special chars as word separators
@@ -74,7 +74,7 @@ alias -s asm=$EDITOR
 alias -s txt=$EDITOR
 
 # aliases
-alias report='cd ~/documents/vgis8/report'
+alias vgis8='cd ~/documents/vgis8/report'
 alias xres='xrdb -load ~/.Xresources'
 alias keyboard='setxkbmap -layout dk; setxkbmap -option caps:escape'
 alias matlaber='matlab -nodesktop -nosplash'
