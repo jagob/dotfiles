@@ -58,8 +58,8 @@ main =  do
         -- , manageHook            = myManageHook <+> manageHook defaultConfig -- uses default too
         , handleEventHook       = ewmhDesktopsEventHook
         , startupHook           = setWMName "LG3D"
-        , focusFollowsMouse     = True
-        -- , clickJustFocuses      = True
+        , focusFollowsMouse     = False
+        , clickJustFocuses      = False
     }
 
 
@@ -72,7 +72,7 @@ myWorkspaces            = clickable . (map dzenEscape) $ ["1","2","3","4","5","6
 -- Define the workspace an application has to go to
 myManageHook = composeAll [ 
       className =? "stalonetray"            --> doIgnore
-    -- , isFullscreen                          --> doFullFloat
+    , isFullscreen                          --> doFullFloat
     , className =? "Vlc"                    --> doFloat
     , className =? "Gimp"                   --> doFloat
     , className =? "Steam"                  --> doShift (myWorkspaces !! 4) -- send to ws 5
