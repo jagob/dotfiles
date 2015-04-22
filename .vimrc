@@ -156,7 +156,7 @@ let g:Tex_GotoError=0
 " \label{fig:something}
 autocmd BufRead,BufNewFile *.tex set iskeyword+=:-_
 
-let g:Tex_UseMakefile=1
+let g:Tex_UseMakefile=0
 "   Compile LaTeX for the current file only
 function! LatexCurrent()
     let a:localLatexCommand = 'echo '
