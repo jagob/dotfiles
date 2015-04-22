@@ -1,3 +1,10 @@
+echo '       \_\_    _/_/'
+echo '           \__/'
+echo '           (oo)\_______'
+echo '           (__)\       )\/\'
+echo '               ||----w |'
+echo '               ||     ||'
+
 source ~/dotfiles/.zshgit
 autoload -U promptinit compinit
 compinit        # autocompletion
@@ -5,6 +12,7 @@ promptinit
 
 #Misc settings
 bindkey -e #use emacs keybindings
+bindkey -s '\e[13' 'urxvt& \C-m'
 # prompt bigfade
 PROMPT=$'%{\e[1;32m%}%~» %{\e[0m%}' # Custom Prompt settings
 # Right hand prompt
@@ -73,8 +81,11 @@ alias -s h=$EDITOR
 alias -s asm=$EDITOR
 alias -s txt=$EDITOR
 
+
+
 # aliases
-alias vgis8='cd ~/documents/vgis8/report'
+alias vgis8='cd ~/documents/vgis8/'
+alias afs='cd /afs/ies.auc.dk/group/15gr840/no_backup'
 alias xres='xrdb -load ~/.Xresources'
 alias keyboard='setxkbmap -layout dk; setxkbmap -option caps:escape'
 alias matlaber='matlab -nodesktop -nosplash'
@@ -115,17 +126,19 @@ alias sd='sudo shutdown -h now'         # shutdown
 alias rs='sudo shutdown -r now'         # restart
 alias rb='sudo shutdown -r now'         # restart
 
-alias gs='git status '
-alias ga='git add '
-alias gb='git branch '
+alias gs='git status'
+alias gp='git pull'
+alias go='git push'
+alias ga='git add'
+alias gaa='git add -A'
+alias gb='git branch'
 alias gc='git commit'
 alias gd='git diff'
-alias go='git checkout '
+alias gco='git checkout'
 alias gk='gitk --all&'
 alias gx='gitx --all'
-alias got='git '
 alias gitlog='git log --graph --abbrev-commit --name-status'
-# alias gl  git log --graph --pretty=format:'%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --name-status
+alias gl="git log --color --graph --pretty=format:'%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset - %Cred%h%Creset' --name-status"
 
 alias svns='svn status -u'				# gets svn status
 alias svnu='svn update'				    # updates from svn
@@ -133,7 +146,6 @@ alias svna='svn add . --force'
 alias svnc='svn commit -m ""'		    # commits to svn
 alias svnf='cd ~/documents/svn/p6_2'
 alias svnl='svn log -v -l 5'		    # gets log from svn
-
 
 # Peter alias
 # alias quakelive="LD_PRELOAD='/usr/lib/libpng12.so' /usr/bin/firefox www.quakelive.com"
@@ -230,11 +242,3 @@ bindkey "\eOF" end-of-line
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 ##############################
-
-
-echo '       \_\_    _/_/'
-echo '           \__/'
-echo '           (oo)\_______'
-echo '           (__)\       )\/\'
-echo '               ||----w |'
-echo '               ||     ||'
