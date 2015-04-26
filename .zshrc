@@ -10,9 +10,6 @@ autoload -U promptinit compinit
 compinit        # autocompletion
 promptinit
 
-#Misc settings
-bindkey -e #use emacs keybindings
-bindkey -s '\e[13' 'urxvt& \C-m'
 # prompt bigfade
 PROMPT=$'%{\e[1;32m%}%~» %{\e[0m%}' # Custom Prompt settings
 # Right hand prompt
@@ -55,20 +52,9 @@ zstyle ':completion:*:*:kill:*' menu select
 zstyle ':completion:*:*:killall:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:*:killall:*' menu select
 
-#Set terminal title to current working dir
-#everytime prompt is shown
-case $TERM in
-	    xterm*|*rxvt*)
-	precmd () {print -Pn "\e]0; %~\a"}
-esac
 
 #Environment variables
-# export LC_CTYPE=da_DK
-# export OOO_FORCE_DESKTOP=gnome
 export EDITOR='vim'
-# export WORDCHARS='' #Treat all special chars as word separators
-# export MATLABPATH='/home/jacob/.matlab'
-# export MPD_HOST=/home/jacob/.mpd/socket
 export MPD_HOST="localhost"
 export BROWSER=/usr/bin/firefox
 export TERMINFO=/usr/share/terminfo
@@ -85,28 +71,33 @@ alias -s txt=$EDITOR
 
 # aliases
 alias vgis8='cd ~/documents/vgis8/'
+alias f='cd ~/documents/vgis8/'
 alias afs='cd /afs/ies.auc.dk/group/15gr840/no_backup'
-alias xres='xrdb -load ~/.Xresources'
-alias keyboard='setxkbmap -layout dk; setxkbmap -option caps:escape'
+
+alias suspend='systemctl suspend'
+alias wordcount='pdftotext paper_IEEE.pdf - | wc -w'
 alias matlaber='matlab -nodesktop -nosplash'
-alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
-alias randomgenerator='cd ~/code/randomgenerator && python2 randomgenerator.py'
-alias quakelive='cd /home/jacob/.wine-ql/drive_c/Program\ Files/Quake\ Live/ && wine Launcher.exe'
-alias win='sudo mount /dev/sda2 /mnt/windows'
 alias za='zathura'
+alias sc="systemctl"
+alias win='sudo mount /dev/sda2 /mnt/windows'
+alias xres='xrdb -load ~/.Xresources'
+alias finder='find -name' # "search"
+alias keyboard='setxkbmap -layout dk; setxkbmap -option caps:escape'
 alias bc='bc -lq'						# bash calculator with floating point
 alias bell='sleep 3; echo -e "\a"' 
+
+alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
+alias randomgenerator='cd ~/code/randomgenerator && python2 randomgenerator.py'
+alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
+alias quakelive='cd /home/jacob/.wine-ql/drive_c/Program\ Files/Quake\ Live/ && wine Launcher.exe'
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
+alias oensker='vim /home/jacob/dropbox/faldkasse/Oenskeseddel.txt'
 alias vimmer='cd /home/jacob/dropbox/faldkasse/linux/vimmer/ && vim -o3 c.c matlab.m latex.tex'
-alias oensker='cd /home/jacob/dropbox/faldkasse/ && vim Oenskeseddel.txt'
-alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
-alias finder='find -name' # "search"
 alias updates="pacman -Qqu"
 alias vmi='vim'
 alias vimfm='vifm'
-alias wordcount='pdftotext paper_IEEE.pdf - | wc -w'
 
 alias ls='ls -h --color --group-directories-first'
 alias sl='ls'
@@ -154,13 +145,6 @@ alias svnl='svn log -v -l 5'		    # gets log from svn
 # alias latexmkrapport="ls *.latexmain | xargs latexmk -pdf -pvc -silent"
 # alias ise='LD_PRELOAD=/home/peter/Desktop/usb-driver/libusb-driver.so /opt/xilinx/11.1/ISE/bin/lin/ise'
 # alias impact='LD_PRELOAD=/home/peter/Desktop/usb-driver/libusb-driver.so /opt/xilinx/11.1/ISE/bin/lin/impact'
-# alias drp2='cvlc http://live-icy.gss.dr.dk:8000/A/A04H.mp3.m3u'
-# alias drp3='cvlc http://live-icy.gss.dr.dk:8000/A/A05H.mp3.m3u'
-# alias drp4nord='cvlc http://live-icy.gss.dr.dk:8000/A/A10H.mp3.m3u'
-# alias drp6='cvlc http://live-icy.gss.dr.dk:8000/A/A29H.mp3.m3u'
-# alias drp8='cvlc http://live-icy.gss.dr.dk:8000/A/A22H.mp3.m3u'
-# alias drjazz='drp8'
-# alias koqx='cvlc http://www.koqx.com/koqx.m3u'
 
 ### COLORS
 export GREP_COLOR="1;33"
@@ -210,6 +194,39 @@ function history-search-end {
 }
 zle -N history-beginning-search-backward-end history-search-end
 zle -N history-beginning-search-forward-end history-search-end
+
+function extract {
+  echo Extracting $1 ...
+  if [ -f $1 ] ; then
+      case $1 in
+          *.tar.bz2)   tar xjf $1  ;;
+          *.tar.gz)    tar xzf $1  ;;
+          *.bz2)       bunzip2 $1  ;;
+          *.rar)       unrar x $1    ;;
+          *.gz)        gunzip $1   ;;
+          *.tar)       tar xf $1   ;;
+          *.tbz2)      tar xjf $1  ;;
+          *.tgz)       tar xzf $1  ;;
+          *.zip)       unzip $1   ;;
+          *.Z)         uncompress $1  ;;
+          *.7z)        7z x $1  ;;
+          *)        echo "'$1' cannot be extracted via extract()" ;;
+      esac
+  else
+      echo "'$1' is not a valid file"
+  fi
+}
+
+#Set terminal title to current working dir
+case $TERM in
+	    xterm*|*rxvt*)
+	precmd () {print -Pn "\e]0; %~\a"}
+esac
+
+
+# Bindkeys
+bindkey -e #use emacs keybindings
+bindkey -s '\e[13' 'urxvt& \C-m'
 
 # \e escape key
 # ^ control
