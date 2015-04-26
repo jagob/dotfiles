@@ -35,6 +35,7 @@ alias vimmer='cd /home/jacob/documents/vimmer/ && vim -o3 c.c matlab.m latex.tex
 alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
 alias finder='find -name'
 alias byg='latexmk -pdf -pvc masterlocal.tex'
+alias ydl='youtube-dl -x --audio-format mp3'
 export MPD_HOST=/home/jacob/.mpd/socket
 
 
