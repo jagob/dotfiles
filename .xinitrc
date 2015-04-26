@@ -35,7 +35,7 @@ fi
 
 feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
 
-sleep 10 && dropboxd & 
+sleep 10 && dropbox & 
 sleep 15 && /usr/bin/offlineimap -u quiet &
 sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
 sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &

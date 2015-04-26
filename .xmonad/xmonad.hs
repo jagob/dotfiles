@@ -1,11 +1,12 @@
 import XMonad
-import Dzen
+-- import Dzen
 import System.IO                   -- hPutStrLn scope
-import Control.Monad (liftM2)
+-- import Control.Monad (liftM2)
 
-import Data.Char (isSpace)
+-- import Data.Char (isSpace)
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W   -- manageHook rules
+
 
 -- import XMonad.Actions.CycleWindows -- classic alt-tab
 import XMonad.Actions.CycleWS      -- cycle thru WS', toggle last WS
@@ -20,16 +21,17 @@ import XMonad.Hooks.InsertPosition
 import XMonad.Hooks.EwmhDesktops   -- fullscreenEventHook fixes chrome fullscreen
 
 import XMonad.Layout.NoBorders     -- smart borders on solo clients
-import XMonad.Layout.PerWorkspace (onWorkspace)
-import XMonad.Layout.SimplestFloat
+-- import XMonad.Layout.PerWorkspace (onWorkspace)
+-- import XMonad.Layout.SimplestFloat
 import XMonad.Layout.Spacing
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.Grid
-import XMonad.Layout.Renamed
+-- import XMonad.Layout.Renamed
 import XMonad.Layout.Decoration
 import XMonad.Layout.NoFrillsDecoration
 import XMonad.Layout.Maximize
 
+import XMonad.Util.Run
 import XMonad.Util.Run(spawnPipe)  -- spawnPipe and hPutStrLn
 import XMonad.Util.Font
 -- import XMonad.Util.EZConfig        -- append key/mouse bindings
@@ -40,9 +42,11 @@ import Graphics.X11.ExtraTypes.XF86
 -- Main function that launches xmonad
 main =  do
     dzen     <- spawnPipe myStatusBar
+    conkyapp <- spawnPipe myStartBar
     conkytop <- spawnPipe myTopBar
     conkybot <- spawnPipe myBotBar
-    conkyapp <- spawnPipe myStartBar
+    -- trayer   <- spawnPipe myTrayer
+
 
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
           terminal              = "urxvt"
@@ -52,11 +56,12 @@ main =  do
         , borderWidth           = 3
         , workspaces            = myWorkspaces
         , keys                  = myKeys
-        , layoutHook            = avoidStruts $ myLayouts
+        , layoutHook            = myLayouts
+        -- , layoutHook=avoidStruts $ layoutHook defaultConfig
         , logHook               = dynamicLogWithPP $ myPrettyPrinter dzen
-        , manageHook            = manageDocks <+> myManageHook 
-        -- , manageHook            = myManageHook <+> manageHook defaultConfig -- uses default too
-        , handleEventHook       = ewmhDesktopsEventHook
+        -- , manageHook            = manageDocks <+> myManageHook 
+        , manageHook            = manageHook defaultConfig <+> manageDocks 
+        , handleEventHook       = ewmhDesktopsEventHook <+> docksEventHook 
         , startupHook           = setWMName "LG3D"
         , focusFollowsMouse     = False
         , clickJustFocuses      = False
@@ -68,10 +73,11 @@ myWorkspaces            = clickable . (map dzenEscape) $ ["1","2","3","4","5","6
                             (i,ws) <- zip [1..] l,
                             let n = i ]
 
-
+-- You can use the commandline tool xprop to find out a window’s properties for use in these manageHooks.
 -- Define the workspace an application has to go to
 myManageHook = composeAll [ 
       className =? "stalonetray"            --> doIgnore
+    , className =? "gnome-pie"              --> doIgnore
     , isFullscreen                          --> doFullFloat
     , className =? "Vlc"                    --> doFloat
     , className =? "Gimp"                   --> doFloat
@@ -87,7 +93,7 @@ myManageHook = composeAll [
     ]
 
 -- myLayouts = maximize (tile ||| mtile ||| full)
-myLayouts = (tile ||| mtile ||| full)
+myLayouts = avoidStruts $ (tile ||| mtile ||| full)
     where
         tile  = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ ResizableTall nmaster delta ratio []
         mtile = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ Mirror $ ResizableTall nmaster delta ratio []
@@ -133,15 +139,22 @@ myDzenFGTextColor = "#5faf5f"
 myDzenBGColor = "#fdf6e3"
 myFont = "Ubuntu regular:size=12:antialias=true"
 myDzenFont = "Bitstream Sans Vera:pixelsize=18"
-myDzenStyle = "-h '20' -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
+myDzenStyle = "-h 20 -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
 
--- Desktop
-myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
-myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
-myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1030 -w 1680 -ta l " ++ myDzenStyle
-myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
+-- 1280x1024
+myStatusBar =                                              "dzen2 -e '' -x 30  -y 0    -w 630  -ta l " ++myDzenStyle
+myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2       -x 0   -y 0    -w 30   -ta l " ++myDzenStyle
+myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e 'onstart=lower' -x 660 -y 0    -w 620  -ta r " ++myDzenStyle
+myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -e 'onstart=lower' -x 0   -y 1004 -w 1280 -ta l " ++myDzenStyle
+-- myTrayer    = "trayer --edge top --align right --SetDockType true --SetPartialStrut false --expand true --width 5 --transparent true --tint 0x000000 --heighttype pixel --height 20"
 
--- -- Laptop
+-- -- 1680x1050
+-- myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
+-- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
+-- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1030 -w 1680 -ta l " ++ myDzenStyle
+-- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
+
+-- -- 1920x1080
 -- myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
 -- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 620 -ta r " ++myDzenStyle
 -- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta l " ++ myDzenStyle
