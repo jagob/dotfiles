@@ -1,16 +1,15 @@
 background yes
-use_xft yes
-text_buffer_size 2048
+double_buffer yes
 out_to_console yes
 out_to_x no
-# Update interval in seconds
+own_window yes
+own_window_type desktop
 update_interval 1
 update_interval_on_battery 3
-total_run_times 0
-double_buffer yes
-own_window yes
-own_window_transparent no
-own_window_type dock
+# total_run_times 0
+# own_window_transparent no
+# use_xft yes
+# text_buffer_size 2048
 mpd_host localhost
 mpd_port 6600
 
@@ -27,13 +26,13 @@ TEXT
 ^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/games.xbm)  \
 ^fg(\#5faf5f)${top name 1}\
 \
-^pa(600)\
+^pa(500)\
 ${if_running mpd} \
 ^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e ncmpcpp)^i(/home/jacob/.xmonad/dzen2/img/note.xbm)  \
 ^fg(\#5faf5f)${mpd_artist} - ${mpd_title}  ^ca() \
 $endif \
 \
-^pa(1400)\
+^pa(1000)\
 ${if_match "${acpiacadapter}" == "off-line"}\
 ${if_match ${battery_percent} > 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/bat_full_01.xbm)${endif}\
 ${if_match ${battery_percent} <= 40}${if_match ${battery_percent} > 15}^fg(\#ffff00)^i(~/.xmonad/dzen2/img/bat_low_01.xbm)${endif}${endif}\

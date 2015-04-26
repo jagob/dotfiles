@@ -1,14 +1,15 @@
 background yes
-use_xft yes
-# xftfont Bitstream Vera Sans:size=8
-text_buffer_size 1048
+double_buffer yes
 out_to_console yes
 out_to_x no
-# Update interval in seconds
+own_window yes
+own_window_type desktop
+# xftfont Bitstream Vera Sans:size=8
+# text_buffer_size 1048
+# use_xft yes
 update_interval 1
-update_interval_on_battery 3
-total_run_times 0
-double_buffer yes
+# update_interval_on_battery 3
+# total_run_times 0
 
 TEXT
 ^fg(\#00afdf)^i(/home/jacob/.xmonad/dzen2/img/mail.xbm) \
