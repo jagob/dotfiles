@@ -29,7 +29,7 @@ if [ -x /usr/bin/xfce4-power-manager ] ; then
    xfce4-power-manager &
 fi
 
-if [ -x /usr/bin/xfce4-power-manager ] ; then
+if [ -x /usr/bin/network-manager-applet] ; then
    nm-applet --sm-disable &
 fi
 
@@ -40,7 +40,7 @@ sleep 15 && /usr/bin/offlineimap -u quiet &
 sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
 sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
 /home/jacob/.xmonad/dzen2/start_apps &
-stalonetray &
+# stalonetray &
 amixer set "Speaker" unmute 100% > /dev/null
 
 # exec startxfce4
