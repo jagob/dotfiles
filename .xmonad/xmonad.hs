@@ -59,8 +59,8 @@ main =  do
         , layoutHook            = myLayouts
         -- , layoutHook=avoidStruts $ layoutHook defaultConfig
         , logHook               = dynamicLogWithPP $ myPrettyPrinter dzen
-        -- , manageHook            = manageDocks <+> myManageHook 
-        , manageHook            = manageHook defaultConfig <+> manageDocks 
+        , manageHook            = manageDocks <+> myManageHook 
+        -- , manageHook            = manageHook defaultConfig <+> manageDocks 
         , handleEventHook       = ewmhDesktopsEventHook <+> docksEventHook 
         , startupHook           = setWMName "LG3D"
         , focusFollowsMouse     = False
@@ -151,19 +151,19 @@ myDzenStyle = "-h 20 -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"+
 -- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -e 'onstart=lower' -x 0   -y 1004 -w 1280 -ta l " ++myDzenStyle
 -- myTrayer    = "trayer --edge top --align left --margin 900 --width 2 --SetDockType true --SetPartialStrut false --expand true --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 100"
 
--- -- 1680x1050
--- myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
--- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 380 -ta r " ++myDzenStyle
--- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1030 -w 1680 -ta l " ++ myDzenStyle
--- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
--- myTrayer    = "trayer --edge top --align left --margin 900 --width 2 --SetDockType true --SetPartialStrut false --expand true --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 100"
+-- 1680x1050
+myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
+myStatusBar =                                              "dzen2 -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
+myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 330 -ta r " ++ myDzenStyle
+myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1030 -w 1680 -ta l "      ++ myDzenStyle
+myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
 
--- 1920x1080
-myStatusBar = "dzen2 -e '' -x 30 -y 0 -w 1170 -ta l " ++ myDzenStyle
-myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top | dzen2 -e '' -x 1300 -y 0 -w 620 -ta r " ++myDzenStyle
-myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot | dzen2 -x 0 -y 1080 -w 1920 -ta l " ++ myDzenStyle
-myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l" ++ myDzenStyle
-myTrayer    = "trayer --edge top --align left --margin 900 --width 2 --SetDockType true --SetPartialStrut false --expand true --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 100"
+-- -- 1920x1080
+-- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
+-- myStatusBar =                                              "dzen2 -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
+-- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
+-- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1080 -w 1920 -ta l "      ++ myDzenStyle
+-- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
 
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
@@ -191,7 +191,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     , ((modm              , xK_m     ), sendMessage ToggleStruts) -- Toggle the status bar gap
     -- , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- Quit xmonad
     -- , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
-    , ((modm              , xK_q     ), spawn "killall conky dzen2; xmonad --recompile; xmonad --restart") -- Restart xmonad
+    , ((modm              , xK_q     ), spawn "killall conky dzen2 trayer; xmonad --recompile; xmonad --restart") -- Restart xmonad
     , ((modm,               xK_o     ), nextScreen)
     , ((modm .|. shiftMask, xK_o     ), shiftNextScreen >> nextScreen)
     , ((modm              , xK_z     ), withFocused toggleBorder) 
