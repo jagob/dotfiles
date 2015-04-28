@@ -162,6 +162,8 @@ let g:Tex_UseMakefile=1
 function! LatexCurrent()
     let a:localLatexCommand = 'echo '
     let a:localLatexCommand .= '\\input{set/preamble}'
+    let a:localLatexCommand .= '\\input{set/macros}'
+    let a:localLatexCommand .= '\\input{set/listings}'
     let a:localLatexCommand .= '\\\\begin{document}'
     let a:localLatexCommand .= '\\pagenumbering{arabic}\\input{'
     let a:curfile = expand('%:p')

@@ -29,9 +29,10 @@ if [ -x /usr/bin/xfce4-power-manager ] ; then
    xfce4-power-manager &
 fi
 
-if [ -x /usr/bin/network-manager-applet] ; then
-   nm-applet --sm-disable &
-fi
+# if [ -x /usr/bin/network-manager] ; then
+#    nm-applet --sm-disable &
+# fi
+nm-applet --sm-disable &
 
 feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
 
