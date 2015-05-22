@@ -200,6 +200,7 @@ imap    <F6> <C-O>:set list!<CR><C-O>:set list?<CR>
 " map cut & paste to what they bloody should be
 vnoremap <C-c> "+y " copy
 map <C-v> "+gP     " paste
+imap <C-v> <Esc>"+gP" paste
 vnoremap <C-x> "+x " cut
 " clipboard=unnamed
 " clipboard^=unnamed " for arch linux, see :h clipboard-exclude 
