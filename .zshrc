@@ -76,6 +76,7 @@ alias afs='cd /afs/ies.auc.dk/group/15gr840/no_backup'
 
 alias suspend='systemctl suspend'
 alias wordcount='pdftotext paper_IEEE.pdf - | wc -w'
+alias wordcount2='detex introduction.tex | wc'
 alias matlaber='matlab -nodesktop -nosplash'
 alias za='zathura'
 alias sc="systemctl"
@@ -98,6 +99,7 @@ alias vimmer='cd /home/jacob/dropbox/faldkasse/linux/vimmer/ && vim -o3 c.c matl
 alias updates="pacman -Qqu"
 alias vmi='vim'
 alias vimfm='vifm'
+alias aske='eog ~/downloads/cd.png & mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3'
 
 alias ls='ls -h --color --group-directories-first'
 alias sl='ls'
@@ -113,7 +115,7 @@ alias ..='cd ../..'
 alias ...='cd ../../..'
 alias ....='cd ../../../..'
 alias :q='logout'
-alias sd='sudo shutdown -h now'         # shutdown
+alias sd='sudo systemctl stop openafs-client; sudo shutdown -h now'         # shutdown
 alias rs='sudo shutdown -r now'         # restart
 alias rb='sudo shutdown -r now'         # restart
 
