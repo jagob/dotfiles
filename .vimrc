@@ -169,9 +169,9 @@ function! LatexCurrent()
     let a:curfile = expand('%:p')
     let a:localLatexCommand .= a:curfile
     let a:localLatexCommand .= '}\\\\end{document}'
-    let a:localLatexCommand .= '> /home/jacob/documents/vgis8/report/masterlocal.tex'
+    let a:localLatexCommand .= '> /home/jacob/documents/vgis8/article/masterlocal.tex'
     echom system(a:localLatexCommand)
-    execute "!cd /home/jacob/documents/vgis8/report/ && pdflatex -shell-escape masterlocal.tex"
+    execute "!cd /home/jacob/documents/vgis8/article/ && pdflatex -shell-escape masterlocal.tex"
 endf
 autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
 autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
@@ -200,6 +200,7 @@ imap    <F6> <C-O>:set list!<CR><C-O>:set list?<CR>
 " map cut & paste to what they bloody should be
 vnoremap <C-c> "+y " copy
 map <C-v> "+gP     " paste
+imap <C-v> <Esc>"+gP" paste
 vnoremap <C-x> "+x " cut
 " clipboard=unnamed
 " clipboard^=unnamed " for arch linux, see :h clipboard-exclude 

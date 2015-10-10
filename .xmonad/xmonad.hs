@@ -7,7 +7,6 @@ import System.IO                   -- hPutStrLn scope
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W   -- manageHook rules
 
-
 -- import XMonad.Actions.CycleWindows -- classic alt-tab
 import XMonad.Actions.CycleWS      -- cycle thru WS', toggle last WS
 import XMonad.Actions.NoBorders
@@ -100,8 +99,8 @@ myLayouts = avoidStruts $ (tile ||| mtile ||| full)
     where
         tile  = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ ResizableTall nmaster delta ratio []
         mtile = noFrillsDeco shrinkText myTheme $ spacing 5 $ smartBorders $ Mirror $ ResizableTall nmaster delta ratio []
-        full  = noFrillsDeco shrinkText myTheme $ noBorders Full
-        -- full  = noBorders Full
+        -- full  = noFrillsDeco shrinkText myTheme $ noBorders Full
+        full  = noBorders Full
         nmaster = 1     -- The default number of windows in the master pane
         delta   = 3/100 -- Percent of screen to increment by when resizing panes
         ratio   = 1/2   -- Default proportion of screen occupied by master pane
@@ -147,23 +146,23 @@ myDzenStyle = "-h 20 -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"+
 -- -- 1280x1024
 -- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2       -x 0   -y 0    -w 30   -ta l " ++myDzenStyle
 -- myStatusBar =                                              "dzen2 -e '' -x 30  -y 0    -w 870  -ta l " ++myDzenStyle
--- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e 'onstart=lower' -x 960 -y 0    -w 320  -ta r " ++myDzenStyle
--- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -e 'onstart=lower' -x 0   -y 1004 -w 1280 -ta l " ++myDzenStyle
--- myTrayer    = "trayer --edge top --align left --margin 900 --width 2 --SetDockType true --SetPartialStrut false --expand true --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 100"
+-- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 900 -y 0    -w 380  -ta r " ++myDzenStyle
+-- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -e '' -x 0   -y 1004 -w 1280 -ta l " ++myDzenStyle
+-- myTrayer    = "trayer --edge top --align left --margin 900 --widthtype request --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
 
--- 1680x1050
-myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
-myStatusBar =                                              "dzen2 -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
-myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 330 -ta r " ++ myDzenStyle
-myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1030 -w 1680 -ta l "      ++ myDzenStyle
-myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
-
--- -- 1920x1080
+-- -- 1680x1050
 -- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
 -- myStatusBar =                                              "dzen2 -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
--- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
--- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1080 -w 1920 -ta l "      ++ myDzenStyle
+-- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 330 -ta r " ++ myDzenStyle
+-- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1030 -w 1680 -ta l "      ++ myDzenStyle
 -- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
+
+-- 1920x1080
+myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
+myStatusBar =                                              "dzen2 -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
+myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
+myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1080 -w 1920 -ta l "      ++ myDzenStyle
+myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
 
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
@@ -206,15 +205,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     -- , ((0, xF86XK_Standby   ), spawn "sudo systemctl suspend")
     -- , ((0, xF86XK_Sleep     ), spawn "sudo systemctl suspend")
     -- , ((0, xF86XK_MonBrightnessUp ), spawn "xbacklight -inc 40")
-    , ((0, xK_KP_End        ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")        -- Keypad 1
-    , ((0, xK_KP_Down       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/fight.mp3")         -- Keypad 2
-    , ((0, xK_KP_Page_Down  ), spawn "python2 ~/dropbox/faldkasse/soundboard/naehnej.py -n 1")  -- Keypad 3
-    , ((0, xK_KP_Left       ), spawn "python2 ~/dropbox/faldkasse/soundboard/naehnej.py -x 1")  -- Keypad 4
-    , ((0, xK_KP_Begin      ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/english_mofo.mp3")  -- Keypad 5
-    , ((0, xK_KP_Right      ), spawn "python2 ~/dropbox/faldkasse/soundboard/naehnej.py -f 1")  -- Keypad 6
-    , ((0, xK_KP_Home       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")        -- Keypad 7
-    , ((0, xK_KP_Up         ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")        -- Keypad 8
-    , ((0, xK_KP_Page_Up    ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")        -- Keypad 9
+    , ((0, xK_KP_End        ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 1
+    , ((0, xK_KP_Down       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/fight.mp3")    -- Keypad 2
+    , ((0, xK_KP_Page_Down  ), spawn "python2 ~/dropbox/faldkasse/soundboard/soundboard.py naehnej")  -- Keypad 3
+    , ((0, xK_KP_Left       ), spawn "python2 ~/dropbox/faldkasse/soundboard/soundboard.py help")   -- Keypad 4
+    , ((0, xK_KP_Begin      ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 5
+    , ((0, xK_KP_Right      ), spawn "python2 ~/dropbox/faldkasse/soundboard/soundboard.py nofucksgiven")   -- Keypad 6
+    , ((0, xK_KP_Home       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/awesome.mp3")   -- Keypad 7
+    , ((0, xK_KP_Up         ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 8
+    , ((0, xK_KP_Page_Up    ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 9
     ]
     ++
     -- mod-[1..9], Switch to workspace N

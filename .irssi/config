@@ -1,13 +1,263 @@
+# irssi config file
+# launch with screen irssi
+
+servers = (
+  {
+    address = "irc.quakenet.org";
+    chatnet = "QuakeNet";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.freenode.net";
+    chatnet = "freenode";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "irc.rizon.net";
+    chatnet = "rizon";
+    port = "6667";
+    use_ssl = "no";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  }
+);
+
+
+chatnets = {
+  QuakeNet = {
+    type = "IRC";
+    # max_kicks = "1";
+    # max_msgs = "3";
+    # max_whois = "30";
+    # This is how I auth myself at QuakeNet
+    # autosendcmd = "/^MSG Q@CServe.quakenet.org auth username password;
+  };
+  Freenode = {
+    type = "IRC";
+    # nick = "jagob";
+    # autosendcmd = "MSG NickServ IDENTIFY password; /MODE nick -i";
+  };
+  Rizon = {
+    type = "IRC";
+    # nick = "jagob";
+    # autosendcmd = "MSG NickServ IDENTIFY password; /MODE nick -i";
+  };
+  #  {
+  #    address = "localhost";
+  #    port = "6667";
+  #    autoconnect = "Yes";
+  #    chatnet = "BitlBee";
+  #  },
+};
+
+
+channels = (
+  { name = "#vim"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#latex"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#mutt"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#bash"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#archlinux"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#xmonad"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#i3"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#ubuntu"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#python"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#c++"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#git"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#github"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#android"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "##math"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#raspberrypi"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#linux"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#Clones-Inc"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#xplayn.com"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#python"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#c"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#c++"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#java"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#javascript"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#raspberrypi"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#dolphin-ssbm"; chatnet = "Rizon"; autojoin = "yes"; },
+  { name = "#dolphin-ProjectM"; chatnet = "Rizon"; autojoin = "yes"; }
+);
+
+
 settings = {
-  core = { real_name = "Unknown"; user_name = "jacob"; nick = "jacob"; };
+  core = {
+    real_name = "Jacob";
+    user_name = "jacob";
+    nick = "jagob";
+    timestamp_format = "%H:%M:%S";
+  };
+  # "fe-text" = { actlist_sort = "refnum"; };
+  "fe-common/core" = {
+    theme = "solarized-universal";
+    hilight_color = "= %R";
+    bell_beeps = "yes";
+    # print_active_channel = "yes";
+    # use_status_window = "yes";
+    # use_msgs_window = "yes";
+    #    beep_msg_level = "NOTICE MSGS HILIGHT";
+    # activity_hide_level = "= JOINS QUITS";
+    # completion_nicks_lowercase = "yes";
+  };
+
+  "irc/core" = { alternate_nick = "hamster"; };
+
+  "perl/core/scripts" = {
+    awl_block = "-15";
+    awl_viewer = "no";
+    # neat_allow_shrinking = "no";
+    # neat_melength = "3";
+    # neat_left_messages = "yes";
+    # neat_colorize = "no";
+  };
   "fe-text" = { actlist_sort = "refnum"; };
 };
+
+
+hilights = (
+  {
+    text = "jagob";
+    nick = "no";
+    word = "yes";
+    fullword = "yes";
+    color = "%M";
+  },
+  {
+    text = "jacob";
+    nick = "no";
+    word = "yes";
+    fullword = "no";
+    color = "%M";
+  },
+  {
+    text = "hammy";
+    nick = "no";
+    word = "yes";
+    fullword = "no";
+    color = "%M";
+  },
+  {
+    text = "hammylot";
+    nick = "no";
+    word = "yes";
+    fullword = "yes";
+    color = "%M";
+  }
+);
+
+
+ignores = (
+  { level = "JOINS PARTS QUITS NICKS"; },
+  # { level = "MODES"; channels = ( "&bitlbee" ); }
+);
+
+
+aliases = {
+  J = "join";
+  WJOIN = "join -window";
+  WQUERY = "query -window";
+  LEAVE = "part";
+  BYE = "quit";
+  EXIT = "quit";
+  SIGNOFF = "quit";
+  DESCRIBE = "action";
+  DATE = "time";
+  HOST = "userhost";
+  LAST = "lastlog";
+  SAY = "msg *";
+  WI = "whois";
+  WII = "whois $0 $0";
+  WW = "whowas";
+  W = "who";
+  N = "names";
+  M = "msg";
+  T = "topic";
+  C = "clear";
+  CL = "clear";
+  K = "kick";
+  KB = "kickban";
+  KN = "knockout";
+  BANS = "ban";
+  B = "ban";
+  MUB = "unban *";
+  UB = "unban";
+  IG = "ignore";
+  UNIG = "unignore";
+  SB = "scrollback";
+  UMODE = "mode $N";
+  WC = "window close";
+  WN = "window new hide";
+  SV = "say Irssi $J ($V) - http://irssi.org/";
+  GOTO = "sb goto";
+  CHAT = "dcc chat";
+  RUN = "SCRIPT LOAD";
+  CALC = "exec - if command -v bc >/dev/null 2>&1\\; then printf '%s=' '$*'\\; echo '$*' | bc -l\\; else echo bc was not found\\; fi";
+  SBAR = "STATUSBAR";
+  INVITELIST = "mode $C +I";
+  Q = "QUERY";
+  "MANUAL-WINDOWS" = "set use_status_window off;set autocreate_windows off;set autocreate_query_level none;set autoclose_windows off;set reuse_unused_windows on;save";
+  EXEMPTLIST = "mode $C +e";
+  ATAG = "WINDOW SERVER";
+  UNSET = "set -clear";
+  RESET = "set -default";
+};
+
+
 statusbar = {
   default = {
     awl_0 = {
       items = {
         barstart = { priority = "100"; };
         awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_1 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_2 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_2 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_3 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_3 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_4 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_4 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_5 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_5 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_6 = {
+      items = {
+        barstart = { priority = "100"; };
+        awl_6 = { };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
