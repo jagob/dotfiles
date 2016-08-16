@@ -1,6 +1,7 @@
 import XMonad
 -- import Dzen
 import System.IO                   -- hPutStrLn scope
+import System.Exit
 -- import Control.Monad (liftM2)
 
 -- import Data.Char (isSpace)
@@ -79,17 +80,18 @@ myManageHook = composeAll [
     , isFullscreen                          --> doFullFloat
     , className =? "stalonetray"            --> doIgnore
     , className =? "trayer"                 --> doIgnore
+    , className =? "Xfce4-notifyd"          --> doIgnore
     , className =? "Gnome-Pie"              --> doIgnore
     , className =? "gnome-pie"              --> doIgnore
     , className =? "Gnome-pie"              --> doIgnore
     , className =? "Vlc"                    --> doFloat
-    , className =? "Gimp"                   --> doFloat
     , className =? "Steam"                  --> doShift (myWorkspaces !! 4) -- send to ws 5
     , title     =? "mutt"                   --> doShift (myWorkspaces !! 5) -- send to ws 6
     , title     =? "irssi"                  --> doShift (myWorkspaces !! 6) -- send to ws 7
     , className =? "XCalc"                  --> doFloat
     , title     =? "Copying Files"          --> doFloat
     , title     =? "File Operation Progress"--> doFloat
+    -- , className =? "Gimp"                   --> doFloat
     , insertPosition Below Newer
     , transience'
     ]
@@ -161,7 +163,7 @@ myDzenStyle = "-h 20 -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"+
 myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
 myStatusBar =                                              "dzen2 -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
 myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
-myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1080 -w 1920 -ta l "      ++ myDzenStyle
+myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1060 -w 1920 -ta l "      ++ myDzenStyle
 myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
 
 -- Define new key combinations to be added
@@ -188,7 +190,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1)) -- Increment the number of windows in the master area
     , ((modm              , xK_period), sendMessage (IncMasterN (-1))) -- Deincrement the number of windows in the master area
     , ((modm              , xK_m     ), sendMessage ToggleStruts) -- Toggle the status bar gap
-    -- , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- Quit xmonad
+    , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- Quit xmonad
     -- , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
     , ((modm              , xK_q     ), spawn "killall conky dzen2 trayer; xmonad --recompile; xmonad --restart") -- Restart xmonad
     , ((modm,               xK_o     ), nextScreen)
@@ -196,8 +198,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     , ((modm              , xK_z     ), withFocused toggleBorder) 
     , ((0                 , xK_Print ), spawn "scrot -e 'mv $f ~/screenshots/'")
     , ((0, xF86XK_AudioMute          ), spawn "amixer -D pulse sset Master toggle")
-    , ((0, xF86XK_AudioLowerVolume   ), spawn "amixer -D pulse sset Master 5%-")
-    , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer -D pulse sset Master 5%+")
+    , ((0, xF86XK_AudioLowerVolume   ), spawn "amixer -D pulse sset Master 1%-")
+    , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer -D pulse sset Master 1%+")
     , ((0, xF86XK_AudioStop ), spawn "mpc stop")
     , ((0, xF86XK_AudioPrev ), spawn "mpc prev")
     , ((0, xF86XK_AudioNext ), spawn "mpc next")

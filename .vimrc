@@ -18,6 +18,11 @@ set visualbell                  " No sounds
 set t_vb=                       " No blink at first/last line
 set autoread                    " Reload files changed outside vim
 
+" Try to make vim opened through thunar work with C-s
+" set shell=zsh\ -i
+" set shellcmdflag=-ic
+" set shell=zsh
+
 " timeoutlen defaults to 1000 and is the delay in milliseconds that vim uses when checking for map key sequences. It’s also used when checking keycodes if ttimeoutlen is disabled
 " set timeoutlen =1000
 set ttimeoutlen=0
@@ -101,7 +106,8 @@ map <leader>sp [s  " previous mistake
 map <leader>sa zg  " add to dictionary
 map <leader>s? z=  " lookup word
 
-autocmd FileType tex setlocal spell spelllang=en_gb,da
+" autocmd FileType tex setlocal spell spelllang=en_gb,da
+autocmd FileType tex setlocal spell spelllang=en_us,da
 autocmd FileType mail set spell
 
 " where it should get the dictionary files
@@ -161,17 +167,17 @@ let g:Tex_UseMakefile=1
 "   Compile LaTeX for the current file only
 function! LatexCurrent()
     let a:localLatexCommand = 'echo '
-    let a:localLatexCommand .= '\\input{set/preamble}'
-    let a:localLatexCommand .= '\\input{set/macros}'
-    let a:localLatexCommand .= '\\input{set/listings}'
+    let a:localLatexCommand .= '\\input{setup/preamble}'
+    let a:localLatexCommand .= '\\input{setup/macros}'
+    " let a:localLatexCommand .= '\\input{setup/listings}'
     let a:localLatexCommand .= '\\\\begin{document}'
     let a:localLatexCommand .= '\\pagenumbering{arabic}\\input{'
     let a:curfile = expand('%:p')
     let a:localLatexCommand .= a:curfile
     let a:localLatexCommand .= '}\\\\end{document}'
-    let a:localLatexCommand .= '> /home/jacob/documents/vgis8/article/masterlocal.tex'
+    let a:localLatexCommand .= '> /home/jacob/documents/master/report/masterlocal.tex'
     echom system(a:localLatexCommand)
-    execute "!cd /home/jacob/documents/vgis8/article/ && pdflatex -shell-escape masterlocal.tex"
+    execute "!cd /home/jacob/documents/master/report/ && pdflatex -shell-escape masterlocal.tex"
 endf
 autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
 autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
@@ -194,6 +200,7 @@ imap <c-s> <Esc>:w<CR>
 nnoremap <buffer> <F3> :exec '!urxvt &' shellescape(@%, 1)<cr>"
 
 noremap <F4> :silent noh<CR>
+noremap <leader>h :silent noh<CR>
 map     <F6>      :set list!<CR>:set list?<CR>
 imap    <F6> <C-O>:set list!<CR><C-O>:set list?<CR>
 
@@ -211,6 +218,8 @@ nnoremap k gk
 nnoremap gk k
 nnoremap j gj
 nnoremap gj j
+
+nnoremap <leader>w :set wrap!<CR>
 
 " Smart way to move between windows
 " let g:BASH_Ctrl_j = 'off' " to map j

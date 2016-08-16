@@ -5,6 +5,7 @@ echo '           (__)\       )\/\'
 echo '               ||----w |'
 echo '               ||     ||'
 
+source /usr/share/autojump/autojump.zsh
 source ~/dotfiles/.zshgit
 autoload -U promptinit compinit
 compinit        # autocompletion
@@ -32,7 +33,7 @@ setopt noflowcontrol
 setopt correct              # try to correct spelling of commands
 setopt list_ambiguous       # complete as much of a completion until it gets ambiguous.
 setopt complete_in_word     # allow completion from within a word/phrase
-stty -ixon
+stty -ixon                  # Disable C-s from freezing terminal
 
 #### Completion
 zstyle ':completion:*' rehash yes #always rehash external commands
@@ -55,6 +56,8 @@ zstyle ':completion:*:*:killall:*' menu select
 
 #Environment variables
 export EDITOR='vim'
+export USE_EDITOR=$EDITOR
+export VISUAL=$EDITOR
 export MPD_HOST="localhost"
 export BROWSER=/usr/bin/firefox
 export TERMINFO=/usr/share/terminfo
@@ -70,9 +73,9 @@ alias -s txt=$EDITOR
 
 
 # aliases
-alias vgis8='cd ~/documents/vgis8/'
-alias f='cd ~/documents/vgis8/'
-alias afs='cd /afs/ies.auc.dk/group/15gr840/no_backup'
+alias ft='cd ~/documents/master/tracking/'
+alias fd='cd ~/data/gopro/test/'
+alias afs='cd /afs/ies.auc.dk/group/15gr940/no_backup'
 
 alias suspend='systemctl suspend'
 alias wordcount='pdftotext paper_IEEE.pdf - | wc -w'
@@ -109,13 +112,16 @@ alias la='ls -A'                        # list all files w/o attributes
 alias lla="ls -AlvgG"
 alias lt='ls -ltgG' 		            # sort by last modified
 alias lx='ls -lXB'                      #  Sort by extension
+alias c='cd "$@" && ls'
+alias foldersize='du -cksh *'
 
 alias cd..='cd ..'
 alias ..='cd ../..'
 alias ...='cd ../../..'
 alias ....='cd ../../../..'
 alias :q='logout'
-alias sd='sudo systemctl stop openafs-client; sudo shutdown -h now'         # shutdown
+# alias sd='sudo systemctl stop openafs-client; sudo shutdown -h now'         # shutdown
+alias sd='sudo shutdown -h now'         # shutdown
 alias rs='sudo shutdown -r now'         # restart
 alias rb='sudo shutdown -r now'         # restart
 

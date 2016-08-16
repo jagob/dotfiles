@@ -203,11 +203,11 @@ snippet todo
 snippet ft
 	\footnote{${0:text}}
 snippet fig
-	\begin{figure} [H]
+	\begin{figure} [htpb]
 		\centering
 		\includegraphics[width=0.9\textwidth]{img/${1}}
-	% \caption{${2}}
-	% \label{fig:${3}}
+	\caption{${2:Missing caption??}}
+	\label{fig:${3}}
 	\end{figure}
 	${0}
 snippet tikz
