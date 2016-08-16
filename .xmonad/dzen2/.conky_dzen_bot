@@ -20,7 +20,7 @@ lua_load ~/dotfiles/.xmonad/dzen2/conky_lua_scripts.lua
 TEXT
 ^pa(30)\
 ^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e htop)^i(/home/jacob/.xmonad/dzen2/img/cpu.xbm)  \
-^fg(\#5faf5f)${lua_parse format %3.0f ${cpu cpu1}}% - ${lua_parse format %3.0f ${cpu cpu2}}%   ^ca() \
+^fg(\#5faf5f)${lua_parse format %3.0f ${cpu cpu0}}% ^ca() \
 ^fg(\#5faf5f)^ca(1,urxvt -lsp 1 -e htop)^i(/home/jacob/.xmonad/dzen2/img/mem.xbm)  \
 ^fg(\#5faf5f)${lua_parse format %3.0f ${memperc}}% ^ca() \
 ^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/games.xbm)  \
