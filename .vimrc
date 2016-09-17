@@ -110,6 +110,11 @@ map <leader>s? z=  " lookup word
 autocmd FileType tex setlocal spell spelllang=en_us,da
 autocmd FileType mail set spell
 
+" Set Mark chicken indentation
+autocmd FileType py set tabstop=2       " tab width
+autocmd FileType py set shiftwidth=2    " indention
+autocmd FileType py set softtabstop=2   " backspace deletes indents
+
 " where it should get the dictionary files
 " let g:spellfile_URL = 'http://ftp.vim.org/vim/runtime/spell'
 
