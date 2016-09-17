@@ -10,6 +10,7 @@ source ~/dotfiles/.zshgit
 autoload -U promptinit compinit
 compinit        # autocompletion
 promptinit
+xset -b # disable pc speaker locally
 
 # prompt bigfade
 PROMPT=$'%{\e[1;32m%}%~» %{\e[0m%}' # Custom Prompt settings
@@ -97,6 +98,7 @@ alias quakelive='cd /home/jacob/.wine-ql/drive_c/Program\ Files/Quake\ Live/ && 
 alias todo='vim ~/dropbox/faldkasse/todo.txt'
 alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
+alias notes='vim ~/dropbox/faldkasse/notes.txt'
 alias oensker='vim /home/jacob/dropbox/faldkasse/Oenskeseddel.txt'
 alias vimmer='cd /home/jacob/dropbox/faldkasse/linux/vimmer/ && vim -o3 c.c matlab.m latex.tex'
 alias updates="pacman -Qqu"

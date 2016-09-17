@@ -1,7 +1,7 @@
 # Icons stick to right side of tray
 icon_gravity E
 # Five icons wide, one high, 0 pixels from right, 0 from top
-geometry 5x1+1200+0
+geometry 5x1+1250+0
 max_geometry 5x1-0+0
 # Black background
 background "#fdf6e3"
@@ -11,9 +11,8 @@ skip_taskbar
 icon_size 20
 kludges force_icons_size
 # Tell xmonad "Stand back, I got this"
-window_strut none
+window_strut top
 
-window_layer bottom
+window_layer normal
 
 window_type dock
-

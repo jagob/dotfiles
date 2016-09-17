@@ -29,7 +29,7 @@ localfolders = ~/.mail/aau/
 [Repository jacobgmail-remote]
 type = Gmail
 remoteuser = jacobvdueholm@gmail.com
-remotepasseval = get_password("mutt_jacobvdueholmATgmailcom")
+remotepasseval = get_password("mutt_jacobvdueholm")
 folderfilter = lambda folder: folder not in['Sent Items',
                                             '[Gmail]/Sendte e-mails'
                                             ]
@@ -41,8 +41,8 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 [Repository aau-remote]
 type = IMAP
 remotehost = mail.aau.dk
-remoteuser = jdueho11@student.aau.dk
-remotepasseval = get_password("mutt_jdueho11")
+remoteuser = jvdu@create.aau.dk
+remotepasseval = get_password("mutt_aau")
 # nametrans = lambda folder: {
 #                            } .get(folder, folder)
 folderfilter = lambda folder: folder not in['Calendar',
@@ -63,10 +63,12 @@ sslcacertfile = /etc/ssl/certs/ca-certificates.crt
 
 
 ## Just make mailboxes manually
+# echo 'mailboxes "+jacobgmail/INBOX" "+jacobgmail/[Gmail].Sent Mail" "+jacobgmail/gemte" "+jacobgmail/Drafts" "+jacobgmail/Trash"' > ~/.mail/jacobgmail/mailboxes
+# echo 'mailboxes "+aau/INBOX" "+aau/Sent Items" "+aau/Drafts"' > ~/.mail/aau/mailboxes
 [mbnames]
 enabled = no
-filename = ~/.mail/jacobgmail/mailboxes
-# filename = ~/.mail/aau/mailboxes
+# filename = ~/.mail/jacobgmail/mailboxes
+filename = ~/.mail/aau/mailboxes
 header = "mailboxes "
 peritem = "+%(accountname)s/%(foldername)s"
 sep = " "
