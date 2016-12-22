@@ -64,6 +64,9 @@ set sidescroll=1
 " Statusline
 "highlight StatusLine ctermfg=blue ctermbg=yellow " Highlight the status line
 set laststatus=2 " for powerline
+" set guifont=Liberation\ Mono\ for\ Powerline\ 10 
+" let g:Powerline_symbols = 'fancy'
+
 
 " Soeren tabs
 set tabstop=4       " tab width
