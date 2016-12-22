@@ -1,0 +1,10 @@
+# ~/.local/share/applications/vim-urxvt.desktop
+[Desktop Entry]
+Encoding=UTF-8
+Type=Application
+NoDisplay=true
+Name=vim-urxvt
+# Exec=/usr/bin/urxvt -name vim -e /usr/bin/vim
+Exec=/usr/bin/urxvt -name vim -e zsh -c "source ~/.zshrc && /usr/bin/vim %f"
+MimeType=text/plain
+Icon=gvim

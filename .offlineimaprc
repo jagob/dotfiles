@@ -45,15 +45,18 @@ remoteuser = jvdu@create.aau.dk
 remotepasseval = get_password("mutt_aau")
 # nametrans = lambda folder: {
 #                            } .get(folder, folder)
-folderfilter = lambda folder: folder not in['Calendar',
-                                            'Contacts',
-                                            'Deleted Items',
-                                            'Journal',
-                                            'Junk E-Mail',
-                                            'Notes',
-                                            'Outbox',
-                                            'Tasks',
-                                            ]
+folderfilter = lambda folder: folder in ['INBOX',
+                                         'Sent Items',
+                                        ]
+# folderfilter = lambda folder: folder not in['Calendar',
+#                                             'Contacts',
+#                                             'Deleted Items',
+#                                             'Journal',
+#                                             'Junk E-Mail',
+#                                             'Notes',
+#                                             'Outbox',
+#                                             'Tasks',
+#                                             ]
 ssl = yes
 maxconnections = 1
 holdconnectionopen = yes
