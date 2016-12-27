@@ -180,9 +180,10 @@ function! LatexCurrent()
     let a:curfile = expand('%:p')
     let a:localLatexCommand .= a:curfile
     let a:localLatexCommand .= '}\\\\end{document}'
-    let a:localLatexCommand .= '> /home/jacob/documents/master/report/masterlocal.tex'
+    let a:localLatexCommand .= '> /home/jacob/work/pr_rgbd_chicken_extension/masterlocal.tex'
+
     echom system(a:localLatexCommand)
-    execute "!cd /home/jacob/documents/master/report/ && pdflatex -shell-escape masterlocal.tex"
+    execute "!cd /home/jacob/work/pr_rgbd_chicken_extension/ && pdflatex -shell-escape masterlocal.tex"
 endf
 autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
 autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
@@ -289,6 +290,7 @@ let g:fuf_coveragefile_exclude = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\.class$'
 
 " NERDTree "autocmd vimenter * NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
+let NERDTreeQuitOnOpen = 1
 
 " TComment
 " see .vim/plugin/autoload/tcomment.vim to change comment style
