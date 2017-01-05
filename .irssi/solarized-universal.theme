@@ -137,7 +137,8 @@ abstracts = {
   # the basic styling of how to print message, $0 = nick mode, $1 = nick
   # msgnick = "%_<%_$0$1-%_>%_ %|";
   # msgnick = "%K<%n$0$1-%K>%n %|";
-  msgnick = "%K<%n$0$1-%K>%n ";
+  # msgnick = "%K<%n$0$1-%K>%n ";
+  msgnick = " %n$0$1-%n ";
 
   # message from you is printed. "msgownnick" specifies the styling of the
   # nick ($0 part in msgnick) and "ownmsgnick" specifies the styling of the
@@ -370,5 +371,8 @@ abstracts = {
 formats = {
   "fe-common/core" = {
     daychange = "           %g-----%w-%W-%n Day changed to %%D %W-%w-%g-----%n";
+    # pubmsg = "%b<%w$2\00306$[-11]0%b> %K|%n $1";
+    # pubmsg = "{pubmsgnick $2 {pubnick \00312$[-7]0}}$1";
+    pubmsg = "%b<%w$2\00306$[-11]0%b> %K|%n $1";
   };
 };
