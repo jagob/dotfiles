@@ -34,10 +34,6 @@ fi
 # fi
 nm-applet --sm-disable &
 
-# feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
-# feh --bg-scale /home/jacob/downloads/animal_snout_lemur_cute_eyes_humor_funny_1920x1200.jpg &
-feh --bg-scale /home/jacob/images/chameleon_macro-wallpaper-2560x1440.jpg &
-
 sleep 10 && dropbox & 
 sleep 15 && /usr/bin/offlineimap -u quiet &
 sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
@@ -46,7 +42,11 @@ sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
 stalonetray &
 # amixer set "Speaker" unmute 100% > /dev/null
 
-# xrandr --output DVI-I-1 --auto --primary --output DVI-I-2 --auto --output HDMI-1 --off
+xrandr --output DVI-I-0 --auto --primary --output DVI-I-3 --auto --right-of DVI-I-0 --output HDMI-0 --off
+
+# feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
+# feh --bg-scale /home/jacob/downloads/animal_snout_lemur_cute_eyes_humor_funny_1920x1200.jpg &
+feh --bg-scale /home/jacob/images/chameleon_macro-wallpaper-2560x1440.jpg &
 
 # exec startxfce4
 exec xmonad
