@@ -27,7 +27,7 @@ auto_view text/html
 
 set imap_keepalive = 300
 set timeout = 5
-set mail_check = 60 # How often to check for new mail (time in seconds).
+set mail_check = 10 # How often to check for new mail (time in seconds).
 set beep_new
 
 # Status Bar -----------------------------------------

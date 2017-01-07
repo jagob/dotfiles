@@ -135,9 +135,8 @@ abstracts = {
   ##
 
   # the basic styling of how to print message, $0 = nick mode, $1 = nick
-  # msgnick = "%_<%_$0$1-%_>%_ %|";
-  # msgnick = "%K<%n$0$1-%K>%n %|";
-  msgnick = "%K<%n$0$1-%K>%n ";
+  # msgnick = "%_<%_$0$1-%_>%_ %|"; # Original Jacob XXX
+  msgnick = "%_$0$1-%_ %|";
 
   # message from you is printed. "msgownnick" specifies the styling of the
   # nick ($0 part in msgnick) and "ownmsgnick" specifies the styling of the
@@ -341,7 +340,8 @@ abstracts = {
   sb_act_sep = "%g$*";
   # normal text
   # This also affects the color of the window with activity in adv_windowlist
-  sb_act_text = "%w$*";
+  # sb_act_text = "%w$*"; # Original white background
+  sb_act_text = "%g$*";
   # public message (ordinary messages)
   sb_act_msg = "%R$*";
   # hilight (when people actually chat)
@@ -370,5 +370,13 @@ abstracts = {
 formats = {
   "fe-common/core" = {
     daychange = "           %g-----%w-%W-%n Day changed to %%D %W-%w-%g-----%n";
+    own_msg = "{ownmsgnick $2 {ownnick $[-11]0}}$1";
+    own_msg_channel = "{ownmsgnick $3 {ownnick $[-11]0}{msgchannel $1}}$2";
+    pubmsg_me_channel = "{pubmsgmenick $3 {menick $[-11]0}{msgchannel $1}}$2";
+    pubmsg_hilight = "{pubmsghinick $0 $3 $[-11]1}$2";
+    pubmsg_hilight_channel = "{pubmsghinick $0 $4 $[-11]1{msgchannel $2}}$3";
+    pubmsg = "{pubmsgnick $2 {pubnick \00307$[-11]0}}$1";
+    pubmsg_channel = "{pubmsgnick $3 {pubnick $[-11]0}{msgchannel $1}}$2";
+    pubmsg_me = "{pubmsgmenick $2 {menick $[-11]0}}$1";
   };
 };

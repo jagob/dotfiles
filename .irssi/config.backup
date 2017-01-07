@@ -12,244 +12,140 @@ servers = (
   },
   {
     address = "irc.freenode.net";
-    chatnet = "freenode";
+    chatnet = "Freenode";
+    port = "6697";
+    use_ssl = "yes";
+    ssl_verify = "yes";
+    ssl_capath = "/etc/ssl/certs";
+    autoconnect = "yes";
+  },
+  {
+    address = "vapvet.irc.slack.com";
+    chatnet = "slack";
     port = "6667";
-    use_ssl = "no";
+    password = "vapvet.AGZDSPerYBC3hLP6OuBi";
+    use_ssl = "yes";
     ssl_verify = "no";
     autoconnect = "yes";
   }
 );
 
-
+#THIS SECTION DEALS WITH THE COMMANDS THAT ARE SENT WHEN YOU JOIN A SERVER
 chatnets = {
   QuakeNet = {
     type = "IRC";
-    max_kicks = "1";
-    max_msgs = "3";
-    max_whois = "30";
     # This is how I auth myself at QuakeNet
     # autosendcmd = "/^MSG Q@CServe.quakenet.org auth username password;
   };
-  freenode = {
+  Freenode = {
     type = "IRC";
-    autosendcmd = "MSG NickServ IDENTIFY password; /MODE nick -i";
+    sasl_mechanism = "plain";
+    sasl_username = "jagob";
+    sasl_password = "Hamst3rs";
   };
-  #  {
-  #    address = "localhost";
-  #    port = "6667";
-  #    autoconnect = "Yes";
-  #    chatnet = "BitlBee";
-  #  },
+  slack = { type = "IRC"; nick = "jacobvdueholm"; };
 };
 
 channels = (
-  # Define a password/keyword for channels if necessary
-  #  { name = "#ChannelName keyword"; chatnet = "FreeNode"; autojoin = "Yes"; },	
-  #  { name = "#irssi"; chatnet = "ircnet"; autojoin = "No"; },
-  { name = "#abe"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#dota2"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#joindota"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#xplayn.com"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#c++"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#python"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#java"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#linux"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#javascript"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#c"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#dota2.cw"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#raspberrypi"; chatnet = "QuakeNet"; autojoin = "yes"; },
-  #  { name = "#ubuntu"; chatnet = "Freenode"; autojoin = "yes"; },
-  #  { name = "#archlinux"; chatnet = "Freenode"; autojoin = "yes"; },
-  #  { name = "#python"; chatnet = "Freenode"; autojoin = "yes"; }
-  #  { name = "##c++"; chatnet = "Freenode"; autojoin = "yes"; }
-  #  { name = "#git"; chatnet = "Freenode"; autojoin = "yes"; }
-  #  { name = "#github"; chatnet = "Freenode"; autojoin = "yes"; }
-  #  { name = "#vim"; chatnet = "Freenode"; autojoin = "yes"; }
-  #  { name = "#android"; chatnet = "Freenode"; autojoin = "yes"; }
-  #  { name = "#bash"; chatnet = "Freenode"; autojoin = "yes"; }
-  #  { name = "##math"; chatnet = "Freenode"; autojoin = "yes"; }
-  #  { name = "#raspberrypi"; chatnet = "Freenode"; autojoin = "yes"; }
-  #  { name = "#latex"; chatnet = "Freenode"; autojoin = "yes"; }
-  #  { name = "#mutt"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#irssi"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#vim"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#mutt"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#bash"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#archlinux"; chatnet = "Freenode"; autojoin = "yes"; },
   { name = "#xmonad"; chatnet = "Freenode"; autojoin = "yes"; },
-  #  { name = "#i3"; chatnet = "Freenode"; autojoin = "yes"; }
+  { name = "#i3"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#latex"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#git"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#github"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#python"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "##algorithms"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "##programming"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "##learnpython"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#c++"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "##c++"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "##math"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "##statistics"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "##machinelearning"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#ml_class"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#shogun"; chatnet = "Freenode"; autojoin = "yes"; },
+  { name = "#Clones-Inc"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#linux"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#python"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#c"; chatnet = "QuakeNet"; autojoin = "yes"; },
+  { name = "#c++"; chatnet = "QuakeNet"; autojoin = "yes"; }
 );
-
-
 
 settings = {
   core = {
     real_name = "Jacob";
     user_name = "jacob";
     nick = "jagob";
-    timestamp_format = "%H:%M:%S";
+    timestamp_format = "%H:%M";
+    awaylog_level = "MSGS HILIGHT";
   };
-  "fe-text" = { actlist_sort = "refnum"; };
+  # "fe-text" = { actlist_sort = "refnum"; };
   "fe-common/core" = {
-    print_active_channel = "yes";
-    use_status_window = "yes";
-    use_msgs_window = "yes";
-    #    theme = "tlvince";
-    #    hilight_color = "= %R";
+    theme = "solarized-universal";
+    hilight_color = "= %R";
+    bell_beeps = "yes";
+    # print_active_channel = "yes";
+    # use_status_window = "yes";
+    # use_msgs_window = "yes";
     #    beep_msg_level = "NOTICE MSGS HILIGHT";
-    #    bell_beeps = "no";
-    activity_hide_level = "= JOINS QUITS";
+    # activity_hide_level = "= JOINS QUITS";
+    # completion_nicks_lowercase = "yes";
+    beep_msg_level = "MSGS HILIGHT NOTICES INVITES DCC DCCMSGS";
+    autolog = "yes";
   };
+
   "irc/core" = { alternate_nick = "hamster"; };
-  "perl/core/scripts" = { awl_block = "-15"; };
+
+  "perl/core/scripts" = {
+    awl_block = "-15";
+    awl_viewer = "no";
+    # neat_allow_shrinking = "no";
+    # neat_melength = "3";
+    # neat_left_messages = "yes";
+    # neat_colorize = "no";
+    awl_placement = "top";
+    awl_mouse = "yes";
+    awl_mouse_offset = "0";
+  };
+  "fe-text" = { actlist_sort = "refnum"; indent = "26"; };
 };
 
+hilights = (
+  {
+    text = "jagob";
+    nick = "no";
+    word = "yes";
+    fullword = "yes";
+    color = "%M";
+  },
+  {
+    text = "jacob";
+    nick = "no";
+    word = "yes";
+    fullword = "no";
+    color = "%M";
+  },
+  {
+    text = "hammy";
+    nick = "no";
+    word = "yes";
+    fullword = "no";
+    color = "%M";
+  },
+  {
+    text = "hammylot";
+    nick = "no";
+    word = "yes";
+    fullword = "yes";
+    color = "%M";
+  }
+);
 
-
-statusbar = {
-  # formats:
-  # when using {templates}, the template is shown only if it's argument isn't
-  # empty unless no argument is given. for example {sb} is printed always,
-  # but {sb $T} is printed only if $T isn't empty.
-
-  items = {
-    # start/end text in statusbars
-    barstart = "{sbstart}";
-    barend = "{sbend}";
-
-    topicbarstart = "{topicsbstart}";
-    topicbarend = "{topicsbend}";
-
-    # treated "normally", you could change the time/user name to whatever
-    time = "{sb $Z}";
-    user = "{sb {sbnickmode $cumode}$N{sbmode $usermode}{sbaway $A}}";
-
-    # treated specially .. window is printed with non-empty windows,
-    # window_empty is printed with empty windows
-    window = "{sb $winref:$tag/$itemname{sbmode $M}}";
-    window_empty = "{sb $winref{sbservertag $tag}}";
-    prompt = "{prompt $[.15]itemname}";
-    prompt_empty = "{prompt $winname}";
-    topic = " $topic";
-    topic_empty = " Irssi v$J - http://www.irssi.org";
-
-    # all of these treated specially, they're only displayed when needed
-    lag = "{sb Lag: $0-}";
-    act = "{sb Act: $0-}";
-    more = "-- more --";
-  };
-
-  # there's two type of statusbars. root statusbars are either at the top
-  # of the screen or at the bottom of the screen. window statusbars are at
-  # the top/bottom of each split window in screen.
-  default = {
-    # the "default statusbar" to be displayed at the bottom of the window.
-    # contains all the normal items.
-    window = {
-      disabled = "no";
-
-      # window, root
-      type = "window";
-      # top, bottom
-      placement = "bottom";
-      # number
-      position = "1";
-      # active, inactive, always
-      visible = "active";
-
-      # list of items in statusbar in the display order
-      items = {
-        barstart = { priority = "100"; };
-        time = { };
-        user = { };
-        window = { };
-        window_empty = { };
-        lag = { priority = "-1"; };
-        act = { priority = "10"; };
-        more = { priority = "-1"; alignment = "right"; };
-        barend = { priority = "100"; alignment = "right"; };
-        usercount = { };
-      };
-    };
-
-    # statusbar to use in inactive split windows
-    window_inact = {
-      type = "window";
-      placement = "bottom";
-      position = "1";
-      visible = "inactive";
-      items = {
-        barstart = { priority = "100"; };
-        window = { };
-        window_empty = { };
-        more = { priority = "-1"; alignment = "right"; };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-
-    # we treat input line as yet another statusbar :) It's possible to
-    # add other items before or after the input line item.
-    prompt = {
-      type = "root";
-      placement = "bottom";
-      # we want to be at the bottom always
-      position = "100";
-      visible = "always";
-      items = {
-        prompt = { priority = "-1"; };
-        prompt_empty = { priority = "-1"; };
-        # treated specially, this is the real input line.
-        input = { priority = "10"; };
-      };
-    };
-
-    # topicbar
-    topic = {
-      type = "root";
-      placement = "top";
-      position = "1";
-      visible = "always";
-      items = {
-        topicbarstart = { priority = "100"; };
-        topic = { };
-        topic_empty = { };
-        topicbarend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_0 = {
-      items = {
-        barstart = { priority = "100"; };
-        awl_0 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-  };
-};
-
-# /set awl_display_key [$H$N$S]$H$C$S
-
-
-# hilights = ( { text = "jagob"; nick = "yes"; word = "yes"; } );
-
-#hilights = (
-#  {
-#    text = "jagob";
-#    nick = "no";
-#    word = "yes";
-#    fullword = "yes";
-#    color = "%M";
-#  },
-#  {
-#    text = "jacob";
-#    nick = "no";
-#    word = "yes";
-#    fullword = "no";
-#    color = "%M";
-#  },
-#  {
-#    text = "hammy";
-#    nick = "no";
-#    word = "yes";
-#    fullword = "yes";
-#    color = "%M";
-#  }
-#);
-
+ignores = ( { level = "JOINS PARTS QUITS NICKS"; } );
 
 aliases = {
   J = "join";
@@ -301,12 +197,74 @@ aliases = {
   RESET = "set -default";
 };
 
-
-
-#If you’re in channels with a lot of people, seeing all the joins, parts, quits, afks can be distracting, they can be turned off with:
-#/ignore * ALL -PUBLIC -ACTIONS
-#ignores = (
-#  { level = "JOINS PARTS QUITS NICKS"; },
-#  { level = "MODES"; channels = ( "&bitlbee" ); }
-#);
-
+statusbar = {
+  default = {
+    window = {
+      items = {
+        barstart = { priority = "100"; };
+        time = { };
+        user = { };
+        window = { };
+        window_empty = { };
+        lag = { priority = "-1"; };
+        more = { priority = "-1"; alignment = "right"; };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+      disabled = "yes";
+    };
+    awl_0 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_0 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_1 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_1 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_2 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_2 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_3 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_3 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_4 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_4 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    awl_5 = {
+      placement = "top";
+      items = {
+        barstart = { priority = "100"; };
+        awl_5 = { };
+        barend = { priority = "100"; alignment = "right"; };
+      };
+    };
+    window_incat = { };
+    window_inact = { };
+  };
+};
+logs = { };
+keyboard = ( 
+  { key = "meta-[M"; id = "command"; data = "mouse_xterm "; }
+);
