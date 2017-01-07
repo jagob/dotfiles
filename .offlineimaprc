@@ -9,13 +9,14 @@ pythonfile = ~/.mutt/offlineimap.py
 [Account jacobgmail]
 localrepository = jacobgmail-local
 remoterepository = jacobgmail-remote
-autorefresh = 2
+# Minutes between syncs
+autorefresh = 0.2
 quick = 10
 
 [Account aau]
 localrepository = aau-local
 remoterepository = aau-remote
-autorefresh = 1
+autorefresh = 0.2
 quick = 10
 
 [Repository jacobgmail-local]
@@ -43,20 +44,9 @@ type = IMAP
 remotehost = mail.aau.dk
 remoteuser = jvdu@create.aau.dk
 remotepasseval = get_password("mutt_aau")
-# nametrans = lambda folder: {
-#                            } .get(folder, folder)
 folderfilter = lambda folder: folder in ['INBOX',
                                          'Sent Items',
                                         ]
-# folderfilter = lambda folder: folder not in['Calendar',
-#                                             'Contacts',
-#                                             'Deleted Items',
-#                                             'Journal',
-#                                             'Junk E-Mail',
-#                                             'Notes',
-#                                             'Outbox',
-#                                             'Tasks',
-#                                             ]
 ssl = yes
 maxconnections = 1
 holdconnectionopen = yes

@@ -1,1 +1,0 @@
-/home/jacob/.irssi/scripts/trackbar.pl

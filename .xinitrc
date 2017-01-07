@@ -37,7 +37,7 @@ nm-applet --sm-disable &
 sleep 10 && dropbox & 
 sleep 15 && /usr/bin/offlineimap -u quiet &
 sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
-# sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
+sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
 /home/jacob/.xmonad/dzen2/start_apps &
 stalonetray &
 # amixer set "Speaker" unmute 100% > /dev/null
