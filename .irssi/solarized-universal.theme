@@ -89,7 +89,8 @@ abstracts = {
   channel = "%_$*%_";
 
   # nick is printed
-  nick = "%_$*%_";
+  # nick = "%_$*%_"; # Original
+  nick = "%n$*";
 
   # nick host is printed
   # (that's the "email" address of a user)
@@ -136,7 +137,7 @@ abstracts = {
 
   # the basic styling of how to print message, $0 = nick mode, $1 = nick
   # msgnick = "%_<%_$0$1-%_>%_ %|"; # Original Jacob XXX
-  msgnick = "%_$0$1-%_ %|";
+  msgnick = "%k$0$1-  %|";
 
   # message from you is printed. "msgownnick" specifies the styling of the
   # nick ($0 part in msgnick) and "ownmsgnick" specifies the styling of the
@@ -160,7 +161,8 @@ abstracts = {
 
   # public message in channel, $0 = nick mode, $1 = nick
   pubmsgnick = "{msgnick $0 $1-}";
-  pubnick = "%N%_$*%_%n";
+  # pubnick = "%N%_$*%_%n"; # Original
+  pubnick = "%n$*%n";
 
   # public message in channel meant for me, $0 = nick mode, $1 = nick
   pubmsgmenick = "{msgnick $0 $1-}";
@@ -375,7 +377,7 @@ formats = {
     pubmsg_me_channel = "{pubmsgmenick $3 {menick $[-11]0}{msgchannel $1}}$2";
     pubmsg_hilight = "{pubmsghinick $0 $3 $[-11]1}$2";
     pubmsg_hilight_channel = "{pubmsghinick $0 $4 $[-11]1{msgchannel $2}}$3";
-    pubmsg = "{pubmsgnick $2 {pubnick \00307$[-11]0}}$1";
+    pubmsg = "{pubmsgnick $2 {pubnick \00304$[-11]0}}$1";
     pubmsg_channel = "{pubmsgnick $3 {pubnick $[-11]0}{msgchannel $1}}$2";
     pubmsg_me = "{pubmsgmenick $2 {menick $[-11]0}}$1";
   };

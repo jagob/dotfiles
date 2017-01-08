@@ -52,7 +52,7 @@ main =  do
           terminal              = "urxvt"
         , focusedBorderColor    = "#5faf5f"
         , normalBorderColor     = "#fdf6e3"
-        -- , modMask               = mod4Mask
+        -- , modMask               = mod4Mask -- Swap alt and win to play Dota
         , borderWidth           = 3
         , workspaces            = myWorkspaces
         , keys                  = myKeys
@@ -152,25 +152,25 @@ myDzenStyle = "-h 20 -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"+
 -- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -e '' -x 0   -y 1004 -w 1280 -ta l " ++myDzenStyle
 -- myTrayer    = "trayer --edge top --align left --margin 900 --widthtype request --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
 
--- -- 1680x1050
--- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
--- myStatusBar =                                              "dzen2 -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
--- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 330 -ta r " ++ myDzenStyle
--- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1030 -w 1680 -ta l "      ++ myDzenStyle
--- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
-
--- 1920x1080
+-- 1680x1050
 myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
 myStatusBar =                                              "dzen2 -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
-myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
-myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1060 -w 1920 -ta l "      ++ myDzenStyle
+myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 330 -ta r " ++ myDzenStyle
+myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1030 -w 1680 -ta l "      ++ myDzenStyle
 myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
+
+-- -- 1920x1080
+-- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
+-- myStatusBar =                                              "dzen2 -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
+-- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
+-- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -x 0 -y 1060 -w 1920 -ta l "      ++ myDzenStyle
+-- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
 
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
       ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- launch a terminal
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")          -- launch gmrun
-    , ((modMask4 .|. shiftMask, xK_p     ), spawn "gmrun")          -- launch gmrun
+    -- , ((modMask4 .|. shiftMask, xK_p     ), spawn "gmrun")          -- launch gmrun
     , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Ubuntu Mono-14'")
     , ((modm .|. shiftMask, xK_c     ), kill)                   -- close focused window
     , ((modm,               xK_space ), sendMessage NextLayout) -- Rotate through the available layout algorithms

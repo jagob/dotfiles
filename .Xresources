@@ -14,7 +14,9 @@ Xft.hintstyle: hintslight
 Xft.lcdfilter: lcddefault
 
 ! IRC
-URxvt*modifier: Windows
+! Set the key to be interpreted as the Meta key to: alt, meta, hyper, super, mod1, mod2, mod3, mod4, mod5; option -mod.!
+! URxvt*modifier: Windows
+URxvt*modifier: super
 
 ! Terminal settings -----------------------------------------
 URxvt*termName: rxvt-unicode-256color
