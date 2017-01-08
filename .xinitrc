@@ -46,7 +46,7 @@ xrandr --output DVI-I-0 --auto --primary --output DVI-I-3 --auto --right-of DVI-
 
 # feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
 # feh --bg-scale /home/jacob/downloads/animal_snout_lemur_cute_eyes_humor_funny_1920x1200.jpg &
-feh --bg-scale /home/jacob/images/chameleon_macro-wallpaper-2560x1440.jpg &
+feh --bg-scale /home/jacob/dropbox/faldkasse/wallpapers/chameleon_macro-wallpaper-2560x1440.jpg &
 
 # exec startxfce4
 exec xmonad
