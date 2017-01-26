@@ -18,7 +18,16 @@ servers = (
   },
   {
     address = "secret";
-    chatnet = "secret";
+    chatnet = "slackaau";
+    port = "6667";
+    password = "secret";
+    use_ssl = "yes";
+    ssl_verify = "no";
+    autoconnect = "yes";
+  },
+  {
+    address = "secret";
+    chatnet = "slackvet";
     port = "6667";
     password = "secret";
     use_ssl = "yes";
@@ -29,18 +38,15 @@ servers = (
 
 #THIS SECTION DEALS WITH THE COMMANDS THAT ARE SENT WHEN YOU JOIN A SERVER
 chatnets = {
-  QuakeNet = {
-    type = "IRC";
-    # This is how I auth myself at QuakeNet
-    # autosendcmd = "/^MSG Q@CServe.quakenet.org auth username password;
-  };
+  QuakeNet = { type = "IRC"; };
   Freenode = {
     type = "IRC";
     sasl_mechanism = "plain";
     sasl_username = "secret";
     sasl_password = "secret";
   };
-  slack = { type = "IRC"; nick = "secret"; };
+  slackaau = { type = "IRC"; nick = "jacobvdueholm"; };
+  slackvet = { type = "IRC"; nick = "jacobvdueholm"; };
 };
 
 channels = (
@@ -89,7 +95,7 @@ settings = {
     autolog = "yes";
   };
 
-  "irc/core" = { alternate_nick = "hamster"; };
+  "irc/core" = { alternate_nick = "jagobdue"; };
 
   "perl/core/scripts" = {
     awl_block = "-15";
@@ -227,54 +233,6 @@ statusbar = {
       items = {
         barstart = { priority = "100"; };
         awl_2 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_3 = {
-      placement = "top";
-      items = {
-        barstart = { priority = "100"; };
-        awl_3 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_4 = {
-      placement = "top";
-      items = {
-        barstart = { priority = "100"; };
-        awl_4 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_5 = {
-      placement = "top";
-      items = {
-        barstart = { priority = "100"; };
-        awl_5 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_6 = {
-      placement = "top";
-      items = {
-        barstart = { priority = "100"; };
-        awl_6 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_7 = {
-      placement = "top";
-      items = {
-        barstart = { priority = "100"; };
-        awl_7 = { };
-        barend = { priority = "100"; alignment = "right"; };
-      };
-    };
-    awl_8 = {
-      placement = "top";
-      items = {
-        barstart = { priority = "100"; };
-        awl_8 = { };
         barend = { priority = "100"; alignment = "right"; };
       };
     };
