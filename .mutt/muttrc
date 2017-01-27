@@ -55,7 +55,7 @@ set sleep_time = 0
 
 # mutt-sidebar
 set sidebar_visible = yes
-set sidebar_width      = 40
+set sidebar_width      = 20
 # set sidebar_delim='|'
 # set sidebar_sort=yes
 # set sidebar_folderindent = true
