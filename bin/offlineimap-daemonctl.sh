@@ -1,5 +1,6 @@
 #!/bin/sh
 # this script runs offline imap as daemon (configured to check periodically)
+# https://github.com/hrnr/offlineimap-daemon
 
 LOG=~/.offlineimap/sync.log
 PIDFILE=~/.offlineimap/pid
