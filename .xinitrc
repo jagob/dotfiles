@@ -15,6 +15,7 @@ xrdb -merge ~/.Xresources
 setxkbmap -layout dk; setxkbmap -option caps:escape
 xsetroot -cursor_name left_ptr
 export EDITOR=vim
+# xmodmap ~/.Xmodmap
 
 # Gnome keyring
 # Start a D-Bus session
