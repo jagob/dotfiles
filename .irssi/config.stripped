@@ -17,19 +17,19 @@ servers = (
     autoconnect = "yes";
   },
   {
-    address = "secret";
-    chatnet = "slackaau";
+    address = "";
+    chatnet = "slack1";
     port = "6667";
-    password = "secret";
+    password = "";
     use_ssl = "yes";
     ssl_verify = "no";
     autoconnect = "yes";
   },
   {
-    address = "secret";
-    chatnet = "slackvet";
+    address = "";
+    chatnet = "slack2";
     port = "6667";
-    password = "secret";
+    password = "";
     use_ssl = "yes";
     ssl_verify = "no";
     autoconnect = "yes";
@@ -42,11 +42,11 @@ chatnets = {
   Freenode = {
     type = "IRC";
     sasl_mechanism = "plain";
-    sasl_username = "secret";
-    sasl_password = "secret";
+    sasl_username = "";
+    sasl_password = "";
   };
-  slackaau = { type = "IRC"; nick = "jacobvdueholm"; };
-  slackvet = { type = "IRC"; nick = "jacobvdueholm"; };
+  slack1 = { type = "IRC"; nick = ""; };
+  slack2 = { type = "IRC"; nick = ""; };
 };
 
 channels = (
