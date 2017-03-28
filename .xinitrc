@@ -35,16 +35,16 @@ fi
 # fi
 nm-applet --sm-disable &
 
-sleep 10 && dropbox & 
+sleep 20 && dropbox & 
 # sleep 15 && /usr/bin/offlineimap -u quiet &
-sleep 15 /home/jacob/bin/offlineimap-daemonctl.sh &
-sleep 20 && /usr/bin/urxvt -e /usr/bin/mutt &
-sleep 30 && /usr/bin/urxvt -e /usr/bin/irssi &
+sleep 25 && /home/jacob/bin/offlineimap-daemon.py &
+sleep 30 && /usr/bin/urxvt -e /usr/bin/mutt &
+sleep 35 && /usr/bin/urxvt -e /usr/bin/irssi &
 /home/jacob/.xmonad/dzen2/start_apps &
 stalonetray &
 # amixer set "Speaker" unmute 100% > /dev/null
 
-xrandr --output DVI-I-0 --auto --primary --output DVI-I-3 --auto --right-of DVI-I-0 --output HDMI-0 --off
+xrandr --output DVI-I-0 --auto --output DVI-I-3 --primary --auto --right-of DVI-I-0 --output HDMI-0 --off
 
 # feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
 # feh --bg-scale /home/jacob/downloads/animal_snout_lemur_cute_eyes_humor_funny_1920x1200.jpg &
