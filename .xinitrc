@@ -14,8 +14,23 @@ fi
 xrdb -merge ~/.Xresources
 setxkbmap -layout dk; setxkbmap -option caps:escape
 xsetroot -cursor_name left_ptr
+<<<<<<< HEAD
+export EDITOR=vim
+||||||| merged common ancestors
+# xmodmap -e "keysym Alt_L = Meta_L Alt_L"
+
+# sh ~/.fehbg &
+feh  --bg-scale 'pictures/80058-hardy_darkgreen.png' &
+
+
+# trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --heighttype pixel --height 23 --transparent true --alpha 0 --tint 0x101010 &
+# trayer --edge top --align right --margin 500 --SetDockType true --SetPartialStrut true --expand true --widthtype request --heighttype pixel --height 23 --transparent true --alpha 0 --tint 0x101010 &
+trayer --edge top --align left --margin 1150 --SetDockType true --SetPartialStrut true --expand true --widthtype request --heighttype pixel --height 24 --transparent true --alpha 0 --tint 0x1a1a1a &
+
+=======
 export EDITOR=vim
 xmodmap ~/.Xmodmap
+>>>>>>> a88a6045245baa90b1c7cefb7b5f6b97fed100cc
 
 # Gnome keyring
 # Start a D-Bus session
@@ -49,6 +64,8 @@ xrandr --output DVI-I-0 --auto --output DVI-I-3 --primary --auto --right-of DVI-
 # feh --bg-scale /home/jacob/dropbox/faldkasse/jagob-delight.png &
 # feh --bg-scale /home/jacob/downloads/animal_snout_lemur_cute_eyes_humor_funny_1920x1200.jpg &
 feh --bg-scale /home/jacob/dropbox/faldkasse/wallpapers/chameleon_macro-wallpaper-2560x1440.jpg &
+
+# exec startxfce4
 
 # exec startxfce4
 exec xmonad
