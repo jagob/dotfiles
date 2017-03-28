@@ -25,7 +25,7 @@ URxvt.saveLines: 1500
 ! URxvt*loginShell: true
 
 ! Fonts
-URxvt*font: xft:Ubuntu Mono:regular:size=14
+URxvt*font: xft:Ubuntu Mono derivative Powerline:regular:size=14
 URxvt*boldfont: xft:Ubuntu Mono:regular:size=14
 URxvt.allow_bold: false
 ! URxvt*font:     xft:Inconsolata:size=14
