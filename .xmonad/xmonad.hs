@@ -77,7 +77,7 @@ myWorkspaces            = clickable . (map dzenEscape) $ ["1","2","3","4","5","6
 -- Define the workspace an application has to go to
 myManageHook = composeAll [ 
       isDialog                              --> doCenterFloat
-    , isFullscreen                          --> doFullFloat
+    -- , isFullscreen                          --> doFullFloat
     , className =? "stalonetray"            --> doIgnore
     , className =? "trayer"                 --> doIgnore
     , className =? "Xfce4-notifyd"          --> doIgnore
@@ -92,7 +92,8 @@ myManageHook = composeAll [
     , title     =? "Copying Files"          --> doFloat
     , title     =? "File Operation Progress"--> doFloat
     -- , className =? "Gimp"                   --> doFloat
-    , insertPosition Below Newer
+    , insertPosition Above Newer
+    -- , insertPosition Below Newer
     , transience'
     ]
 
@@ -133,7 +134,7 @@ myPrettyPrinter h = dzenPP {
       (\x -> case x of
           "NoFrillsDeco Spacing 5 ResizableTall"       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
           "NoFrillsDeco Spacing 5 Mirror ResizableTall"-> "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
-          "NoFrillsDeco Full"                          -> "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
+          "Full"                                       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
           _                                            -> x
       )
     }
