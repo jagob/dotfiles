@@ -109,6 +109,7 @@ alias aske='eog ~/downloads/cd.png & mpg123 ~/dropbox/faldkasse/soundboard/oioio
 alias ls='ls -h --color --group-directories-first'
 alias sl='ls'
 alias lt='ls -ltgG' 		            # sort by last modified
+alias llt='ls -ltgG' 		            # sort by last modified
 alias ll="ls -lvgG"
 alias la='ls -A'                        # list all files w/o attributes
 alias lla="ls -AlvgG"
