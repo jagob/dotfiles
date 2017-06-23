@@ -1,5 +1,6 @@
 .vim/view
 .vim/plugged
+.vim/autoload/plug.vim
 
 .xmonad/getvolume2.sh
 .xmonad/xmonad.hi
