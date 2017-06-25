@@ -19,6 +19,8 @@ ln -s ~/dotfiles/bin .
 ln -s ~/dotfiles/zathurarc .
 ln -s ~/dotfiles/vim-urxt.desktop ~/.local/share/applications/
 
+sudo pacman -S yajl
+
 sudo pacman -S zsh htop firefox flashplugin unzip thunar-archive-plugin file-roller gvfs thunar-volman tumbler ntp texlive-most vim-latexsuite zathura zathura-pdf-poppler evince okular gst-libav vim-spell-da vlc lib32-libpulse jre7-openjdk jdk7-openjdk icedtea-web inkscape gimp ntfs-3g wine wine-mono wine_gecko lib32-ncurses feh eog cups cups-pdf system-config-printer samba xorg-xrandr arandr ncmpcpp mpd mpc libreoffice-still cmake opencv ffmpeg ipython2 python2-ipdb python2-pygame python2-numpy python2-scipy python2-matplotlib python2-pyqt4 python2-h5py flake8 wxpython python2-pyzmq python2-jinja python2-tornado youtube-dl cheese tk irssi wmctrl lxappearance lynx maven bc gmrun offlineimap xfce4 xfce4-notifyd inotify-tools autojump dmenu mutt mpg123
 # outdated: gvfsin 
 cd ~/downloads && git clone https://aur.archlinux.org/package-query.git && cd package-query && makepkg && sudo pacman -U *.pkg.tar.xz
