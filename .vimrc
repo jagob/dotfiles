@@ -1,18 +1,40 @@
 " github.com/jagob
+" for windows _vimrc -> source ~\dotfiles\.vimrc
+
 filetype off
 set nocompatible                "no vi emulation
 
-"auto-install vim-plug
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+if has("gui_running")
+    set guioptions-=T " Hide the toolbar.
 endif
 
-call plug#begin('~/.vim/plugged')
+if has("win64") || has("win32")
+    let s:vim_cache = expand('$HOME/vimfiles')
+    set guifont=Consolas:h14
+    set background=light
+    colorscheme solarized
+endif
+if has("unix")
+    let s:vim_cache = expand('$HOME/.vim')
+    set background=light
+    colorscheme jagob-delight
+endif
+let &undodir = s:vim_cache . '/undo,.'
+
+" auto-install vim-plug
+" if empty(glob('C:/Users/jacob/_vim/autoload/plug.vim'))
+"  silent !curl -fLo ~/_vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"  autocmd VimEnter * PlugInstall
+" endif
+
+" Rope.
+" Tagbar.
+
+call plug#begin('~/vimfiles/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'uvim-scripts/taglist.vim'
+" Plug 'vim-scripts/taglist.vim'
 " Plug 'junegunn/fzf'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround' 
@@ -22,14 +44,20 @@ Plug 'Raimondi/delimitMate'
 Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'Yggdroot/indentLine'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets' 
+Plug 'chrisbra/csv.vim'
+Plug 'henrik/vim-indexed-search'
+" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'Valloric/YouCompleteMe'
 Plug 'vim-syntastic/syntastic'
 " Plugin 'L9'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 call plug#end()
 
-" execute pathogen#infect()
+" windows stuff
+" let $PYTHONHOME = 'C:/Users/UserName/AppData/Local/Continuum/Anaconda2/'
+" let $PYTHONHOME = 'C:/Python27/'
 
 filetype plugin indent on
 syntax on
@@ -91,6 +119,7 @@ set sidescroll=1
 set laststatus=2 " for powerline
 " set guifont=Liberation\ Mono\ for\ Powerline\ 10 
 " let g:Powerline_symbols = 'fancy'
+set guifont=Consolas:h14
 
 
 " Soeren tabs
@@ -102,7 +131,7 @@ set autoindent      " autoindent
 
 " listchar tab wont work with expandtab
 " set list
-" set encoding=utf-8
+set encoding=utf-8
 " set listchars=trail:·,precedes:«,extends:»,eol:↲,tab:▸\
 " exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 " exec "set list lcs=tab:»~,trail:¬,nbsp:▸"
@@ -110,9 +139,9 @@ set autoindent      " autoindent
 " Colors
 " let g:solarized_termcolors=256
 " set t_Co=256 "set t_Co=16
-set background=light
+" set background=light
 " colorscheme solarized
-colorscheme jagob-delight
+" colorscheme jagob-delight
 
 " mark line 80
 "set colorcolumn=80
@@ -421,7 +450,7 @@ let g:indentLine_char = '┆'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-let g:UltiSnipsUsePythonVersion=2
+let g:UltiSnipsUsePythonVersion=3
 
 " YouCompleteMe
 " Also checkout VimCompletesMe
@@ -433,10 +462,10 @@ let g:UltiSnipsUsePythonVersion=2
 " " let g:ycm_global_ycm_extra_conf = '~/downloads/ycm_extra_conf.py'
 " map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:ycm_use_ultisnips_completer = 1
+" " make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:ycm_use_ultisnips_completer = 2
 " " disable for tex files
 " let g:ycm_filetype_blacklist = {
 "             \ 'tex' : 1,
@@ -454,9 +483,16 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_loc_list_height = 5
 
-let g:syntastic_python_checkers = ['flake8']  " flake8, pyflakes, pylint, python
-let g:syntastic_quiet_messages = { "type": "style" }    " Disable style messages
-let g:syntastic_python_flake8_args = '--ignore="E901"'
+" let g:syntastic_python_checkers = ['flake8']  " flake8, pyflakes, pylint, python
+" let g:syntastic_quiet_messages = { "type": "style" }    " Disable style messages
+" let g:syntastic_python_flake8_args = '--ignore="E901"'
 " let g:syntastic_python_flake8_args = '--ignore="E501,E302,E261,E701,E241,E126,E127,E128,W801,E303,E211,E901"'
 " map <silent> <Leader>e :Errors<CR>
 " map <Leader>s :SyntasticToggleMode<CR>
+
+" CSV 
+let g:csv_no_conceal = 0
+" json
+" let g:vim_json_syntax_conceal = 0
+au FileType json set conceallevel=0
+
