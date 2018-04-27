@@ -1,6 +1,6 @@
 " github.com/jagob
 " for windows _vimrc -> source ~\dotfiles\.vimrc
-
+    
 filetype off
 set nocompatible                "no vi emulation
 
@@ -13,6 +13,7 @@ if has("win64") || has("win32")
     set guifont=Consolas:h14
     set background=light
     colorscheme solarized
+    let &pythonthreedll = 'C:\Program Files (x86)\Python36-32\Python36.dll'
 endif
 if has("unix")
     let s:vim_cache = expand('$HOME/.vim')
@@ -36,6 +37,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'vim-scripts/taglist.vim'
 " Plug 'junegunn/fzf'
+Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround' 
 Plug 'terryma/vim-smooth-scroll'
@@ -49,8 +51,8 @@ Plug 'honza/vim-snippets'
 Plug 'chrisbra/csv.vim'
 Plug 'henrik/vim-indexed-search'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-Plug 'Valloric/YouCompleteMe'
-Plug 'vim-syntastic/syntastic'
+" Plug 'Valloric/YouCompleteMe'
+" Plug 'vim-syntastic/syntastic'
 " Plugin 'L9'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
 call plug#end()
