@@ -21,7 +21,12 @@ if has("unix")
 endif
 let &undodir = s:vim_cache . '/undo,.'
 
-" auto-install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+
+" " auto-install vim-plug
 " if empty(glob('C:/Users/jacob/_vim/autoload/plug.vim'))
 "  silent !curl -fLo ~/_vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "  autocmd VimEnter * PlugInstall
@@ -49,7 +54,7 @@ Plug 'honza/vim-snippets'
 Plug 'chrisbra/csv.vim'
 Plug 'henrik/vim-indexed-search'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 Plug 'vim-syntastic/syntastic'
 " Plugin 'L9'
 " Plugin 'ascenator/L9', {'name': 'newL9'}
