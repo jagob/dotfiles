@@ -24,9 +24,12 @@ sudo pacman -S xorg xorg-xinit makepkg
 sudo pacman -S xmonad xmonad-contrib dzen2 conky trayer xdotool
 # audio
 sudo pacman -S alsa alsa-utils pulseaudio pulseaudio-alsa pavucontrol
+# essentials
+sudo pacman -S vim rxvt-unicode ttf-ubuntu-font-family
 
-# # essentials
-# sudo pacman -S gvim zsh htop firefox dmenu thunar arandr zathura zathura-pdf-poppler evince eog ttf-ubuntu-font-family texlive-most vim-spell-da vim-latexsuite 
+# Post installation
+
+# sudo pacman -S gvim zsh htop firefox dmenu thunar arandr zathura zathura-pdf-poppler evince eog texlive-most vim-spell-da vim-latexsuite 
 
 # # extra
 # sudo pacman -Ss flashplugin unzip thunar-archive-plugin file-roller gvfs thunar-volman tumbler ntp okular gst-libav vlc lib32-libpulse jre7-openjdk jdk7-openjdk icedtea-web inkscape gimp ntfs-3g wine wine-mono wine_gecko lib32-ncurses feh cups cups-pdf system-config-printer samba xorg-xrandr ncmpcpp mpd mpc libreoffice-still cmake opencv ffmpeg ipython2 python2-ipdb python2-pygame python2-numpy python2-scipy python2-matplotlib python2-pyqt4 python2-h5py flake8 wxpython python2-pyzmq python2-jinja python2-tornado youtube-dl cheese tk irssi wmctrl lxappearance lynx maven bc gmrun offlineimap xfce4 xfce4-notifyd inotify-tools autojump mutt mpg123
