@@ -1,24 +1,27 @@
-background yes
-double_buffer yes
-out_to_console yes
-out_to_x no
-own_window yes
-own_window_type desktop
-# xftfont Bitstream Vera Sans:size=8
-# text_buffer_size 1048
-# use_xft yes
-update_interval 1
-# update_interval_on_battery 3
-# total_run_times 0
+conky.config = {
+	background = true,
+	double_buffer = true,
+	out_to_console = true,
+	out_to_x = false,
+	own_window = true,
+	own_window_type = 'desktop',
+    -- xftfont Bitstream Vera Sans:size=8
+    -- text_buffer_size 1048
+    -- use_xft yes
+	update_interval = 1,
+    -- update_interval_on_battery 3
+    -- total_run_times 0
+}
 
-TEXT
-^fg(\#00afdf)^i(/home/jacob/.xmonad/dzen2/img/mail.xbm) \
-^fg(\#5faf5f)${execi 5 /home/jacob/.xmonad/dzen2/mailcount}\
+-- ^fg(\#00afdf)^i(/home/jacob/.xmonad/dzen2/img/mail.xbm) \
+-- ^fg(\#5faf5f)${execi 5 /home/jacob/.xmonad/dzen2/mailcount}\
+
+conky.text = [[
 ^ca(1,amixer -D pulse sset Master toggle)\
 ^ca(3,pavucontrol)\
 ^ca(4,amixer -D pulse sset Master 5%+)\
 ^ca(5,amixer -D pulse sset Master 5%-)\
-  ${if_match "${execi 1 amixer sget 'Master'| grep -m 1 "%"| egrep -o '(\[(on|off)\])' | sed ':a;N;$!ba;s/\n/  /g' | tr -d "[]"}" == "on"} \
+${if_match "${execi 1 amixer sget 'Master'| grep -m 1 "%"| egrep -o '(\[(on|off)\])' | sed ':a;N;$!ba;s/\n/  /g' | tr -d "[]"}" == "on"} \
 ^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/volume100.xbm) \
 ${endif}\
 ${if_match "${execi 1 amixer sget 'Master'| grep -m 1 "%"| egrep -o '(\[(on|off)\])' | sed ':a;N;$!ba;s/\n/  /g' | tr -d "[]"}" == "off"} \
@@ -28,3 +31,4 @@ ${execi 1 amixer sget 'Master'| grep -m 1 "%" | egrep -o '([0-9]+%)'} \
 ^ca()^ca()^ca()^ca()\
 \
 ^fg(\#5faf5f)  ^ca(1,~/.xmonad/dzen2/calender.sh)${time %a %e %b   %R  }^ca()
+]]
