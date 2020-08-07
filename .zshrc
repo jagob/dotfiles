@@ -5,8 +5,8 @@ echo '           (__)\       )\/\'
 echo '               ||----w |'
 echo '               ||     ||'
 
-source /usr/share/autojump/autojump.zsh
 source ~/dotfiles/.zshgit
+source /usr/share/autojump/autojump.zsh
 autoload -U promptinit compinit
 compinit        # autocompletion
 promptinit
@@ -63,6 +63,7 @@ export MPD_HOST="localhost"
 export BROWSER=/usr/bin/firefox
 export TERMINFO=/usr/share/terminfo
 export PATH=/home/jacob/bin:$PATH
+export PIP_REQUIRE_VIRTUALENV=true
 
 #suffix-alias
 alias -s tex=$EDITOR

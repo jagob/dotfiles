@@ -5,7 +5,12 @@ filetype off
 set nocompatible                "no vi emulation
 
 
-" auto-install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall
+endif
+
+" " auto-install vim-plug
 " if empty(glob('C:/Users/jacob/_vim/autoload/plug.vim'))
 "  silent !curl -fLo ~/_vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 "  autocmd VimEnter * PlugInstall

@@ -25,7 +25,9 @@ URxvt.saveLines: 1500
 ! URxvt*loginShell: true
 
 ! Fonts
-URxvt*font: xft:Ubuntu Mono derivative Powerline:regular:size=14
+URxvt*font: xft:UbuntuMono-R:regular:size=14
+! URxvt*font: xft:SourceCodePro-Regular:regular:size=12
+! URxvt*letterSpace: -1
 URxvt*boldfont: xft:Ubuntu Mono:regular:size=14
 URxvt.allow_bold: false
 ! URxvt*font:     xft:Inconsolata:size=14
@@ -49,10 +51,16 @@ URxvt.perl-lib:         /usr/lib/urxvt/perl/
 ! URxvt.perl-ext-common: default,matcher,tabbed,clipboard,confirm-paste,url-select,font,searchable-scrollback,selection-popup,keyboard-select,autocomplete-ALL-the-thin,matchergs, font-size
 URxvt.perl-ext-common: default,matcher,clipboard,font-size
 
-!URxvt.clipboard.autocopy 
-URxvt.keysym.M-c:	    perl:clipboard:copy
-URxvt.keysym.M-v:	    perl:clipboard:paste
-! URxvt.keysym.Shift-Control-V: perl:clipboard:paste
+! ! Disable Ctrl-Alt-C and Ctrl-Alt-v bindings
+! URxvt.keysym.C-M-c:   builtin-string:
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: eval:selection_to_clipboard
+URxvt.keysym.M-v: eval:paste_clipboard
+! ! Disable ISO 14755 unicode input so we can use Ctrl-Shift bindings
+URxvt.iso14755: false
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+
 
 URxvt.keysym.C-Up:     perl:font-size:increase
 URxvt.keysym.C-Down:   perl:font-size:decrease
