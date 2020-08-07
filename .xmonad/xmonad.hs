@@ -132,10 +132,10 @@ myPrettyPrinter h = dzenPP {
                           "                          ^ca()^ca()" . shorten 80 . dzenEscape
     , ppLayout          = wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor myDzenFGColor myDzenBGColor .
       (\x -> case x of
-          "NoFrillsDeco Spacing 5 ResizableTall"       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
-          "NoFrillsDeco Spacing 5 Mirror ResizableTall"-> "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
-          "Full"                                       -> "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
-          _                                            -> x
+          "NoFrillsDeco Spacing ResizableTall"        -> "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
+          "NoFrillsDeco Spacing Mirror ResizableTall" -> "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
+          "Full"                                      -> "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
+          _                                           -> x
       )
     }
 
@@ -154,25 +154,25 @@ myDzenStyle = "-h 20 -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"+
 -- myTrayer    = "trayer --edge top --align left --margin 900 --widthtype request --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
 
 -- -- 1680x1050
--- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
+-- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l "           ++ myDzenStyle
 -- myStatusBar =                                              "dzen2 -dock -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
 -- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 330 -ta r " ++ myDzenStyle
 -- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1030 -w 1680 -ta l "      ++ myDzenStyle
 -- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
 
--- -- 1920x1080
--- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
--- myStatusBar =                                              "dzen2 -dock -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
--- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
--- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1060 -w 1920 -ta l "      ++ myDzenStyle
--- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
-
--- 2560x1440
-myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l"            ++ myDzenStyle
+-- 1920x1080
+myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l "           ++ myDzenStyle
 myStatusBar =                                              "dzen2 -dock -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
-myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 1210 -ta r " ++ myDzenStyle
-myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1420 -w 2560 -ta l "      ++ myDzenStyle
+myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
+myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1060 -w 1920 -ta l "      ++ myDzenStyle
 myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
+
+-- -- 2560x1440
+-- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l "            ++ myDzenStyle
+-- myStatusBar =                                              "dzen2 -dock -e '' -x 30 -y 0 -w 1220 -ta l "   ++ myDzenStyle
+-- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 1210 -ta r " ++ myDzenStyle
+-- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1420 -w 2560 -ta l "       ++ myDzenStyle
+-- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
 
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
@@ -209,13 +209,18 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     , ((0, xF86XK_AudioMute          ), spawn "amixer -D pulse sset Master toggle")
     , ((0, xF86XK_AudioLowerVolume   ), spawn "amixer -D pulse sset Master 1%-")
     , ((0, xF86XK_AudioRaiseVolume   ), spawn "amixer -D pulse sset Master 1%+")
-    , ((0, xF86XK_AudioStop ), spawn "mpc stop")
-    , ((0, xF86XK_AudioPrev ), spawn "mpc prev")
-    , ((0, xF86XK_AudioNext ), spawn "mpc next")
-    , ((0, xF86XK_AudioPlay ), spawn "mpc toggle")
+    , ((0, xF86XK_AudioPlay ), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+    -- , ((0, xF86XK_AudioStop ), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause")
+    , ((0, xF86XK_AudioPrev ), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Prev")
+    , ((0, xF86XK_AudioNext ), spawn "dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next")
+    -- , ((0, xF86XK_AudioStop ), spawn "mpc stop")
+    -- , ((0, xF86XK_AudioPrev ), spawn "mpc prev")
+    -- , ((0, xF86XK_AudioNext ), spawn "mpc next")
+    -- , ((0, xF86XK_AudioPlay ), spawn "mpc toggle")
     -- , ((0, xF86XK_Standby   ), spawn "sudo systemctl suspend")
     -- , ((0, xF86XK_Sleep     ), spawn "sudo systemctl suspend")
-    -- , ((0, xF86XK_MonBrightnessUp ), spawn "xbacklight -inc 40")
+    , ((0, xF86XK_MonBrightnessUp  ), spawn "xbacklight -inc 10")
+    , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10")
     , ((0, xK_KP_End        ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 1
     , ((0, xK_KP_Down       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/fight.mp3")    -- Keypad 2
     , ((0, xK_KP_Page_Down  ), spawn "python2 ~/dropbox/faldkasse/soundboard/soundboard.py naehnej")  -- Keypad 3
