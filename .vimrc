@@ -4,23 +4,6 @@
 filetype off
 set nocompatible                "no vi emulation
 
-if has("gui_running")
-    set guioptions-=T " Hide the toolbar.
-endif
-
-if has("win64") || has("win32")
-    let s:vim_cache = expand('$HOME/vimfiles')
-    set guifont=Consolas:h14
-    set background=light
-    colorscheme solarized
-    let &pythonthreedll = 'C:\Program Files (x86)\Python36-32\Python36.dll'
-endif
-if has("unix")
-    let s:vim_cache = expand('$HOME/.vim')
-    set background=light
-    colorscheme jagob-delight
-endif
-let &undodir = s:vim_cache . '/undo,.'
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -40,13 +23,11 @@ call plug#begin('~/vimfiles/plugged')
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'vim-scripts/taglist.vim'
-" Plug 'junegunn/fzf'
+Plug 'junegunn/vim-easy-align'
 Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
 Plug 'tpope/vim-surround' 
 Plug 'terryma/vim-smooth-scroll'
-Plug 'easymotion/vim-easymotion'
 Plug 'Raimondi/delimitMate'
 Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
@@ -55,6 +36,13 @@ Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' 
 Plug 'chrisbra/csv.vim'
 Plug 'henrik/vim-indexed-search'
+Plug 'dense-analysis/ale'
+" Plug 'vim-scripts/taglist.vim'
+" Plug 'junegunn/fzf'
+" Plug 'morhetz/gruvbox'
+" Plug 'easymotion/vim-easymotion'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'zxqfl/tabnine-vim'
 " Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 " Plug 'Valloric/YouCompleteMe'
 " Plug 'vim-syntastic/syntastic'
@@ -65,6 +53,27 @@ call plug#end()
 " windows stuff
 " let $PYTHONHOME = 'C:/Users/UserName/AppData/Local/Continuum/Anaconda2/'
 " let $PYTHONHOME = 'C:/Python27/'
+
+
+if has("gui_running")
+    set guioptions-=T " Hide the toolbar.
+endif
+
+if has("win64") || has("win32")
+    let s:vim_cache = expand('$HOME/vimfiles')
+    set guifont=Consolas:h12
+    colorscheme gruvbox
+
+    " set background=light
+    " colorscheme solarized
+    " let &pythonthreedll = 'C:\Program Files (x86)\Python36-32\Python36.dll'
+endif
+if has("unix")
+    let s:vim_cache = expand('$HOME/.vim')
+    set background=light
+    colorscheme jagob-delight
+endif
+let &undodir = s:vim_cache . '/undo,.'
 
 filetype plugin indent on
 syntax on
@@ -341,6 +350,13 @@ autocmd BufRead *.py nmap <F5> :!python2 %<CR>
 "map <F9> : !gcc % && ./a.out <CR>
 nnoremap <F5> :make!<cr>
 
+" Rename variables
+" https://stackoverflow.com/questions/597687/changing-variable-names-in-vim 
+" For local replace
+nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+" For global replace
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+
 
 " hilight word type under cursor
 map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -399,7 +415,7 @@ noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 10, 1)<CR>
 " easymotion
 let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " Search for 1 character
-nmap <space> <Plug>(easymotion-overwin-f)
+" nmap <space> <Plug>(easymotion-overwin-f)
 " Search for 2 characters
 " nmap s <Plug>(easymotion-overwin-f2)
 " Turn on case insensitive feature
@@ -408,22 +424,6 @@ let g:EasyMotion_smartcase = 1
 " " " delimitMate
 " let delimitMate_expand_cr = 2
 " let delimitMate_expand_space = 1
-
-" Rainbow Parentheses
-" Left column is for terminal environment
-" Right column is for GUI environment
-let g:rbpt_colorpairs = [
-    \ ['darkmagenta', 'DarkOrchid3'],
-    \ ['darkgreen',   'RoyalBlue3'],
-    \ ]
-    " \ ['darkcyan',    'SeaGreen3'],
-    " \ ['darkred',     'DarkOrchid3'],
-    " \ ['red',         'firebrick3'],
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound     " ()
-au Syntax * RainbowParenthesesLoadSquare    " []
-au Syntax * RainbowParenthesesLoadBraces    " {}
-" au Syntax * RainbowParenthesesLoadChevrons " <> 
 
 " " dragvisuals.vim
 " vmap <expr> <LEFT>  DVB_Drag('left')
@@ -478,6 +478,7 @@ let g:UltiSnipsUsePythonVersion=3
 "             \ 'tex' : 1,
 "             \ 'plaintex' : 1
 "             \}
+let g:ycm_keep_logfiles = 1
 
 " Syntastic --------------------------------------------------------
 set statusline+=%#warningmsg#
@@ -502,4 +503,29 @@ let g:csv_no_conceal = 0
 " json
 " let g:vim_json_syntax_conceal = 0
 au FileType json set conceallevel=0
+let g:tex_conceal=""
 
+" Ale
+let g:ale_lint_on_text_changed = 'always' 
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 0
+let g:ale_python_pylint_change_directory = 0
+
+" Coc
+set signcolumn=yes
+
+" Kite autocomplete
+" let g:kite_auto_complete=0
+
+" Rainbow Parentheses
+" Left column is for terminal environment
+" Right column is for GUI environment
+let g:rbpt_colorpairs = [
+	\ ['Darkblue',    '#d65d0e'],
+	\ ['darkgray',    '#fabd2f'],
+    \ ]
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound     " ()
+au Syntax * RainbowParenthesesLoadSquare    " []
+au Syntax * RainbowParenthesesLoadBraces    " {}
+" au Syntax * RainbowParenthesesLoadChevrons " <> 
