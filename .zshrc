@@ -75,6 +75,9 @@ alias -s txt=$EDITOR
 
 
 # aliases
+alias createfileshare='sudo mount -t cifs //create.aau.dk/Fileshares/vap-lab/weekly-meetings/2020 /mnt/create-fileshare -o setuids,user=jq72po,vers=2.1'
+alias sshjacob='sshfs jacob@172.24.211.1:/home/jacob/phd ~/mount/phd'
+alias fp='readlink -f'  # filepath
 alias ft='cd ~/documents/master/tracking/'
 alias fd='cd ~/data/gopro/test/'
 alias afs='cd /afs/ies.auc.dk/group/15gr940/no_backup'
@@ -96,12 +99,12 @@ alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
 alias randomgenerator='cd ~/code/randomgenerator && python2 randomgenerator.py'
 alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
 alias quakelive='cd /home/jacob/.wine-ql/drive_c/Program\ Files/Quake\ Live/ && wine Launcher.exe'
-alias todo='vim ~/dropbox/faldkasse/todo.txt'
-alias arch='vim ~/dropbox/faldkasse/linux/arch.txt'
-alias linux='vim ~/dropbox/faldkasse/linux/linux.txt'
-alias notes='vim ~/dropbox/faldkasse/notes.txt'
-alias oensker='vim /home/jacob/dropbox/faldkasse/Oenskeseddel.txt'
-alias vimmer='cd /home/jacob/dropbox/faldkasse/linux/vimmer/ && vim -o3 c.c extract_superpixels.py latex.tex'
+alias todo='vim ~/Dropbox/faldkasse/todo.txt'
+alias arch='vim ~/Dropbox/faldkasse/linux/arch.txt'
+alias linux='vim ~/Dropbox/faldkasse/linux/linux.txt'
+alias notes='vim ~/Dropbox/faldkasse/notes.txt'
+alias oensker='vim /home/jacob/Dropbox/faldkasse/Oenskeseddel.txt'
+alias vimmer='cd /home/jacob/Dropbox/faldkasse/linux/vimmer/ && vim -o3 c.c extract_superpixels.py latex.tex'
 alias updates="pacman -Qqu"
 alias vmi='vim'
 alias vimfm='vifm'

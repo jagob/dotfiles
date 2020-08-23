@@ -39,7 +39,7 @@ Plug 'henrik/vim-indexed-search'
 Plug 'dense-analysis/ale'
 " Plug 'vim-scripts/taglist.vim'
 " Plug 'junegunn/fzf'
-" Plug 'morhetz/gruvbox'
+Plug 'morhetz/gruvbox'
 " Plug 'easymotion/vim-easymotion'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'zxqfl/tabnine-vim'

@@ -56,6 +56,11 @@ ${else}${if_existing /proc/net/route enp0s31f6}\
   ^i(/home/jacob/.xmonad/dzen2/img/net_down_03.xbm) ^fg(\#5faf5f)${downspeedf eth0}k^fg()\
   ^i(/home/jacob/.xmonad/dzen2/img/net_up_03.xbm) ^fg(\#5faf5f)${upspeedf eth0}k  ^fg()\
 \
+${else}${if_existing /proc/net/route enp0s20f0u2u3c2}\
+^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/net_wired.xbm) ^fg(\#5faf5f)enp0s20f0u2u3c2\
+  ^i(/home/jacob/.xmonad/dzen2/img/net_down_03.xbm) ^fg(\#5faf5f)${downspeedf eth0}k^fg()\
+  ^i(/home/jacob/.xmonad/dzen2/img/net_up_03.xbm) ^fg(\#5faf5f)${upspeedf eth0}k  ^fg()\
+\
 ${else}${if_existing /proc/net/route wlan0}\
 ${if_match ${wireless_link_qual_perc wlan0} > 80}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless5.xbm)${endif}\
 ${if_match ${wireless_link_qual_perc wlan0} <= 80}${if_match ${wireless_link_qual_perc wlan0} > 40}^fg(\#5faf5f)^i(/home/jacob/.xmonad/dzen2/img/wireless3.xbm) ${endif}${endif}\
