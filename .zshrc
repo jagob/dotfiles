@@ -94,6 +94,8 @@ alias finder='find -name' # "search"
 alias keyboard='setxkbmap -layout dk; setxkbmap -option caps:escape'
 alias bc='bc -lq'						# bash calculator with floating point
 alias bell='sleep 3; echo -e "\a"' 
+alias monitor_off='xrandr --output HDMI-2 --off'
+alias activate='source env/bin/activate'
 
 alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
 alias randomgenerator='cd ~/code/randomgenerator && python2 randomgenerator.py'

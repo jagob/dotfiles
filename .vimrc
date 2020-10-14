@@ -441,6 +441,8 @@ let g:EasyMotion_smartcase = 1
 " IndentLine ¦ ┆ │
 let g:indentLine_enabled = 1
 let g:indentLine_char = '┆'
+" the plugin will not function if conceallevel is not set to 1 or 2.
+let g:indentLine_setConceal = 0
 
 " " mru - most recently used
 " let MRU_Window_Height = 15 
@@ -480,16 +482,23 @@ let g:UltiSnipsUsePythonVersion=3
 "             \}
 let g:ycm_keep_logfiles = 1
 
-" Syntastic --------------------------------------------------------
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
+" Ale
+let b:ale_linters = ['flake8', 'pylint']"
+let g:ale_lint_on_text_changed = 'always' 
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 0
+let g:ale_python_pylint_change_directory = 0
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 2
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_loc_list_height = 5
+" " Syntastic --------------------------------------------------------
+" set statusline+=%#warningmsg#
+" set statusline+=%{SyntasticStatuslineFlag()}
+" set statusline+=%*
+"
+" let g:syntastic_always_populate_loc_list = 1
+" let g:syntastic_auto_loc_list = 2
+" let g:syntastic_check_on_open = 1
+" let g:syntastic_check_on_wq = 0
+" let g:syntastic_loc_list_height = 5
 
 " let g:syntastic_python_checkers = ['flake8']  " flake8, pyflakes, pylint, python
 " let g:syntastic_quiet_messages = { "type": "style" }    " Disable style messages
@@ -504,12 +513,6 @@ let g:csv_no_conceal = 0
 " let g:vim_json_syntax_conceal = 0
 au FileType json set conceallevel=0
 let g:tex_conceal=""
-
-" Ale
-let g:ale_lint_on_text_changed = 'always' 
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_enter = 0
-let g:ale_python_pylint_change_directory = 0
 
 " Coc
 set signcolumn=yes

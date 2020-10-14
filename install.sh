@@ -1,6 +1,6 @@
 cd
 
-mkdir downloads documents
+mkdir -p downloads documents .config .local/share/applications/
 
 ln -s ~/dotfiles/.xinitrc .
 ln -s ~/dotfiles/.xmonad .
@@ -10,15 +10,18 @@ ln -s ~/dotfiles/.zshrc .
 ln -s ~/dotfiles/.vimrc .
 ln -s ~/dotfiles/.vim .
 ln -s ~/dotfiles/.pylintrc .
+ln -s ~/dotfiles/.config/flake8 .config/
 ln -s ~/dotfiles/.gitconfig .
 ln -s ~/dotfiles/bin .
 ln -s ~/dotfiles/zathurarc .
-ln -s ~/dotfiles/vim-urxt.desktop ~/.local/share/applications/
+# ln -s ~/dotfiles/vim-urxt.desktop ~/.local/share/applications/
 # ln -s ~/dotfiles/.mutt .
 # ln -s ~/dotfiles/.offlineimaprc .
 # ln -s ~/dotfiles/.irssi .
 # ln -s ~/dotfiles/.mpd .
 # ln -s ~/dotfiles/.ncmpcpp .
+
+cp ~/dotfiles/vim-urxt.desktop ~/.local/share/applications/
 
 sudo pacman -S xorg xorg-xinit
 # xmonad
@@ -29,7 +32,7 @@ sudo pacman -S alsa alsa-utils pulseaudio pulseaudio-alsa pavucontrol
 sudo pacman -S vim rxvt-unicode urxvt-perls ttf-ubuntu-font-family
 
 # Post installation
-sudo pacman -S gvim zsh htop firefox dmenu arandr zathura zathura-pdf-poppler evince eog vlc texlive-most vim-spell-da vim-latexsuite autojump feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring wget openssh flake8 thunar thunar-archive-plugin file-roller cifs-utils gvfs gvfs-smb xfce4-notifyd
+sudo pacman -S gvim zsh htop firefox dmenu arandr zathura zathura-pdf-poppler evince eog vlc texlive-most vim-spell-da vim-latexsuite autojump feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring wget openssh flake8 thunar thunar-archive-plugin file-roller tumbler ffmpegthumbnailer cifs-utils gvfs gvfs-smb xfce4-notifyd rclone cups cups-pdf system-config-printer 
 
 chsh -s $(which zsh)
 
@@ -45,7 +48,7 @@ cd yay
 makepkg -si
 cd
 
-yay -S xcursor-human dropbox teams zotero spotify
+yay -S xcursor-human dropbox teams zotero spotify wps-office openprinting-ppds-pxlcolor-generic
 # teams black screen on screen share
 sudo mv /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/ rect-overlay /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay.bak
 

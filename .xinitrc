@@ -16,6 +16,8 @@ fi
 xrdb -merge ~/.Xresources
 setxkbmap -layout dk; setxkbmap -option caps:escape
 xsetroot -cursor_name left_ptr
+xset s 3600 3600                                                        # screen blackout in one hour
+xset dpms 0 0 0                                                         # disable display power management system
 # xmodmap -e "keysym Alt_L = Meta_L Alt_L"
 export EDITOR=vim
 # xmodmap ~/.Xmodmap
