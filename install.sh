@@ -9,6 +9,7 @@ ln -s ~/dotfiles/.Xresources .
 ln -s ~/dotfiles/.zshrc .
 ln -s ~/dotfiles/.vimrc .
 ln -s ~/dotfiles/.vim .
+ln -s ~/dotfiles/.tmux.conf .
 ln -s ~/dotfiles/.pylintrc .
 ln -s ~/dotfiles/.config/flake8 .config/
 ln -s ~/dotfiles/.gitconfig .
