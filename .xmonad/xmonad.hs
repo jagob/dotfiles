@@ -35,7 +35,6 @@ import XMonad.Util.Run
 import XMonad.Util.Run(spawnPipe)  -- spawnPipe and hPutStrLn
 import XMonad.Util.Font
 -- import XMonad.Util.EZConfig        -- append key/mouse bindings
---
 import Graphics.X11.ExtraTypes.XF86
  
 
@@ -50,13 +49,13 @@ main =  do
 
     xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
           terminal              = "urxvt"
-        , focusedBorderColor    = "#5faf5f"
-        , normalBorderColor     = "#fdf6e3"
+        , focusedBorderColor    = green
+        , normalBorderColor     = myDzenBGColor
         -- , modMask               = mod4Mask -- Swap alt and win to play Dota
         , borderWidth           = 3
         , workspaces            = myWorkspaces
         , keys                  = myKeys
-        , layoutHook            = myLayouts
+        , layoutHook            = myLayouts  -- avoidStruts are bugged for multi monitor
         -- , layoutHook=avoidStruts $ layoutHook defaultConfig
         , logHook               = dynamicLogWithPP $ myPrettyPrinter dzen
         , manageHook            = manageDocks <+> myManageHook 
@@ -81,19 +80,16 @@ myManageHook = composeAll [
     , className =? "stalonetray"            --> doIgnore
     , className =? "trayer"                 --> doIgnore
     , className =? "Xfce4-notifyd"          --> doIgnore
-    , className =? "Gnome-Pie"              --> doIgnore
-    , className =? "gnome-pie"              --> doIgnore
-    , className =? "Gnome-pie"              --> doIgnore
     , className =? "Vlc"                    --> doFloat
     , className =? "Steam"                  --> doShift (myWorkspaces !! 4) -- send to ws 5
     , title     =? "mutt"                   --> doShift (myWorkspaces !! 5) -- send to ws 6
     , title     =? "irssi"                  --> doShift (myWorkspaces !! 6) -- send to ws 7
-    , className =? "XCalc"                  --> doFloat
+    -- , className =? "XCalc"                  --> doFloat
     , title     =? "Copying Files"          --> doFloat
     , title     =? "File Operation Progress"--> doFloat
     -- , className =? "Gimp"                   --> doFloat
-    , insertPosition Above Newer
-    -- , insertPosition Below Newer
+    -- , insertPosition Above Newer
+    , insertPosition Below Newer
     , transience'
     ]
 
@@ -108,24 +104,26 @@ myLayouts = avoidStruts $ (tile ||| mtile ||| full)
         delta   = 3/100 -- Percent of screen to increment by when resizing panes
         ratio   = 1/2   -- Default proportion of screen occupied by master pane
 
+-- update theme with mod-shift-space. xmonad restart is not enough
 myTheme = defaultTheme { 
       decoHeight            = 22
     , fontName              = "xft:Ubuntu:size=12"
-    , activeColor           = "#5faf5f"
-    , activeBorderColor     = "#5faf5f"
-    , activeTextColor       = "#fdf6e3"
-    , inactiveColor         = "#fdf6e3"
-    , inactiveBorderColor   = "#fdf6e3"
-    , inactiveTextColor     = "#5faf5f"
+    , activeColor           = green
+    , activeBorderColor     = green
+    , activeTextColor       = myDzenBGColor
+    , inactiveColor         = myDzenBGColor
+    , inactiveBorderColor   = myDzenBGColor
+    , inactiveTextColor     = green
     }
 
 -- Pretty printer for dzen workspace bar
 myPrettyPrinter h = dzenPP {
       ppOutput          = hPutStrLn h
-    , ppCurrent         = dzenColor myDzenBGColor myDzenFGColor . wrap " " " " 
-    , ppHidden          = dzenColor myDzenFGColor myDzenBGColor . wrap " " " " 
-    , ppHiddenNoWindows = dzenColor "#eee8d5"     myDzenBGColor . wrap " " " " 
-    , ppUrgent          = dzenColor "#ff0000"     myDzenBGColor . wrap " " " " 
+    , ppCurrent         = dzenColor myDzenBGColor myDzenFGColor2 . wrap " " " " 
+    , ppVisible         = dzenColor myDzenBGColor myDzenFGColor . wrap " " " " 
+    , ppHidden          = dzenColor myDzenFGColor2 myDzenBGColor . wrap " " " "
+    , ppHiddenNoWindows = dzenColor myDzenFGColor myDzenBGColor . wrap " " " "
+    , ppUrgent          = dzenColor red     myDzenBGColor . wrap " " " " 
     , ppWsSep           = " "
     , ppSep             = "  |  "
     , ppTitle           = (" " ++) . dzenColor myDzenFGTextColor myDzenBGColor . wrap "^ca(1,xdotool key alt+j)^ca(3,xdotool key alt+shift+c)"
@@ -139,12 +137,27 @@ myPrettyPrinter h = dzenPP {
       )
     }
 
-myDzenFGColor = "#5faf5f"
-myDzenFGTextColor = "#5faf5f"
-myDzenBGColor = "#fdf6e3"
+-- Colors
+black  = "#282828"
+green  = "#5faf5f"
+brown  = "#eee8d5"
+brown2 = "#fdf6e3" 
+red    = "#ff0000"
+-- -- Light theme
+-- myDzenBGColor = brown2
+-- myDzenFGColor = green
+-- myDzenFGColor2 = green
+-- myDzenFGTextColor = green
+-- myTrayerColor = "0xfdf6e3"
+-- Dark theme
+myDzenBGColor = black
+myDzenFGColor = green
+myDzenFGColor2 = brown
+myDzenFGTextColor = green
+myTrayerColor = "0x282828"
+
 myFont = "Ubuntu regular:size=12:antialias=true"
-myDzenFont = "Bitstream Sans Vera:pixelsize=18"
-myDzenStyle = "-h 20 -fg '"++myDzenFGColor++"' -bg '"++myDzenBGColor++"' -fn '"++myFont++"' "
+myDzenStyle = "-h 20 -fg "++myDzenFGColor++" -bg "++myDzenBGColor++" -fn "++myFont++""
 
 -- -- 1280x1024
 -- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock       -x 0   -y 0    -w 30   -ta l " ++myDzenStyle
@@ -165,7 +178,7 @@ myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 
 myStatusBar =                                              "dzen2 -dock -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
 myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
 myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1060 -w 1920 -ta l "      ++ myDzenStyle
-myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
+myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --alpha 0" ++ " --tint "++myTrayerColor++""
 
 -- -- 2560x1440
 -- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l "            ++ myDzenStyle
@@ -173,6 +186,7 @@ myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --
 -- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 1210 -ta r " ++ myDzenStyle
 -- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1420 -w 2560 -ta l "       ++ myDzenStyle
 -- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
+
 
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [

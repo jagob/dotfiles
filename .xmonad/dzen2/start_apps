@@ -3,45 +3,42 @@
 # Dzen2 App Launcher
 # -tw = Width of titlebar, -w = Width of slavewindow,
 # -l = length of slavewindow. Remember to adjust -l accordingly when adding apps.  
-#
-# Needed Applications:
+
+# Applications
 AP1=urxvt
 AP2=firefox
-AP3=google-chrome-stable
-AP4=skype
-AP5=thunar
-AP6=nvidia-settings
-AP7=pavucontrol
-AP8=gedit
+AP3=thunar
+AP4=pavucontrol
 
 #FONT
 # FONT="-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*"
 FONT="-*-ubuntu-medium-r-*-*-20-*-*-*-*-*-*-*"
 
-# Colors:
-FG1=#5faf5f
-FG2=#5faf5f
-FG3=#5faf5f
+# Colors 
+BLACK=#282828
+GREEN=#5faf5f
+BROWN=#fdf6e3
+FG1=$GREEN
+FG2=$GREEN
+FG3=$GREEN
+# # Light theme
+# FG=$GREEN
+# BG=$BROWN
+# Dark theme
+FG=$GREEN
+BG=$BLACK
 
-# Icons:
+# Icons
 ICM=~/.xmonad/dzen2/img/arch.xbm
 IC1=~/.xmonad/dzen2/img/term.xbm
 IC2=~/.xmonad/dzen2/img/fox.xbm
-IC3=~/.xmonad/dzen2/img/fs_01.xbm
-IC4=~/.xmonad/dzen2/img/pacman.xbm
-IC5=~/.xmonad/dzen2/img/docs.xbm
-IC6=~/.xmonad/dzen2/img/code.xbm
-IC7=~/.xmonad/dzen2/img/phones.xbm
-IC8=~/.xmonad/dzen2/img/docs.xbm
+IC3=~/.xmonad/dzen2/img/docs.xbm
+IC4=~/.xmonad/dzen2/img/phones.xbm
 
 # Text parsed to Dzen2
 (echo "^fg(${FG2})^i(${ICM})"; echo -e "^fg(${FG1})\
   ^fg(${FG3})^i(${IC1})^fg(${FG1}) ${AP1}   \n\
   ^fg(${FG3})^i(${IC2})^fg(${FG1}) ${AP2}   \n\
   ^fg(${FG3})^i(${IC3})^fg(${FG1}) ${AP3}   \n\
-  ^fg(${FG3})^i(${IC4})^fg(${FG1}) ${AP4}   \n\
-  ^fg(${FG3})^i(${IC5})^fg(${FG1}) ${AP5}   \n\
-  ^fg(${FG3})^i(${IC6})^fg(${FG1}) ${AP6}   \n\
-  ^fg(${FG3})^i(${IC7})^fg(${FG1}) ${AP7}   \n\
-  ^fg(${FG3})^i(${IC8})^fg(${FG1}) ${AP8} ")\
-| (dzen2 -h '20' -fn "$FONT" -bg '#fdf6e3' -fg '#5faf5f' -l 8 -tw 30 -w 250 -m -p -e 'entertitle=uncollapse;button1=menuexec;leaveslave=collapse;button1=menuexec')
+  ^fg(${FG3})^i(${IC4})^fg(${FG1}) ${AP4} ")\
+| (dzen2 -h '20' -fn "$FONT" -bg $BG -fg $FG -l 4 -tw 30 -w 150 -m -p -e 'entertitle=uncollapse;button1=menuexec;leaveslave=collapse;button1=menuexec')

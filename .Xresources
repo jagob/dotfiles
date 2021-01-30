@@ -131,36 +131,77 @@ URxvt.keysym.M-Delete: perl:matcher:list
 #define S_base2         #eee8d5
 #define S_base3         #fdf6e3
 
-! Custom Solarized
-! *background:            S_base3
-URxvt*background:            S_base2
-URxvt*foreground:            S_base01
-! URxvt*fading:                5
-! URxvt*fadeColor:             S_base03
-! URxvt*cursorColor:           S_base1
-! URxvt*pointerColorBackground:S_base01
-! URxvt*pointerColorForeground:S_base1
-!! black dark/light
-URxvt*color0:                S_base02
-URxvt*color8:                S_base03
-!! red dark/light
-URxvt*color1:                S_red
-URxvt*color9:                S_orange
-!! green dark/light
-URxvt*color2:                S_green
-URxvt*color10:               S_base01
-!! yellow dark/light
-URxvt*color3:                S_yellow
-URxvt*color11:               S_base00
-!! blue dark/light
-URxvt*color4:                S_blue
-URxvt*color12:               S_base0
-!! magenta dark/light
-URxvt*color5:                S_magenta
-URxvt*color13:               S_violet
-!! cyan dark/light
-URxvt*color6:                S_cyan
-URxvt*color14:               S_base1
-!! white dark/light
-URxvt*color7:                S_base2
-URxvt*color15:               S_base3
+! ! Custom Solarized
+! ! *background:            S_base3
+! URxvt*background:            S_base2
+! URxvt*foreground:            S_base01
+! ! URxvt*fading:                5
+! ! URxvt*fadeColor:             S_base03
+! ! URxvt*cursorColor:           S_base1
+! ! URxvt*pointerColorBackground:S_base01
+! ! URxvt*pointerColorForeground:S_base1
+! !! black dark/light
+! URxvt*color0:                S_base02
+! URxvt*color8:                S_base03
+! !! red dark/light
+! URxvt*color1:                S_red
+! URxvt*color9:                S_orange
+! !! green dark/light
+! URxvt*color2:                S_green
+! URxvt*color10:               S_base01
+! !! yellow dark/light
+! URxvt*color3:                S_yellow
+! URxvt*color11:               S_base00
+! !! blue dark/light
+! URxvt*color4:                S_blue
+! URxvt*color12:               S_base0
+! !! magenta dark/light
+! URxvt*color5:                S_magenta
+! URxvt*color13:               S_violet
+! !! cyan dark/light
+! URxvt*color6:                S_cyan
+! URxvt*color14:               S_base1
+! !! white dark/light
+! URxvt*color7:                S_base2
+! URxvt*color15:               S_base3
+
+
+
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
+
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+! *color10: #b8bb26  ! gruvbox original
+*color10: #8ec07c 
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+! *color14: #8ec07c  ! gruvbox original
+*color14: #b8bb26
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2

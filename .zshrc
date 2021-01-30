@@ -1,10 +1,10 @@
-echo '       \_\_    _/_/'
-echo '           \__/'
-echo '           (oo)\_______'
-echo '           (__)\       )\/\'
-echo '               ||----w |'
-echo '               ||     ||'
-
+# echo '       \_\_    _/_/'
+# echo '           \__/'
+# echo '           (oo)\_______'
+# echo '           (__)\       )\/\'
+# echo '               ||----w |'
+# echo '               ||     ||'
+#
 source ~/dotfiles/.zshgit
 source /usr/share/autojump/autojump.zsh
 autoload -U promptinit compinit
@@ -75,8 +75,13 @@ alias -s txt=$EDITOR
 
 
 # aliases
+alias sshfsjacob='sshfs jacob@172.24.211.1:/home/jacob/phd ~/mount/phd'
+alias neelusship='ssh jacob@172.24.211.109' # vablap321
+alias anderssship='ssh anders@172.24.211.13' # Vabvab321
+alias gputunnel="ssh -L 1234:172.24.211.1:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
+alias gputunnelNeelu="ssh -L 1234:172.24.211.109:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
+# scp -r -P 1234 jacob@localhost:"/home/jacob/code/SoccerNetv2-ReplayGrounding/fig.zip" downloads 
 alias createfileshare='sudo mount -t cifs //create.aau.dk/Fileshares/vap-lab/weekly-meetings/2020 /mnt/create-fileshare -o setuids,user=jq72po,vers=2.1'
-alias sshjacob='sshfs jacob@172.24.211.1:/home/jacob/phd ~/mount/phd'
 alias fp='readlink -f'  # filepath
 alias ft='cd ~/documents/master/tracking/'
 alias fd='cd ~/data/gopro/test/'

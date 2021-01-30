@@ -39,7 +39,7 @@ Plug 'henrik/vim-indexed-search'
 Plug 'dense-analysis/ale'
 " Plug 'vim-scripts/taglist.vim'
 " Plug 'junegunn/fzf'
-Plug 'morhetz/gruvbox'
+" Plug 'morhetz/gruvbox'
 " Plug 'easymotion/vim-easymotion'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'zxqfl/tabnine-vim'
@@ -62,7 +62,7 @@ endif
 if has("win64") || has("win32")
     let s:vim_cache = expand('$HOME/vimfiles')
     set guifont=Consolas:h12
-    colorscheme gruvbox
+    colorscheme jagob-gruvbox
 
     " set background=light
     " colorscheme solarized
@@ -70,9 +70,18 @@ if has("win64") || has("win32")
 endif
 if has("unix")
     let s:vim_cache = expand('$HOME/.vim')
-    set background=light
-    colorscheme jagob-delight
+    " set background=light
+    " colorscheme jagob-delight
+    set background=dark
+    colorscheme jagob-gruvbox
 endif
+if $SSH_CONNECTION
+    set background=dark
+    set t_Co=256 "set t_Co=16
+    colorscheme jagob-gruvbox
+endif
+
+
 let &undodir = s:vim_cache . '/undo,.'
 
 filetype plugin indent on
@@ -420,6 +429,10 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 " nmap s <Plug>(easymotion-overwin-f2)
 " Turn on case insensitive feature
 let g:EasyMotion_smartcase = 1
+
+" easyalign
+" to align latex tables: visuble mark the rows
+" :EasyAlign *&
 
 " " " delimitMate
 " let delimitMate_expand_cr = 2
