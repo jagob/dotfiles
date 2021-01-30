@@ -1,20 +1,22 @@
 " github.com/jagob
 " for windows _vimrc -> source ~\dotfiles\.vimrc
     
+
 filetype off
 set nocompatible                "no vi emulation
 
-
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall
+" auto-install vim-plug
+if has("unix")
+    if empty(glob('~/.vim/autoload/plug.vim'))
+      silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+      autocmd VimEnter * PlugInstall
+    endif
+elseif has("win64") || has("win32")
+    if empty(glob('C:/Users/jacob/vimfiles/autoload/plug.vim'))
+        silent !curl -fLo ~/_vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        autocmd VimEnter * PlugInstall
+    endif
 endif
-
-" " auto-install vim-plug
-" if empty(glob('C:/Users/jacob/_vim/autoload/plug.vim'))
-"  silent !curl -fLo ~/_vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-"  autocmd VimEnter * PlugInstall
-" endif
 
 " Rope.
 " Tagbar.
@@ -53,7 +55,6 @@ call plug#end()
 " windows stuff
 " let $PYTHONHOME = 'C:/Users/UserName/AppData/Local/Continuum/Anaconda2/'
 " let $PYTHONHOME = 'C:/Python27/'
-
 
 if has("gui_running")
     set guioptions-=T " Hide the toolbar.
