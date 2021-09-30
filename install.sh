@@ -9,6 +9,7 @@ ln -s ~/dotfiles/.Xresources .
 ln -s ~/dotfiles/.zshrc .
 ln -s ~/dotfiles/.vimrc .
 ln -s ~/dotfiles/.vim .
+ln -s ~/dotfiles/.vifm .
 ln -s ~/dotfiles/.tmux.conf .
 ln -s ~/dotfiles/.pylintrc .
 ln -s ~/dotfiles/.config/flake8 .config/
@@ -33,12 +34,12 @@ sudo pacman -S alsa alsa-utils pulseaudio pulseaudio-alsa pavucontrol
 sudo pacman -S vim rxvt-unicode urxvt-perls ttf-ubuntu-font-family
 
 # Post installation
-sudo pacman -S gvim zsh htop firefox dmenu arandr zathura zathura-pdf-poppler evince eog vlc texlive-most vim-spell-da vim-latexsuite feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring wget openssh flake8 thunar thunar-archive-plugin file-roller tumbler ffmpegthumbnailer cifs-utils gvfs gvfs-smb xfce4-notifyd rclone cups cups-pdf system-config-printer jupyterlab jupyter-notebook
+sudo pacman -S gvim zsh htop firefox dmenu arandr zathura zathura-pdf-poppler evince eog eog-plugins vlc texlive-most vim-spell-da vim-latexsuite feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring wget openssh flake8 thunar thunar-archive-plugin file-roller tumbler ffmpegthumbnailer cifs-utils gvfs gvfs-smb xfce4-notifyd rclone cups cups-pdf system-config-printer jupyterlab jupyter-notebook ntp 
 
 chsh -s $(which zsh)
 
 # # extra
-# sudo pacman -Ss flashplugin thunar-volman tumbler ntp okular gst-libav vlc lib32-libpulse jre7-openjdk jdk7-openjdk icedtea-web inkscape gimp ntfs-3g wine wine-mono wine_gecko lib32-ncurses cups cups-pdf system-config-printer samba xorg-xrandr ncmpcpp mpd mpc libreoffice-still cmake opencv ffmpeg ipython2 python2-ipdb python2-pygame python2-numpy python2-scipy python2-matplotlib python2-pyqt4 python2-h5py flake8 wxpython python2-pyzmq python2-jinja python2-tornado youtube-dl cheese tk irssi wmctrl lxappearance lynx maven bc gmrun offlineimap xfce4 xfce4-notifyd inotify-tools mutt mpg123
+# sudo pacman -Ss flashplugin thunar-volman tumbler okular gst-libav vlc lib32-libpulse jre7-openjdk jdk7-openjdk icedtea-web inkscape gimp ntfs-3g wine wine-mono wine_gecko lib32-ncurses cups cups-pdf system-config-printer samba xorg-xrandr ncmpcpp mpd mpc libreoffice-still cmake opencv ffmpeg ipython2 python2-ipdb python2-pygame python2-numpy python2-scipy python2-matplotlib python2-pyqt4 python2-h5py flake8 wxpython python2-pyzmq python2-jinja python2-tornado youtube-dl cheese tk irssi wmctrl lxappearance lynx maven bc gmrun offlineimap xfce4 xfce4-notifyd inotify-tools mutt mpg123
 # # outdated: gvfsin 
 
 
@@ -64,3 +65,5 @@ sudo mv /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/ 
 # mkdir -p ~/.mail ~/.mail/jacobgmail ~/.mail/aau
 # echo 'mailboxes "+jacobgmail/INBOX" "+jacobgmail/[Gmail].Sent Mail" "+jacobgmail/gemte" "+jacobgmail/Drafts" "+jacobgmail/Trash"' > ~/.mail/jacobgmail/mailboxes
 # echo 'mailboxes "+aau/INBOX" "+aau/Sent Items" "+aau/Drafts"' > ~/.mail/aau/mailboxes
+
+# sudo systemctl enable ntpd

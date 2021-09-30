@@ -3,6 +3,8 @@
 .vim/autoload/plug.vim
 .vim/.netrwhist
 
+.vifm/*
+
 .xmonad/getvolume2.sh
 .xmonad/xmonad.hi
 .xmonad/xmonad-hs
