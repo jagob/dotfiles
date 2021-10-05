@@ -24,8 +24,11 @@ URxvt.urgentOnBell: true
 URxvt.saveLines: 1500
 ! URxvt*loginShell: true
 
-! Fonts
-URxvt*font: xft:UbuntuMono-R:regular:size=14
+! Fonts (fc-list)
+! powerline fonts: https://github.com/snare/powerline-fonts
+! copy powerline fonts to /usr/share/fonts
+! URxvt*font: xft:UbuntuMono-R:regular:size=14
+URxvt*font: xft:Ubuntu Mono derivative Powerline:regular:size=14
 ! URxvt*font: xft:SourceCodePro-Regular:regular:size=12
 ! URxvt*letterSpace: -1
 URxvt*boldfont: xft:Ubuntu Mono:regular:size=14

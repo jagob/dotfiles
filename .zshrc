@@ -73,14 +73,19 @@ alias -s asm=$EDITOR
 alias -s txt=$EDITOR
 
 
-
 # aliases
+alias claaudia='ssh jvdu@create.aau.dk@ai-pilot.srv.aau.dk'
+alias sshgateway='ssh jq72po@create.aau.dk@sshgw.aau.dk'
+alias sshgw='ssh jq72po@create.aau.dk@sshgw.aau.dk'
 alias sshfsjacob='sshfs jacob@172.24.211.1:/home/jacob/phd ~/mount/phd'
-alias neelusship='ssh jacob@172.24.211.109' # vablap321
-alias anderssship='ssh anders@172.24.211.13' # Vabvab321
-alias gputunnel="ssh -L 1234:172.24.211.1:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
-alias gputunnelNeelu="ssh -L 1234:172.24.211.109:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
-# scp -r -P 1234 jacob@localhost:"/home/jacob/code/SoccerNetv2-ReplayGrounding/fig.zip" downloads 
+# alias mrpa1='ssh jacob@172.24.211.1'  # old IP
+alias mrpa1='ssh jacob@172.24.211.230'  # Vabvab
+alias neelusship='ssh jacob@172.24.211.109'  # vablap
+alias anderssship='ssh anders@172.24.211.13'  # Vabvab
+alias gputunneljacob="ssh -L 1234:172.24.211.1:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
+alias gputunnelanders="ssh -L 1234:172.24.211.13:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
+# alias gputunnelNeelu="ssh -L 1234:172.24.211.109:22 jq72po@create.aau.dk@sshgw.aau.dk cat -" 
+# scp -r -P 1234 jacob@localhost:"/home/jacob/Downloads/scp/*" ~/downloads/scp
 alias createfileshare='sudo mount -t cifs //create.aau.dk/Fileshares/vap-lab/weekly-meetings/2020 /mnt/create-fileshare -o setuids,user=jq72po,vers=2.1'
 alias fp='readlink -f'  # filepath
 alias ft='cd ~/documents/master/tracking/'
@@ -99,7 +104,9 @@ alias finder='find -name' # "search"
 alias keyboard='setxkbmap -layout dk; setxkbmap -option caps:escape'
 alias bc='bc -lq'						# bash calculator with floating point
 alias bell='sleep 3; echo -e "\a"' 
-alias monitor_off='xrandr --output HDMI-2 --off'
+# alias monitor_off='xrandr --output HDMI-2 --off'
+alias monitor_default='xrandr --output eDP-1 --auto --output DVI-I-1-1 --off --output DVI-I-2-2 --off'
+alias monitor_reset='xrandr --output eDP-1 --auto --output DVI-I-1-1 --off --output DVI-I-2-2 --off'
 alias activate='source env/bin/activate'
 
 alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
@@ -128,6 +135,7 @@ alias lt='ls -ltgG' 		            # sort by last modified
 alias lx='ls -lXB'                      #  Sort by extension
 alias c='cd "$@" && ls'
 alias foldersize='du -cksh *'
+alias grep='grep --color'
 
 alias cd..='cd ..'
 alias ..='cd ../..'
@@ -281,3 +289,19 @@ bindkey "\eOF" end-of-line
 bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 ##############################
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/jacob/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/jacob/miniconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/jacob/miniconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/jacob/miniconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+

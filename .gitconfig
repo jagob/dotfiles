@@ -24,3 +24,7 @@
 
 [alias]
 	; lg = log --color --graph --pretty=format:'%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset - %Cred%h%Creset' --name-status
+
+[credential]
+        helper = cache
+        # helper = cache --timeout=3600  # seconds

@@ -89,6 +89,7 @@ myManageHook = composeAll [
     , title     =? "File Operation Progress"--> doFloat
     -- , className =? "Gimp"                   --> doFloat
     -- , insertPosition Above Newer
+    , isDialog                              --> doF W.swapUp  -- pop up to front
     , insertPosition Below Newer
     , transience'
     ]

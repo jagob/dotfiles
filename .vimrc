@@ -21,26 +21,33 @@ endif
 " Rope.
 " Tagbar.
 
+" TODO: filepath below .vim/?
 call plug#begin('~/vimfiles/plugged')
+" Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'junegunn/vim-easy-align'
-Plug 'tpope/vim-fugitive'
 Plug 'tomtom/tcomment_vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround' 
 Plug 'terryma/vim-smooth-scroll'
 Plug 'Raimondi/delimitMate'
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 Plug 'kien/ctrlp.vim'
 Plug 'kien/rainbow_parentheses.vim'
+" Plug 'frazrepo/vim-rainbow'
 Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' 
 Plug 'chrisbra/csv.vim'
 Plug 'henrik/vim-indexed-search'
 Plug 'dense-analysis/ale'
-" Plug 'vim-scripts/taglist.vim'
-" Plug 'junegunn/fzf'
+Plug 'preservim/tagbar'
+Plug 'vim-scripts/taglist.vim'
 " Plug 'morhetz/gruvbox'
 " Plug 'easymotion/vim-easymotion'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -295,7 +302,7 @@ imap <C-v> <Esc>"+gP" paste
 " vnoremap <C-x> "+x " cut
 " clipboard=unnamed
 " clipboard^=unnamed " for arch linux, see :h clipboard-exclude 
-" set pastetoggle=<F2>
+set pastetoggle=<F2>
 
 " Remap line motion Practical vim page 111
 nnoremap k gk
@@ -367,39 +374,33 @@ nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 " For global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
-
 " hilight word type under cursor
 map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
 \ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
 \ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 
-" ctags ----------------------------------------------------------
-" use ctrl+] to jump to definition, in a new tab
-map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-" Generate a .tags file, which vim can use to scan for keywords
-" g+ctrl+] to list all definitions
-" ctrl+t to jump back
-map <f12> :!ctags -R .<cr> 
-
-
-" OmniCppComplete -----------------------------------------------------------
-set omnifunc=syntaxcomplete#Complete
-" autocmd filetype python set omnifunc=pythoncomplete#complete
-" autocmd FileType c set omnifunc=ccomplete#Complete
-" autocmd FileType cpp set omnifunc=cppcomplete#CompleteCPP
-
-" " Plugins ----------------------------------------------------------
+" " Plugins ------------------------------------------------------------------
 " Airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme='bubblegum'
+let g:airline#extensions#tabline#enabled = 1  " display top tab bar
 
-" " FuzzyFinder
-" map <C-o> :FufCoverageFile<CR> 
-" let g:fuf_coveragefile_exclude = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\.class$'
+" Smooth scrolling
+" 3 parameters: distance, duration[ms], #lines
+noremap <silent> <c-u> :call smooth_scroll#up	(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down	(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up	(&scroll, 10, 1)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 10, 1)<CR>
 
 " CtrlP
 let g:ctrlp_map = '<c-o>'
+
+" fzf
+" replace CtrlP, including key map
+" nnoremap <C-p> :Files<CR>
+map ; :Files<CR>
+" let g:fzf_layout = { 'down': '40%' }
 
 " NERDTree "autocmd vimenter * NERDTree
 nmap <leader>n :NERDTreeToggle<CR>
@@ -415,65 +416,86 @@ let Tlist_File_Fold_Auto_Close = 1
 " map <leader>c <c-_><c-_>
 map <leader>c :TComment<cr>
 
-" Smooth scrolling
-" 3 parameters: distance, duration[ms], #lines
-noremap <silent> <c-u> :call smooth_scroll#up	(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down	(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up	(&scroll, 10, 1)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 10, 1)<CR>
-
-" easymotion
-let g:EasyMotion_do_mapping = 0 " Disable default mappings
-" Search for 1 character
-" nmap <space> <Plug>(easymotion-overwin-f)
-" Search for 2 characters
-" nmap s <Plug>(easymotion-overwin-f2)
-" Turn on case insensitive feature
-let g:EasyMotion_smartcase = 1
-
 " easyalign
 " to align latex tables: visuble mark the rows
 " :EasyAlign *&
 
-" " " delimitMate
+" " Surround
+" ds"  " delete surrounding quotes
+
+" " delimitMate
 " let delimitMate_expand_cr = 2
 " let delimitMate_expand_space = 1
 
-" " dragvisuals.vim
-" vmap <expr> <LEFT>  DVB_Drag('left')
-" vmap <expr> <RIGHT> DVB_Drag('right')
-" vmap <expr> <DOWN>  DVB_Drag('down')
-" vmap <expr> <UP>    DVB_Drag('up')
-" vmap <expr> D       DVB_Duplicate()
-"
-" " vmath.vim sum average min max
-" " Fix this
-" vmap <expr> ++ VMATH_YankAndAnalyse()
-" vmap <C-æ> VMATH_YankAndAnalyse()
-" nmap        ++ vip++
+" Rainbow Parentheses
+" Left column is for terminal environment
+" Right column is for GUI environment
+let g:rbpt_colorpairs = [
+	\ ['Darkblue',    '#d65d0e'],
+	\ ['darkgray',    '#fabd2f'],
+    \ ]
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound     " ()
+au Syntax * RainbowParenthesesLoadSquare    " []
+au Syntax * RainbowParenthesesLoadBraces    " {}
+" au Syntax * RainbowParenthesesLoadChevrons " <> 
+
+" " fugitive
+nmap <leader>gs :G<CR>
+nmap <leader>gf :diffget //2<CR>
+nmap <leader>gj :diffget //3<CR>
+" s - stage
+" u - undo
+" '-' - add/remove file to/from staging 
+" dd - diff mode two splits
+" C - commit
+" :Gcommit<CR>
+" :Gpush
+
+
+" " git gutter
+" jump between hunks with [c and ]c. 
+" preview, stage, and undo hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
 
 " IndentLine ¦ ┆ │
 let g:indentLine_enabled = 1
 let g:indentLine_char = '┆'
 " the plugin will not function if conceallevel is not set to 1 or 2.
-let g:indentLine_setConceal = 0
-
-" " mru - most recently used
-" let MRU_Window_Height = 15 
-" let MRU_Max_Entries = 15
-" let MRU_Auto_Close = 1
-" map :mru :MRU <CR>
-" " map <C-m> :MRU <CR>
-" nnoremap <Leader>mru :MRU<CR>
-" " nmap :MRU :mru <CR>
-" " let MRU_Include_Files = '^/Users/ok/Dropbox/StageM2/report/.*'
-" " let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'
+let g:indentLine_setConceal = 1
 
 " " UltiSnippet - better key bindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsUsePythonVersion=3
+
+" tagsbar
+nmap <F8> :TagbarToggle<CR>
+
+" ctags
+" Generate a .tags file, which vim can use to scan for keywords
+" ctags -R --exclude=.git--exclude=vendor --exclude=node_modules --exclude=db --exclude=log .
+" map <f12> :!ctags -R .<cr> 
+map <f12> :!ctags -R --exclude=node_modules .<cr> 
+
+" use ctrl+] to jump to definition, in a new tab
+map <C-]> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+" g+ctrl+] to list all definitions
+" ctrl+t to jump back
+
+" CSV 
+let g:csv_no_conceal = 0
+" json
+" let g:vim_json_syntax_conceal = 0
+au FileType json set conceallevel=0
+let g:tex_conceal=""
+
+
+" OmniCppComplete -----------------------------------------------------------
+set omnifunc=syntaxcomplete#Complete
+" autocmd filetype python set omnifunc=pythoncomplete#complete
+" autocmd FileType c set omnifunc=ccomplete#Complete
+" autocmd FileType cpp set omnifunc=cppcomplete#CompleteCPP
 
 " YouCompleteMe
 " Also checkout VimCompletesMe
@@ -494,7 +516,7 @@ let g:UltiSnipsUsePythonVersion=3
 "             \ 'tex' : 1,
 "             \ 'plaintex' : 1
 "             \}
-let g:ycm_keep_logfiles = 1
+" let g:ycm_keep_logfiles = 1
 
 " Ale
 let b:ale_linters = ['flake8', 'pylint']"
@@ -521,28 +543,47 @@ let g:ale_python_pylint_change_directory = 0
 " map <silent> <Leader>e :Errors<CR>
 " map <Leader>s :SyntasticToggleMode<CR>
 
-" CSV 
-let g:csv_no_conceal = 0
-" json
-" let g:vim_json_syntax_conceal = 0
-au FileType json set conceallevel=0
-let g:tex_conceal=""
-
-" Coc
-set signcolumn=yes
+" " Coc
+" set signcolumn=yes
 
 " Kite autocomplete
 " let g:kite_auto_complete=0
 
-" Rainbow Parentheses
-" Left column is for terminal environment
-" Right column is for GUI environment
-let g:rbpt_colorpairs = [
-	\ ['Darkblue',    '#d65d0e'],
-	\ ['darkgray',    '#fabd2f'],
-    \ ]
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound     " ()
-au Syntax * RainbowParenthesesLoadSquare    " []
-au Syntax * RainbowParenthesesLoadBraces    " {}
-" au Syntax * RainbowParenthesesLoadChevrons " <> 
+
+" " old plugin ---------------------------------------------------------------
+" " FuzzyFinder
+" map <C-o> :FufCoverageFile<CR> 
+" let g:fuf_coveragefile_exclude = '\v\~$|\.o$|\.exe$|\.bak$|\.swp$|\.class$'
+
+" " mru - most recently used
+" let MRU_Window_Height = 15 
+" let MRU_Max_Entries = 15
+" let MRU_Auto_Close = 1
+" map :mru :MRU <CR>
+" " map <C-m> :MRU <CR>
+" nnoremap <Leader>mru :MRU<CR>
+" " nmap :MRU :mru <CR>
+" " let MRU_Include_Files = '^/Users/ok/Dropbox/StageM2/report/.*'
+" " let MRU_Exclude_Files = '^/tmp/.*\|^/var/tmp/.*'
+
+" " easymotion
+" let g:EasyMotion_do_mapping = 0 " Disable default mappings
+" " Search for 1 character
+" " nmap <space> <Plug>(easymotion-overwin-f)
+" " Search for 2 characters
+" " nmap s <Plug>(easymotion-overwin-f2)
+" " Turn on case insensitive feature
+" let g:EasyMotion_smartcase = 1
+
+" " dragvisuals.vim
+" vmap <expr> <LEFT>  DVB_Drag('left')
+" vmap <expr> <RIGHT> DVB_Drag('right')
+" vmap <expr> <DOWN>  DVB_Drag('down')
+" vmap <expr> <UP>    DVB_Drag('up')
+" vmap <expr> D       DVB_Duplicate()
+"
+" " vmath.vim sum average min max
+" " Fix this
+" vmap <expr> ++ VMATH_YankAndAnalyse()
+" vmap <C-æ> VMATH_YankAndAnalyse()
+" nmap        ++ vip++

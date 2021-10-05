@@ -34,7 +34,7 @@ sudo pacman -S alsa alsa-utils pulseaudio pulseaudio-alsa pavucontrol
 sudo pacman -S vim rxvt-unicode urxvt-perls ttf-ubuntu-font-family
 
 # Post installation
-sudo pacman -S gvim zsh htop firefox dmenu arandr zathura zathura-pdf-poppler evince eog eog-plugins vlc texlive-most vim-spell-da vim-latexsuite feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring wget openssh flake8 thunar thunar-archive-plugin file-roller tumbler ffmpegthumbnailer cifs-utils gvfs gvfs-smb xfce4-notifyd rclone cups cups-pdf system-config-printer jupyterlab jupyter-notebook ntp 
+sudo pacman -S gvim zsh htop firefox dmenu arandr zathura zathura-pdf-poppler evince eog eog-plugins vlc texlive-most vim-spell-da vim-latexsuite feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring wget openssh flake8 thunar thunar-archive-plugin file-roller tumbler ffmpegthumbnailer cifs-utils gvfs gvfs-smb xfce4-notifyd rclone cups cups-pdf system-config-printer jupyterlab jupyter-notebook ntp ctags fzf
 
 chsh -s $(which zsh)
 
@@ -55,13 +55,13 @@ yay -S xcursor-human dropbox teams zotero spotify autojump wps-office openprinti
 sudo mv /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/ rect-overlay /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay.bak
 
 
-# yaourt -S --noconfirm xcursor-human ttf-ms-fonts ttf-ubuntu-mono-derivative-powerline dropbox dropbox-cli gnome-keyring-query urlview pdfjumbler urxvt-font-size-git openprinting-ppds-pxlcolor-generic google-chrome ttf-ubuntu-mono-derivative-powerline skypeforlinux-stable-bin sky
-# # skype gcc-multilib fremfor regulær gcc
-# 
-# 
-# 
+# outdated aur packages
+# yay -S xcursor-human ttf-ms-fonts ttf-ubuntu-mono-derivative-powerline dropbox dropbox-cli gnome-keyring-query urlview pdfjumbler urxvt-font-size-git openprinting-ppds-pxlcolor-generic google-chrome ttf-ubuntu-mono-derivative-powerline skypeforlinux-stable-bin skype
+# gcc-multilib fremfor regulær gcc 
+
+
 # touch ~/.mpd/{database,log,pid,state,sticker.sql,errorlog}
-# 
+
 # mkdir -p ~/.mail ~/.mail/jacobgmail ~/.mail/aau
 # echo 'mailboxes "+jacobgmail/INBOX" "+jacobgmail/[Gmail].Sent Mail" "+jacobgmail/gemte" "+jacobgmail/Drafts" "+jacobgmail/Trash"' > ~/.mail/jacobgmail/mailboxes
 # echo 'mailboxes "+aau/INBOX" "+aau/Sent Items" "+aau/Drafts"' > ~/.mail/aau/mailboxes
