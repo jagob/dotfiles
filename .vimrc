@@ -20,9 +20,11 @@ endif
 
 " Rope.
 " Tagbar.
+" vim-showmarks
 
-" TODO: filepath below .vim/?
-call plug#begin('~/vimfiles/plugged')
+" TODO: windows plugged dir?
+" call plug#begin('~/vimfiles/plugged')
+call plug#begin('~/.vim/plugged')
 " Plug 'itchyny/lightline.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -30,6 +32,7 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'tomtom/tcomment_vim'
 Plug 'junegunn/vim-easy-align'
 Plug 'airblade/vim-gitgutter'
+Plug 'kshenoy/vim-signature'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround' 
 Plug 'terryma/vim-smooth-scroll'
@@ -103,6 +106,8 @@ set mouse=a                     " Enable mouse
 set visualbell                  " No sounds
 set t_vb=                       " No blink at first/last line
 set autoread                    " Reload files changed outside vim
+" set signcolumn=number           " Put signs in linenumbers instead of signcolumn
+" set signcolumn=yes:1            " Put signs in linenumbers instead of signcolumn
 
 " Try to make vim opened through thunar work with C-s
 " set shell=zsh\ -i
@@ -352,6 +357,15 @@ vnoremap v      <C-V>
 vnoremap > >gv
 vnoremap < <gv
 
+" marks
+" ]' - previous mark (local)
+" [' - next mark (local)
+" '. - position of where last change was made
+" '' - position before last jump (Super useful!). See :h ''
+" show a lists of marks
+nnoremap <silent> <leader>m <cmd>Marks<cr>
+" :delm[arks] 0-9 a-z A-Z \"<>.  " delete marks
+
 " save read-only files
 cmap w!! %!sudo tee > /dev/null %
 
@@ -384,7 +398,7 @@ map <F11> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans
 " Airline
 let g:airline_powerline_fonts = 1
 let g:airline_theme='bubblegum'
-let g:airline#extensions#tabline#enabled = 1  " display top tab bar
+" let g:airline#extensions#tabline#enabled = 1  " display top tab bar
 
 " Smooth scrolling
 " 3 parameters: distance, duration[ms], #lines

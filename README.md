@@ -6,3 +6,7 @@
  - bin/diffwrap.sh
  - .tmux.config
  - .gitconfig?
+
+```
+sudo apt-get install exuberant-ctags ack
+```
