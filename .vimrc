@@ -47,6 +47,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets' 
 Plug 'chrisbra/csv.vim'
+Plug 'christoomey/vim-tmux-navigator'
 Plug 'henrik/vim-indexed-search'
 Plug 'dense-analysis/ale'
 Plug 'preservim/tagbar'
@@ -159,7 +160,6 @@ set laststatus=2 " for powerline
 " let g:Powerline_symbols = 'fancy'
 set guifont=Consolas:h14
 
-
 " Soeren tabs
 set tabstop=4       " tab width
 set shiftwidth=4    " indention
@@ -257,6 +257,7 @@ let g:Tex_GotoError=0
 " \label{fig:something}
 autocmd BufRead,BufNewFile *.tex set iskeyword+=:-_
 
+" build current with leader ll, \LL
 nnoremap <leader>ls :silent call Tex_RunLaTeX()<cr>
 let g:Tex_UseMakefile=1
 "   Compile LaTeX for the current file only
@@ -289,6 +290,7 @@ map :g :LanguageToolCheck<CR>
 " Mappings -------------------------------------------------------------------
 map :Q :q<CR>
 map <C-q> :q<CR>
+map <C-x> :q<cr>
 nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>
 
@@ -300,13 +302,15 @@ noremap <leader>h :silent noh<CR>
 map     <F6>      :set list!<CR>:set list?<CR>
 imap    <F6> <C-O>:set list!<CR><C-O>:set list?<CR>
 
-" map cut & paste to what they bloody should be
+" map copy cut & paste to what they bloody should be
 vnoremap <C-c> "+y" copy
 map <C-v> "+gP" paste
 imap <C-v> <Esc>"+gP" paste
 " vnoremap <C-x> "+x " cut
 " clipboard=unnamed
 " clipboard^=unnamed " for arch linux, see :h clipboard-exclude 
+" set clipboard=unnamed
+set clipboard=unnamedplus
 set pastetoggle=<F2>
 
 " Remap line motion Practical vim page 111
@@ -320,24 +324,23 @@ nnoremap <leader>w :set wrap!<CR>
 " Smart way to move between windows
 " let g:BASH_Ctrl_j = 'off' " to map j
 nnoremap <SID>I_won’t_ever_type_this <Plug>IMAP_JumpForward "latexsuite wont override j map
-map <C-j> <C-W>j
-map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+" Comment due to tmux movement, to be deleted
+" map <C-j> <C-W>j
+" map <C-k> <C-W>k
+" map <C-h> <C-W>h
+" map <C-l> <C-W>l
 
 " tabs
-" map <Leader>e :e <C-R>=expand("%:p:h") . '/'<CR>
-" map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
-map <C-t> <esc>:tabnew<cr>
-map <C-n> <esc>:tabnext<cr>
-map <C-p> <esc>:tabprevious<cr>
-map <C-m> <esc>:tabmove +1 <cr>
-" map <Leader>tc :tabnew %<cr> " create a new tab
-" map <Leader>tt :tabnew %<cr> " create a new tab
-" map <Leader>td :tabclose<cr> " close a tab
-" map <Leader>tn :tabnext<cr> " next tab
-" map <Leader>tp :tabprev<cr>" previous tab
-" map <Leader>tm :tabmove " move a tab to a new location
+" gt - next tab
+" gT - previous tab
+" {i}gt - go to tab in position i
+nnoremap <C-t> <esc>:tabnew<cr>
+nnoremap <leader>tn :tabnew<cr>
+
+" " old qwerty tab bindings
+" map <C-n> <esc>:tabnext<cr>
+" map <C-p> <esc>:tabprevious<cr>
+" map <C-m> <esc>:tabmove +1 <cr>
 
 " Buffer taken from Practical Vim page 78
 nnoremap <leader>p :bprevious<CR>
@@ -465,6 +468,7 @@ nmap <leader>gj :diffget //3<CR>
 " C - commit
 " :Gcommit<CR>
 " :Gpush
+" X - discard changes
 
 
 " " git gutter
@@ -478,6 +482,7 @@ let g:indentLine_char = '┆'
 let g:indentLine_setConceal = 1
 
 " " UltiSnippet - better key bindings for UltiSnipsExpandTrigger
+" :UltiSnipsEdit  # add/edit custom snippets for the current filetype
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
@@ -538,6 +543,20 @@ let g:ale_lint_on_text_changed = 'always'
 let g:ale_lint_on_insert_leave = 1
 let g:ale_lint_on_enter = 0
 let g:ale_python_pylint_change_directory = 0
+
+" tmux
+let g:tmux_navigator_disable_when_zoomed = 1 
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+" nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+nnoremap <silent> <C-m> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-n> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-e> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-i> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-o> :TmuxNavigateRight<cr>
 
 " " Syntastic --------------------------------------------------------
 " set statusline+=%#warningmsg#

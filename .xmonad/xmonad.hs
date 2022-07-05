@@ -192,13 +192,15 @@ myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --
 -- Define new key combinations to be added
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
       ((modm .|. shiftMask, xK_Return), spawn $ XMonad.terminal conf) -- launch a terminal
+      -- ((modm .|. ctrlMask, xK_Return), spawn $ XMonad.terminal conf) -- launch a terminal
     , ((modm .|. shiftMask, xK_p     ), spawn "gmrun")          -- launch gmrun
     -- , ((modMask4 .|. shiftMask, xK_p     ), spawn "gmrun")          -- launch gmrun
     , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Ubuntu Mono-14'")
     , ((modm .|. shiftMask, xK_c     ), kill)                   -- close focused window
     , ((modm,               xK_space ), sendMessage NextLayout) -- Rotate through the available layout algorithms
     , ((modm .|. shiftMask, xK_space ), setLayout $ XMonad.layoutHook conf) --  Reset the layouts on the current workspace to default
-    , ((modm,               xK_n     ), refresh)                -- Resize viewed windows to the correct size
+    -- qwerty
+    -- , ((modm,               xK_n     ), refresh)                -- Resize viewed windows to the correct size
     , ((modm,               xK_Tab   ), windows W.focusDown)    -- Move focus to the next window
     , ((modm,               xK_j     ), windows W.focusDown)    -- Move focus to the next window
     , ((modm,               xK_k     ), windows W.focusUp  )    -- Move focus to the previous window
@@ -207,13 +209,27 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     , ((modm .|. shiftMask, xK_j     ), windows W.swapDown  )   -- Swap the focused window with the next window
     , ((modm .|. shiftMask, xK_k     ), windows W.swapUp    )   -- Swap the focused window with the previous window
     , ((modm,               xK_h     ), sendMessage Shrink)     -- Shrink the master area
-    , ((modm,               xK_l     ), sendMessage Expand)     -- Expand the master area
     , ((modm .|. shiftMask, xK_h     ), sendMessage MirrorShrink)
+    , ((modm,               xK_l     ), sendMessage Expand)     -- Expand the master area
     , ((modm .|. shiftMask, xK_l     ), sendMessage MirrorExpand) 
+    -- colemak dh
+    , ((modm,               xK_n     ), windows W.focusDown)    -- Move focus to the next window
+    , ((modm .|. shiftMask, xK_n     ), windows W.swapDown  )   -- Swap the focused window with the next window
+    , ((modm,               xK_e     ), windows W.focusUp  )    -- Move focus to the previous window
+    , ((modm .|. shiftMask, xK_e     ), windows W.swapUp    )   -- Swap the focused window with the previous window
+    , ((modm,               xK_m     ), sendMessage Shrink)     -- Shrink the master area
+    , ((modm .|. shiftMask, xK_m     ), sendMessage MirrorShrink)
+    , ((modm,               xK_i     ), sendMessage Expand)     -- Expand the master area
+    , ((modm .|. shiftMask, xK_i     ), sendMessage MirrorExpand) 
+    , ((modm,               xK_y     ), nextScreen)
+    , ((modm .|. shiftMask, xK_y     ), shiftNextScreen >> nextScreen)
+    -- , ((modm,               xK_p     ), spawn "dmenu_run -fn 'Ubuntu Mono-14'")  # TODO add keybind for DQUOT
+    -- others
     , ((modm,               xK_t     ), withFocused $ windows . W.sink) -- Push window back into tiling
     , ((modm              , xK_comma ), sendMessage (IncMasterN 1)) -- Increment the number of windows in the master area
     , ((modm              , xK_period), sendMessage (IncMasterN (-1))) -- Deincrement the number of windows in the master area
-    , ((modm              , xK_m     ), sendMessage ToggleStruts) -- Toggle the status bar gap
+    -- , ((modm              , xK_m     ), sendMessage ToggleStruts) -- Toggle the status bar gap
+    , ((modm              , xK_u     ), sendMessage ToggleStruts) -- Toggle the status bar gap
     , ((modm .|. shiftMask, xK_q     ), io (exitWith ExitSuccess)) -- Quit xmonad
     -- , ((modm .|. shiftMask, xK_q     ), io exitSuccess)
     , ((modm              , xK_q     ), spawn "killall conky dzen2 trayer; xmonad --recompile; xmonad --restart") -- Restart xmonad
