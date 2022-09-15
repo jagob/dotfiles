@@ -20,11 +20,19 @@
 	default = simple
 
 [pager]
-  diff =
+    diff =
 
 [alias]
 	; lg = log --color --graph --pretty=format:'%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset - %Cred%h%Creset' --name-status
 
-[credential]
-        helper = cache
-        # helper = cache --timeout=3600  # seconds
+[pull]
+	rebase = false
+
+; [credential]
+;         helper = cache
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
