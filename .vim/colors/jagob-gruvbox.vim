@@ -890,6 +890,30 @@ call s:HL('multiple_cursors_visual', s:none, s:bg2)
 
 " }}}
 
+" LSP 
+" https://github.com/gruvbox-community/gruvbox/blob/master/colors/gruvbox.vim
+  hi! link DiagnosticError GruvboxRed
+  hi! link DiagnosticSignError GruvboxRedSign
+  hi! link DiagnosticUnderlineError GruvboxRedUnderline
+
+  hi! link DiagnosticWarn GruvboxYellow
+  hi! link DiagnosticSignWarn GruvboxYellowSign
+  hi! link DiagnosticUnderlineWarn GruvboxYellowUnderline
+
+  hi! link DiagnosticInfo GruvboxBlue
+  hi! link DiagnosticSignInfo GruvboxBlueSign
+  hi! link DiagnosticUnderlineInfo GruvboxBlueUnderline
+
+  hi! link DiagnosticHint GruvboxAqua
+  hi! link DiagnosticSignHint GruvboxAquaSign
+  hi! link DiagnosticUnderlineHint GruvboxAquaUnderline
+
+  hi! link LspReferenceText GruvboxYellowBold
+  hi! link LspReferenceRead GruvboxYellowBold
+  hi! link LspReferenceWrite GruvboxOrangeBold
+
+  hi! link LspCodeLens GruvboxGray
+
 " Filetype specific -----------------------------------------------------------
 " Diff: {{{
 

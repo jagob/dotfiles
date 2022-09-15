@@ -25,44 +25,14 @@ endif
 " TODO: windows plugged dir?
 " call plug#begin('~/vimfiles/plugged')
 call plug#begin('~/.vim/plugged')
-" Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'tomtom/tcomment_vim'
-Plug 'junegunn/vim-easy-align'
-Plug 'airblade/vim-gitgutter'
-Plug 'kshenoy/vim-signature'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround' 
-Plug 'terryma/vim-smooth-scroll'
-Plug 'Raimondi/delimitMate'
-Plug 'mileszs/ack.vim'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'kien/ctrlp.vim'
-Plug 'kien/rainbow_parentheses.vim'
-" Plug 'frazrepo/vim-rainbow'
-Plug 'Yggdroot/indentLine'
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets' 
-Plug 'chrisbra/csv.vim'
-Plug 'christoomey/vim-tmux-navigator'
-Plug 'henrik/vim-indexed-search'
-Plug 'dense-analysis/ale'
-Plug 'preservim/tagbar'
-Plug 'vim-scripts/taglist.vim'
-" Plug 'morhetz/gruvbox'
-" Plug 'easymotion/vim-easymotion'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'zxqfl/tabnine-vim'
-" Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
-" Plug 'Valloric/YouCompleteMe'
-" Plug 'vim-syntastic/syntastic'
-" Plugin 'L9'
-" Plugin 'ascenator/L9', {'name': 'newL9'}
+    source ~/dotfiles/.vim/plugins.vim
+    if !has('nvim')  "vim exclusive plugins (not neovim)
+        Plug 'mileszs/ack.vim'
+        Plug 'dense-analysis/ale'
+        Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+    endif
 call plug#end()
-
+  
 " windows stuff
 " let $PYTHONHOME = 'C:/Users/UserName/AppData/Local/Continuum/Anaconda2/'
 " let $PYTHONHOME = 'C:/Python27/'
@@ -93,22 +63,24 @@ if $SSH_CONNECTION
     colorscheme jagob-gruvbox
 endif
 
-
-let &undodir = s:vim_cache . '/undo,.'
-
 filetype plugin indent on
 syntax on
+" Disable XOFF/XON
+silent !stty -ixon
 
-let mapleader = ","
-set number                      " Line numbers are good
+let mapleader = " "
+" let mapleader = ","
+" set number                      " Line numbers are good
+set number relativenumber       " relative hybrid numbers
+" set signcolumn=auto
+" set signcolumn=number           " Put signs in linenumbers instead of signcolumn
+" set signcolumn=yes:1            " Put signs in linenumbers instead of signcolumn
 set backspace=indent,eol,start  " Allow backspace in insert mode
 set gcr=a:blinkon0              " Disable cursor blink
 set mouse=a                     " Enable mouse
 set visualbell                  " No sounds
 set t_vb=                       " No blink at first/last line
 set autoread                    " Reload files changed outside vim
-" set signcolumn=number           " Put signs in linenumbers instead of signcolumn
-" set signcolumn=yes:1            " Put signs in linenumbers instead of signcolumn
 
 " Try to make vim opened through thunar work with C-s
 " set shell=zsh\ -i
@@ -147,9 +119,13 @@ set foldcolumn=2
 set noswapfile
 set nobackup
 set nowb
+let &undodir = s:vim_cache . '/undo,.'
+set undofile " Maintain undo history between sessions
+set undodir=~/.vim/undodir
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Scrolling
-set scrolloff=7         "Start scrolling when we're 7 lines away from margins
+set scrolloff=8         "Start scrolling when we're 7 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
 
@@ -240,14 +216,14 @@ let g:tex_comment_nospell=0
 
 " Set the warning messages to ignore.
 let g:Tex_IgnoredWarnings =
-\"Underfull\n".
-\"Overfull\n".
-\"specifier changed to\n".
-\"You have requested\n".
-\"Missing number, treated as zero.\n".
-\"There were undefined references\n".
-\"Citation %.%# undefined\n".
-\'LaTeX Font Warning:'"
+            \"Underfull\n".
+            \"Overfull\n".
+            \"specifier changed to\n".
+            \"You have requested\n".
+            \"Missing number, treated as zero.\n".
+            \"There were undefined references\n".
+            \"Citation %.%# undefined\n".
+            \'LaTeX Font Warning:'"
 " \"Package pgfkeys Error: I do not\n".
 " This number N says that latex-suite should ignore the first N of the above.
 let g:Tex_IgnoreLevel = 8
@@ -275,74 +251,108 @@ function! LatexCurrent()
 
     echom system(a:localLatexCommand)
     execute "!cd /home/jacob/work/pr_rgbd_chicken_extension/ && pdflatex -shell-escape masterlocal.tex"
-endf
-autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
-autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
+    endf
+    autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
+    autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
 
-" grammar languagetool
-let g:languagetool_jar='/home/jacob/.vim/bundle/languagetool/LanguageTool-2.5-SNAPSHOT/languagetool-commandline.jar'
-let g:languagetool_winheight=16
-let g:languagetool_disable_rules="MORFOLOGIK_RULE_EN_GB,WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE"
-" let g:languagetool_disable_rules="EN_QUOTES,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,ARTICLE_MISSING,COMMA_PARENTHESIS_WHITESPACE,UPPERCASE_SENTENCE_START,WORD_REPEAT_RULE,DOUBLE_PUNCTUATION,EN_A_VS_AN,THREE_NN,PHRASE_REPETITION,THIS_NNS,MORFOLOGIK_RULE_EN_GB"
-map :g :LanguageToolCheck<CR>
+    " grammar languagetool
+    let g:languagetool_jar='/home/jacob/.vim/bundle/languagetool/LanguageTool-2.5-SNAPSHOT/languagetool-commandline.jar'
+    let g:languagetool_winheight=16
+    let g:languagetool_disable_rules="MORFOLOGIK_RULE_EN_GB,WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE"
+    " let g:languagetool_disable_rules="EN_QUOTES,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,ARTICLE_MISSING,COMMA_PARENTHESIS_WHITESPACE,UPPERCASE_SENTENCE_START,WORD_REPEAT_RULE,DOUBLE_PUNCTUATION,EN_A_VS_AN,THREE_NN,PHRASE_REPETITION,THIS_NNS,MORFOLOGIK_RULE_EN_GB"
+    map :g :LanguageToolCheck<CR>
 
 
-" Mappings -------------------------------------------------------------------
-map :Q :q<CR>
-map <C-q> :q<CR>
-map <C-x> :q<cr>
-nmap <c-s> :w<CR>
-imap <c-s> <Esc>:w<CR>
+    " Mappings -------------------------------------------------------------------
+    map :Q :q<CR>
+    map :W :w<CR>
+    map <C-q> :q<CR>
+    nmap <c-s> :w<CR>
+    imap <c-s> <Esc>:w<CR>
 
-"open new terminal
-nnoremap <buffer> <F3> :exec '!urxvt &' shellescape(@%, 1)<cr>"
+    nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
-noremap <F4> :silent noh<CR>
-noremap <leader>h :silent noh<CR>
-map     <F6>      :set list!<CR>:set list?<CR>
-imap    <F6> <C-O>:set list!<CR><C-O>:set list?<CR>
+    "open new terminal
+    nnoremap <buffer> <F3> :exec '!urxvt &' shellescape(@%, 1)<cr>"
 
-" map copy cut & paste to what they bloody should be
-vnoremap <C-c> "+y" copy
-map <C-v> "+gP" paste
-imap <C-v> <Esc>"+gP" paste
-" vnoremap <C-x> "+x " cut
-" clipboard=unnamed
-" clipboard^=unnamed " for arch linux, see :h clipboard-exclude 
-" set clipboard=unnamed
-set clipboard=unnamedplus
-set pastetoggle=<F2>
+    noremap <F4> :silent noh<CR>
+    noremap <leader>h :silent noh<CR>
+    " keymap('n', '<leader><CR>', '<cmd>noh<CR>')
+    map     <F6>      :set list!<CR>:set list?<CR>
+    imap    <F6> <C-O>:set list!<CR><C-O>:set list?<CR>
 
-" Remap line motion Practical vim page 111
-nnoremap k gk
-nnoremap gk k
-nnoremap j gj
-nnoremap gj j
+    " map copy cut & paste to what they bloody should be
+    vnoremap <C-c> "+y" copy
+    map <C-v> "+gP" paste
+    imap <C-v> <Esc>"+gP" paste
+    " vnoremap <C-x> "+x " cut
+    " clipboard=unnamed
+    " clipboard^=unnamed " for arch linux, see :h clipboard-exclude 
+    " set clipboard=unnamed
+    set clipboard=unnamedplus
+    set pastetoggle=<F2>
 
-nnoremap <leader>w :set wrap!<CR>
+    " " greatest remap ever
+    " xnoremap("<leader>p", "\"_dP")
+    " " next greatest remap ever : asbjornHaland
+    " nnoremap("<leader>y", "\"+y")
+    " vnoremap("<leader>y", "\"+y")
+    " nmap("<leader>Y", "\"+Y")
+    " nnoremap("<leader>d", "\"_d")
+    " vnoremap("<leader>d", "\"_d")
+    " vnoremap("<leader>d", "\"_d")
 
-" Smart way to move between windows
-" let g:BASH_Ctrl_j = 'off' " to map j
-nnoremap <SID>I_won’t_ever_type_this <Plug>IMAP_JumpForward "latexsuite wont override j map
-" Comment due to tmux movement, to be deleted
-" map <C-j> <C-W>j
-" map <C-k> <C-W>k
-" map <C-h> <C-W>h
-" map <C-l> <C-W>l
+    " Remap line motion Practical vim page 111
+    nnoremap k gk
+    nnoremap gk k
+    nnoremap j gj
+    nnoremap gj j
 
-" tabs
+    nnoremap <leader>w :set wrap!<CR>
+
+    " Smart way to move between windows
+    " let g:BASH_Ctrl_j = 'off' " to map j
+    nnoremap <SID>I_won’t_ever_type_this <Plug>IMAP_JumpForward "latexsuite wont override j map
+    map <C-h> <C-W>h
+    map <C-j> <C-W>j
+    map <C-k> <C-W>k
+    map <C-l> <C-W>l
+    " map <C-m> <C-W>h
+    " map <C-n> <C-W>j
+    " map <C-e> <C-W>k
+    " map <C-i> <C-W>l  " conflict with prev jumplist C-i and C-o
+    map <C-W>m <C-W>h
+    map <C-W>n <C-W>j
+    map <C-W>e <C-W>k
+    map <C-W>i <C-W>l
+
+    " tabs
 " gt - next tab
 " gT - previous tab
 " {i}gt - go to tab in position i
 nnoremap <C-t> <esc>:tabnew<cr>
-nnoremap <leader>tn :tabnew<cr>
-
+nnoremap <leader>tt :tabnew<cr>
+nnoremap <leader>tc :tabnew<cr>
+nnoremap <leader>tj <esc>:tabnext<cr>
+nnoremap <leader>tk <esc>:tabprevious<cr>
+nnoremap <leader>th <esc>:tabmove -1 <cr>
+nnoremap <leader>tl <esc>:tabmove +1 <cr>
+nnoremap <leader>tn <esc>:tabnext<cr>
+nnoremap <leader>tp <esc>:tabprevious<cr>
+nnoremap <leader>tm <esc>:tabmove -1 <cr>
+nnoremap <leader>ti <esc>:tabmove +1 <cr>
+" nnoremap <C-Tab> :tabn<CR>
+" nnoremap <C-S-Tab> :tabp<CR>"
+" noremap <C-Tab> :tabnext<CR>
+" noremap <C-S-Tab> :tabprev<CR>"
 " " old qwerty tab bindings
 " map <C-n> <esc>:tabnext<cr>
 " map <C-p> <esc>:tabprevious<cr>
 " map <C-m> <esc>:tabmove +1 <cr>
 
 " Buffer taken from Practical Vim page 78
+nmap <leader>1 :bp<CR>
+nmap <leader>2 :bn<CR>
 nnoremap <leader>p :bprevious<CR>
 " nnoremap <leader>n :bnext<CR>
 nnoremap <silent> [b :bprevious<CR>
@@ -375,9 +385,9 @@ cmap w!! %!sudo tee > /dev/null %
 " word count
 " g C-G
 
-" nnoremap <leader>win :%s/M]//g
-nnoremap <leader>win :%s/
-nnoremap <leader>cc :!gcc % -o %<
+" " nnoremap <leader>win :%s/M]//g
+" nnoremap <leader>win :%s/
+" nnoremap <leader>gc :!gcc % -o %<
 " nnoremap <buffer> <F9> :exec '!python' shellescape(@%, 1)<cr>"
 " nnoremap <buffer> <F9> :!python % <cr>"
 autocmd BufRead *.py nmap <F5> :!python2 %<CR>
@@ -407,16 +417,18 @@ let g:airline_theme='bubblegum'
 " 3 parameters: distance, duration[ms], #lines
 noremap <silent> <c-u> :call smooth_scroll#up	(&scroll, 0, 2)<CR>
 noremap <silent> <c-d> :call smooth_scroll#down	(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up	(&scroll, 10, 1)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 10, 1)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up	(&scroll, 7, 1)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 7, 1)<CR>
 
-" CtrlP
-let g:ctrlp_map = '<c-o>'
+" " CtrlP, outdated, use fzf
+" let g:ctrlp_map = '<c-o>'
 
 " fzf
 " replace CtrlP, including key map
-" nnoremap <C-p> :Files<CR>
-map ; :Files<CR>
+nnoremap <C-p> :Files<CR>
+" map <C-o> :Files<CR>
+" keybind not working
+" nnoremap <C-o> :Files<CR>
 " let g:fzf_layout = { 'down': '40%' }
 
 " NERDTree "autocmd vimenter * NERDTree
@@ -428,10 +440,11 @@ map <leader>tl :TlistToggle <cr>
 let Tlist_WinWidth = 30
 let Tlist_File_Fold_Auto_Close = 1
 
-" TComment
-" see .vim/plugin/autoload/tcomment.vim to change comment style
-" map <leader>c <c-_><c-_>
-map <leader>c :TComment<cr>
+" " TComment
+" map <leader>c :TComment<cr>
+
+" vim-commentary
+noremap <leader>c :Commentary<cr>
 
 " easyalign
 " to align latex tables: visuble mark the rows
@@ -448,8 +461,8 @@ map <leader>c :TComment<cr>
 " Left column is for terminal environment
 " Right column is for GUI environment
 let g:rbpt_colorpairs = [
-	\ ['Darkblue',    '#d65d0e'],
-	\ ['darkgray',    '#fabd2f'],
+	\ ['darkblue',    '#d65d0e'],
+	\ ['darkmagenta', '#fabd2f'],
     \ ]
 au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound     " ()
@@ -457,7 +470,7 @@ au Syntax * RainbowParenthesesLoadSquare    " []
 au Syntax * RainbowParenthesesLoadBraces    " {}
 " au Syntax * RainbowParenthesesLoadChevrons " <> 
 
-" " fugitive
+" fugitive
 nmap <leader>gs :G<CR>
 nmap <leader>gf :diffget //2<CR>
 nmap <leader>gj :diffget //3<CR>
@@ -469,11 +482,19 @@ nmap <leader>gj :diffget //3<CR>
 " :Gcommit<CR>
 " :Gpush
 " X - discard changes
-
+" bash
+" alias gs='vim +0Git "+normal gU"'
+" In .vimrc:
+" nnoremap <leader>gs :0Git<cr>:normal gU<cr>
 
 " " git gutter
 " jump between hunks with [c and ]c. 
 " preview, stage, and undo hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
+" https://vi.stackexchange.com/questions/15450/vim-mapping-delayed-because-of-plugin
+" nmap <leader>gsh <Plug>GitGutterStageHunk
+" nmap <plug>(disable-ggsh) <Plug>GitGutterStageHunk
+let g:gitgutter_map_keys = 0  " no gitgutter binds interferring with no highlight
+
 
 " IndentLine ¦ ┆ │
 let g:indentLine_enabled = 1
@@ -509,6 +530,33 @@ let g:csv_no_conceal = 0
 au FileType json set conceallevel=0
 let g:tex_conceal=""
 
+" Ale
+let b:ale_linters = ['flake8', 'pylint']"
+let g:ale_lint_on_text_changed = 'always' 
+let g:ale_lint_on_insert_leave = 1
+let g:ale_lint_on_enter = 0
+let g:ale_python_pylint_change_directory = 0
+
+" markdown
+" let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+
+" " tmux
+" let g:tmux_navigator_disable_when_zoomed = 1 
+" let g:tmux_navigator_no_mappings = 1
+" nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+" nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+" nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+" nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+" " nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
+" nnoremap <silent> <C-m> :TmuxNavigateLeft<cr>
+" nnoremap <silent> <C-n> :TmuxNavigateDown<cr>
+" nnoremap <silent> <C-e> :TmuxNavigateUp<cr>
+" " nnoremap <silent> <C-i> :TmuxNavigateRight<cr>
+" nnoremap <silent> \033[a6i :TmuxNavigateRight<cr>
+" nnoremap <silent> <C-o> :TmuxNavigateRight<cr>
+
 
 " OmniCppComplete -----------------------------------------------------------
 set omnifunc=syntaxcomplete#Complete
@@ -536,27 +584,6 @@ set omnifunc=syntaxcomplete#Complete
 "             \ 'plaintex' : 1
 "             \}
 " let g:ycm_keep_logfiles = 1
-
-" Ale
-let b:ale_linters = ['flake8', 'pylint']"
-let g:ale_lint_on_text_changed = 'always' 
-let g:ale_lint_on_insert_leave = 1
-let g:ale_lint_on_enter = 0
-let g:ale_python_pylint_change_directory = 0
-
-" tmux
-let g:tmux_navigator_disable_when_zoomed = 1 
-let g:tmux_navigator_no_mappings = 1
-nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
-" nnoremap <silent> {Previous-Mapping} :TmuxNavigatePrevious<cr>
-nnoremap <silent> <C-m> :TmuxNavigateLeft<cr>
-nnoremap <silent> <C-n> :TmuxNavigateDown<cr>
-nnoremap <silent> <C-e> :TmuxNavigateUp<cr>
-nnoremap <silent> <C-i> :TmuxNavigateRight<cr>
-nnoremap <silent> <C-o> :TmuxNavigateRight<cr>
 
 " " Syntastic --------------------------------------------------------
 " set statusline+=%#warningmsg#
