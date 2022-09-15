@@ -34,7 +34,7 @@ sudo pacman -S alsa alsa-utils pulseaudio pulseaudio-alsa pavucontrol
 sudo pacman -S vim rxvt-unicode urxvt-perls ttf-ubuntu-font-family
 
 # Post installation
-sudo pacman -S gvim zsh htop firefox dmenu arandr zathura zathura-pdf-poppler evince eog eog-plugins vlc texlive-most vim-spell-da vim-latexsuite feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring wget openssh flake8 thunar thunar-archive-plugin file-roller tumbler ffmpegthumbnailer cifs-utils gvfs gvfs-smb xfce4-notifyd rclone cups cups-pdf system-config-printer jupyterlab jupyter-notebook ntp ctags fzf
+sudo pacman -S gvim zsh htop firefox dmenu arandr zathura zathura-pdf-poppler evince eog eog-plugins vlc texlive-most vim-spell-da vim-latexsuite feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring wget openssh flake8 thunar thunar-archive-plugin file-roller tumbler ffmpegthumbnailer cifs-utils gvfs gvfs-smb xfce4-notifyd rclone cups cups-pdf system-config-printer jupyterlab jupyter-notebook ntp ctags fzf ack
 
 chsh -s $(which zsh)
 
@@ -50,7 +50,7 @@ cd yay
 makepkg -si
 cd
 
-yay -S xcursor-human dropbox teams zotero spotify autojump wps-office openprinting-ppds-pxlcolor-generic gruvbox-dark-gtk
+yay -S xcursor-human urxvt-resize-font-git dropbox teams zotero spotify autojump wps-office openprinting-ppds-pxlcolor-generic gruvbox-dark-gtk
 # teams black screen on screen share
 sudo mv /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/ rect-overlay /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay.bak
 
@@ -67,3 +67,6 @@ sudo mv /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/ 
 # echo 'mailboxes "+aau/INBOX" "+aau/Sent Items" "+aau/Drafts"' > ~/.mail/aau/mailboxes
 
 # sudo systemctl enable ntpd
+
+# laptop
+displaylink evdi-git

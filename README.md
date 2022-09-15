@@ -1,12 +1,15 @@
 #### Setup on SSH connections
 
- - .vimrc
- - .vim/colors/jagob-gruvbox.vim
  - bin/git_diff_wrapper 
  - bin/diffwrap.sh
- - .tmux.config
  - .gitconfig?
 
 ```
+cp dotfiles/.bashrc ~
+cp dotfiles/.vimrc ~
+cp dotfiles/.tmux.conf ~
+mkdir ~/code ~/datasets ~/models
+mkdir -p ~/.vim/colors
+cp dotfiles/.vim/colors/jagob-gruvbox.vim ~/.vim/colors
 sudo apt-get install exuberant-ctags ack
 ```
