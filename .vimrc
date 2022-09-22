@@ -158,8 +158,8 @@ set encoding=utf-8
 " colorscheme jagob-delight
 
 " mark line 80
-"set colorcolumn=80
-"highlight ColorColumn ctermbg=233
+highlight ColorColumn ctermbg=233
+autocmd FileType .py .md set colorcolumn=80
 
 " set comments-=s1:/*,mb:*,ex:*/" "Don't recognize C comments
 " set comments=sl:/*,mb:\ *,elx:\ */

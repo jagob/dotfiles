@@ -1,0 +1,1 @@
+.vim/colors/jagob-gruvbox.vim
