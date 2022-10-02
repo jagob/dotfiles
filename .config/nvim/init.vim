@@ -22,14 +22,18 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'jose-elias-alvarez/null-ls.nvim'
 
-    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-    Plug 'nvim-lua/plenary.nvim'
     Plug 'BurntSushi/ripgrep'
+    Plug 'nvim-lua/plenary.nvim'
+    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
     " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     " https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     " https://github.com/p00f/nvim-ts-rainbow
+
+    " Plug 'akinsho/bufferline.nvim'  "  maybe move to std vim
+    Plug 'ThePrimeagen/harpoon'
+    Plug 'folke/which-key.nvim'
 call plug#end()
 
 " Loads lua config
@@ -37,7 +41,9 @@ call plug#end()
 lua require('jagob/cmp')
 lua require('jagob/lsp')
 lua require('jagob/telescope')
-"
+" lua require('jagob/bufferline')
+" lua require('jagob/whichkey')
+
 let g:python3_host_prog = '/usr/bin/python3'
 let g:loaded_ruby_provider = 0
 let g:loaded_node_provider = 0
@@ -50,6 +56,18 @@ nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fd <cmd>lua require('jagob.telescope').search_dotfiles({hidden = true})<CR>
+
+" harpoon keymaps
+nnoremap <leader>l <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
+nnoremap <leader>n <cmd>lua require("harpoon.mark").add_file()<CR>
+" nnoremap <leader>et <cmd>lua require("harpoon.ui").nav_file(1)<CR>
+" nnoremap <leader>es <cmd>lua require("harpoon.ui").nav_file(2)<CR>
+" nnoremap <leader>er <cmd>lua require("harpoon.ui").nav_file(3)<CR>
+" nnoremap <leader>ea <cmd>lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <C-n> <cmd>lua require("harpoon.ui").nav_file(1)<CR>
+nnoremap <C-e> <cmd>lua require("harpoon.ui").nav_file(2)<CR>
+nnoremap <C-i> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <C-o> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
 
 " For opencv2 completion
 " activate env

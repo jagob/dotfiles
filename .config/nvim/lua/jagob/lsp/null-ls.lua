@@ -6,7 +6,9 @@ require("null-ls").setup({
     sources = {
         require("null-ls").builtins.diagnostics.flake8,
         -- require("null-ls").builtins.formatting.black,
-        require("null-ls").builtins.formatting.black.with({ extra_args = { "--fast"} }),
+        require("null-ls").builtins.formatting.black.with(
+                {extra_args = { "--fast", "--skip-string-normalization"}}),
+        require("null-ls").builtins.formatting.isort,
         -- require("null-ls").builtins.formatting.yapf,
         -- require("null-ls").builtins.formatting.stylua,
         -- require("null-ls").builtins.diagnostics.eslint,

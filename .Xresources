@@ -25,11 +25,14 @@ URxvt.saveLines: 1500
 ! URxvt*loginShell: true
 
 ! Fonts (fc-list)
+! https://github.com/ryanoasis/nerd-fonts#option-7-unofficial-arch-user-repository-aur
 ! powerline fonts: https://github.com/snare/powerline-fonts
 ! copy powerline fonts to /usr/share/fonts
 ! URxvt*font: xft:UbuntuMono-R:regular:size=14
-URxvt*font: xft:Ubuntu Mono derivative Powerline:regular:size=14
-! URxvt*font: xft:SourceCodePro-Regular:regular:size=12
+! URxvt*font: xft:Ubuntu Mono derivative Powerline:regular:size=14
+URxvt*font: xft:UbuntuMono Nerd Font Mono:regular:size=14
+! URxvt*font: xft:JetBrainsMonoNL Nerd Font Mono:regular:size=14
+! URxvt*font: xft:Hack Nerd Font Mono:regular:size=14
 ! URxvt*letterSpace: -1
 URxvt*boldfont: xft:Ubuntu Mono:regular:size=14
 URxvt.allow_bold: false

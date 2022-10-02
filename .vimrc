@@ -1,7 +1,6 @@
 " github.com/jagob
 " for windows _vimrc -> source ~\dotfiles\.vimrc
     
-
 filetype off
 set nocompatible                "no vi emulation
 
@@ -17,10 +16,6 @@ elseif has("win64") || has("win32")
         autocmd VimEnter * PlugInstall
     endif
 endif
-
-" Rope.
-" Tagbar.
-" vim-showmarks
 
 " TODO: windows plugged dir?
 " call plug#begin('~/vimfiles/plugged')
@@ -65,22 +60,25 @@ endif
 
 filetype plugin indent on
 syntax on
-" Disable XOFF/XON
-silent !stty -ixon
+silent !stty -ixon  " Disable XOFF/XON
 
 let mapleader = " "
-" let mapleader = ","
-" set number                      " Line numbers are good
 set number relativenumber       " relative hybrid numbers
-" set signcolumn=auto
-" set signcolumn=number           " Put signs in linenumbers instead of signcolumn
-" set signcolumn=yes:1            " Put signs in linenumbers instead of signcolumn
+set numberwidth=3
+" set signcolumn=number         " Put signs in linenumbers instead of signcolumn
+set signcolumn=yes:1
 set backspace=indent,eol,start  " Allow backspace in insert mode
 set gcr=a:blinkon0              " Disable cursor blink
 set mouse=a                     " Enable mouse
 set visualbell                  " No sounds
 set t_vb=                       " No blink at first/last line
 set autoread                    " Reload files changed outside vim
+
+set foldenable
+set foldmethod=syntax   " syntax,manual,indent
+" set foldcolumn=2
+" set foldlevel=1
+" set foldclose=all
 
 " Try to make vim opened through thunar work with C-s
 " set shell=zsh\ -i
@@ -104,12 +102,6 @@ set incsearch       " seach as you type
 set ignorecase      " Autocompletion try all words regardless of case
 set smartcase       " if capital letters become case sensitive
 set showmatch       " show matching parenthesis
-
-set foldenable
-set foldmethod=syntax   " syntax,manual,indent
-set foldcolumn=2
-" set foldlevel=1
-" set foldclose=all
 
 " to keep fold history
 " au BufWinLeave * silent! mkview	" save buffer view on exit
@@ -234,8 +226,10 @@ let g:Tex_GotoError=0
 autocmd BufRead,BufNewFile *.tex set iskeyword+=:-_
 
 " build current with leader ll, \LL
-nnoremap <leader>ls :silent call Tex_RunLaTeX()<cr>
+" nnoremap <leader>ls :silent call Tex_RunLaTeX()<cr>
+nnoremap <leader>b :silent call Tex_RunLaTeX()<cr>
 let g:Tex_UseMakefile=1
+
 "   Compile LaTeX for the current file only
 function! LatexCurrent()
     let a:localLatexCommand = 'echo '
@@ -251,87 +245,106 @@ function! LatexCurrent()
 
     echom system(a:localLatexCommand)
     execute "!cd /home/jacob/work/pr_rgbd_chicken_extension/ && pdflatex -shell-escape masterlocal.tex"
-    endf
-    autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
-    autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
+endf
 
-    " grammar languagetool
-    let g:languagetool_jar='/home/jacob/.vim/bundle/languagetool/LanguageTool-2.5-SNAPSHOT/languagetool-commandline.jar'
-    let g:languagetool_winheight=16
-    let g:languagetool_disable_rules="MORFOLOGIK_RULE_EN_GB,WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE"
-    " let g:languagetool_disable_rules="EN_QUOTES,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,ARTICLE_MISSING,COMMA_PARENTHESIS_WHITESPACE,UPPERCASE_SENTENCE_START,WORD_REPEAT_RULE,DOUBLE_PUNCTUATION,EN_A_VS_AN,THREE_NN,PHRASE_REPETITION,THIS_NNS,MORFOLOGIK_RULE_EN_GB"
-    map :g :LanguageToolCheck<CR>
+autocmd FileType tex map <leader>lo :call LatexCurrent() <cr> <cr>
+autocmd FileType tex map <leader>lp :! zathura masterlocal.pdf & <cr> <cr>
+
+" grammar languagetool
+let g:languagetool_jar='/home/jacob/.vim/bundle/languagetool/LanguageTool-2.5-SNAPSHOT/languagetool-commandline.jar'
+let g:languagetool_winheight=16
+let g:languagetool_disable_rules="MORFOLOGIK_RULE_EN_GB,WHITESPACE_RULE,COMMA_PARENTHESIS_WHITESPACE"
+" let g:languagetool_disable_rules="EN_QUOTES,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,ARTICLE_MISSING,COMMA_PARENTHESIS_WHITESPACE,UPPERCASE_SENTENCE_START,WORD_REPEAT_RULE,DOUBLE_PUNCTUATION,EN_A_VS_AN,THREE_NN,PHRASE_REPETITION,THIS_NNS,MORFOLOGIK_RULE_EN_GB"
+map :g :LanguageToolCheck<CR>
 
 
-    " Mappings -------------------------------------------------------------------
-    map :Q :q<CR>
-    map :W :w<CR>
-    map <C-q> :q<CR>
-    nmap <c-s> :w<CR>
-    imap <c-s> <Esc>:w<CR>
+" Mappings -------------------------------------------------------------------
+" map :Q :q<CR>
+" map :W :w<CR>
+map <C-q> :q<CR>
+nmap <c-s> :w<CR>
+imap <c-s> <Esc>:w<CR>
 
-    nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
+nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
-    "open new terminal
-    nnoremap <buffer> <F3> :exec '!urxvt &' shellescape(@%, 1)<cr>"
+"open new terminal
+nnoremap <buffer> <F3> :exec '!urxvt &' shellescape(@%, 1)<cr>"
 
-    noremap <F4> :silent noh<CR>
-    noremap <leader>h :silent noh<CR>
-    " keymap('n', '<leader><CR>', '<cmd>noh<CR>')
-    map     <F6>      :set list!<CR>:set list?<CR>
-    imap    <F6> <C-O>:set list!<CR><C-O>:set list?<CR>
+noremap <F4> :silent noh<CR>
+noremap <leader>h :silent noh<CR>
+" keymap('n', '<leader><CR>', '<cmd>noh<CR>')
+map     <F6>      :set list!<CR>:set list?<CR>
+imap    <F6> <C-O>:set list!<CR><C-O>:set list?<CR>
 
-    " map copy cut & paste to what they bloody should be
-    vnoremap <C-c> "+y" copy
-    map <C-v> "+gP" paste
-    imap <C-v> <Esc>"+gP" paste
-    " vnoremap <C-x> "+x " cut
-    " clipboard=unnamed
-    " clipboard^=unnamed " for arch linux, see :h clipboard-exclude 
-    " set clipboard=unnamed
-    set clipboard=unnamedplus
-    set pastetoggle=<F2>
+" map copy cut & paste to what they bloody should be
+vnoremap <C-c> "+y" copy
+map <C-v> "+gP" paste
+imap <C-v> <Esc>"+gP" paste
+" vnoremap <C-x> "+x " cut
+" clipboard=unnamed
+" clipboard^=unnamed " for arch linux, see :h clipboard-exclude 
+" set clipboard=unnamed
+set clipboard=unnamedplus
+set pastetoggle=<F2>
 
-    " " greatest remap ever
-    " xnoremap("<leader>p", "\"_dP")
-    " " next greatest remap ever : asbjornHaland
-    " nnoremap("<leader>y", "\"+y")
-    " vnoremap("<leader>y", "\"+y")
-    " nmap("<leader>Y", "\"+Y")
-    " nnoremap("<leader>d", "\"_d")
-    " vnoremap("<leader>d", "\"_d")
-    " vnoremap("<leader>d", "\"_d")
+" " greatest remap ever
+" xnoremap("<leader>p", "\"_dP")
+" " next greatest remap ever : asbjornHaland
+" nnoremap("<leader>y", "\"+y")
+" vnoremap("<leader>y", "\"+y")
+" nmap("<leader>Y", "\"+Y")
+" nnoremap("<leader>d", "\"_d")
+" vnoremap("<leader>d", "\"_d")
+" vnoremap("<leader>d", "\"_d")
 
-    " Remap line motion Practical vim page 111
-    nnoremap k gk
-    nnoremap gk k
-    nnoremap j gj
-    nnoremap gj j
+" Remap line motion Practical vim page 111
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
 
-    nnoremap <leader>w :set wrap!<CR>
+nnoremap <leader>w :set wrap!<CR>
 
-    " Smart way to move between windows
-    " let g:BASH_Ctrl_j = 'off' " to map j
-    nnoremap <SID>I_won’t_ever_type_this <Plug>IMAP_JumpForward "latexsuite wont override j map
-    map <C-h> <C-W>h
-    map <C-j> <C-W>j
-    map <C-k> <C-W>k
-    map <C-l> <C-W>l
-    " map <C-m> <C-W>h
-    " map <C-n> <C-W>j
-    " map <C-e> <C-W>k
-    " map <C-i> <C-W>l  " conflict with prev jumplist C-i and C-o
-    map <C-W>m <C-W>h
-    map <C-W>n <C-W>j
-    map <C-W>e <C-W>k
-    map <C-W>i <C-W>l
+" Smart way to move between windows
+" let g:BASH_Ctrl_j = 'off' " to map j
+nnoremap <SID>I_won’t_ever_type_this <Plug>IMAP_JumpForward "latexsuite wont override j map
+map <C-h> <C-W>h
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-l> <C-W>l
+" map <C-m> <C-W>h
+" map <C-n> <C-W>j
+" map <C-e> <C-W>k
+" map <C-i> <C-W>l  " conflict with prev jumplist C-i and C-o
+map <C-W>m <C-W>h
+map <C-W>n <C-W>j
+map <C-W>e <C-W>k
+map <C-W>i <C-W>l
+
+" Buffer taken from Practical Vim page 78
+nnoremap <Leader><Leader> <C-^>
+nnoremap <Leader><Tab> :bn<CR>
+nnoremap <Leader><backspace> :bp<CR>
+" nmap <leader>1 :bp<CR>
+" nmap <leader>2 :bn<CR>
+" nnoremap <leader>p :bprevious<CR>
+" nnoremap <leader>n :bnext<CR>
+" nnoremap <silent> [b :bprevious<CR>
+" nnoremap <silent> ]b :bnext<CR>
+" nnoremap <silent> [B :bfirst<CR>
+" nnoremap <silent> ]B :blast<CR>
 
     " tabs
 " gt - next tab
 " gT - previous tab
 " {i}gt - go to tab in position i
+nnoremap <tab> :tabnext<cr>
+nnoremap <S-tab> :tabprev<cr>
+for i in range(1, 9)
+    execute 'nnoremap <leader>' . i . ' ' . i . 'gt'
+endfor
 nnoremap <C-t> <esc>:tabnew<cr>
-nnoremap <leader>tt :tabnew<cr>
+nnoremap <leader>tt :tabnew<cnextr>
 nnoremap <leader>tc :tabnew<cr>
 nnoremap <leader>tj <esc>:tabnext<cr>
 nnoremap <leader>tk <esc>:tabprevious<cr>
@@ -350,19 +363,9 @@ nnoremap <leader>ti <esc>:tabmove +1 <cr>
 " map <C-p> <esc>:tabprevious<cr>
 " map <C-m> <esc>:tabmove +1 <cr>
 
-" Buffer taken from Practical Vim page 78
-nmap <leader>1 :bp<CR>
-nmap <leader>2 :bn<CR>
-nnoremap <leader>p :bprevious<CR>
-" nnoremap <leader>n :bnext<CR>
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-" nnoremap <silent> [B :bfirst<CR>
-" nnoremap <silent> ]B :blast<CR>
-
 " Only use Block Visual mode
-nnoremap v      <C-V>
-vnoremap v      <C-V>
+nnoremap v <C-V>
+vnoremap v <C-V>
 " nnoremap <C-V>  v
 " vnoremap <C-V>  v
 
@@ -432,7 +435,8 @@ nnoremap <C-p> :Files<CR>
 " let g:fzf_layout = { 'down': '40%' }
 
 " NERDTree "autocmd vimenter * NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
+" nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>tr :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 
 " Taglist - use space to see arguments
