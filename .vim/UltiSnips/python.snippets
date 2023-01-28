@@ -1,18 +1,18 @@
 # Jagob custom python snippets
 
 snippet exit
-	import sys; sys.exit()
+import sys; sys.exit()
 endsnippet
 
 snippet exist
-	if os.path.exists(${1}):
-		${0}
+if os.path.exists(${1}):
+	${0}
 endsnippet
 
 snippet makedirs
-	os.makedirs(os.path.dirname(${1:var}), exist_ok=True)
+os.makedirs(os.path.dirname(${1:var}), exist_ok=True)
 endsnippet
 
 snippet print
-	print(f'$1: {${1:var}}${0}')
+print(f'$1: {${1:var}}${0}')
 endsnippet

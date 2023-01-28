@@ -7,7 +7,7 @@ require("null-ls").setup({
         require("null-ls").builtins.diagnostics.flake8,
         -- require("null-ls").builtins.formatting.black,
         require("null-ls").builtins.formatting.black.with(
-                {extra_args = { "--fast", "--skip-string-normalization"}}),
+                {extra_args = {"--skip-string-normalization", "--line-length=79"}}),
         require("null-ls").builtins.formatting.isort,
         -- require("null-ls").builtins.formatting.yapf,
         -- require("null-ls").builtins.formatting.stylua,

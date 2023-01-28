@@ -17,6 +17,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-path'
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
+    Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
     " Plug 'SirVer/ultisnips'  " import from common plugins
     Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
@@ -49,25 +50,22 @@ let g:loaded_ruby_provider = 0
 let g:loaded_node_provider = 0
 let g:loaded_perl_provider = 0
 
-" Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <C-p> <cmd>Telescope find_files<cr>
+nnoremap <leader>ft <cmd>Telescope find_files<cr>
 nnoremap <leader>fp <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
 nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>fd <cmd>lua require('jagob.telescope').search_dotfiles({hidden = true})<CR>
 
-" harpoon keymaps
 nnoremap <leader>l <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
 nnoremap <leader>n <cmd>lua require("harpoon.mark").add_file()<CR>
-" nnoremap <leader>et <cmd>lua require("harpoon.ui").nav_file(1)<CR>
-" nnoremap <leader>es <cmd>lua require("harpoon.ui").nav_file(2)<CR>
-" nnoremap <leader>er <cmd>lua require("harpoon.ui").nav_file(3)<CR>
-" nnoremap <leader>ea <cmd>lua require("harpoon.ui").nav_file(4)<CR>
 nnoremap <C-n> <cmd>lua require("harpoon.ui").nav_file(1)<CR>
 nnoremap <C-e> <cmd>lua require("harpoon.ui").nav_file(2)<CR>
-nnoremap <C-i> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <C-o> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
+nnoremap <C-h> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
+nnoremap <C-,> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
+" nnoremap <C-i> <cmd>lua require("harpoon.ui").nav_file(3)<CR>  " I and O clashes with jump list
+" nnoremap <C-o> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
 
 " For opencv2 completion
 " activate env

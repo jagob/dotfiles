@@ -25,6 +25,7 @@ call plug#begin('~/.vim/plugged')
         Plug 'mileszs/ack.vim'
         Plug 'dense-analysis/ale'
         Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+        Plug 'junegunn/fzf.vim' 
     endif
 call plug#end()
   
@@ -60,13 +61,15 @@ endif
 
 filetype plugin indent on
 syntax on
-silent !stty -ixon  " Disable XOFF/XON
+" Disable XOFF/XON
+silent !stty -ixon
 
 let mapleader = " "
 set number relativenumber       " relative hybrid numbers
 set numberwidth=3
 " set signcolumn=number         " Put signs in linenumbers instead of signcolumn
-set signcolumn=yes:1
+set signcolumn=yes
+" set signcolumn=yes:1
 set backspace=indent,eol,start  " Allow backspace in insert mode
 set gcr=a:blinkon0              " Disable cursor blink
 set mouse=a                     " Enable mouse
@@ -80,18 +83,12 @@ set foldmethod=syntax   " syntax,manual,indent
 " set foldlevel=1
 " set foldclose=all
 
-" Try to make vim opened through thunar work with C-s
-" set shell=zsh\ -i
-" set shellcmdflag=-ic
-" set shell=zsh
-
 " timeoutlen defaults to 1000 and is the delay in milliseconds that vim uses when checking for map key sequences. It’s also used when checking keycodes if ttimeoutlen is disabled
 " set timeoutlen =1000
 set ttimeoutlen=0
 
 au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
-" set nowrap          " set wrap
 set wrap
 set linebreak       " wrap at 'breakat' instead of last char
 set history=1000    " command lines history
@@ -103,18 +100,16 @@ set ignorecase      " Autocompletion try all words regardless of case
 set smartcase       " if capital letters become case sensitive
 set showmatch       " show matching parenthesis
 
-" to keep fold history
-" au BufWinLeave * silent! mkview	" save buffer view on exit
-" au BufWinEnter * silent! loadview " restore buffer view on enter
-
 " Turn off Swap Files
 set noswapfile
 set nobackup
 set nowb
-let &undodir = s:vim_cache . '/undo,.'
 set undofile " Maintain undo history between sessions
 set undodir=~/.vim/undodir
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+" to keep fold history
+" au BufWinLeave * silent! mkview	" save buffer view on exit
+" au BufWinEnter * silent! loadview " restore buffer view on enter
 
 " Scrolling
 set scrolloff=8         "Start scrolling when we're 7 lines away from margins
@@ -126,7 +121,7 @@ set sidescroll=1
 set laststatus=2 " for powerline
 " set guifont=Liberation\ Mono\ for\ Powerline\ 10 
 " let g:Powerline_symbols = 'fancy'
-set guifont=Consolas:h14
+" set guifont=Consolas:h14
 
 " Soeren tabs
 set tabstop=4       " tab width
@@ -150,11 +145,9 @@ set encoding=utf-8
 " colorscheme jagob-delight
 
 " mark line 80
-highlight ColorColumn ctermbg=233
-autocmd FileType .py .md set colorcolumn=80
-
-" set comments-=s1:/*,mb:*,ex:*/" "Don't recognize C comments
-" set comments=sl:/*,mb:\ *,elx:\ */
+" highlight ColorColumn ctermbg=233
+highlight ColorColumn ctermbg=0 
+autocmd filetype python,markdown set colorcolumn=80
 
 " ----------------------------------------------------------------------------
 " Spell checking
@@ -259,11 +252,21 @@ map :g :LanguageToolCheck<CR>
 
 
 " Mappings -------------------------------------------------------------------
+" inoremap jk <ESC>
+
 " map :Q :q<CR>
 " map :W :w<CR>
 map <C-q> :q<CR>
 nmap <c-s> :w<CR>
 imap <c-s> <Esc>:w<CR>
+
+" Remap line motion Practical vim page 111
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+nnoremap <Down> gj
+nnoremap <Up> gk
 
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
@@ -296,12 +299,6 @@ set pastetoggle=<F2>
 " nnoremap("<leader>d", "\"_d")
 " vnoremap("<leader>d", "\"_d")
 " vnoremap("<leader>d", "\"_d")
-
-" Remap line motion Practical vim page 111
-nnoremap k gk
-nnoremap gk k
-nnoremap j gj
-nnoremap gj j
 
 nnoremap <leader>w :set wrap!<CR>
 
@@ -343,8 +340,8 @@ nnoremap <S-tab> :tabprev<cr>
 for i in range(1, 9)
     execute 'nnoremap <leader>' . i . ' ' . i . 'gt'
 endfor
-nnoremap <C-t> <esc>:tabnew<cr>
-nnoremap <leader>tt :tabnew<cnextr>
+" nnoremap <C-t> <esc>:tabnew<cr>  " jump taglist
+nnoremap <leader>tt :tabnew<cr>
 nnoremap <leader>tc :tabnew<cr>
 nnoremap <leader>tj <esc>:tabnext<cr>
 nnoremap <leader>tk <esc>:tabprevious<cr>
@@ -474,6 +471,12 @@ au Syntax * RainbowParenthesesLoadSquare    " []
 au Syntax * RainbowParenthesesLoadBraces    " {}
 " au Syntax * RainbowParenthesesLoadChevrons " <> 
 
+" vimdiff
+" do - Get changes from other window into the current window.
+" dp - Put the changes from current window into the other window.
+" Ctrlww - change window.
+" :diffupdate will re-scan the files for changes (Vim can get confused, and show bogus stuff).
+
 " fugitive
 nmap <leader>gs :G<CR>
 nmap <leader>gf :diffget //2<CR>
@@ -545,6 +548,7 @@ let g:ale_python_pylint_change_directory = 0
 " let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
+au FileType markdown setlocal foldlevel=2
 
 " " tmux
 " let g:tmux_navigator_disable_when_zoomed = 1 
