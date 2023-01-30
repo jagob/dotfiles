@@ -7,6 +7,12 @@
 #
 source ~/dotfiles/.zshgit
 source /usr/share/autojump/autojump.zsh
+source /usr/share/zsh/plugins/zsh-extract/extract.plugin.zsh
+# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
+# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# source /usr/share/zsh/plugins/dirhistory/dirhistory.plugin.zsh
+# source /usr/share/zsh/plugins/copybuffer/copybuffer.plugin.zsh
+# source /usr/share/zsh/plugins/copypath/copypath.plugin.zsh
 autoload -U promptinit compinit
 compinit        # autocompletion
 promptinit
@@ -54,16 +60,16 @@ zstyle ':completion:*:*:kill:*' menu select
 zstyle ':completion:*:*:killall:*:processes-names' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:*:killall:*' menu select
 
-
 #Environment variables
-export EDITOR='vim'
+export EDITOR='nvim'
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 export MPD_HOST="localhost"
 export BROWSER=/usr/bin/firefox
 export TERMINFO=/usr/share/terminfo
 export PATH=/home/jacob/bin:$PATH
-export PIP_REQUIRE_VIRTUALENV=true
+export PIP_REQUIRE_VIRTUALENV=false
+export PYTHONBREAKPOINT="ipdb.set_trace"
 
 #suffix-alias
 alias -s tex=$EDITOR
@@ -72,57 +78,67 @@ alias -s h=$EDITOR
 alias -s asm=$EDITOR
 alias -s txt=$EDITOR
 
-
 # aliases
-alias claaudia='ssh jvdu@create.aau.dk@ai-pilot.srv.aau.dk'
-alias sshgateway='ssh jq72po@create.aau.dk@sshgw.aau.dk'
-alias sshgw='ssh jq72po@create.aau.dk@sshgw.aau.dk'
-alias sshfsjacob='sshfs jacob@172.24.211.1:/home/jacob/phd ~/mount/phd'
-# alias mrpa1='ssh jacob@172.24.211.1'  # old IP
-alias mrpa1='ssh jacob@172.24.211.230'  # Vabvab
-alias neelusship='ssh jacob@172.24.211.109'  # vablap
-alias anderssship='ssh anders@172.24.211.13'  # Vabvab
-alias gputunneljacob="ssh -L 1234:172.24.211.1:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
-alias gputunnelanders="ssh -L 1234:172.24.211.13:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
-# alias gputunnelNeelu="ssh -L 1234:172.24.211.109:22 jq72po@create.aau.dk@sshgw.aau.dk cat -" 
-# scp -r -P 1234 jacob@localhost:"/home/jacob/Downloads/scp/*" ~/downloads/scp
-alias createfileshare='sudo mount -t cifs //create.aau.dk/Fileshares/vap-lab/weekly-meetings/2020 /mnt/create-fileshare -o setuids,user=jq72po,vers=2.1'
+alias vim='nvim'  # \vim will ignore the alias
+alias za='zathura'
 alias fp='readlink -f'  # filepath
-alias ft='cd ~/documents/master/tracking/'
-alias fd='cd ~/data/gopro/test/'
-alias afs='cd /afs/ies.auc.dk/group/15gr940/no_backup'
-
+alias finder='find -name' # "search"
+alias foldersize='du -cksh *'
 alias suspend='systemctl suspend'
+alias sc="systemctl"
+alias bt='sudo systemctl start bluetooth'
+alias activate='source env/bin/activate'
+alias xres='xrdb -load ~/.Xresources'
 alias wordcount='pdftotext paper_IEEE.pdf - | wc -w'
 alias wordcount2='detex introduction.tex | wc'
 alias matlaber='matlab -nodesktop -nosplash'
-alias za='zathura'
-alias sc="systemctl"
-alias win='sudo mount /dev/sda4 /mnt/windows'
-alias xres='xrdb -load ~/.Xresources'
-alias finder='find -name' # "search"
 alias keyboard='setxkbmap -layout dk; setxkbmap -option caps:escape'
 alias bc='bc -lq'						# bash calculator with floating point
 alias bell='sleep 3; echo -e "\a"' 
-# alias monitor_off='xrandr --output HDMI-2 --off'
-alias monitor_default='xrandr --output eDP-1 --auto --output DVI-I-1-1 --off --output DVI-I-2-2 --off'
-alias monitor_reset='xrandr --output eDP-1 --auto --output DVI-I-1-1 --off --output DVI-I-2-2 --off'
-alias activate='source env/bin/activate'
-
-alias mus='sudo sensei-raw-ctl --cpi-on 900 --cpi-off 1000'
 alias randomgenerator='cd ~/code/randomgenerator && python2 randomgenerator.py'
-alias wc3='cd ~/spil/"Warcraft III til lan" && wine "Frozen Throne.exe" -opengl -window'
-alias quakelive='cd /home/jacob/.wine-ql/drive_c/Program\ Files/Quake\ Live/ && wine Launcher.exe'
+
+# servers
+# zip -r /media/ehd2tb/datasets/shanghaitech_objects/test_combined_nms.zip test/ -x "*/meta*"  # exclude folders
+# zip -r test_combined_nms.zip test/ -x "**/background/*" "**/combined/*" "**/meta_0.800/*"  # exclude folders
+alias win='sudo mount /dev/sda4 /mnt/windows'
+alias vapdgx='ssh jvdu@create.aau.dk@ai-fe02.srv.aau.dk'
+alias vapai='ssh jvdu@create.aau.dk@ai-fe02.srv.aau.dk'
+alias vapcluster='ssh jvdu@create.aau.dk@ai-fe02.srv.aau.dk'
+alias claaudia='ssh jvdu@create.aau.dk@ai-pilot.srv.aau.dk'
+alias sshgateway='ssh jq72po@create.aau.dk@sshgw.aau.dk'
+alias sshgw='ssh jq72po@create.aau.dk@sshgw.aau.dk'
+# alias sshfsjacob='sshfs jacob@172.24.211.1:/home/jacob/phd ~/mount/phd'
+alias mrpa1='ssh jacob@172.24.198.15'  # Vpvp
+alias neelusship='ssh jacob@172.24.198.16'  # Vplb
+alias anderssship='ssh vap@172.24.198.19'  # Vpvp
+alias gputunneljacob="ssh -L 1234:172.24.198.15:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
+alias gputunnelmrpa1="ssh -L 1234:172.24.198.15:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
+alias gputunnelanders="ssh -L 1234:172.24.211.13:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
+# alias gputunnelNeelu="ssh -L 1234:172.24.211.109:22 jq72po@create.aau.dk@sshgw.aau.dk cat -" 
+# scp -r -P 1234 jacob@localhost:"/home/jacob/Downloads/scp/*" ~/downloads/scp
+# alias createfileshare='sudo mount -t cifs //create.aau.dk/Fileshares/vap-lab/weekly-meetings/2020 /mnt/create-fileshare -o setuids,user=jq72po,vers=2.1'
+
+# monitors
+# alias monitor_off='xrandr --output HDMI-2 --off'
+alias monitor='xrandr --output eDP-1 --auto --output HDMI-1 --off'
+# alias monitor1='xrandr --output eDP-1 --auto --output DVI-I-1-1 --auto --output DVI-I-2-2 --off'
+# alias monitor_default='xrandr --output eDP-1 --auto --output DVI-I-1-1 --off --output DVI-I-2-2 --off'
+# alias monitor_reset='xrandr --output eDP-1 --auto --output DVI-I-1-1 --off --output DVI-I-2-2 --off'
+
+# documents
 alias todo='vim ~/Dropbox/faldkasse/todo.txt'
 alias arch='vim ~/Dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/Dropbox/faldkasse/linux/linux.txt'
 alias notes='vim ~/Dropbox/faldkasse/notes.txt'
 alias oensker='vim /home/jacob/Dropbox/faldkasse/Oenskeseddel.txt'
 alias vimmer='cd /home/jacob/Dropbox/faldkasse/linux/vimmer/ && vim -o3 c.c extract_superpixels.py latex.tex'
-alias updates="pacman -Qqu"
-alias vmi='vim'
-alias vimfm='vifm'
-alias aske='eog ~/downloads/cd.png & mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3'
+alias binds='vim /home/jacob/Dropbox/faldkasse/privat/cfg/keymaps/jagob/keymap.c'
+alias miryoku='vim /home/jacob/Dropbox/faldkasse/privat/cfg/keymaps/jagob_miryoku/keymap.c'
+
+alias t="tmux"
+alias ta="t a -t"
+alias tls="t ls"
+alias tn="t new -t"
 
 alias ls='ls -h --color --group-directories-first'
 alias sl='ls'
@@ -134,18 +150,7 @@ alias lla="ls -AlvgG"
 alias lt='ls -ltgG' 		            # sort by last modified
 alias lx='ls -lXB'                      #  Sort by extension
 alias c='cd "$@" && ls'
-alias foldersize='du -cksh *'
-alias grep='grep --color'
-
-alias cd..='cd ..'
-alias ..='cd ../..'
-alias ...='cd ../../..'
-alias ....='cd ../../../..'
-alias :q='logout'
-# alias sd='sudo systemctl stop openafs-client; sudo shutdown -h now'         # shutdown
-alias sd='sudo shutdown -h now'         # shutdown
-alias rs='sudo shutdown -r now'         # restart
-alias rb='sudo shutdown -r now'         # restart
+alias grep='grep -i --color'
 
 alias gs='git status'
 alias gp='git pull'
@@ -161,20 +166,13 @@ alias gx='gitx --all'
 alias gitlog='git log --graph --abbrev-commit --name-status'
 alias gl="git log --color --graph --pretty=format:'%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset - %Cred%h%Creset' --name-status"
 
-alias svns='svn status -u'				# gets svn status
-alias svnu='svn update'				    # updates from svn
-alias svna='svn add . --force'
-alias svnc='svn commit -m ""'		    # commits to svn
-alias svnf='cd ~/documents/svn/p6_2'
-alias svnl='svn log -v -l 5'		    # gets log from svn
-
-# Peter alias
-# alias quakelive="LD_PRELOAD='/usr/lib/libpng12.so' /usr/bin/firefox www.quakelive.com"
-# alias aaussh='ssh pejor@skoda.es.aau.dk -X'
-# alias lundssh='ssh guest@lundgaard.dyndns.dk'
-# alias latexmkrapport="ls *.latexmain | xargs latexmk -pdf -pvc -silent"
-# alias ise='LD_PRELOAD=/home/peter/Desktop/usb-driver/libusb-driver.so /opt/xilinx/11.1/ISE/bin/lin/ise'
-# alias impact='LD_PRELOAD=/home/peter/Desktop/usb-driver/libusb-driver.so /opt/xilinx/11.1/ISE/bin/lin/impact'
+alias cd..='cd ..'
+alias ..='cd ../..'
+alias ...='cd ../../..'
+alias ....='cd ../../../..'
+alias sd='sudo shutdown -h now'         # shutdown
+alias rs='sudo shutdown -r now'         # restart
+alias rb='sudo shutdown -r now'         # restart
 
 ### COLORS
 export GREP_COLOR="1;33"
@@ -290,6 +288,13 @@ bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 ##############################
 
+# bindkey "\033[a6i" backward-delete-word
+# bindkey "\033[1;2A6i" backward-delete-word
+
+# bindkey "\033[33~" backward-delete-word
+# bindkey "\033[18;2~" backward-delete-word
+# bindkey -r "\033[33~"
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/jacob/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -305,3 +310,8 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+# zsh-syntax-highlighting at the end of file
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+typeset -A ZSH_HIGHLIGHT_STYLES
+# ZSH_HIGHLIGHT_STYLES[arg0]='fg=yellow'
+ZSH_HIGHLIGHT_STYLES[arg0]='fg=#fabd2f'  # yellow

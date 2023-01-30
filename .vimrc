@@ -41,7 +41,6 @@ if has("win64") || has("win32")
     let s:vim_cache = expand('$HOME/vimfiles')
     set guifont=Consolas:h12
     colorscheme jagob-gruvbox
-
     " set background=light
     " colorscheme solarized
     " let &pythonthreedll = 'C:\Program Files (x86)\Python36-32\Python36.dll'
@@ -268,6 +267,21 @@ nnoremap gj j
 nnoremap <Down> gj
 nnoremap <Up> gk
 
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap("<C-d>", "<C-d>zz") 
+nnoremap("<C-u>", "<C-u>zz") 
+" Smooth scrolling
+" 3 parameters: distance, duration[ms], #lines
+" noremap <silent> <c-u> zz<bar>:call smooth_scroll#up(&scroll, 0, 2)<CR>
+" noremap <silent> <c-d> zz<bar>:call smooth_scroll#down(&scroll, 0, 2)<CR>
+" noremap <silent> <c-b> zz<bar>:call smooth_scroll#up(&scroll, 7, 1)<CR>
+" noremap <silent> <c-f> zz<bar>:call smooth_scroll#down(&scroll, 7, 1)<CR>
+noremap <silent> <c-u> :call smooth_scroll#up(&scroll, 0, 2)<CR>
+noremap <silent> <c-d> :call smooth_scroll#down(&scroll, 0, 2)<CR>
+noremap <silent> <c-b> :call smooth_scroll#up(&scroll, 7, 1)<CR>
+noremap <silent> <c-f> :call smooth_scroll#down(&scroll, 7, 1)<CR>
+
 nnoremap <leader>pv :wincmd v<bar> :Ex <bar> :vertical resize 30<CR>
 
 "open new terminal
@@ -289,6 +303,14 @@ imap <C-v> <Esc>"+gP" paste
 " set clipboard=unnamed
 set clipboard=unnamedplus
 set pastetoggle=<F2>
+
+" # copy asbjornHaland, separate normal y yank and system yank using leader
+" nnoremap <leader>y "+y"
+" vnoremap <leader>y "+y"
+" nnoremap <leader>Y "+Y"
+" delete into void
+nnoremap <leader>d "\"_d"
+vnoremap <leader>d "\"_d"
 
 " " greatest remap ever
 " xnoremap("<leader>p", "\"_dP")
@@ -331,7 +353,7 @@ nnoremap <Leader><backspace> :bp<CR>
 " nnoremap <silent> [B :bfirst<CR>
 " nnoremap <silent> ]B :blast<CR>
 
-    " tabs
+" tabs
 " gt - next tab
 " gT - previous tab
 " {i}gt - go to tab in position i
@@ -365,10 +387,11 @@ nnoremap v <C-V>
 vnoremap v <C-V>
 " nnoremap <C-V>  v
 " vnoremap <C-V>  v
-
 " Stay in visual mode when indenting with < >
 vnoremap > >gv
 vnoremap < <gv
+vnoremap J :m '>+1<CR>gv=gv'
+vnoremap K :m '<-2<CR>gv=gv'
 
 " marks
 " ]' - previous mark (local)
@@ -376,7 +399,7 @@ vnoremap < <gv
 " '. - position of where last change was made
 " '' - position before last jump (Super useful!). See :h ''
 " show a lists of marks
-nnoremap <silent> <leader>m <cmd>Marks<cr>
+nnoremap <silent> <leader>m <cmd>marks<cr>
 " :delm[arks] 0-9 a-z A-Z \"<>.  " delete marks
 
 " save read-only files
@@ -413,13 +436,6 @@ let g:airline_powerline_fonts = 1
 let g:airline_theme='bubblegum'
 " let g:airline#extensions#tabline#enabled = 1  " display top tab bar
 
-" Smooth scrolling
-" 3 parameters: distance, duration[ms], #lines
-noremap <silent> <c-u> :call smooth_scroll#up	(&scroll, 0, 2)<CR>
-noremap <silent> <c-d> :call smooth_scroll#down	(&scroll, 0, 2)<CR>
-noremap <silent> <c-b> :call smooth_scroll#up	(&scroll, 7, 1)<CR>
-noremap <silent> <c-f> :call smooth_scroll#down	(&scroll, 7, 1)<CR>
-
 " " CtrlP, outdated, use fzf
 " let g:ctrlp_map = '<c-o>'
 
@@ -436,10 +452,13 @@ nnoremap <C-p> :Files<CR>
 nmap <leader>tr :NERDTreeToggle<CR>
 let NERDTreeQuitOnOpen = 1
 
-" Taglist - use space to see arguments
-map <leader>tl :TlistToggle <cr>
-let Tlist_WinWidth = 30
-let Tlist_File_Fold_Auto_Close = 1
+" " Taglist - use space to see arguments
+" map <leader>tl :TlistToggle <cr>
+" let Tlist_WinWidth = 30
+" let Tlist_File_Fold_Auto_Close = 1
+" tagsbar
+nmap <F8> :TagbarToggle<CR>
+
 
 " " TComment
 " map <leader>c :TComment<cr>
@@ -515,9 +534,6 @@ let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
 let g:UltiSnipsUsePythonVersion=3
-
-" tagsbar
-nmap <F8> :TagbarToggle<CR>
 
 " ctags
 " Generate a .tags file, which vim can use to scan for keywords

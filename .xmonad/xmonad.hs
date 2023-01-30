@@ -46,8 +46,8 @@ main =  do
     conkybot <- spawnPipe myBotBar
     trayer   <- spawnPipe myTrayer
 
-
-    xmonad $ withUrgencyHook NoUrgencyHook $ defaultConfig {
+    -- xmonad $ withUrgencyHook NoUrgencyHook $ def {
+    xmonad $ docks $ ewmh $ ewmhFullscreen $ withUrgencyHook NoUrgencyHook $ def {
           terminal              = "urxvt"
         , focusedBorderColor    = green
         , normalBorderColor     = myDzenBGColor
@@ -60,7 +60,7 @@ main =  do
         , logHook               = dynamicLogWithPP $ myPrettyPrinter dzen
         , manageHook            = manageDocks <+> myManageHook 
         -- , manageHook            = manageHook defaultConfig <+> manageDocks 
-        , handleEventHook       = ewmhDesktopsEventHook <+> docksEventHook 
+        -- , handleEventHook       = ewmhDesktopsEventHook <+> docksEventHook  -- TODO: broken after update
         , startupHook           = setWMName "LG3D"
         , focusFollowsMouse     = False
         , clickJustFocuses      = False
@@ -106,7 +106,8 @@ myLayouts = avoidStruts $ (tile ||| mtile ||| full)
         ratio   = 1/2   -- Default proportion of screen occupied by master pane
 
 -- update theme with mod-shift-space. xmonad restart is not enough
-myTheme = defaultTheme { 
+-- myTheme = defaultTheme { 
+myTheme = def { 
       decoHeight            = 22
     , fontName              = "xft:Ubuntu:size=12"
     , activeColor           = green
@@ -268,9 +269,9 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     [((m .|. modm, k), windows $ f i)
         | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
-    ++
-    -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
-    -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
-    [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
-        | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
-        , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]
+    -- ++
+    -- -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
+    -- -- mod-shift-{w,e,r}, Move client to screen 1, 2, or 3
+    -- [((m .|. modm, key), screenWorkspace sc >>= flip whenJust (windows . f))
+    --     | (key, sc) <- zip [xK_w, xK_e, xK_r] [0..]
+    --     , (f, m) <- [(W.view, 0), (W.shift, shiftMask)]]

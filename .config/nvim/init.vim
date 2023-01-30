@@ -18,7 +18,6 @@ call plug#begin('~/.vim/plugged')
     Plug 'hrsh7th/cmp-cmdline'
     Plug 'hrsh7th/cmp-nvim-lsp-signature-help'
     Plug 'tzachar/cmp-tabnine', { 'do': './install.sh' }
-    " Plug 'SirVer/ultisnips'  " import from common plugins
     Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
     Plug 'jose-elias-alvarez/null-ls.nvim'
@@ -32,23 +31,35 @@ call plug#begin('~/.vim/plugged')
     " https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     " https://github.com/p00f/nvim-ts-rainbow
 
+    " Plug 'mfussenegger/nvim-dap'
+    " Plug 'mfussenegger/nvim-dap-python'
+    " Plug 'rcarriga/nvim-dap-ui'
+
     " Plug 'akinsho/bufferline.nvim'  "  maybe move to std vim
     Plug 'ThePrimeagen/harpoon'
-    Plug 'folke/which-key.nvim'
+    " Plug 'folke/which-key.nvim'
 call plug#end()
+
+if has('nvim') && !empty($CONDA_PREFIX)
+  let g:python3_host_prog = $CONDA_PREFIX . '/bin/python'
+else
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
+
+let g:loaded_ruby_provider = 0
+let g:loaded_node_provider = 0
+let g:loaded_perl_provider = 0
 
 " Loads lua config
 " lua require('jagob')
+" lua require('jagob/treesitter')
 lua require('jagob/cmp')
 lua require('jagob/lsp')
 lua require('jagob/telescope')
 " lua require('jagob/bufferline')
 " lua require('jagob/whichkey')
-
-let g:python3_host_prog = '/usr/bin/python3'
-let g:loaded_ruby_provider = 0
-let g:loaded_node_provider = 0
-let g:loaded_perl_provider = 0
+" lua require('dap-python').setup('~/miniconda3/envs/py38/bin/python')
+" lua require("dapui").setup()
 
 nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>ft <cmd>Telescope find_files<cr>

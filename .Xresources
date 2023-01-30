@@ -98,6 +98,8 @@ URxvt.keysym.Shift-Control-V: eval:paste_clipboard
 !   q/Escape:   Quit keyboard selection mode!
 URxvt.keysym.Shift-Control-S: perl:keyboard-select:activate
 URxvt.keysym.Shift-Control-R: perl:keyboard-select:search
+URxvt.keysym.Shift-Control-F: perl:keyboard-select:search
+URxvt.keysym.Shift-Control-T: perl:keyboard-select:activate
 URxvt.keyboard-select.clipboard: true
 
 URxvt.keysym.C-plus:    resize-font:bigger
