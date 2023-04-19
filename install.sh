@@ -1,6 +1,5 @@
 cd
-
-mkdir -p downloads documents .config .local/share/applications/
+mkdir -p downloads documents .config/zathura .local/share/applications/
 
 ln -s ~/dotfiles/.xinitrc .
 ln -s ~/dotfiles/.xmonad .
@@ -15,7 +14,7 @@ ln -s ~/dotfiles/.pylintrc .
 ln -s ~/dotfiles/.config/flake8 .config/
 ln -s ~/dotfiles/.gitconfig .
 ln -s ~/dotfiles/bin .
-ln -s ~/dotfiles/zathurarc .
+ln -s ~/dotfiles/zathurarc .config/zathura/
 # ln -s ~/dotfiles/vim-urxt.desktop ~/.local/share/applications/
 # ln -s ~/dotfiles/.mutt .
 # ln -s ~/dotfiles/.offlineimaprc .
