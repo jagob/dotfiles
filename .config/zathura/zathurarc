@@ -1,4 +1,4 @@
-# ln -s ~/dotfiles/zathurarc ~/.config/zathura/
+# ln -s ~/dotfiles/.config/zathura/zathurarc ~/.config/zathura/
 
 set font "Ubuntu Sans Mono 14"
 # set show-scrollbars true

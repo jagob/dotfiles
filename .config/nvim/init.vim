@@ -5,6 +5,9 @@ source ~/.vimrc
 call plug#begin('~/.vim/plugged')
     source ~/dotfiles/.vim/plugins.vim
 
+    " https://github.com/stefandtw/quickfix-reflector.vim
+    " https://github.com/gabrielpoca/replacer.nvim
+
     " Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " LSP plugins
     Plug 'williamboman/nvim-lsp-installer'
@@ -28,6 +31,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
     " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    " Plug 'nvim-treesitter/playground'
     " https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     " https://github.com/p00f/nvim-ts-rainbow
 
@@ -38,6 +42,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'akinsho/bufferline.nvim'  "  maybe move to std vim
     Plug 'ThePrimeagen/harpoon'
     " Plug 'folke/which-key.nvim'
+    Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
 if has('nvim') && !empty($CONDA_PREFIX)
@@ -52,14 +57,26 @@ let g:loaded_perl_provider = 0
 
 " Loads lua config
 " lua require('jagob')
-" lua require('jagob/treesitter')
 lua require('jagob/cmp')
 lua require('jagob/lsp')
 lua require('jagob/telescope')
+" lua require('jagob/treesitter')
 " lua require('jagob/bufferline')
 " lua require('jagob/whichkey')
 " lua require('dap-python').setup('~/miniconda3/envs/py38/bin/python')
 " lua require("dapui").setup()
+lua require("colorizer").setup()
+
+
+" lua << EOF
+" require'nvim-treesitter.configs'.setup {
+"   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+"   highlight = {
+"     enable = true,              -- false will disable the whole extension
+"     disable = {},  -- list of language that will be disabled
+"   },
+" }
+" EOF
 
 nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>ft <cmd>Telescope find_files<cr>

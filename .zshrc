@@ -61,7 +61,7 @@ zstyle ':completion:*:*:killall:*:processes-names' list-colors '=(#b) #([0-9]#)*
 zstyle ':completion:*:*:killall:*' menu select
 
 #Environment variables
-export EDITOR='nvim'
+export EDITOR='vim'
 export USE_EDITOR=$EDITOR
 export VISUAL=$EDITOR
 export MPD_HOST="localhost"
@@ -80,6 +80,7 @@ alias -s txt=$EDITOR
 
 # aliases
 alias vim='nvim'  # \vim will ignore the alias
+alias vimdiff='nvim -d'
 alias za='zathura'
 alias fp='readlink -f'  # filepath
 alias finder='find -name' # "search"
@@ -93,6 +94,7 @@ alias wordcount='pdftotext paper_IEEE.pdf - | wc -w'
 alias wordcount2='detex introduction.tex | wc'
 alias matlaber='matlab -nodesktop -nosplash'
 alias keyboard='setxkbmap -layout dk; setxkbmap -option caps:escape'
+alias keeb='setxkbmap -layout dk; setxkbmap -option caps:escape'
 alias bc='bc -lq'						# bash calculator with floating point
 alias bell='sleep 3; echo -e "\a"' 
 alias randomgenerator='cd ~/code/randomgenerator && python2 randomgenerator.py'
@@ -110,7 +112,7 @@ alias sshgw='ssh jq72po@create.aau.dk@sshgw.aau.dk'
 # alias sshfsjacob='sshfs jacob@172.24.211.1:/home/jacob/phd ~/mount/phd'
 alias mrpa1='ssh jacob@172.24.198.15'  # Vpvp
 alias neelusship='ssh jacob@172.24.198.16'  # Vplb
-alias anderssship='ssh vap@172.24.198.19'  # Vpvp
+alias anderssship='ssh vap@172.24.198.19'  # vplb
 alias gputunneljacob="ssh -L 1234:172.24.198.15:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
 alias gputunnelmrpa1="ssh -L 1234:172.24.198.15:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
 alias gputunnelanders="ssh -L 1234:172.24.211.13:22 jq72po@create.aau.dk@sshgw.aau.dk cat -"
@@ -126,11 +128,12 @@ alias monitor='xrandr --output eDP-1 --auto --output HDMI-1 --off'
 # alias monitor_reset='xrandr --output eDP-1 --auto --output DVI-I-1-1 --off --output DVI-I-2-2 --off'
 
 # documents
-alias todo='vim ~/Dropbox/faldkasse/todo.txt'
+alias todo='vim ~/Dropbox/faldkasse/notes/todo.txt'
+alias work='vim ~/Dropbox/faldkasse/notes/work.txt'
+alias notes='vim ~/Dropbox/faldkasse/notes/notes.txt'
+alias oensker='vim /home/jacob/Dropbox/faldkasse/notes/oenskeseddel.txt'
 alias arch='vim ~/Dropbox/faldkasse/linux/arch.txt'
 alias linux='vim ~/Dropbox/faldkasse/linux/linux.txt'
-alias notes='vim ~/Dropbox/faldkasse/notes.txt'
-alias oensker='vim /home/jacob/Dropbox/faldkasse/Oenskeseddel.txt'
 alias vimmer='cd /home/jacob/Dropbox/faldkasse/linux/vimmer/ && vim -o3 c.c extract_superpixels.py latex.tex'
 alias binds='vim /home/jacob/Dropbox/faldkasse/privat/cfg/keymaps/jagob/keymap.c'
 alias miryoku='vim /home/jacob/Dropbox/faldkasse/privat/cfg/keymaps/jagob_miryoku/keymap.c'
@@ -140,6 +143,7 @@ alias ta="t a -t"
 alias tls="t ls"
 alias tn="t new -t"
 
+alias l='ls'
 alias ls='ls -h --color --group-directories-first'
 alias sl='ls'
 alias lt='ls -ltgG' 		            # sort by last modified

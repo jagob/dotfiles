@@ -1,3 +1,4 @@
+Plug 'christianchiarulli/nvcode-color-schemes.vim'
 " Plug 'sainnhe/gruvbox-material'
 " Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 " Plug 'savq/melange-nvim'

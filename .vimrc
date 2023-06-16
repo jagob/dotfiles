@@ -33,9 +33,12 @@ call plug#end()
 " let $PYTHONHOME = 'C:/Users/UserName/AppData/Local/Continuum/Anaconda2/'
 " let $PYTHONHOME = 'C:/Python27/'
 
-if has("gui_running")
-    set guioptions-=T " Hide the toolbar.
-endif
+" if has("gui_running")
+"     set guioptions-=T " Hide the toolbar.
+" endif
+
+" filetype plugin indent on
+syntax on
 
 if has("win64") || has("win32")
     let s:vim_cache = expand('$HOME/vimfiles')
@@ -50,16 +53,22 @@ if has("unix")
     " set background=light
     " colorscheme jagob-delight
     set background=dark
+    set t_Co=256 "set t_Co=16
     colorscheme jagob-gruvbox
 endif
 if $SSH_CONNECTION
     set background=dark
-    set t_Co=256 "set t_Co=16
+    " set t_Co=256 "set t_Co=16
     colorscheme jagob-gruvbox
 endif
 
-filetype plugin indent on
-syntax on
+" let g:nvcode_termcolors=256
+if (has("termguicolors"))
+    set termguicolors
+    hi LineNr ctermbg=NONE guibg=NONE
+endif
+" set notermguicolors
+
 " Disable XOFF/XON
 silent !stty -ixon
 
@@ -88,7 +97,7 @@ set ttimeoutlen=0
 
 au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
-set wrap
+set nowrap
 set linebreak       " wrap at 'breakat' instead of last char
 set history=1000    " command lines history
 set nojoinspaces    " only put one space after periods
@@ -147,6 +156,7 @@ set encoding=utf-8
 " highlight ColorColumn ctermbg=233
 highlight ColorColumn ctermbg=0 
 autocmd filetype python,markdown set colorcolumn=80
+autocmd filetype python,markdown set colorcolumn=100
 
 " ----------------------------------------------------------------------------
 " Spell checking
@@ -505,6 +515,8 @@ nmap <leader>gj :diffget //3<CR>
 " '-' - add/remove file to/from staging 
 " dd - diff mode two splits
 " C - commit
+" cc - commit
+" ca - commit amend
 " :Gcommit<CR>
 " :Gpush
 " X - discard changes
