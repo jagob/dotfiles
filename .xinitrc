@@ -19,7 +19,7 @@ xsetroot -cursor_name left_ptr
 xset s 3600 3600                                        # screen blackout in one hour
 xset dpms 0 0 0                                         # disable display power management system
 # xmodmap -e "keysym Alt_L = Meta_L Alt_L"
-export EDITOR=vim
+export EDITOR=nvim
 # xmodmap ~/.Xmodmap
 amixer set "Speaker" unmute 100% > /dev/null
 feh --bg-scale /home/jacob/Dropbox/faldkasse/wallpapers/woods.jpg

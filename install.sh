@@ -11,6 +11,7 @@ ln -s ~/dotfiles/.vim .
 ln -s ~/dotfiles/.vifm .
 ln -s ~/dotfiles/.tmux.conf .
 ln -s ~/dotfiles/.pylintrc .
+ln -s ~/dotfiles/.config/nvim .config/
 ln -s ~/dotfiles/.config/flake8 .config/
 ln -s ~/dotfiles/.gitconfig .
 ln -s ~/dotfiles/bin .
@@ -30,10 +31,10 @@ sudo pacman -S xmonad xmonad-contrib dzen2 conky trayer xdotool
 # audio
 sudo pacman -S alsa alsa-utils pulseaudio pulseaudio-alsa pavucontrol
 # essentials
-sudo pacman -S vim rxvt-unicode urxvt-perls ttf-ubuntu-font-family
+sudo pacman -S neovim python-pynvim vim rxvt-unicode urxvt-perls ttf-ubuntu-mono-nerd
 
 # Post installation
-sudo pacman -S gvim zsh zsh-autosuggestions zsh-syntax-highlighting htop firefox dmenu arandr zathura zathura-pdf-poppler evince eog eog-plugins vlc texlive-most vim-spell-da vim-latexsuite feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring wget openssh flake8 thunar thunar-archive-plugin file-roller tumbler ffmpegthumbnailer cifs-utils gvfs gvfs-smb xfce4-notifyd rclone cups cups-pdf system-config-printer jupyterlab jupyter-notebook ntp ctags fzf ack ripgrep
+sudo pacman -S gvim zsh zsh-autosuggestions zsh-syntax-highlighting tmux htop firefox dmenu arandr autorandr zathura zathura-pdf-poppler evince eog eog-plugins vlc texlive-most vim-spell-da vim-latexsuite feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring wget openssh flake8 thunar thunar-archive-plugin file-roller tumbler ffmpegthumbnailer cifs-utils gvfs gvfs-smb xfce4-notifyd rclone cups cups-pdf system-config-printer jupyterlab jupyter-notebook ntp ctags fzf ack ripgrep
 
 chsh -s $(which zsh)
 
@@ -49,7 +50,7 @@ cd yay
 makepkg -si
 cd
 
-yay -S xcursor-human urxvt-resize-font-git dropbox teams zotero spotify autojump zsh-extract wps-office openprinting-ppds-pxlcolor-generic gruvbox-dark-gtk nerd-fonts-ubuntu-mono tabnine
+yay -S xcursor-human urxvt-resize-font-git dropbox teams zotero spotify autojump zsh-extract-git wps-office openprinting-ppds-pxlcolor-generic gruvbox-dark-gtk
 # teams black screen on screen share
 sudo mv /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/ rect-overlay /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay.bak
 
@@ -68,4 +69,4 @@ sudo mv /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/ 
 # sudo systemctl enable ntpd
 
 # laptop
-displaylink evdi-git
+# displaylink evdi-git

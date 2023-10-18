@@ -30,10 +30,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
-    " Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-    " Plug 'nvim-treesitter/playground'
+    Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+    Plug 'nvim-treesitter/playground'
     " https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     " https://github.com/p00f/nvim-ts-rainbow
+    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+    Plug 'rose-pine/neovim'
+    Plug 'savq/melange-nvim'
+    Plug 'rebelot/kanagawa'
 
     " Plug 'mfussenegger/nvim-dap'
     " Plug 'mfussenegger/nvim-dap-python'
@@ -60,7 +64,7 @@ let g:loaded_perl_provider = 0
 lua require('jagob/cmp')
 lua require('jagob/lsp')
 lua require('jagob/telescope')
-" lua require('jagob/treesitter')
+lua require('jagob/treesitter')
 " lua require('jagob/bufferline')
 " lua require('jagob/whichkey')
 " lua require('dap-python').setup('~/miniconda3/envs/py38/bin/python')
@@ -68,15 +72,24 @@ lua require('jagob/telescope')
 lua require("colorizer").setup()
 
 
-" lua << EOF
-" require'nvim-treesitter.configs'.setup {
-"   ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-"   highlight = {
-"     enable = true,              -- false will disable the whole extension
-"     disable = {},  -- list of language that will be disabled
-"   },
-" }
-" EOF
+lua << EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+  },
+}
+EOF
+
+" let g:nvcode_termcolors=256
+" syntax on
+" colorscheme nvcode " Or whatever colorscheme you make
+" " checks if your terminal has 24-bit color support
+" if (has("termguicolors"))
+"     set termguicolors
+"     hi LineNr ctermbg=NONE guibg=NONE
+" endif
 
 nnoremap <C-p> <cmd>Telescope find_files<cr>
 nnoremap <leader>ft <cmd>Telescope find_files<cr>

@@ -54,7 +54,8 @@ if has("unix")
     " colorscheme jagob-delight
     set background=dark
     set t_Co=256 "set t_Co=16
-    colorscheme jagob-gruvbox
+    " colorscheme jagob-gruvbox
+    colorscheme gruvbox-material
 endif
 if $SSH_CONNECTION
     set background=dark
@@ -500,6 +501,9 @@ au Syntax * RainbowParenthesesLoadSquare    " []
 au Syntax * RainbowParenthesesLoadBraces    " {}
 " au Syntax * RainbowParenthesesLoadChevrons " <> 
 
+" undotree
+nnoremap <F7> :UndotreeToggle<CR>
+
 " vimdiff
 " do - Get changes from other window into the current window.
 " dp - Put the changes from current window into the other window.
@@ -527,12 +531,19 @@ nmap <leader>gj :diffget //3<CR>
 
 " " git gutter
 " jump between hunks with [c and ]c. 
+nmap ]c <Plug>(GitGutterNextHunk)
+nmap [c <Plug>(GitGutterPrevHunk)
 " preview, stage, and undo hunks with <leader>hp, <leader>hs, and <leader>hu respectively.
+nmap ghp <Plug>(GitGutterPreviewHunk)
+nmap ghs <Plug>(GitGutterStageHunk)
+nmap ghu <Plug>(GitGutterUndoHunk)"
 " https://vi.stackexchange.com/questions/15450/vim-mapping-delayed-because-of-plugin
 " nmap <leader>gsh <Plug>GitGutterStageHunk
 " nmap <plug>(disable-ggsh) <Plug>GitGutterStageHunk
 let g:gitgutter_map_keys = 0  " no gitgutter binds interferring with no highlight
-
+let g:gitgutter_sign_added = '│'
+let g:gitgutter_sign_modified = '│'
+let g:gitgutter_sign_removed = '_'
 
 " IndentLine ¦ ┆ │
 let g:indentLine_enabled = 1

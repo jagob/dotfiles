@@ -8,10 +8,6 @@ import System.Exit
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W   -- manageHook rules
 
--- import XMonad.Actions.CycleWindows -- classic alt-tab
-import XMonad.Actions.CycleWS      -- cycle thru WS', toggle last WS
-import XMonad.Actions.NoBorders
-
 import XMonad.Hooks.ManageDocks    -- dock/tray mgmt
 import XMonad.Hooks.ManageHelpers
 import XMonad.Hooks.DynamicLog     -- statusbar 
@@ -31,12 +27,17 @@ import XMonad.Layout.Decoration
 import XMonad.Layout.NoFrillsDecoration
 import XMonad.Layout.Maximize
 
-import XMonad.Util.Run
+-- import XMonad.Actions.CycleWindows -- classic alt-tab
+import XMonad.Actions.CycleWS      -- cycle thru WS', toggle last WS
+import XMonad.Actions.NoBorders
+
+-- import XMonad.Util.Run
 import XMonad.Util.Run(spawnPipe)  -- spawnPipe and hPutStrLn
 import XMonad.Util.Font
 -- import XMonad.Util.EZConfig        -- append key/mouse bindings
 import Graphics.X11.ExtraTypes.XF86
- 
+
+myBitmapsDir = "/home/jacob/.xmonad/dzen2/img/"
 
 -- Main function that launches xmonad
 main =  do
@@ -47,16 +48,17 @@ main =  do
     trayer   <- spawnPipe myTrayer
 
     -- xmonad $ withUrgencyHook NoUrgencyHook $ def {
-    xmonad $ docks $ ewmh $ ewmhFullscreen $ withUrgencyHook NoUrgencyHook $ def {
+    -- xmonad $ docks $ ewmh $ ewmhFullscreen $ withUrgencyHook NoUrgencyHook $ def {
+    xmonad $ docks $ ewmh $ withUrgencyHook NoUrgencyHook $ def {
           terminal              = "urxvt"
         , focusedBorderColor    = green
         , normalBorderColor     = myDzenBGColor
-        -- , modMask               = mod4Mask -- Swap alt and win to play Dota
+        -- , modMask               = mod4Mask -- Swap alt and win to play dota
         , borderWidth           = 3
         , workspaces            = myWorkspaces
         , keys                  = myKeys
         , layoutHook            = myLayouts  -- avoidStruts are bugged for multi monitor
-        -- , layoutHook=avoidStruts $ layoutHook defaultConfig
+        -- , layoutHook            = avoidStruts $ layoutHook defaultConfig
         , logHook               = dynamicLogWithPP $ myPrettyPrinter dzen
         , manageHook            = manageDocks <+> myManageHook 
         -- , manageHook            = manageHook defaultConfig <+> manageDocks 
@@ -66,30 +68,32 @@ main =  do
         , clickJustFocuses      = False
     }
 
-
-myWorkspaces            = clickable . (map dzenEscape) $ ["1","2","3","4","5","6","7","8","9"]
+myWorkspaces            = clickable . (map dzenEscape) $ ["0","1","2","3","4","5","6","7","8","9"]
   where clickable l     = [ "^ca(1,xdotool key alt+" ++ show (n) ++ ")" ++ ws ++ "^ca()" |
-                            (i,ws) <- zip [1..] l,
+                            (i,ws) <- zip [0..] l,
                             let n = i ]
 
 -- You can use the commandline tool xprop to find out a window’s properties for use in these manageHooks.
 -- Define the workspace an application has to go to
 myManageHook = composeAll [ 
-      isDialog                              --> doCenterFloat
-    -- , isFullscreen                          --> doFullFloat
-    , className =? "stalonetray"            --> doIgnore
+      className =? "stalonetray"            --> doIgnore
     , className =? "trayer"                 --> doIgnore
     , className =? "Xfce4-notifyd"          --> doIgnore
     , className =? "Vlc"                    --> doFloat
-    , className =? "Steam"                  --> doShift (myWorkspaces !! 4) -- send to ws 5
-    , title     =? "mutt"                   --> doShift (myWorkspaces !! 5) -- send to ws 6
-    , title     =? "irssi"                  --> doShift (myWorkspaces !! 6) -- send to ws 7
-    -- , className =? "XCalc"                  --> doFloat
     , title     =? "Copying Files"          --> doFloat
     , title     =? "File Operation Progress"--> doFloat
     -- , className =? "Gimp"                   --> doFloat
-    -- , insertPosition Above Newer
+    , className =? "Steam"                  --> doShift (myWorkspaces !! 5) -- send to ws 5
+    , title     =? "mutt"                   --> doShift (myWorkspaces !! 5) -- send to ws 5
+    , title     =? "Teams"                  --> doShift (myWorkspaces !! 6) -- send to ws 6
+    , title     =? "irssi"                  --> doShift (myWorkspaces !! 7) -- send to ws 7
+    , title     =? "Friends - Discord"      --> doShift (myWorkspaces !! 7) -- send to ws 7
+    , title     =? "Spotify"                --> doShift (myWorkspaces !! 9) -- send to ws 9
+    -- , isFullscreen                          --> doFullFloat
+    -- , isDialog                              --> doFloat
+    , isDialog                              --> doCenterFloat
     , isDialog                              --> doF W.swapUp  -- pop up to front
+    -- , insertPosition Above Newer
     , insertPosition Below Newer
     , transience'
     ]
@@ -102,8 +106,8 @@ myLayouts = avoidStruts $ (tile ||| mtile ||| full)
         -- full  = noFrillsDeco shrinkText myTheme $ noBorders Full
         full  = noBorders Full
         nmaster = 1     -- The default number of windows in the master pane
-        delta   = 3/100 -- Percent of screen to increment by when resizing panes
         ratio   = 1/2   -- Default proportion of screen occupied by master pane
+        delta   = 3/100 -- Percent of screen to increment by when resizing panes
 
 -- update theme with mod-shift-space. xmonad restart is not enough
 -- myTheme = defaultTheme { 
@@ -132,9 +136,9 @@ myPrettyPrinter h = dzenPP {
                           "                          ^ca()^ca()" . shorten 80 . dzenEscape
     , ppLayout          = wrap "^ca(1,xdotool key alt+space)" "^ca()" . dzenColor myDzenFGColor myDzenBGColor .
       (\x -> case x of
-          "NoFrillsDeco Spacing ResizableTall"        -> "^i(/home/jacob/.xmonad/dzen2/img/layout_tall.xbm)"
-          "NoFrillsDeco Spacing Mirror ResizableTall" -> "^i(/home/jacob/.xmonad/dzen2/img/layout_mirror_tall.xbm)"
-          "Full"                                      -> "^i(/home/jacob/.xmonad/dzen2/img/layout_full.xbm)"
+          "NoFrillsDeco Spacing ResizableTall"        -> "^i(" ++ myBitmapsDir ++ "layout_tall.xbm)"
+          "NoFrillsDeco Spacing Mirror ResizableTall" -> "^i(" ++ myBitmapsDir ++ "layout_mirror_tall.xbm)"
+          "Full"                                      -> "^i(" ++ myBitmapsDir ++ "layout_full.xbm)"
           _                                           -> x
       )
     }
@@ -156,6 +160,7 @@ myDzenBGColor = black
 myDzenFGColor = green
 myDzenFGColor2 = brown
 myDzenFGTextColor = green
+-- myTrayerColor = black
 myTrayerColor = "0x282828"
 
 myFont = "Ubuntu regular:size=12:antialias=true"
@@ -166,28 +171,29 @@ myDzenStyle = "-h 20 -fg "++myDzenFGColor++" -bg "++myDzenBGColor++" -fn "++myFo
 -- myStatusBar =                                              "dzen2 -dock -e '' -x 30  -y 0    -w 870  -ta l " ++myDzenStyle
 -- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 900 -y 0    -w 380  -ta r " ++myDzenStyle
 -- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -e '' -x 0   -y 1004 -w 1280 -ta l " ++myDzenStyle
--- myTrayer    = "trayer --edge top --align left --margin 900 --widthtype request --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
+-- myTrayer    = "trayer --edge top --align left --margin 900 --widthtype request --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint "++myTrayerColor++" --alpha 0"
 
 -- -- 1680x1050
 -- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l "           ++ myDzenStyle
 -- myStatusBar =                                              "dzen2 -dock -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
 -- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 330 -ta r " ++ myDzenStyle
 -- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1030 -w 1680 -ta l "      ++ myDzenStyle
--- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
+-- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint "++myTrayerColor++" --alpha 0"
 
--- 1920x1080
-myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l "           ++ myDzenStyle
-myStatusBar =                                              "dzen2 -dock -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
-myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
-myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1060 -w 1920 -ta l "      ++ myDzenStyle
-myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --alpha 0" ++ " --tint "++myTrayerColor++""
+-- -- 1920x1080
+-- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l "           ++ myDzenStyle
+-- myStatusBar =                                              "dzen2 -dock -e '' -x 30 -y 0 -w 1220 -ta l "  ++ myDzenStyle
+-- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 570 -ta r " ++ myDzenStyle
+-- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1060 -w 1920 -ta l "      ++ myDzenStyle
+-- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --alpha 0" ++ " --tint "++myTrayerColor++""
 
--- -- 2560x1440
--- myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l "            ++ myDzenStyle
--- myStatusBar =                                              "dzen2 -dock -e '' -x 30 -y 0 -w 1220 -ta l "   ++ myDzenStyle
--- myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 1210 -ta r " ++ myDzenStyle
--- myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1420 -w 2560 -ta l "       ++ myDzenStyle
--- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0xfdf6e3 --alpha 0"
+-- 2560x1440
+myStartBar  = "conky -c ~/.xmonad/dzen2/.conky_start_apps | dzen2 -dock -x 0 -y 0 -w 30 -ta l "            ++ myDzenStyle
+myStatusBar =                                              "dzen2 -dock -e '' -x 30 -y 0 -w 1220 -ta l "   ++ myDzenStyle
+myTopBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_top   | dzen2 -dock -e '' -x 1350 -y 0 -w 1210 -ta r " ++ myDzenStyle
+myBotBar    = "conky -c ~/.xmonad/dzen2/.conky_dzen_bot   | dzen2 -dock -x 0 -y 1420 -w 2560 -ta l "       ++ myDzenStyle
+-- myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint "++myTrayerColor++" --alpha 0"
+myTrayer    = "trayer --edge top --align left --margin 1250 --widthtype pixel --width 100 --SetDockType true --SetPartialStrut false --expand false --heighttype pixel --height 20 --transparent true --tint 0x282828 --alpha 0"
 
 
 -- Define new key combinations to be added
@@ -267,7 +273,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     -- mod-[1..9], Switch to workspace N
     -- mod-shift-[1..9], Move client to workspace N
     [((m .|. modm, k), windows $ f i)
-        | (i, k) <- zip (XMonad.workspaces conf) [xK_1 .. xK_9]
+        | (i, k) <- zip (XMonad.workspaces conf) [xK_0 .. xK_9]
         , (f, m) <- [(W.greedyView, 0), (W.shift, shiftMask)]]
     -- ++
     -- -- mod-{w,e,r}, Switch to physical/Xinerama screens 1, 2, or 3
