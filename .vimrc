@@ -40,6 +40,10 @@ call plug#end()
 " filetype plugin indent on
 syntax on
 
+if has('termguicolors')
+  set termguicolors
+endif
+
 if has("win64") || has("win32")
     let s:vim_cache = expand('$HOME/vimfiles')
     set guifont=Consolas:h12
@@ -55,6 +59,13 @@ if has("unix")
     " set background=dark
     " set t_Co=256 "set t_Co=16
     " colorscheme jagob-gruvbox
+    set background=dark
+    " Set contrast.
+    " This configuration option should be placed before `colorscheme gruvbox-material`.
+    " Available values: 'hard', 'medium'(default), 'soft'
+    let g:gruvbox_material_background = 'medium'
+    " For better performance
+    let g:gruvbox_material_better_performance = 1
     colorscheme gruvbox-material
 endif
 if $SSH_CONNECTION
@@ -489,18 +500,18 @@ noremap <leader>c :Commentary<cr>
 " let delimitMate_expand_cr = 2
 " let delimitMate_expand_space = 1
 
-" Rainbow Parentheses
-" Left column is for terminal environment
-" Right column is for GUI environment
-let g:rbpt_colorpairs = [
-	\ ['darkblue',    '#d65d0e'],
-	\ ['darkmagenta', '#fabd2f'],
-    \ ]
-au VimEnter * RainbowParenthesesToggle
-au Syntax * RainbowParenthesesLoadRound     " ()
-au Syntax * RainbowParenthesesLoadSquare    " []
-au Syntax * RainbowParenthesesLoadBraces    " {}
-" au Syntax * RainbowParenthesesLoadChevrons " <> 
+" " Rainbow Parentheses
+" " Left column is for terminal environment
+" " Right column is for GUI environment
+" let g:rbpt_colorpairs = [
+" 	\ ['darkblue',    '#d65d0e'],
+" 	\ ['darkmagenta', '#fabd2f'],
+"     \ ]
+" au VimEnter * RainbowParenthesesToggle
+" au Syntax * RainbowParenthesesLoadRound     " ()
+" au Syntax * RainbowParenthesesLoadSquare    " []
+" au Syntax * RainbowParenthesesLoadBraces    " {}
+" " au Syntax * RainbowParenthesesLoadChevrons " <> 
 
 " undotree
 nnoremap <F7> :UndotreeToggle<CR>

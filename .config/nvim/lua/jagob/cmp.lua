@@ -1,5 +1,5 @@
 -- Setup nvim-cmp.
-local cmp = require'cmp'
+local cmp = require 'cmp'
 
 local kind_icons = {
     Text = "󰉿",
@@ -11,7 +11,7 @@ local kind_icons = {
     Class = "󰠱",
     Interface = "",
     Module = "",
-  Property = "",
+    Property = "",
     Unit = "󰑭",
     Value = "󰎠",
     Enum = "",

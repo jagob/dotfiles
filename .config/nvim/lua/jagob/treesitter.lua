@@ -1,22 +1,26 @@
-local configs = require("nvim-treesitter.configs")
-configs.setup {
-  -- A list of parser names, or "all"
-  ensure_installed = { "help", "c", "lua", "python" },
+vim.defer_fn(function()
+  local configs = require("nvim-treesitter.configs")
+  configs.setup {
+    ensure_installed = { "c", "lua", "python", "bash" },
 
-  -- Install parsers synchronously (only applied to `ensure_installed`)
-  sync_install = false, 
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+    auto_install = false,
 
-  -- Automatically install missing parsers when entering buffer
-  -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-  auto_install = true,
+    highlight = {
+      enable = true, -- false will disable the whole extension
+      additional_vim_regex_highlighting = true,
+    },
 
-  -- ignore_install = { "" }, -- List of parsers to ignore installing
-
-  highlight = {
-    enable = true, -- false will disable the whole extension
-    -- disable = { "" }, -- list of language that will be disabled
-    additional_vim_regex_highlighting = true,
-  },
-
-  -- indent = { enable = true, disable = { "yaml" } },
-}
+    indent = { enable = true },
+    incremental_selection = {
+      enable = true,
+      keymaps = {
+        init_selection = '<c-space>',
+        node_incremental = '<c-space>',
+        scope_incremental = '<c-s>',
+        node_decremental = '<M-space>',
+      },
+    },
+  }
+end, 0)

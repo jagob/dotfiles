@@ -4,6 +4,8 @@ require('telescope').setup{
     -- config_key = value,
     mappings = {
       i = {
+        ['<C-u>'] = false,
+        ['<C-d>'] = false,
         -- map actions.which_key to <C-h> (default: <C-/>)
         -- actions.which_key shows the mappings for your picker,
         -- e.g. git_{create, delete, ...}_branch for the git_branches picker
@@ -49,11 +51,12 @@ require('telescope').setup{
   --   --     override_generic_sorter = false,
   --   --     override_file_sorter = true,
   --   -- }
-}  
+}
 
 -- require("telescope")
--- require'telescope'.load_extension('fzf')
+require'telescope'.load_extension('fzf')
 -- require("telescope").load_extension("fzy_native") 
+-- pcall(require('telescope').load_extension, 'fzf')
 
 local M = {}
 

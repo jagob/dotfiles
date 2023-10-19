@@ -1,6 +1,3 @@
-set runtimepath^=~/.vim 
-set runtimepath+=~/.vim/after
-let &packpath = &runtimepath
 source ~/.vimrc
 
 call plug#begin('~/.vim/plugged')
@@ -11,8 +8,9 @@ call plug#begin('~/.vim/plugged')
 
     " Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " LSP plugins
-    Plug 'williamboman/nvim-lsp-installer'
-    " Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason.nvim'
+    Plug 'williamboman/mason-lspconfig.nvim'
+    " Plug 'williamboman/nvim-lsp-installer'
     Plug 'neovim/nvim-lspconfig'
 
     " cmp plugins
@@ -36,10 +34,12 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-treesitter/playground'
     " https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     " https://github.com/p00f/nvim-ts-rainbow
+
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'rose-pine/neovim'
     Plug 'savq/melange-nvim'
-    " Plug 'rebelot/kanagawa'
+    Plug 'rebelot/kanagawa.nvim'
+    " Plug 'norcalli/nvim-colorizer.lua'
 
     " Plug 'mfussenegger/nvim-dap'
     " Plug 'mfussenegger/nvim-dap-python'
@@ -48,23 +48,22 @@ call plug#begin('~/.vim/plugged')
     " Plug 'akinsho/bufferline.nvim'  "  maybe move to std vim
     Plug 'ThePrimeagen/harpoon'
     " Plug 'folke/which-key.nvim'
-    Plug 'norcalli/nvim-colorizer.lua'
 call plug#end()
 
-if has('nvim') && !empty($CONDA_PREFIX)
-  let g:python3_host_prog = $CONDA_PREFIX . '/bin/python'
-else
-  let g:python3_host_prog = '/usr/bin/python3'
-endif
+" if has('nvim') && !empty($CONDA_PREFIX)
+"   let g:python3_host_prog = $CONDA_PREFIX . '/bin/python'
+" else
+"   let g:python3_host_prog = '/usr/bin/python3'
+" endif
 
-let g:loaded_ruby_provider = 0
-let g:loaded_node_provider = 0
-let g:loaded_perl_provider = 0
+" let g:loaded_ruby_provider = 0
+" let g:loaded_node_provider = 0
+" let g:loaded_perl_provider = 0
 
 " Loads lua config
 " lua require('jagob')
 lua require('jagob/cmp')
-lua require('jagob/lsp')
+" lua require('jagob/lsp')
 lua require('jagob/telescope')
 lua require('jagob/treesitter')
 " lua require('jagob/bufferline')
@@ -72,18 +71,53 @@ lua require('jagob/treesitter')
 " lua require('dap-python').setup('~/miniconda3/envs/py38/bin/python')
 " lua require("dapui").setup()
 " lua require("colorizer").setup()
-
-
+lua require("mason").setup()
+lua require("mason-lspconfig").setup()
+lua require('jagob/keymaps')
 
 lua << EOF
-require'nvim-treesitter.configs'.setup {
-  ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled
+local servers = {
+  pyright = {},
+  lua_ls = {
+    Lua = {
+      workspace = { checkThirdParty = false },
+      telemetry = { enable = false },
+    },
   },
 }
+
+-- nvim-cmp supports additional completion capabilities, so broadcast that to servers
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
+
+-- Ensure the servers above are installed
+local mason_lspconfig = require 'mason-lspconfig'
+
+mason_lspconfig.setup {
+  ensure_installed = vim.tbl_keys(servers),
+}
+
+mason_lspconfig.setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = servers[server_name],
+      filetypes = (servers[server_name] or {}).filetypes,
+    }
+  end,
+}
+
+local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+for type, icon in pairs(signs) do
+  local hl = "DiagnosticSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+end
+
+-- NOTE: You should make sure your terminal supports this
+vim.o.termguicolors = true
 EOF
+
 
 " let g:nvcode_termcolors=256
 " syntax on
@@ -94,20 +128,20 @@ EOF
 "     hi LineNr ctermbg=NONE guibg=NONE
 " endif
 
-nnoremap <C-p> <cmd>Telescope find_files<cr>
-nnoremap <leader>ft <cmd>Telescope find_files<cr>
-nnoremap <leader>fp <cmd>Telescope git_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-nnoremap <leader>fd <cmd>lua require('jagob.telescope').search_dotfiles({hidden = true})<CR>
+" nnoremap <C-p> <cmd>Telescope find_files<cr>
+" nnoremap <leader>ft <cmd>Telescope find_files<cr>
+" nnoremap <leader>fp <cmd>Telescope git_files<cr>
+" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+" nnoremap <leader>fb <cmd>Telescope buffers<cr>
+" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+" nnoremap <leader>fd <cmd>lua require('jagob.telescope').search_dotfiles({hidden = true})<CR>
 
-nnoremap <leader>l <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
-nnoremap <leader>n <cmd>lua require("harpoon.mark").add_file()<CR>
-nnoremap <C-n> <cmd>lua require("harpoon.ui").nav_file(1)<CR>
-nnoremap <C-e> <cmd>lua require("harpoon.ui").nav_file(2)<CR>
-nnoremap <C-h> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
-nnoremap <C-,> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
+" nnoremap <leader>l <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
+" nnoremap <leader>n <cmd>lua require("harpoon.mark").add_file()<CR>
+" nnoremap <C-n> <cmd>lua require("harpoon.ui").nav_file(1)<CR>
+" nnoremap <C-e> <cmd>lua require("harpoon.ui").nav_file(2)<CR>
+" nnoremap <C-h> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
+" nnoremap <C-,> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
 " nnoremap <C-i> <cmd>lua require("harpoon.ui").nav_file(3)<CR>  " I and O clashes with jump list
 " nnoremap <C-o> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
 
