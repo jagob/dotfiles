@@ -1,14 +1,14 @@
 .vim/view
 .vim/plugged
 .vim/autoload/plug.vim
+.vim/undodir
 .vim/.netrwhist
 
 .vifm/*
 
+.xmonad/build-x86_64-linux/
 .xmonad/getvolume2.sh
 .xmonad/xmonad.hi
-.xmonad/xmonad-hs
-.xmonad/xmonad.hs.backup
 .xmonad/xmonad.o
 .xmonad/xmonad.errors
 .xmonad/xmonad-x86_64-linux

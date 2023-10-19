@@ -49,11 +49,11 @@ if has("win64") || has("win32")
     " let &pythonthreedll = 'C:\Program Files (x86)\Python36-32\Python36.dll'
 endif
 if has("unix")
-    let s:vim_cache = expand('$HOME/.vim')
+    " let s:vim_cache = expand('$HOME/.vim')
     " set background=light
     " colorscheme jagob-delight
-    set background=dark
-    set t_Co=256 "set t_Co=16
+    " set background=dark
+    " set t_Co=256 "set t_Co=16
     " colorscheme jagob-gruvbox
     colorscheme gruvbox-material
 endif
@@ -63,12 +63,12 @@ if $SSH_CONNECTION
     colorscheme jagob-gruvbox
 endif
 
-" let g:nvcode_termcolors=256
-if (has("termguicolors"))
-    set termguicolors
-    hi LineNr ctermbg=NONE guibg=NONE
-endif
-" set notermguicolors
+" " let g:nvcode_termcolors=256
+" if (has("termguicolors"))
+"     set termguicolors
+"     hi LineNr ctermbg=NONE guibg=NONE
+" endif
+" " set notermguicolors
 
 " Disable XOFF/XON
 silent !stty -ixon
@@ -86,8 +86,9 @@ set visualbell                  " No sounds
 set t_vb=                       " No blink at first/last line
 set autoread                    " Reload files changed outside vim
 
-set foldenable
-set foldmethod=syntax   " syntax,manual,indent
+set nofoldenable
+" set foldenable
+" set foldmethod=syntax   " syntax,manual,indent
 " set foldcolumn=2
 " set foldlevel=1
 " set foldclose=all
@@ -96,7 +97,7 @@ set foldmethod=syntax   " syntax,manual,indent
 " set timeoutlen =1000
 set ttimeoutlen=0
 
-au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
+" au BufRead /tmp/mutt-* set tw=72 " textwrap for mutt
 " set textwidth=80 " set textwidth to 80 to cause wrapping
 set nowrap
 set linebreak       " wrap at 'breakat' instead of last char

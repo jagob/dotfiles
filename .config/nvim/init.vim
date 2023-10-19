@@ -1,4 +1,5 @@
-set runtimepath^=~/.vim runtimepath+=~/.vim/after
+set runtimepath^=~/.vim 
+set runtimepath+=~/.vim/after
 let &packpath = &runtimepath
 source ~/.vimrc
 
@@ -11,6 +12,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " LSP plugins
     Plug 'williamboman/nvim-lsp-installer'
+    " Plug 'williamboman/mason.nvim'
     Plug 'neovim/nvim-lspconfig'
 
     " cmp plugins
@@ -27,7 +29,7 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'BurntSushi/ripgrep'
     Plug 'nvim-lua/plenary.nvim'
-    Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+    Plug 'nvim-telescope/telescope.nvim'
     Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -37,7 +39,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'rose-pine/neovim'
     Plug 'savq/melange-nvim'
-    Plug 'rebelot/kanagawa'
+    " Plug 'rebelot/kanagawa'
 
     " Plug 'mfussenegger/nvim-dap'
     " Plug 'mfussenegger/nvim-dap-python'
@@ -69,7 +71,8 @@ lua require('jagob/treesitter')
 " lua require('jagob/whichkey')
 " lua require('dap-python').setup('~/miniconda3/envs/py38/bin/python')
 " lua require("dapui").setup()
-lua require("colorizer").setup()
+" lua require("colorizer").setup()
+
 
 
 lua << EOF
