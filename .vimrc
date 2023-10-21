@@ -85,7 +85,8 @@ endif
 silent !stty -ixon
 
 let mapleader = " "
-set number relativenumber       " relative hybrid numbers
+set number
+" set number relativenumber       " relative hybrid numbers
 set numberwidth=3
 " set signcolumn=number         " Put signs in linenumbers instead of signcolumn
 set signcolumn=yes

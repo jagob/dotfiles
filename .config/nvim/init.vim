@@ -9,6 +9,7 @@ call plug#begin('~/.vim/plugged')
     " Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " LSP plugins
     Plug 'williamboman/mason.nvim'
+   " , opts = { ensure_installed = { "black", "debugpy", "mypy", "ruff", "pyright" } }
     Plug 'williamboman/mason-lspconfig.nvim'
     " Plug 'williamboman/nvim-lsp-installer'
     Plug 'neovim/nvim-lspconfig'
@@ -24,6 +25,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
     Plug 'jose-elias-alvarez/null-ls.nvim'
+    Plug 'stevearc/conform.nvim'
 
     Plug 'BurntSushi/ripgrep'
     Plug 'nvim-lua/plenary.nvim'
@@ -39,6 +41,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'rose-pine/neovim'
     Plug 'savq/melange-nvim'
     Plug 'rebelot/kanagawa.nvim'
+    Plug 'catppuccin/nvim'
+    Plug 'bluz71/vim-nightfly-colors', { 'as': 'nightfly' }
     " Plug 'norcalli/nvim-colorizer.lua'
 
     " Plug 'mfussenegger/nvim-dap'
@@ -47,18 +51,18 @@ call plug#begin('~/.vim/plugged')
 
     " Plug 'akinsho/bufferline.nvim'  "  maybe move to std vim
     Plug 'ThePrimeagen/harpoon'
-    " Plug 'folke/which-key.nvim'
+    Plug 'folke/which-key.nvim'
 call plug#end()
 
-" if has('nvim') && !empty($CONDA_PREFIX)
-"   let g:python3_host_prog = $CONDA_PREFIX . '/bin/python'
-" else
-"   let g:python3_host_prog = '/usr/bin/python3'
-" endif
+if has('nvim') && !empty($CONDA_PREFIX)
+  let g:python3_host_prog = $CONDA_PREFIX . '/bin/python'
+else
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
 
-" let g:loaded_ruby_provider = 0
-" let g:loaded_node_provider = 0
-" let g:loaded_perl_provider = 0
+let g:loaded_ruby_provider = 0
+let g:loaded_node_provider = 0
+let g:loaded_perl_provider = 0
 
 " Loads lua config
 " lua require('jagob')
@@ -71,54 +75,33 @@ lua require('jagob/treesitter')
 " lua require('dap-python').setup('~/miniconda3/envs/py38/bin/python')
 " lua require("dapui").setup()
 " lua require("colorizer").setup()
-lua require("mason").setup()
-lua require("mason-lspconfig").setup()
 lua require('jagob/keymaps')
+lua require('jagob/lsp')
+lua require('jagob/null-ls')
 
 lua << EOF
-local servers = {
-  pyright = {},
-  lua_ls = {
-    Lua = {
-      workspace = { checkThirdParty = false },
-      telemetry = { enable = false },
-    },
-  },
-}
-
--- nvim-cmp supports additional completion capabilities, so broadcast that to servers
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
-
--- Ensure the servers above are installed
-local mason_lspconfig = require 'mason-lspconfig'
-
-mason_lspconfig.setup {
-  ensure_installed = vim.tbl_keys(servers),
-}
-
-mason_lspconfig.setup_handlers {
-  function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end,
-}
-
-local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-for type, icon in pairs(signs) do
-  local hl = "DiagnosticSign" .. type
-  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
--- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
+
+-- require("conform").setup({
+--   formatters_by_ft = {
+--     python = { "black", "isort" },
+--   },
+--   -- args not working...
+--   formatters = {
+--       -- black = { extra_args = { "--skip-string-normalization", "--line-length=100", "$FILENAME" } },
+--       -- black = { args = { "--skip-string-normalization", "--line-length=100", "$FILENAME" } },
+--       -- black = { prepend_args = { "--skip-string-normalization", "--line-length=100"} },
+--   },
+--   format_on_save = {
+--     async = false,
+--     timeout_ms = 500,
+--     lsp_fallback = true,
+--   },
+-- })
+
 EOF
 
-
+ " require('neodev').setup()
 " let g:nvcode_termcolors=256
 " syntax on
 " colorscheme nvcode " Or whatever colorscheme you make
@@ -128,22 +111,6 @@ EOF
 "     hi LineNr ctermbg=NONE guibg=NONE
 " endif
 
-" nnoremap <C-p> <cmd>Telescope find_files<cr>
-" nnoremap <leader>ft <cmd>Telescope find_files<cr>
-" nnoremap <leader>fp <cmd>Telescope git_files<cr>
-" nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-" nnoremap <leader>fb <cmd>Telescope buffers<cr>
-" nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-" nnoremap <leader>fd <cmd>lua require('jagob.telescope').search_dotfiles({hidden = true})<CR>
-
-" nnoremap <leader>l <cmd>lua require("harpoon.ui").toggle_quick_menu()<CR>
-" nnoremap <leader>n <cmd>lua require("harpoon.mark").add_file()<CR>
-" nnoremap <C-n> <cmd>lua require("harpoon.ui").nav_file(1)<CR>
-" nnoremap <C-e> <cmd>lua require("harpoon.ui").nav_file(2)<CR>
-" nnoremap <C-h> <cmd>lua require("harpoon.ui").nav_file(3)<CR>
-" nnoremap <C-,> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
-" nnoremap <C-i> <cmd>lua require("harpoon.ui").nav_file(3)<CR>  " I and O clashes with jump list
-" nnoremap <C-o> <cmd>lua require("harpoon.ui").nav_file(4)<CR>
 
 " For opencv2 completion
 " activate env
