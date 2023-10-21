@@ -501,18 +501,18 @@ noremap <leader>c :Commentary<cr>
 " let delimitMate_expand_cr = 2
 " let delimitMate_expand_space = 1
 
-" " Rainbow Parentheses
-" " Left column is for terminal environment
-" " Right column is for GUI environment
-" let g:rbpt_colorpairs = [
-" 	\ ['darkblue',    '#d65d0e'],
-" 	\ ['darkmagenta', '#fabd2f'],
-"     \ ]
-" au VimEnter * RainbowParenthesesToggle
-" au Syntax * RainbowParenthesesLoadRound     " ()
-" au Syntax * RainbowParenthesesLoadSquare    " []
-" au Syntax * RainbowParenthesesLoadBraces    " {}
-" " au Syntax * RainbowParenthesesLoadChevrons " <> 
+" Rainbow Parentheses
+" Left column is for terminal environment
+" Right column is for GUI environment
+let g:rbpt_colorpairs = [
+	\ ['darkblue',    '#d65d0e'],
+	\ ['darkmagenta', '#fabd2f'],
+    \ ]
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound     " ()
+au Syntax * RainbowParenthesesLoadSquare    " []
+au Syntax * RainbowParenthesesLoadBraces    " {}
+" au Syntax * RainbowParenthesesLoadChevrons " <> 
 
 " undotree
 nnoremap <F7> :UndotreeToggle<CR>

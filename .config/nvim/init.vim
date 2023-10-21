@@ -6,10 +6,8 @@ call plug#begin('~/.vim/plugged')
     " https://github.com/stefandtw/quickfix-reflector.vim
     " https://github.com/gabrielpoca/replacer.nvim
 
-    " Plug 'neoclide/coc.nvim', {'branch': 'release'}
     " LSP plugins
     Plug 'williamboman/mason.nvim'
-   " , opts = { ensure_installed = { "black", "debugpy", "mypy", "ruff", "pyright" } }
     Plug 'williamboman/mason-lspconfig.nvim'
     " Plug 'williamboman/nvim-lsp-installer'
     Plug 'neovim/nvim-lspconfig'
@@ -25,7 +23,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'quangnguyen30192/cmp-nvim-ultisnips'
 
     Plug 'jose-elias-alvarez/null-ls.nvim'
-    Plug 'stevearc/conform.nvim'
+    " Plug 'stevearc/conform.nvim'
 
     Plug 'BurntSushi/ripgrep'
     Plug 'nvim-lua/plenary.nvim'
@@ -34,7 +32,6 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
     Plug 'nvim-treesitter/playground'
-    " https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     " https://github.com/p00f/nvim-ts-rainbow
 
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
@@ -43,6 +40,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'rebelot/kanagawa.nvim'
     Plug 'catppuccin/nvim'
     Plug 'bluz71/vim-nightfly-colors', { 'as': 'nightfly' }
+    Plug 'ellisonleao/gruvbox.nvim'
+    Plug 'Mofiqul/dracula.nvim'
     " Plug 'norcalli/nvim-colorizer.lua'
 
     Plug 'mfussenegger/nvim-dap'
@@ -66,57 +65,43 @@ let g:loaded_ruby_provider = 0
 let g:loaded_node_provider = 0
 let g:loaded_perl_provider = 0
 
-
-lua << EOF
--- IMPORTANT: make sure to setup neodev BEFORE lspconfig
-require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
-EOF
+" IMPORTANT: make sure to setup neodev BEFORE lspconfig
+lua require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
 
 " Loads lua config
-" lua require('jagob')
 lua require('jagob/cmp')
 " lua require('jagob/lsp')
 lua require('jagob/telescope')
 lua require('jagob/treesitter')
 " lua require('jagob/bufferline')
 " lua require('jagob/whichkey')
-" lua require('dap-python').setup('~/miniconda3/envs/py38/bin/python')
-" lua require("dapui").setup()
 " lua require("colorizer").setup()
 lua require('jagob/keymaps')
 lua require('jagob/lsp')
 lua require('jagob/null-ls')
 lua require('jagob/dap')
 
-
-
-
 lua << EOF
-
-
 vim.o.termguicolors = true
-
--- require("conform").setup({
---   formatters_by_ft = {
---     python = { "black", "isort" },
---   },
---   -- args not working...
---   formatters = {
---       -- black = { extra_args = { "--skip-string-normalization", "--line-length=100", "$FILENAME" } },
---       -- black = { args = { "--skip-string-normalization", "--line-length=100", "$FILENAME" } },
---       -- black = { prepend_args = { "--skip-string-normalization", "--line-length=100"} },
---   },
---   format_on_save = {
---     async = false,
---     timeout_ms = 500,
---     lsp_fallback = true,
---   },
--- })
-
-
 EOF
 
- " require('neodev').setup()
+" require("conform").setup({
+"   formatters_by_ft = {
+"     python = { "black", "isort" },
+"   },
+"   -- args not working...
+"   formatters = {
+"       -- black = { extra_args = { "--skip-string-normalization", "--line-length=100", "$FILENAME" } },
+"       -- black = { args = { "--skip-string-normalization", "--line-length=100", "$FILENAME" } },
+"       -- black = { prepend_args = { "--skip-string-normalization", "--line-length=100"} },
+"   },
+"   format_on_save = {
+"     async = false,
+"     timeout_ms = 500,
+"     lsp_fallback = true,
+"   },
+" })
+
 " let g:nvcode_termcolors=256
 " syntax on
 " colorscheme nvcode " Or whatever colorscheme you make
@@ -125,7 +110,6 @@ EOF
 "     set termguicolors
 "     hi LineNr ctermbg=NONE guibg=NONE
 " endif
-
 
 " For opencv2 completion
 " activate env
