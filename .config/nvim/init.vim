@@ -45,9 +45,11 @@ call plug#begin('~/.vim/plugged')
     Plug 'bluz71/vim-nightfly-colors', { 'as': 'nightfly' }
     " Plug 'norcalli/nvim-colorizer.lua'
 
-    " Plug 'mfussenegger/nvim-dap'
-    " Plug 'mfussenegger/nvim-dap-python'
-    " Plug 'rcarriga/nvim-dap-ui'
+    Plug 'mfussenegger/nvim-dap'
+    Plug 'mfussenegger/nvim-dap-python'
+    Plug 'rcarriga/nvim-dap-ui'
+    Plug 'jay-babu/mason-nvim-dap.nvim'
+    Plug 'folke/neodev.nvim'
 
     " Plug 'akinsho/bufferline.nvim'  "  maybe move to std vim
     Plug 'ThePrimeagen/harpoon'
@@ -64,6 +66,12 @@ let g:loaded_ruby_provider = 0
 let g:loaded_node_provider = 0
 let g:loaded_perl_provider = 0
 
+
+lua << EOF
+-- IMPORTANT: make sure to setup neodev BEFORE lspconfig
+require("neodev").setup({ library = { plugins = { "nvim-dap-ui" }, types = true } })
+EOF
+
 " Loads lua config
 " lua require('jagob')
 lua require('jagob/cmp')
@@ -78,8 +86,14 @@ lua require('jagob/treesitter')
 lua require('jagob/keymaps')
 lua require('jagob/lsp')
 lua require('jagob/null-ls')
+lua require('jagob/dap')
+
+
+
 
 lua << EOF
+
+
 vim.o.termguicolors = true
 
 -- require("conform").setup({
@@ -98,6 +112,7 @@ vim.o.termguicolors = true
 --     lsp_fallback = true,
 --   },
 -- })
+
 
 EOF
 
