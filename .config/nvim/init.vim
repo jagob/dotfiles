@@ -34,6 +34,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'nvim-treesitter/playground'
     " https://github.com/p00f/nvim-ts-rainbow
 
+    " colorschemes
     Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
     Plug 'rose-pine/neovim'
     Plug 'savq/melange-nvim'

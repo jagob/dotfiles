@@ -50,7 +50,7 @@ cd yay
 makepkg -si
 cd
 
-yay -S xcursor-human urxvt-resize-font-git dropbox teams zotero spotify autojump zsh-extract-git wps-office openprinting-ppds-pxlcolor-generic gruvbox-dark-gtk
+yay -S xcursor-human urxvt-resize-font-git rxvt-unicode-truecolor-wide-glyphs dropbox teams zotero spotify autojump zsh-extract-git wps-office openprinting-ppds-pxlcolor-generic gruvbox-dark-gtk
 # teams black screen on screen share
 sudo mv /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/ rect-overlay /usr/share/teams/resources/app.asar.unpacked/node_modules/slimcore/bin/rect-overlay.bak
 
