@@ -1,6 +1,18 @@
-source ~/.vimrc
+" auto-install vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-call plug#begin('~/.vim/plugged')
+if has("unix")
+    source ~/.vimrc
+elseif has("win64") || has("win32")
+    source C:\Users\jacob\dotfiles\.vimrc
+endif
+
+let plugged_dir = has('unix') ? '~/.vim/plugged' : '~/vimfiles/plugged'
+call plug#begin(plugged_dir)
     source ~/dotfiles/.vim/plugins.vim
 
     " https://github.com/stefandtw/quickfix-reflector.vim
@@ -47,6 +59,7 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'mfussenegger/nvim-dap'
     Plug 'mfussenegger/nvim-dap-python'
+    Plug 'nvim-neotest/nvim-nio'
     Plug 'rcarriga/nvim-dap-ui'
     Plug 'jay-babu/mason-nvim-dap.nvim'
     Plug 'folke/neodev.nvim'
@@ -58,6 +71,8 @@ call plug#end()
 
 if has('nvim') && !empty($CONDA_PREFIX)
   let g:python3_host_prog = $CONDA_PREFIX . '/bin/python'
+elseif has("win64") || has("win32")
+  let g:python3_host_prog = 'C:\Users\jacob\miniconda3\envs\py38\python.exe'
 else
   let g:python3_host_prog = '/usr/bin/python3'
 endif

@@ -10,16 +10,16 @@ if has("unix")
       silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
       autocmd VimEnter * PlugInstall
     endif
+    let plugged_dir = '~/.vim/plugged'
 elseif has("win64") || has("win32")
-    if empty(glob('C:/Users/jacob/vimfiles/autoload/plug.vim'))
-        silent !curl -fLo ~/_vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    if empty(glob('C:\Users\jacob\vimfiles\autoload\plug.vim'))
+        silent !curl -fLo C:\Users\jacob\vimfiles\autoload\plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
         autocmd VimEnter * PlugInstall
     endif
+    let plugged_dir = '~/vimfiles/plugged'
 endif
 
-" TODO: windows plugged dir?
-" call plug#begin('~/vimfiles/plugged')
-call plug#begin('~/.vim/plugged')
+call plug#begin(plugged_dir)
     source ~/dotfiles/.vim/plugins.vim
     if !has('nvim')  "vim exclusive plugins (not neovim)
         Plug 'mileszs/ack.vim'
@@ -46,8 +46,8 @@ endif
 
 if has("win64") || has("win32")
     let s:vim_cache = expand('$HOME/vimfiles')
-    set guifont=Consolas:h12
-    colorscheme jagob-gruvbox
+    " set guifont=Consolas:h12
+    " colorscheme jagob-gruvbox
     " set background=light
     " colorscheme solarized
     " let &pythonthreedll = 'C:\Program Files (x86)\Python36-32\Python36.dll'
@@ -73,6 +73,8 @@ if $SSH_CONNECTION
     " set t_Co=256 "set t_Co=16
     colorscheme jagob-gruvbox
 endif
+colorscheme gruvbox-material
+
 
 " " let g:nvcode_termcolors=256
 " if (has("termguicolors"))
