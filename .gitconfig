@@ -1,0 +1,45 @@
+# comment
+; comment
+
+[user]
+  name = jagob
+  email = jacobvdueholm@gmail.com
+
+[merge]
+  tool = vimdiff
+  conflictstyle = diff3
+
+[diff]
+   ; tool = vimdiff
+   external = ~/bin/git_diff_wrapper
+
+[difftool]
+  prompt = false
+
+[push]
+  default = simple
+
+[pager]
+  diff =
+
+[alias]
+  lg = lazygit
+  ; lg = log --color --graph --pretty=format:'%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset - %Cred%h%Creset' --name-status
+
+[pull]
+  rebase = false
+
+; [credential]
+;         helper = cache
+; [credential "https://github.com"]
+;   helper = 
+;   helper = !/usr/bin/gh auth git-credential
+; [credential "https://gist.github.com"]
+;   helper = 
+;   helper = !/usr/bin/gh auth git-credential
+[init]
+  defaultBranch = main
+
+[credential]
+  credentialStore = gpg
+  helper = store

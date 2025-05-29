@@ -1,0 +1,255 @@
+! xrdb -load ~/.Xresources
+
+! Mouse settings
+! Xcursor.theme: Human
+! Xcursor.theme: Polarnight-cursors
+Xcursor.theme: Future-cursors
+Xcursor.size:  32
+
+! Xft settings
+Xft.dpi: 96
+Xft.antialias: true
+Xft.rgba: rgb
+Xft.hinting: true
+! hintfull, hintmedium, hintslight and hintnone
+Xft.hintstyle: hintslight
+Xft.lcdfilter: lcddefault
+
+! IRC
+! Set the key to be interpreted as the Meta key to: alt, meta, hyper, super, mod1, mod2, mod3, mod4, mod5; option -mod.!
+! URxvt*modifier: Windows
+URxvt*modifier: super
+
+! Terminal settings -----------------------------------------
+URxvt*termName: rxvt-unicode-256color
+URxvt.urgentOnBell: true
+URxvt.saveLines: 1500
+! URxvt*loginShell: true
+
+! Fonts (fc-list)
+! https://github.com/ryanoasis/nerd-fonts#option-7-unofficial-arch-user-repository-aur
+! powerline fonts: https://github.com/snare/powerline-fonts
+! copy powerline fonts to /usr/share/fonts
+! URxvt*font: xft:UbuntuMono-R:regular:size=14
+! URxvt*font: xft:Ubuntu Mono derivative Powerline:regular:size=14
+URxvt*font: xft:UbuntuMono Nerd Font Mono:regular:size=14
+! URxvt*font: xft:JetBrainsMonoNL Nerd Font Mono:regular:size=14
+! URxvt*font: xft:Hack Nerd Font Mono:regular:size=14
+! URxvt*letterSpace: -1
+URxvt*boldfont: xft:Ubuntu Mono:regular:size=14
+URxvt.allow_bold: false
+! URxvt*font:     xft:Inconsolata:size=14
+! URxvt*font:     xft:Terminus:size=14
+
+URxvt.scrollBar: false
+
+! Cursor
+URxvt.cursorBlink: false
+URxvt.cursorUnderline: false
+URxvt.pointerBlank: true
+
+URxvt.transparent: false
+! URxvt.background: [100]#111111
+! URxvt.background: [95]#000000
+! URxvt.shading: 25
+! URxvt.fading: 5
+
+! https://unix.stackexchange.com/questions/203418/bind-c-i-and-tab-keys-to-different-commands-in-terminal-applications-via-inputr
+! ! https://unix.stackexchange.com/questions/631241/mapping-otherwise-conflicting-or-unmappable-keys-in-terminal-vim
+! URxvt*iso14755:   false
+! URxvt*keysym.C-m: \033[109;5u  ! not working
+! URxvt*keysym.C-i: \033[105;5u  ! not working
+! urxvt.keysym.C-i: \033[33~
+! ! urxvt.keysym.C-m: \033[109;5u
+! ! urxvt.keysym.C-i: \033[105;5u
+! ! urxvt.keysym.C-m: \033[a5i
+! urxvt.keysym.C-m: \033[a6i
+! ! https://invisible-island.net/xterm/manpage/xterm.html#h3-Custom-Key-Bindings
+! *VT100*translations: #override \n\
+!     Ctrl ~Meta ~Shift <Key> i  :  string("\033[105;5u")  ! not working
+! XTerm.vt100.translations: #override \
+!   Ctrl~Meta~Shift<Key>I: string("\033[a5i") \n\
+!   Ctrl~Meta Shift<Key>I: string("\033[a6i") \n\
+
+! Perl extensions -------------------------
+URxvt.perl-lib:         /usr/lib/urxvt/perl/
+! URxvt.perl-ext-common: default,matcher,tabbed,clipboard,confirm-paste,url-select,font,searchable-scrollback,selection-popup,keyboard-select,autocomplete-ALL-the-thin,matchergs, font-size
+URxvt.perl-ext-common: default,matcher,clipboard,resize-font,keyboard-select
+
+! ! Disable Ctrl-Alt-C and Ctrl-Alt-v bindings
+! URxvt.keysym.C-M-c:   builtin-string:
+URxvt.clipboard.autocopy: true
+URxvt.keysym.M-c: eval:selection_to_clipboard
+! URxvt.keysym.v: eval:paste_clipboard
+! ! Disable ISO 14755 unicode input so we can use Ctrl-Shift bindings
+URxvt.iso14755: false
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+
+! https://raw.githubusercontent.com/muennich/urxvt-perls/master/keyboard-select
+! Use Meta-Escape to activate selection mode, then use the following keys:
+!   h/j/k/l:    Move cursor left/down/up/right (also with arrow keys)
+!   g/G/0/^/$/H/M/L/f/F/;/,/w/W/b/B/e/E: More vi-like cursor movement keys
+!   '/'/?:      Start forward/backward search
+!   n/N:        Repeat last search, N: in reverse direction
+!   Ctrl-f/b:   Scroll down/up one screen
+!   Ctrl-d/u:   Scroll down/up half a screen
+!   v/V/Ctrl-v: Toggle normal/linewise/blockwise selection
+!   y/Return:   Copy selection to primary buffer, Return: quit afterwards
+!   Y:          Copy selected lines to primary buffer or cursor line and quit
+!   q/Escape:   Quit keyboard selection mode!
+URxvt.keysym.Shift-Control-S: perl:keyboard-select:activate
+URxvt.keysym.Shift-Control-R: perl:keyboard-select:search
+URxvt.keysym.Shift-Control-F: perl:keyboard-select:search
+URxvt.keysym.Shift-Control-T: perl:keyboard-select:activate
+URxvt.keyboard-select.clipboard: true
+
+URxvt.keysym.C-plus:    resize-font:bigger
+URxvt.keysym.C-minus:   resize-font:smaller
+URxvt.keysym.C-equal:   resize-font:reset
+URxvt.resize-font.step: 1
+
+! https://vim.fandom.com/wiki/Get_Alt_key_to_work_in_terminal
+! vim /etc/inputrc set convert-meta on 
+URxvt.keysym.Meta-t:    resize-font:smaller
+! URxvt.keysym.C-plus:    resize-font:smaller
+! URxvt.keysym.C-minus:   resize-font:bigger
+
+URxvt.url-launcher:      /usr/bin/firefox
+URxvt.matcher.button: 1
+URxvt.colorUL: #4682B4
+URxvt.keysym.C-Delete: perl:matcher:last
+URxvt.keysym.M-Delete: perl:matcher:list
+
+
+! Colors     -------------------------------------------------- 
+! !Jagob
+! URxvt.cursorColor: #657b83
+! URxvt*foreground: #e4e4e4
+! ! URxvt*background: [100]#1a1a1a
+! URxvt*background: #2a2a2a
+! ! black
+! URxvt*color0  : #2E3436
+! URxvt*color8  : #abab78
+! ! red
+! URxvt*color1  : #df0000
+! URxvt*color9  : #ff0000
+! ! green
+! URxvt*color2  : #4E9A06
+! ! executable, PS1
+! URxvt*color10 : #00df5f 
+! ! yellow
+! URxvt*color3  : #ffaf00
+! URxvt*color11 : #ff9a00
+! ! blue
+! !! irssi cmus 
+! URxvt*color4  : #4a914a 
+! !! folders
+! URxvt*color12 : #5faf5f 
+! ! magenta
+! URxvt*color5  : #75507B
+! URxvt*color13 : #AD7FA8
+! ! cyan
+! URxvt*color6  : #00afdf
+! ! symbolic links
+! URxvt*color14 : #00ff5f
+! ! white
+! URxvt*color7  : #D3D7CF
+! URxvt*color15 : #EEEEEC
+  
+! Solarized Common
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #5faf5f
+! Original green substitued with my theme
+! #define S_green       #859900
+
+! Solarized Light
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+
+! ! Custom Solarized
+! ! *background:            S_base3
+! URxvt*background:            S_base2
+! URxvt*foreground:            S_base01
+! ! URxvt*fading:                5
+! ! URxvt*fadeColor:             S_base03
+! ! URxvt*cursorColor:           S_base1
+! ! URxvt*pointerColorBackground:S_base01
+! ! URxvt*pointerColorForeground:S_base1
+! !! black dark/light
+! URxvt*color0:                S_base02
+! URxvt*color8:                S_base03
+! !! red dark/light
+! URxvt*color1:                S_red
+! URxvt*color9:                S_orange
+! !! green dark/light
+! URxvt*color2:                S_green
+! URxvt*color10:               S_base01
+! !! yellow dark/light
+! URxvt*color3:                S_yellow
+! URxvt*color11:               S_base00
+! !! blue dark/light
+! URxvt*color4:                S_blue
+! URxvt*color12:               S_base0
+! !! magenta dark/light
+! URxvt*color5:                S_magenta
+! URxvt*color13:               S_violet
+! !! cyan dark/light
+! URxvt*color6:                S_cyan
+! URxvt*color14:               S_base1
+! !! white dark/light
+! URxvt*color7:                S_base2
+! URxvt*color15:               S_base3
+
+
+
+! -----------------------------------------------------------------------------
+! File: gruvbox-dark.xresources
+! Description: Retro groove colorscheme generalized
+! Author: morhetz <morhetz@gmail.com>
+! Source: https://github.com/morhetz/gruvbox-generalized
+! Last Modified: 6 Sep 2014
+! -----------------------------------------------------------------------------
+
+! hard contrast: *background: #1d2021
+*background: #282828
+! soft contrast: *background: #32302f
+*foreground: #ebdbb2
+! Black + DarkGrey
+*color0:  #282828
+*color8:  #928374
+! DarkRed + Red
+*color1:  #cc241d
+*color9:  #fb4934
+! DarkGreen + Green
+*color2:  #98971a
+! *color10: #b8bb26  ! gruvbox original
+*color10: #8ec07c 
+! DarkYellow + Yellow
+*color3:  #d79921
+*color11: #fabd2f
+! DarkBlue + Blue
+*color4:  #458588
+*color12: #83a598
+! DarkMagenta + Magenta
+*color5:  #b16286
+*color13: #d3869b
+! DarkCyan + Cyan
+*color6:  #689d6a
+! *color14: #8ec07c  ! gruvbox original
+*color14: #b8bb26
+! LightGrey + White
+*color7:  #a89984
+*color15: #ebdbb2

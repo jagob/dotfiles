@@ -1,0 +1,77 @@
+# ln -s ~/dotfiles/.config/zathura/zathurarc ~/.config/zathura/
+
+set font "Ubuntu Sans Mono 14"
+# set show-scrollbars true
+set selection-clipboard clipboard
+set scroll-step 150
+# set zoom-step 10
+# set window-title-basename true
+# set first-page-column 2
+# set database sqlite
+# set recolor-keephue
+# set page-store-interval 30
+# set page-store-threshold 30
+# set render-loading false
+
+map <C-+> zoom in
+map <C--> zoom out
+map <F1> set "pages-per-row 1"
+map <F2> set "pages-per-row 2"
+
+# colemak-dh
+# map m scroll left
+# map n scroll down
+# map e scroll up
+# map i scroll right
+map d scroll half-down
+map u scroll half-up
+map D toggle_page_mode
+# ^r Recolor (grayscale and invert colors)
+map <C-i> recolor
+
+# colors
+# set default-bg      "#fdf6e3" 
+# set statusbar-bg    "#eee8d5"
+# set statusbar-fg    "#000000"
+# set highlight-color "#9FBC00"
+# set highlight-active-color "#00BC00"
+# set highlight-transparency 0
+
+
+# zathurarc-dark
+set default-bg "#000000" #00
+set default-fg "#F7F7F6" #01
+
+set statusbar-fg "#B0B0B0" #04
+set statusbar-bg "#202020" #01
+
+set inputbar-bg "#151515" #00 currently not used
+set inputbar-fg "#FFFFFF" #02
+
+set notification-error-bg "#AC4142" #08
+set notification-error-fg "#151515" #00
+
+set notification-warning-bg "#AC4142" #08
+set notification-warning-fg "#151515" #00
+
+set highlight-color "#F4BF75" #0A
+# set highlight-color "#fabd2f"
+# set highlight-active-color "#6A9FB5" #0D
+set highlight-active-color "#fabd2f"
+
+set completion-highlight-fg "#151515" #02
+set completion-highlight-bg "#90A959" #0C
+
+set completion-bg "#303030" #02
+set completion-fg "#E0E0E0" #0C
+
+set notification-bg "#90A959" #0B
+set notification-fg "#151515" #00
+
+set recolor true
+# set recolor-lightcolor "#000000" #00
+# set recolor-darkcolor "#E0E0E0" #06
+set recolor-lightcolor "#282828"
+set recolor-darkcolor "#ebdbb2"
+set recolor-reverse-video true
+set recolor-keephue true
