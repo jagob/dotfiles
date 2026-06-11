@@ -206,7 +206,7 @@ return {
     --  - settings (table): Override the default settings passed when initializing the server.
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
-      -- clangd = {},
+      clangd = {},
       bashls = {},
       -- gopls = {},
       pyright = {},
@@ -254,6 +254,7 @@ return {
     local ensure_installed = vim.tbl_keys(servers or {})
     vim.list_extend(ensure_installed, {
       "stylua", -- Used to format Lua code
+      "clang-format", -- c++ formatter
       "isort", -- python formatter
       "black", -- python linter
     })

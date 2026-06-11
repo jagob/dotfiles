@@ -43,7 +43,7 @@ end, { desc = "Format current file" })
 vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
 
 -- Open parent directory in floating window
-vim.keymap.set("n", "<space>-", require("oil").toggle_float)
+vim.keymap.set("n", "<leader>-", require("oil").toggle_float)
 
 -- copy paste
 -- "*p for pasting
@@ -83,7 +83,11 @@ end)
 
 vim.keymap.set("n", "<leader>fd", function()
   builtin.find_files({ cwd = "~/dotfiles/", hidden = true })
-end)
+end, { desc = "Find dotfiles" })
+
+vim.keymap.set("n", "<leader>fn", function()
+  builtin.find_files({ cwd = "~/dropbox/faldkasse/notes/", hidden = true })
+end, { desc = "Find Notes" })
 
 -- local ui = require("harpoon.ui")
 -- -- I and O clashes with jump list
@@ -101,20 +105,3 @@ end)
 -- vim.keymap.set("n", "<C-,>", function()
 --   ui.nav_file(4)
 -- end)
-
--- local dap = require("dap")
--- local dapui = require("dapui")
--- vim.keymap.set("n", "<leader>da", dapui.toggle)
--- vim.keymap.set("n", "<leader>dd", dap.toggle_breakpoint)
--- vim.keymap.set("n", "<leader>dc", dap.continue)
--- vim.keymap.set("n", "<leader>dn", dap.step_over)
--- vim.keymap.set("n", "<leader>ds", dap.step_into)
--- vim.keymap.set("n", "<leader>dx", dap.terminate)
--- -- vim.keymap.set("n", "<leader>bk", dap.step_out)
--- -- vim.keymap.set("n", "<leader>bh", dap.step_back)
--- vim.keymap.set("n", "<leader>d.", dap.run_last)
--- vim.keymap.set("n", "<leader>dk", require("dap-python").test_method)
--- vim.keymap.set("n", "<leader>dm", require("dap-python").test_class)
--- -- vnoremap <silent> <leader>ds <ESC>:lua require('dap-python').debug_selection()<CR>
--- -- vim.keymap.set("n", "<leader>br", dapui.open({ reset = true }))
--- -- vim.keymap.set('n', '<Leader>dr', function() require('dap').repl.open() end)
