@@ -332,6 +332,9 @@ set clipboard=unnamedplus
 nnoremap <leader>d "\"_d"
 vnoremap <leader>d "\"_d"
 
+" " pasting over a slecection no longer clobbers your clipboard
+" xnoremap <expr> p 'pgv"'.v:registers.'y'
+
 " " greatest remap ever
 " xnoremap("<leader>p", "\"_dP")
 " " next greatest remap ever : asbjornHaland

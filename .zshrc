@@ -4,7 +4,7 @@
 # echo '           (__)\       )\/\'
 # echo '               ||----w |'
 # echo '               ||     ||'
-#
+
 source ~/dotfiles/.zshgit
 source /usr/share/autojump/autojump.zsh
 # source /usr/share/zsh/plugins/zsh-extract/extract.plugin.zsh
@@ -70,6 +70,9 @@ export TERMINFO=/usr/share/terminfo
 export PATH=~/bin:$PATH
 export PIP_REQUIRE_VIRTUALENV=false
 export PYTHONBREAKPOINT="ipdb.set_trace"
+# export PAGER="less -X -F -R"
+# export PAGER="less"
+# export LESS="-R"
 
 #suffix-alias
 alias -s tex=$EDITOR
@@ -79,8 +82,10 @@ alias -s asm=$EDITOR
 alias -s txt=$EDITOR
 
 # aliases
-alias vim='nvim'  # \vim will ignore the alias
+alias vi='vim'  # \vi to ignore alias
+alias vim='nvim'  # \vim to ignore alias
 alias vimdiff='nvim -d'
+alias devpod='devpod-cli'
 alias za='zathura'
 alias fp='readlink -f'  # filepath
 alias finder='find -name' # "search"
@@ -106,12 +111,13 @@ alias monitor='xrandr --output eDP-1 --auto --output HDMI-1 --off'
 # alias monitor_reset='xrandr --output eDP-1 --auto --output DVI-I-1-1 --off --output DVI-I-2-2 --off'
 
 # documents
-alias todo='vim ~/dropbox/faldkasse/notes/todo.txt'
-alias work='vim ~/dropbox/faldkasse/notes/work.txt'
-alias notes='vim ~/dropbox/faldkasse/notes/notes.txt'
-alias oensker='vim ~/dropbox/faldkasse/notes/oenskeseddel.txt'
-alias binds='vim ~/dropbox/faldkasse/privat/cfg/keymaps/jagob/keymap.c'
-alias miryoku='vim ~/dropbox/faldkasse/privat/cfg/keymaps/jagob_miryoku/keymap.c'
+alias todo='vi ~/dropbox/faldkasse/notes/todo.md'
+alias work='vi ~/dropbox/faldkasse/notes/work.txt'
+alias notes='vi ~/dropbox/faldkasse/notes/notes.md'
+alias oensker='vi ~/dropbox/faldkasse/notes/oenskeseddel.md'
+alias corne='vi ~/dropbox/faldkasse/privat/cfg/keymaps/jagob/keymap.c'
+alias kyria='vi ~/dropbox/faldkasse/cfg/kyria/kyria_rev2.keymap'
+alias charybdis='vi ~/code/qmk_firmware/keyboards/bastardkb/charybdis/4x6/keymaps/jagob/keymap.c'
 
 alias t="tmux"
 alias ta="t a -t"
@@ -154,7 +160,7 @@ alias rs='sudo shutdown -r now'         # restart
 alias rb='sudo shutdown -r now'         # restart
 
 ### COLORS
-export GREP_COLOR="1;33"
+export GREP_COLORS="mt=1;33"
 eval `dircolors -b`
 # Colored manpage
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -289,8 +295,11 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
+eval "$(atuin init zsh)"
+
 # zsh-syntax-highlighting at the end of file
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 typeset -A ZSH_HIGHLIGHT_STYLES
 # ZSH_HIGHLIGHT_STYLES[arg0]='fg=yellow'
 ZSH_HIGHLIGHT_STYLES[arg0]='fg=#fabd2f'  # yellow
+

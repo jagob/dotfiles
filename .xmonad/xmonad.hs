@@ -278,15 +278,15 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $ [
     -- , ((0, xF86XK_Sleep     ), spawn "sudo systemctl suspend")
     , ((0, xF86XK_MonBrightnessUp  ), spawn "xbacklight -inc 10")
     , ((0, xF86XK_MonBrightnessDown), spawn "xbacklight -dec 10")
-    , ((0, xK_KP_End        ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 1
-    , ((0, xK_KP_Down       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/fight.mp3")    -- Keypad 2
-    , ((0, xK_KP_Page_Down  ), spawn "python2 ~/dropbox/faldkasse/soundboard/soundboard.py naehnej")  -- Keypad 3
-    , ((0, xK_KP_Left       ), spawn "python2 ~/dropbox/faldkasse/soundboard/soundboard.py help")   -- Keypad 4
-    , ((0, xK_KP_Begin      ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 5
-    , ((0, xK_KP_Right      ), spawn "python2 ~/dropbox/faldkasse/soundboard/soundboard.py nofucksgiven")   -- Keypad 6
-    , ((0, xK_KP_Home       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/awesome.mp3")   -- Keypad 7
-    , ((0, xK_KP_Up         ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 8
-    , ((0, xK_KP_Page_Up    ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 9
+    -- , ((0, xK_KP_End        ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 1
+    -- , ((0, xK_KP_Down       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/fight.mp3")    -- Keypad 2
+    -- , ((0, xK_KP_Page_Down  ), spawn "python2 ~/dropbox/faldkasse/soundboard/soundboard.py naehnej")  -- Keypad 3
+    -- , ((0, xK_KP_Left       ), spawn "python2 ~/dropbox/faldkasse/soundboard/soundboard.py help")   -- Keypad 4
+    -- , ((0, xK_KP_Begin      ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 5
+    -- , ((0, xK_KP_Right      ), spawn "python2 ~/dropbox/faldkasse/soundboard/soundboard.py nofucksgiven")   -- Keypad 6
+    -- , ((0, xK_KP_Home       ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/awesome.mp3")   -- Keypad 7
+    -- , ((0, xK_KP_Up         ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 8
+    -- , ((0, xK_KP_Page_Up    ), spawn "mpg123 ~/dropbox/faldkasse/soundboard/oioioi.mp3")   -- Keypad 9
     ]
     ++
     -- mod-[1..9], Switch to workspace N
