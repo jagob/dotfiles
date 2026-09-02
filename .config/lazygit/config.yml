@@ -1,0 +1,113 @@
+os:
+  edit: 'nvim -- {{filename}}'
+  editAtLine: 'nvim +{{line}} -- {{filename}}'
+  editAtLineAndWait: 'nvim +{{line}} -- {{filename}}'
+  editInTerminal: true
+
+promptToReturnFromSubprocess: false
+
+gui:
+  sidePanelWidth: 0.15
+
+  # Nerd fonts version to use.
+  # One of: '2' | '3' | empty string (default)
+  # If empty, do not show icons.
+  nerdFontsVersion: "3"
+  # showIcons: true
+
+  # Default size for focused window. Can be changed from within Lazygit with '+'
+  # and '_' (but this won't change the default).
+  # One of: 'normal' (default) | 'half' | 'full'
+  screenMode: normal
+
+  # # mocha catppuccin
+  # theme:
+  #   activeBorderColor:
+  #     - '#89b4fa'
+  #     - bold
+  #   inactiveBorderColor:
+  #     - '#a6adc8'
+  #   optionsTextColor:
+  #     - '#89b4fa'
+  #   selectedLineBgColor:
+  #     - '#313244'
+  #   cherryPickedCommitBgColor:
+  #     - '#45475a'
+  #   cherryPickedCommitFgColor:
+  #     - '#89b4fa'
+  #   unstagedChangesColor:
+  #     - '#f38ba8'
+  #   defaultFgColor:
+  #     - '#cdd6f4'
+  #   searchingActiveBorderColor:
+  #     - '#f9e2af'
+
+  # # Dracula
+  # theme:
+  #   activeBorderColor:
+  #     - "#FF79C6"
+  #     - bold
+  #   inactiveBorderColor:
+  #     - "#BD93F9"
+  #   searchingActiveBorderColor:
+  #     - "#8BE9FD"
+  #     - bold
+  #   optionsTextColor:
+  #     - "#6272A4"
+  #   selectedLineBgColor:
+  #     - "#6272A4"
+  #   inactiveViewSelectedLineBgColor:
+  #     - bold
+  #   cherryPickedCommitFgColor:
+  #     - "#6272A4"
+  #   cherryPickedCommitBgColor:
+  #     - "#8BE9FD"
+  #   markedBaseCommitFgColor:
+  #     - "#8BE9FD"
+  #   markedBaseCommitBgColor:
+  #     - "#F1FA8C"
+  #   unstagedChangesColor:
+  #     - "#FF5555"
+  #   defaultFgColor:
+  #     - "#F8F8F2"
+
+git:
+  # '|' key to cycle through pagers
+  pagers:
+    - pager: delta --dark --paging=never
+    # - pager: ydiff -p cat -s --wrap --width={{columnWidth}}
+    #   colorArg: never
+    # - externalDiffCommand: difft --color=always
+    - {} # default, no pager used
+
+  branchPrefix: "feature/"
+
+keybinding:
+  universal:
+    quit: <c-Q>
+    # return-alt1: 'q'
+    copyToClipboard: 'y'
+
+customCommands:
+  - key: 'O'
+    context: commitFiles
+    description: open commit file in nvim diffview
+    command: nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^! -- {{.SelectedCommitFile.Name}}'
+    output: terminal
+  - key: 'O'
+    context: commits
+    description: open commit files in nvim diffview
+    command: nvim -c 'nnoremap Q :qa!<CR>' -c 'DiffviewOpen {{.SelectedLocalCommit.Sha}}^!'
+    output: terminal
+  # # Shortcut to prune branches that have been deleted from remote
+  # - key: "<c-p>" # Prune deleted remote branches
+  #   command: "git remote prune {{.SelectedRemote.Name}}"
+  #   context: "remotes"
+  #   loadingText: "Pruning..."
+  #   description: "prune deleted remote branches"
+  # # Shortcut to prune local merged branches that have been merged to master
+  # - key: "b" # Prune local merged branches
+  #   command: "git branch --merged master | grep -v '^[ *]*master$' | xargs -r git branch -d"
+  #   context: "localBranches"
+  #   loadingText: "Pruning..."
+  #   description: "prune local branches that have been merged to master"
