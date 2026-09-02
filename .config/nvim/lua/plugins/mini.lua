@@ -2,7 +2,9 @@ return {
   {
     "echasnovski/mini.nvim",
     config = function()
-      require("mini.ai").setup()
+      -- conflict with 'a' mapping
+      -- require("mini.ai").setup()
+
       require("mini.comment").setup({
         -- mappings = {
         --   -- Toggle comment (like `gcip` - comment inner paragraph) for both
@@ -20,24 +22,25 @@ return {
         --   textobject = "gc",
         -- },
       })
+
       require("mini.pairs").setup()
-      -- require("mini.surround").setup()
+
       require("mini.surround").setup({
-        -- override "s" mappings to
         mappings = {
-          -- add = "ys",
-          delete = "ds",
-          find = "",
-          find_left = "",
-          highlight = "",
+          add = "csa",
+          delete = "csd",
+          find = "csf",
+          find_left = "csF",
+          highlight = "csh",
           replace = "cs",
 
           -- Add this only if you don't want to use extended mappings
-          suffix_last = "",
-          suffix_next = "",
+          -- suffix_last = "",
+          -- suffix_next = "",
         },
         -- search_method = "cover_or_next",
       })
+
       require("mini.statusline").setup()
     end,
   },

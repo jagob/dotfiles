@@ -5,8 +5,17 @@
 # echo '               ||----w |'
 # echo '               ||     ||'
 
-source ~/dotfiles/.zshgit
-source /usr/share/autojump/autojump.zsh
+# source ~/dotfiles/.zshgit
+if [[ -f "/usr/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] ; then
+    source /usr/share/zsh/zsh-autosuggestions/zsh-autosuggestions.zsh  # arch-linux
+elif [[ -f "/usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ]] ; then
+    source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh  # ubuntu
+fi
+
+if [[ -f "/usr/share/autojump/autojump.zsh" ]] ; then
+  source /usr/share/autojump/autojump.zsh
+fi
+
 # source /usr/share/zsh/plugins/zsh-extract/extract.plugin.zsh
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh
 # source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
@@ -160,7 +169,7 @@ alias rs='sudo shutdown -r now'         # restart
 alias rb='sudo shutdown -r now'         # restart
 
 ### COLORS
-export GREP_COLORS="mt=1;33"
+# export GREP_COLORS="mt=1;33"
 eval `dircolors -b`
 # Colored manpage
 export LESS_TERMCAP_mb=$'\E[01;31m'
@@ -184,7 +193,6 @@ function cl () {
 function gca {
     git commit -a -m "${*}"
 }
-
 
 function history-search-end {
     integer ocursor=$CURSOR
@@ -236,7 +244,6 @@ case $TERM in
 	precmd () {print -Pn "\e]0; %~\a"}
 esac
 
-
 # Bindkeys
 bindkey -e #use emacs keybindings
 bindkey -s '\e[13' 'urxvt& \C-m'
@@ -286,7 +293,7 @@ __conda_setup="$('~/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "~/miniconda3/etc/profile.d/conda.sh" ]; then
+    if [ -f "~/miniconda3/etc/profile.d/conda.sh" ] ; then
         . "~/miniconda3/etc/profile.d/conda.sh"
     else
         export PATH="~/miniconda3/bin:$PATH"
@@ -297,9 +304,20 @@ unset __conda_setup
 
 eval "$(atuin init zsh)"
 
-# zsh-syntax-highlighting at the end of file
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# export STARSHIP_CONFIG=~/.config/starship.toml
+# export STARSHIP_CONFIG=~/.config/starship_folke.toml
+# export STARSHIP_CONFIG=~/.config/starship_hydro.toml
+# export STARSHIP_CONFIG=~/.config/starship_prezto.toml
+export STARSHIP_CONFIG=~/.config/starship_zephyr.toml
+eval "$(starship init zsh)"
+
+# zsh-syntax-highlighting must be sourced the end of file
+if [[ -f "/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh " ]] ; then
+    source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # arch-linux
+elif [[ -f "/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]] ; then
+    source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh  # ubuntu
+fi
+
 typeset -A ZSH_HIGHLIGHT_STYLES
 # ZSH_HIGHLIGHT_STYLES[arg0]='fg=yellow'
 ZSH_HIGHLIGHT_STYLES[arg0]='fg=#fabd2f'  # yellow
-

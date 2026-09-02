@@ -1,37 +1,54 @@
-return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  main = "nvim-treesitter.configs",
-
-  opts = {
-    ensure_installed = { "bash", "c", "cpp", "diff", "lua", "luadoc", "markdown", "markdown_inline", "vim", "vimdoc" },
-    auto_install = true,
-    highlight = {
-      enable = true,
-      -- -- Some languages depend on vim's regex highlighting system (such as Ruby) for indent rules.
-      -- --  If you are experiencing weird indenting issues, add the language to
-      -- --  the list of additional_vim_regex_highlighting and disabled languages for indent.
-      -- additional_vim_regex_highlighting = { 'ruby' },
-      -- },
-      -- indent = { enable = true, disable = { 'ruby' } },
-    },
-
-    incremental_selection = {
-      enable = true,
-      keymaps = {
-        -- init_selection = "gnn", -- set to `false` to disable one of the mappings
-        -- node_incremental = "grn",
-        -- scope_incremental = "grc",
-        -- node_decremental = "grm",
-        init_selection = "<Enter>", -- set to `false` to disable one of the mappings
-        node_incremental = "<Enter>",
-        scope_incremental = false,
-        node_decremental = "<Backspace>",
-      },
-    },
-
-    indent = {
-      enable = true,
-    },
-  },
+local languages = {
+    "bash",
+    "c",
+    "cmake",
+    "cpp",
+    "dockerfile",
+    "json",
+    "lua",
+    "luadoc",
+    "make",
+    "markdown",
+    "markdown_inline",
+    "ninja",
+    "nix",
+    "python",
+    "toml",
+    "vim",
+    "vimdoc",
+    "yaml",
 }
+
+return {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    branch = "main",
+    build = ':TSUpdate',
+    config = function()
+        -- ~/.local/share/nvim/site
+        local parser_path = vim.fn.stdpath('data') .. '/site'
+        vim.opt.runtimepath:prepend(parser_path)
+
+        vim.api.nvim_create_autocmd("FileType", {
+            callback = function(args)
+                local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
+                if lang then
+                    pcall(vim.treesitter.start, args.buf, lang)
+                end
+            end,
+        })
+
+        if vim.fn.executable "tree-sitter" ~= 1 then
+            vim.api.nvim_echo({
+                {
+                    "tree-sitter CLI not found. Parsers cannot be installed.",
+                    "ErrorMsg",
+                },
+            }, true, {})
+            return
+        end
+
+        require('nvim-treesitter.install').ensure_installed = languages
+    end,
+}
+

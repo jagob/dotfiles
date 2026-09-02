@@ -11,7 +11,18 @@ ln -s ~/dotfiles/.config/zathurarc .config/zathura/
 ln -s ~/dotfiles/.vim .
 ln -s ~/dotfiles/.vimrc .
 ln -s ~/dotfiles/.zshrc .
+ln -s ~/dotfiles/.wezterm.lua .
 ln -s ~/dotfiles/.tmux.conf .
+ln -s ~/dotfiles/.pylintrc .
+ln -s ~/dotfiles/.config/nvim .config/
+ln -s ~/dotfiles/.config/starship_zephyr.toml .config/
+ln -s ~/dotfiles/.config/lazygit/config.yml .config/lazygit/
+# ln -s ~/dotfiles/.config/flake8 .config/
+ln -s ~/dotfiles/.gitconfig .
+# ln -s ~/dotfiles/bin .
+ln -s ~/dotfiles/zathurarc .config/zathura/
+# ln -s ~/dotfiles/.vifm .
+# ln -s ~/dotfiles/.stalonetrayrc .
 # ln -s ~/dotfiles/bin .
 # ln -s ~/dotfiles/vim-urxt.desktop ~/.local/share/applications/
 ln -s ~/.Dropbox/Dropbox dropbox

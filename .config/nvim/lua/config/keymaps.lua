@@ -2,11 +2,14 @@ vim.keymap.set("n", "<c-q>", "<cmd>q<cr>")
 vim.keymap.set({ "n", "v", "i" }, "<c-s>", "<esc><cmd>w<cr>")
 vim.keymap.set("n", "<leader>h", "<cmd>nohlsearch<cr>")
 vim.keymap.set("n", "<esc>", "<cmd>nohlsearch<cr>")
-vim.keymap.set("n", "<c-w>", "<cmd>set wrap!<cr>")
+vim.keymap.set("n", "<leader>w", "<cmd>set wrap!<cr>")
 vim.keymap.set("v", "<", "<gv")
 vim.keymap.set("v", ">", ">gv")
 vim.keymap.set("n", "<c-d>", "<c-d>zz")
 vim.keymap.set("n", "<c-u>", "<c-u>zz")
+
+vim.keymap.set('i', '<C-a>', '<C-o>I', { desc = 'Go to the start of the line' })
+vim.keymap.set('i', '<C-e>', '<C-o>A', { desc = 'Go to the end of the line' })
 
 -- navigating splits (colemak)
 -- ctrl arrow keys dont work
@@ -27,43 +30,27 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 vim.keymap.set("n", "<leader>l", function()
   vim.diagnostic.open_float()
 end, { desc = "Open diagnostics in float" })
-
--- vim.keymap.set("n", "[d", function()
--- 	vim.diagnostic.goto_next()
--- end, { desc = "Jump to next diagnostic" })
--- vim.keymap.set("n", "]d", function()
--- 	vim.diagnostic.goto_prev()
--- end, { desc = "Jump to previous diagnostic" })
+vim.keymap.set("n", "[d", function()
+  vim.diagnostic.goto_next()
+end, { desc = "Jump to next diagnostic" })
+vim.keymap.set("n", "]d", function()
+  vim.diagnostic.goto_prev()
+end, { desc = "Jump to previous diagnostic" })
 
 vim.keymap.set("n", "<leader>cf", function()
   require("conform").format()
 end, { desc = "Format current file" })
 
--- Open parent directory in current window
-vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory" })
+vim.keymap.set("n", "-", "<cmd>Oil<cr>", { desc = "Open parent directory in current window" })
+vim.keymap.set("n", "<leader>-", require("oil").toggle_float, { desc = "Open parent directory in floating window" })
 
--- Open parent directory in floating window
-vim.keymap.set("n", "<leader>-", require("oil").toggle_float)
-
--- copy paste
--- "*p for pasting
--- vim.keymap.set("v", "<C>-c", "+y copy")
---
--- -- greatest remap ever
--- vim.keymap.set("x", "<leader>p", [["_dP]])
---
--- -- next greatest remap ever : asbjornHaland
--- vim.keymap.set({ "n", "v" }, "<leader>y", [["+y]])
--- vim.keymap.set("n", "<leader>Y", [["+Y]])
-
--- Copy/paste from system clipboard
-vim.keymap.set({ "n", "x" }, "cp", '"+y')
-vim.keymap.set({ "n", "x" }, "cv", '"+p')
--- Delete without changing the registers
+-- delete without changing the registers
 vim.keymap.set({ "n", "x" }, "x", '"_x')
 
 local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find files" })
+vim.keymap.set("n", "<leader>ff", function()
+  builtin.find_files({ hidden = true })
+end, { desc = "Find files" })
 vim.keymap.set("n", "<leader>fo", builtin.oldfiles, { desc = "Old files" })
 vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "Resume" })
 vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Buffers" })
@@ -105,3 +92,22 @@ end, { desc = "Find Notes" })
 -- vim.keymap.set("n", "<C-,>", function()
 --   ui.nav_file(4)
 -- end)
+
+-- nvim-treesitter/nvim-treesitter-textobjects
+vim.keymap.set({ "x", "o" }, "am", function()
+require "nvim-treesitter-textobjects.select".select_textobject("@function.outer", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "im", function()
+require "nvim-treesitter-textobjects.select".select_textobject("@function.inner", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "ac", function()
+require "nvim-treesitter-textobjects.select".select_textobject("@class.outer", "textobjects")
+end)
+vim.keymap.set({ "x", "o" }, "ic", function()
+require "nvim-treesitter-textobjects.select".select_textobject("@class.inner", "textobjects")
+end)
+-- You can also use captures from other query groups like `locals.scm`
+vim.keymap.set({ "x", "o" }, "as", function()
+require "nvim-treesitter-textobjects.select".select_textobject("@local.scope", "locals")
+end)
+

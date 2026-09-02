@@ -16,8 +16,10 @@ vim.opt.breakindent = true
 -- Store undos between sessions
 vim.opt.undofile = true
 
--- Enable mouse mode, can be useful for resizing splits for example!
-vim.opt.mouse = "a"
+-- -- Enable mouse mode, can be useful for resizing splits for example!
+-- vim.opt.mouse = "a"
+-- disable mouse to allow C-S-c to copy from terminal
+vim.opt.mouse = ""
 
 -- Don't show the mode, since it's already in the status line
 vim.opt.showmode = false
@@ -47,3 +49,7 @@ vim.opt.undofile = true
 vim.opt.undodir = os.getenv("HOME") .. "/.vim/undodir"
 
 vim.opt.clipboard = "unnamedplus"
+
+-- vim.o.diffopt = "internal,filler,closeoff,linematch:60"
+vim.o.diffopt = "internal,filler,closeoff,algorithm:patience,indent-heuristic,inline:char"
+

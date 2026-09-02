@@ -16,6 +16,12 @@ return {
     -- scroll = { enabled = true },
     -- statuscolumn = { enabled = true },
     -- statuscolumn = { enabled = true },
+    styles = {
+      lazygit = {
+        height = 0,
+        width = 0,
+      },
+    },
     lazygit = {
       -- your lazygit configuration comes here
       -- or leave it empty to use the default settings
