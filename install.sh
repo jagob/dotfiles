@@ -1,3 +1,5 @@
+#!/bin/bash
+
 cd
 mkdir -p downloads documents .config.polybar .config/zathura .local/share/applications/
 
@@ -14,7 +16,6 @@ ln -s ~/dotfiles/.zshrc .
 ln -s ~/dotfiles/.wezterm.lua .
 ln -s ~/dotfiles/.tmux.conf .
 ln -s ~/dotfiles/.pylintrc .
-ln -s ~/dotfiles/.config/nvim .config/
 ln -s ~/dotfiles/.config/starship_zephyr.toml .config/
 ln -s ~/dotfiles/.config/lazygit/config.yml .config/lazygit/
 # ln -s ~/dotfiles/.config/flake8 .config/
@@ -44,7 +45,7 @@ sudo pacman -S neovim python-pip python-pynvim ripgrep npm rust lazygit
 sudo pacman -S pipewire pavucontrol
 
 # Post installation
-sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting tmux htop firefox dmenu arandr autorandr zathura zathura-pdf-mupdf evince eog eog-plugins vlc vlc-plugin-ffmpeg vim-spell-da feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring openssh flake8 unzip thunar thunar-archive-plugin file-roller tumbler thunar-volman ntfs-3g gvfs tumbler ffmpegthumbnailer cifs-utils xfce4-notifyd cups cups-pdf system-config-printer jupyterlab jupyter-notebook ntp ctags fzf ack ttf-liberation
+sudo pacman -S zsh zsh-autosuggestions zsh-syntax-highlighting tmux htop firefox dmenu arandr autorandr zathura zathura-pdf-mupdf evince eog eog-plugins vlc vlc-plugin-ffmpeg vim-spell-da feh nm-connection-editor network-manager-applet networkmanager-openconnect gnome-keyring openssh flake8 unzip thunar thunar-archive-plugin file-roller tumbler thunar-volman ntfs-3g gvfs tumbler ffmpegthumbnailer cifs-utils xfce4-notifyd cups cups-pdf system-config-printer jupyterlab jupyter-notebook ntp ctags fzf ack ttf-liberation starship tree-sitter-cli
 
 # academia
 sudo pacman -S texlive-most vim-latexsuite 

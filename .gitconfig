@@ -1,6 +1,3 @@
-# comment
-; comment
-
 [user]
   name = jagob
   email = jacobvdueholm@gmail.com
@@ -9,9 +6,9 @@
   tool = vimdiff
   conflictstyle = diff3
 
-[diff]
-   ; tool = vimdiff
-   external = ~/bin/git_diff_wrapper
+; [diff]
+;    ; tool = vimdiff
+;    external = ~/bin/git_diff_wrapper
 
 [difftool]
   prompt = false
@@ -19,8 +16,9 @@
 [push]
   default = simple
 
-[pager]
-  diff =
+[delta]
+  side-by-side = true
+  ; syntax-theme = Solarized (light)
 
 [alias]
   lg = lazygit
@@ -37,6 +35,7 @@
 ; [credential "https://gist.github.com"]
 ;   helper = 
 ;   helper = !/usr/bin/gh auth git-credential
+
 [init]
   defaultBranch = main
 

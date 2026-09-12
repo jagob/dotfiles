@@ -33,8 +33,12 @@ return {
       "ntk148v/komau.vim",
       "savq/melange-nvim",
       "Mofiqul/dracula.nvim",
+      "Mofiqul/vscode.nvim",
+      "shaunsingh/nord.nvim",
+      "sainnhe/sonokai",
       "ellisonleao/gruvbox.nvim",
       "bluz71/vim-nightfly-colors",
+      "sainnhe/everforest",
       -- Built-in colorschemes are also supported.
       -- (Also works with any colorschemes that are installed via other plugin manager, just make sure the colorscheme is loaded before Themify is loaded.)
       "default",

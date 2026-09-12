@@ -57,7 +57,8 @@ main =  do
     -- xmonad $ withUrgencyHook NoUrgencyHook $ def {
     -- xmonad $ docks $ ewmh $ ewmhFullscreen $ withUrgencyHook NoUrgencyHook $ def {
     xmonad $ docks $ ewmhFullscreen $ ewmh $ withUrgencyHook NoUrgencyHook $ def {
-          terminal              = "urxvt"
+          -- terminal              = "urxvt"
+          terminal              = "ghostty"
         , focusedBorderColor    = green
         , normalBorderColor     = myDzenBGColor
         -- , modMask               = mod4Mask -- Swap alt and win to play dota
