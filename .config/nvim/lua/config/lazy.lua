@@ -26,7 +26,12 @@ require("config.options")
 -- Setup lazy.nvim
 require("lazy").setup({
   rocks = { enabled = false }, -- disable LuaRocks
-  spec = { { import = "plugins" } },
+  spec = { 
+    { import = "plugins" } ,
+    { import = "plugins.lsp" },
+  },
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { "tokyonight" } },
   checker = {
     enabled = true, -- automatically check for plugin updates
     notify = false, -- disables the "Plugin Updates" popup on startup
