@@ -1,54 +1,55 @@
-local languages = {
-    "bash",
-    "c",
-    "cmake",
-    "cpp",
-    "dockerfile",
-    "json",
-    "lua",
-    "luadoc",
-    "make",
-    "markdown",
-    "markdown_inline",
-    "ninja",
-    "nix",
-    "python",
-    "toml",
-    "vim",
-    "vimdoc",
-    "yaml",
-}
-
 return {
     "nvim-treesitter/nvim-treesitter",
+    -- event = { "BufReadPre", "BufNewFile" },
     lazy = false,
     branch = "main",
     build = ':TSUpdate',
     config = function()
-        -- ~/.local/share/nvim/site
-        local parser_path = vim.fn.stdpath('data') .. '/site'
-        vim.opt.runtimepath:prepend(parser_path)
+        require('nvim-treesitter').setup {
+            -- Directory to install parsers and queries to (prepended to `runtimepath` to have priority)
+            -- Defaults to ~/.local/share/nvim/site
+            install_dir = vim.fn.stdpath('data') .. '/site'
+        }
 
-        vim.api.nvim_create_autocmd("FileType", {
-            callback = function(args)
-                local lang = vim.treesitter.language.get_lang(vim.bo[args.buf].filetype)
-                if lang then
-                    pcall(vim.treesitter.start, args.buf, lang)
-                end
-            end,
+        require('nvim-treesitter').install {
+            "bash",
+            "c",
+            "cmake",
+            "comment",
+            "cpp",
+            "csv",
+            "diff",
+            "dockerfile",
+            "json",
+            "lua",
+            "luadoc",
+            "make",
+            "markdown",
+            "markdown_inline",
+            "ninja",
+            "nix",
+            "python",
+            "rust",
+            "toml",
+            "typst",
+            "vim",
+            "vimdoc",
+            "yaml",
+        }
+
+        vim.api.nvim_create_autocmd('FileType', {
+          pattern = { '<filetype>' },
+          callback = function()
+             -- syntax highlighting
+             vim.treesitter.start()
+
+             -- indentation, provided by nvim-treesitter
+             vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+          end,
         })
 
-        if vim.fn.executable "tree-sitter" ~= 1 then
-            vim.api.nvim_echo({
-                {
-                    "tree-sitter CLI not found. Parsers cannot be installed.",
-                    "ErrorMsg",
-                },
-            }, true, {})
-            return
-        end
-
-        require('nvim-treesitter.install').ensure_installed = languages
+        -- use bash parser for zsh
+        vim.treesitter.language.register("bash", "zsh")
     end,
 }
 
