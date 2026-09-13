@@ -31,10 +31,22 @@ vim.keymap.set("n", "<c-e>", "<c-w><c-k>")
 -- vim.keymap.set("n", "<C-Left>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
 -- vim.keymap.set("n", "<C-Right>", ":vertical resize +2<CR>", { desc = "Increase window width" })
 
+-- --split management
+-- vim.keymap.set("n", "<leader>sv", "<C-w>v", { desc = "Split window vertically" })
+-- -- split window vertically
+-- vim.keymap.set("n", "<leader>sh", "<C-w>s", { desc = "Split window horizontally" })
+-- -- split window horizontally
+-- vim.keymap.set("n", "<leader>se", "<C-w>=", { desc = "Make splits equal size" }) -- make split windows equal width & height
+-- -- close current split window
+-- vim.keymap.set("n", "<leader>sx", "<cmd>close<CR>", { desc = "Close current split" })
+
 -- vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
 -- vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
 -- vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
 -- vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+
+-- vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv", { desc = "moves lines down in visual selection" })
+-- vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "moves lines up in visual selection" })
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
